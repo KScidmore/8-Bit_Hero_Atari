@@ -15,7 +15,7 @@ void plot_bitmap_32(ULONG32 *base, int x, int y, const ULONG32 *bitmap, unsigned
 	
 	int i;
 
-	ULONG32 *plot = (base + ((y + i) * 20 ) + (x / 32));
+	ULONG32 *plot = (base + ((y + i) * 20 ) + (x / 32));  //Want to change the divide to a shift for performance
 	
     	
 	for (i = 0; i < height; i++) 
@@ -26,9 +26,9 @@ void plot_bitmap_32(ULONG32 *base, int x, int y, const ULONG32 *bitmap, unsigned
 	}
         
     
+}	
 	
-	
-void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned int height)
+void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned int height) //Edit to match 32 bit for speed
 {
 
 	int i = 0;
@@ -43,7 +43,7 @@ void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned i
 	
 }
 
-void plot_bitmap_8(UCHAR8 *base, int x, int y, const UCHAR8 *bitmap, unsigned int height)
+void plot_bitmap_8(UCHAR8 *base, int x, int y, const UCHAR8 *bitmap, unsigned int height) //Edit to match 32 bit for speed
 {
 
 	int i = 0;
