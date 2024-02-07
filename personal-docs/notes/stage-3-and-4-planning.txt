@@ -1,0 +1,19 @@
+Stage 3 
+==========
+- notes:
+	- two types of note structures 
+- score structure:
+	- need a score structure that contains an array of 4 score structures 
+	- like the paddles example 
+- multiplier structure:
+	- both x and the number in that 
+- fail bar:
+	- fail bar can be an array of the different states, do math to add or reduce size 
+- fret structures:
+	- will be individual 
+- 
+
+
+Stage 4
+==========
+- 
