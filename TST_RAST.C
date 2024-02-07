@@ -1,5 +1,6 @@
 #include <osbind.h>
 #include "raster.h"
+#include "rast_asm.h"
 #include "types.h"
 
 void test_plot_pixel(UINT8 *base);
@@ -14,6 +15,9 @@ int main()
 	test_plot_pixel(base);
 	test_plot_hline(base);
 	*/
+
+	clear_screen(base);
+
 	plot_diamond(base, 300, 200, 50);
 	plot_diamond(base, 300, 200, 150);
 	
