@@ -35,7 +35,7 @@ void plot_pixel(UINT8 *base, int x, int y)
 }
 
 /*
------ FUNCTION: plot_hline -----
+----- FUNCTION: plot_h_line -----
 
 PURPOSE:
   Plots a horizontal line to the screen between
@@ -59,7 +59,7 @@ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
     complete more thorough testing 
   - want to comment out for our copy 
 */
-void plot_hline(UINT8 *base, int x1, int x2, int y)
+void plot_h_line(UINT8 *base, int x1, int x2, int y)
 {
 	UINT8 *start, *end;
 	
@@ -111,7 +111,7 @@ void plot_hline(UINT8 *base, int x1, int x2, int y)
 
 
 /*
------ FUNCTION: plot_genline -----
+----- FUNCTION: plot_gen_line -----
 
 PURPOSE:
   Plots an approximation of a straight line between two coordinates.
@@ -136,7 +136,7 @@ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
   - relies on the plot_line_low and plot_line_high subroutines
   - 
 */
-void plot_genline(UINT8 *base, int x0, int y0, int x1, int y1)
+void plot_gen_line(UINT8 *base, int x0, int y0, int x1, int y1)
 {
 	/*
 	
@@ -378,16 +378,25 @@ void vertical_line(UINT8 *base, int x, int y_start, int height)
 ----- FUNCTION: TODO -----
 
 PURPOSE:
-  TODO
+	Plots a 32 pixel wide bitmap
 
 CALLER INPUT:
-  TODO 
+  UINT32 *base
+	-Starting point of the frame buffer
+  int x
+	- x coordinate for defining the hotspot
+  int y
+	- y coordinate for defining the hotspot
+  const UINT32 *bitmap
+	- The bitmap to be plotted
+  unsigned int height
+	-The height of the bitmap to be plotted
 
 CALLER OUTPUT:
-  TODO
+  Returns Void
 
 ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  -  
+  -  Only plots to multiples of 32 bits
 */
 void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap, unsigned int height)
 {
@@ -414,7 +423,16 @@ PURPOSE:
   TODO
 
 CALLER INPUT:
-  TODO 
+  UINT16 *base
+	-Starting point of the frame buffer
+  int x
+	- x coordinate for defining the hotspot
+  int y
+	- y coordinate for defining the hotspot
+  const UINT16 *bitmap
+	- The bitmap to be plotted
+  unsigned int height
+	-The height of the bitmap to be plotted
 
 CALLER OUTPUT:
   TODO
