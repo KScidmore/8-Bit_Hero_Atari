@@ -2,6 +2,10 @@
 #include "raster.h"
 #include "types.h"
 
+void test_plot_pixel(UINT8 *base);
+void test_plot_hline(UINT8 *base);
+void test_plot_genline(UINT8 *base);
+
 int main()
 {
 	UINT8 *base = (UINT8 *)Physbase();

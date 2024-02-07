@@ -335,7 +335,7 @@ CALLER OUTPUT:
   returns void 
 
 ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  -  
+  - want to figure out a better way of doing this 
 */
 void plot_diamond(UINT8 *base, int cx, int cy, int r)
 {
@@ -347,8 +347,23 @@ void plot_diamond(UINT8 *base, int cx, int cy, int r)
 	plot_genline(base, cx - r, cy, cx, cy - r);
 }
 
-void vertical_line(UCHAR8 *base, int x, int y_start, int height){
+/*
+----- FUNCTION: TODO -----
 
+PURPOSE:
+  TODO
+
+CALLER INPUT:
+  TODO 
+
+CALLER OUTPUT:
+  TODO
+
+ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+  -  
+*/
+void vertical_line(UINT8 *base, int x, int y_start, int height)
+{
 	int i;
   
 	for(i = 0; i < height; i++){
@@ -359,12 +374,27 @@ void vertical_line(UCHAR8 *base, int x, int y_start, int height){
 	
 }
 
-void plot_bitmap_32(ULONG32 *base, int x, int y, const ULONG32 *bitmap, unsigned int height)
+/*
+----- FUNCTION: TODO -----
+
+PURPOSE:
+  TODO
+
+CALLER INPUT:
+  TODO 
+
+CALLER OUTPUT:
+  TODO
+
+ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+  -  
+*/
+void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap, unsigned int height)
 {
 	
 	int i;
 
-	ULONG32 *plot = (base + ((y + i) * 20 ) + (x / 32));  //Want to change the divide to a shift for performance
+	UINT32 *plot = (base + ((y + i) * 20 ) + (x / 32));  //Want to change the divide to a shift for performance
 	
     	
 	for (i = 0; i < height; i++) 
@@ -377,6 +407,21 @@ void plot_bitmap_32(ULONG32 *base, int x, int y, const ULONG32 *bitmap, unsigned
     
 }	
 	
+/*
+----- FUNCTION: TODO -----
+
+PURPOSE:
+  TODO
+
+CALLER INPUT:
+  TODO 
+
+CALLER OUTPUT:
+  TODO
+
+ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+  -  
+*/
 void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned int height) //Edit to match 32 bit for speed
 {
 
@@ -392,7 +437,22 @@ void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned i
 	
 }
 
-void plot_bitmap_8(UCHAR8 *base, int x, int y, const UCHAR8 *bitmap, unsigned int height) //Edit to match 32 bit for speed
+/*
+----- FUNCTION: TODO -----
+
+PURPOSE:
+  TODO
+
+CALLER INPUT:
+  TODO 
+
+CALLER OUTPUT:
+  TODO
+
+ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+  -  
+*/
+void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap, unsigned int height) //Edit to match 32 bit for speed
 {
 
 	int i = 0;
