@@ -1,3 +1,21 @@
+/*
+ ID Header:
+   Authors: 	Andrew Boisvert, Kyle Scidmore
+   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
+   File Name:	RASTER.C
+   Citations:  
+     - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+     - 
+
+
+ Program Purposes:
+   Data Structures: 
+     - TODO
+
+   Functions:
+     - TODO  
+*/
+
 #include <stdio.h>
 #include <osbind.h>
 #include "raster.h"
