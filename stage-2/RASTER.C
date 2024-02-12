@@ -82,7 +82,9 @@ void plot_h_line(UINT8 *base, int x1, int x2, int y)
 	UINT8 *start, *end;
 	
 	/* check if in screen bounds */
-	if (y >= 0 && y < SCREEN_HEIGHT)
+	if (x1 >= 0 && x1 < SCREEN_WIDTH &&
+		x2 >= 0 && x2 < SCREEN_WIDTH &&
+		y >= 0 && y < SCREEN_HEIGHT)
 	{
 		/* ensure x1 is always less than x2 */
 		if (x2 < x1)
@@ -159,26 +161,32 @@ void plot_gen_line(UINT8 *base, int x0, int y0, int x1, int y1)
 	/*
 	
 	*/
-	if (abs_val(y1 - y0) < abs_val(x1 - x0))
+	if (x0 >= 0 && x0 < SCREEN_WIDTH &&
+		x1 >= 0 && x1 < SCREEN_WIDTH &&
+		y0 >= 0 && y0 < SCREEN_HEIGHT &&
+		y1 >= 0 && y1 < SCREEN_HEIGHT)
 	{
-		if (x0 > x1)
+		if (abs_val(y1 - y0) < abs_val(x1 - x0))
 		{
-			plot_line_low(base, x1, y1, x0, y0);
+			if (x0 > x1)
+			{
+				plot_line_low(base, x1, y1, x0, y0);
+			}
+			else
+			{
+				plot_line_low(base, x0, y0, x1, y1);
+			}
 		}
 		else
 		{
-			plot_line_low(base, x0, y0, x1, y1);
-		}
-	}
-	else
-	{
-		if (y0 > y1)
-		{
-			plot_line_high(base, x1, y1, x0, y0);
-		}
-		else
-		{
-			plot_line_high(base, x0, y0, x1, y1);
+			if (y0 > y1)
+			{
+				plot_line_high(base, x1, y1, x0, y0);
+			}
+			else
+			{
+				plot_line_high(base, x0, y0, x1, y1);
+			}
 		}
 	}
 }
@@ -502,31 +510,3 @@ void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap, unsigned int 
 	
 	
 }
-
-
-/* STUFF SAVED FOR LATER 
-
------ FUNCTION: TODO -----
-
-PURPOSE:
-  TODO
-
-CALLER INPUT:
-  UINT8 *base 
-    - starting point of the frame buffer 
-  int x 
-    - x coordinate for plotting location 
-  int y 
-    - y coordinate for plotting location 
-
-CALLER OUTPUT:
-  returns void 
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  -  
-
-
-
-
-
-*/

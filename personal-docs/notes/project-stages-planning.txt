@@ -19,6 +19,12 @@ Overview
 - Project: Stage 3 Planning
 - Project: Stage 4 Planning
 
++----------------+
+| Personal Notes |
++----------------+
+- using Allman bracing style 
+- documentation templates exist in ./personal-docs/resources/
+
 
 +---------------------------+
 | Project: Stage 2 Planning |
