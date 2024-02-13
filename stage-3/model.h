@@ -18,6 +18,17 @@
 #include "types.h"
 
 /*
+- should later try to consolidate this and other typedefs into a file 
+NOTE: This will actually make 0 = false and !0 = true. Any -ve or +ve number
+that is not 0 will represent a non-zero truth value.
+*/
+typedef enum
+{
+	false = 0,
+	true = 1
+} bool;
+
+/*
 - type definition for a Fret object
 - pos_x, pos_y 		= position coordinates
 - size_x, size_y 	= size of the object in px
@@ -33,6 +44,7 @@ typedef struct
 - pos_x, pos_y 		= position coordinates
 - delta_y 			= velocity 
 - size_x, size_y 	= size of the object in px
+- isPlayed 			= played/not-played boolean state of the note
 */
 typedef struct 
 {
@@ -40,6 +52,7 @@ typedef struct
     int delta_y;                
     int v_dir;                          
     const unsigned int size_x, size_y = 32; 
+	bool isPlayed = false;
 } Note;
 
 /*
