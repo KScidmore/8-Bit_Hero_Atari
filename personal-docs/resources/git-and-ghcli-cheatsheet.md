@@ -4,6 +4,10 @@ NOTE: generated this with chatGPT, need to verify contents but should be pretty 
 
 ### Setting Up & Cloning Repositories
 
+#### **Logging Into Account**
+- **Git:** Not applicable directly
+- **GitHub CLI:** `git auth login`
+
 #### **Initialize a New Repository**
 - **Git:** `git init`
 - **GitHub CLI:** Not applicable directly, but after creating on GitHub, clone it.
