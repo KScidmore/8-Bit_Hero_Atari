@@ -14,9 +14,6 @@
      - TODO  
 */
 
-#ifndef TYPES_H
-#define TYPES_H
-
 #include "types.h"
 
 /* ---------- STRUCTURE DEFINITIONS ---------- */
@@ -104,10 +101,10 @@ typedef struct
 */
 typedef struct 
 {
-	const unsigned int pos_x, pos_y;
-	const unsigned int size_x = 136;
-	const unsigned int size_y = 16;
-	unsigned int value = 50;
+	unsigned int pos_x, pos_y;
+	unsigned int size_x;
+	unsigned int size_y;
+	unsigned int value;
 } Fail_Bar;
 
 
@@ -120,9 +117,8 @@ void init_score(Score *score, unsigned int pos_x, unsigned int pos_y,
 void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
                      unsigned int pos_y, unsigned int value);
 void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
-                    unsigned int pos_y);
+                    unsigned int pos_y, unsigned int size_x,
+					unsigned int size_y);
 void init_fail_bar(Fail_Bar *fail_bar, unsigned int pos_x,
 				   unsigned int pos_y, unsigned int value);
 
-
-#endif 
