@@ -1,11 +1,11 @@
-***** FOR C FILES *****
+********** FOR C FILES **********
 
-/*
- ID Header:
-   Authors: 	TODO
-   Emails: 	TODO 
-   File Name:	A5_LIB.S
-   Citations:  TODO 
+/* ---------- ID HEADER ----------:
+   Authors:		Andrew Boisvert, Kyle Scidmore
+   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca 
+   File Name:	TODO 
+   Citations:
+     - TODO
 
 
  Program Purposes:
@@ -16,8 +16,7 @@
      - TODO  
 */
 
-/*
------ FUNCTION: <function-name> -----
+/* ---------- FUNCTION: <function-name> ----------
 
  PURPOSE:
    TODO - purpose, from the caller's perspective (if not
@@ -37,14 +36,14 @@
 
 
 
+********** FOR ASSEMBLY FILES **********
 
-***** FOR ASSEMBLY FILES *****
-
-; ID Header:
+; ---------- ID HEADER ----------
 ;   Authors: 	TODO
 ;   Emails: 	TODO 
 ;   File Name:	A5_LIB.S
-;   Citations:  TODO 
+;   Citations:  
+;	  -TODO 
 ;
 ;
 ; Program Purposes:
@@ -55,7 +54,7 @@
 ;     - TODO  
 ; 
 
-;----- FUNCTION: <function-name> -----
+;---------- FUNCTION: <function-name> ----------
 ;
 ; PURPOSE:
 ;   TODO - purpose, from the caller's perspective (if not

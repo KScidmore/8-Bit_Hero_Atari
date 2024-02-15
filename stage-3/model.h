@@ -1,5 +1,4 @@
-/*
- ID Header:
+/* ---------- ID HEADER ----------
    Authors: 	Andrew Boisvert, Kyle Scidmore
    Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
    File Name:	model.h
@@ -15,20 +14,15 @@
      - TODO  
 */
 
+#ifndef TYPES_H
+#define TYPES_H
+
 #include "types.h"
 
-/*
-- should later try to consolidate this and other typedefs into a file 
-NOTE: This will actually make 0 = false and !0 = true. Any -ve or +ve number
-that is not 0 will represent a non-zero truth value.
-- tried to make it as an enum but it was causing some trouble 
-*/
-#define bool int
-#define TRUE 1
-#define FALSE 0 
+/* ---------- STRUCTURE DEFINITIONS ---------- */
 
 /*
-- type definition for a Fret object
+- type definition for a Fret structure
 - pos_x, pos_y 		= position coordinates
 - size_x, size_y 	= size of the object in px
 */
@@ -39,7 +33,7 @@ typedef struct
 } Fret;
 
 /*
-- type definition for a Note object
+- type definition for a Note structure
 - pos_x, pos_y 		= position coordinates
 - delta_y 			= velocity 
 - size_x, size_y 	= size of the object in px
@@ -56,7 +50,7 @@ typedef struct
 } Note;
 
 /*
-- type definition for a Score object
+- type definition for a Score structure
 - pos_x, pos_y 					= position coordinates
 - total_size_x, total_size_y 	= total size of the entirety of the object 
 - digit_size_x, digit_size_y	= size of each individual digit 
@@ -75,7 +69,7 @@ typedef struct
 
 
 /*
-- type definition for a Multiplier object
+- type definition for a Multiplier structure
 - pos_x, pos_y 					= position coordinates
 - total_size_x, total_size_y 	= total size of the entirety of the object 
 - digit_size_x, digit_size_y	= size of the individual digit 
@@ -92,7 +86,7 @@ typedef struct
 } Multiplier;
 
 /*
-- type definition for a Fretboard object
+- type definition for a Fretboard structure
 - pos_x, pos_y 		= position coordinates
 - size_x, size_y	= size of the object in px
 */
@@ -103,7 +97,7 @@ typedef struct
 } Fretboard;
 
 /*
-- type definition for a Fail_Bar object
+- type definition for a Fail_Bar structure
 - pos_x, pos_y 		= position coordinates
 - size_x, size_y	= size of the object in px
 - value 			= the value of the fail bar, starts at 50%
@@ -117,6 +111,7 @@ typedef struct
 } Fail_Bar;
 
 
+/* ---------- FUNCTION PROTOTYPES ---------- */
 void init_fret(Fret *fret, unsigned int pos_x, unsigned int pos_y);
 void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
                int delta_y, bool is_played);
@@ -126,3 +121,8 @@ void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
                      unsigned int pos_y, unsigned int value);
 void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
                     unsigned int pos_y);
+void init_fail_bar(Fail_Bar *fail_bar, unsigned int pos_x,
+				   unsigned int pos_y, unsigned int value);
+
+
+#endif 

@@ -1,9 +1,9 @@
-/*
- ID Header:
+/* ---------- ID HEADER ----------
    Authors:     Andrew Boisvert, Kyle Scidmore
    Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
    File Name:   model.c
-   Citations:   TODO 
+   Citations:   
+     - TODO 
 
 
  Program Purposes:
@@ -17,20 +17,18 @@
 #include "model.h"
 #include "types.h"
 
-/*
------ FUNCTION: init_fret -----
+/* ---------- FUNCTION: init_fret ----------
 
  PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
+   Initializes a fret object. 
 
  CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
+   *fret	=	a pointer to the fret object
+   pos_x	=	the object's x-coordinate for its screen position
+   pos_y	= 	the object's y-coordinate for its screen position
 
  CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
+   N/A
 
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
@@ -45,8 +43,7 @@ void init_fret(Fret *fret, unsigned int pos_x, unsigned int pos_y)
 }
 
 
-/*
------ FUNCTION: init_note -----
+/* ---------- FUNCTION: init_note ----------
 
  PURPOSE:
    TODO - purpose, from the caller's perspective (if not
@@ -76,8 +73,7 @@ void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
 }
 
 
-/*
------ FUNCTION: init_score -----
+/* ---------- FUNCTION: init_score ----------
 
  PURPOSE:
    TODO - purpose, from the caller's perspective (if not
@@ -107,8 +103,7 @@ void init_score(Score *score, unsigned int pos_x, unsigned int pos_y,
 }
 
 
-/*
------ FUNCTION: init_multiplier -----
+/* ---------- FUNCTION: init_multiplier ----------
 
  PURPOSE:
    TODO - purpose, from the caller's perspective (if not
@@ -138,8 +133,7 @@ void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
 }
 
 
-/*
------ FUNCTION: init_fretboard -----
+/* ---------- FUNCTION: init_fretboard ----------
 
  PURPOSE:
    TODO - purpose, from the caller's perspective (if not
@@ -157,7 +151,8 @@ void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
    TODO
 */
 void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
-                    unsigned int pos_y)
+                    unsigned int pos_y, unsigned int size_x,
+                    unsigned int size_y)
 {
     fretboard->pos_x = pos_x;
     fretboard->pos_y = pos_y;
@@ -166,8 +161,7 @@ void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
 }
 
 
-/*
------ FUNCTION: init_fail_bar -----
+/* ---------- FUNCTION: init_fail_bar ----------
 
  PURPOSE:
    TODO - purpose, from the caller's perspective (if not
@@ -184,7 +178,12 @@ void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void init_fail_bar()
+void init_fail_bar(Fail_Bar *fail_bar, unsigned int pos_x,
+				   unsigned int pos_y, unsigned int value)
 {
-    /*TODO*/
+    fail_bar->pos_x = pos_x; 
+    fail_bar->pos_y = pos_y; 
+    fail_bar->size_x = 136; 
+    fail_bar->size_y = 16; 
+    fail_bar->value = 50;
 }
