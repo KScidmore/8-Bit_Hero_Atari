@@ -21,12 +21,11 @@
 - should later try to consolidate this and other typedefs into a file 
 NOTE: This will actually make 0 = false and !0 = true. Any -ve or +ve number
 that is not 0 will represent a non-zero truth value.
+- tried to make it as an enum but it was causing some trouble 
 */
-typedef enum
-{
-	false = 0,
-	true = 1
-} bool;
+#define bool int
+#define TRUE 1
+#define FALSE 0 
 
 /*
 - type definition for a Fret object
@@ -35,8 +34,8 @@ typedef enum
 */
 typedef struct 
 {
-    const unsigned int pos_x, pos_y;    
-    const unsigned int size_x, size_y = 32;
+    unsigned int pos_x, pos_y;    
+    unsigned int size_x, size_y;
 } Fret;
 
 /*
@@ -48,11 +47,12 @@ typedef struct
 */
 typedef struct 
 {
-    const unsigned int pos_x, pos_y;
+    unsigned int pos_x, pos_y;
     int delta_y;                
     int v_dir;                          
-    const unsigned int size_x, size_y = 32; 
-	bool isPlayed = false;
+    unsigned int size_x;
+	unsigned int size_y; 
+	bool is_played;
 } Note;
 
 /*
@@ -64,13 +64,15 @@ typedef struct
 */
 typedef struct 
 {
-	const unsigned int pos_x, pos_y;
-	const unsigned int total_size_x = 128;
-	const unsigned int total_size_y = 32;
-	const unsigned int digit_size_x = 32;
-	const unsigned int digit_size_x = 32;
+	unsigned int pos_x, pos_y;
+	unsigned int total_size_x;
+	unsigned int total_size_y;
+	unsigned int digit_size_x;
+	unsigned int digit_size_y;
 	unsigned int value;
 } Score;
+
+
 
 /*
 - type definition for a Multiplier object
@@ -81,11 +83,11 @@ typedef struct
 */
 typedef struct 
 {
-	const unsigned int pos_x, pos_y;
-	const unsigned int total_size_x = 64;
-	const unsigned int total_size_y = 32;
-	const unsigned int digit_size_x = 32;
-	const unsigned int digit_size_x = 32;
+	unsigned int pos_x, pos_y;
+	unsigned int total_size_x;
+	unsigned int total_size_y;
+	unsigned int digit_size_x;
+	unsigned int digit_size_y;
 	unsigned int value;
 } Multiplier;
 
@@ -96,8 +98,8 @@ typedef struct
 */
 typedef struct 
 {
-	const unsigned int pos_x, pos_y;
-	const unsigned int size_x, size_y;
+	unsigned int pos_x, pos_y;
+	unsigned int size_x, size_y;
 } Fretboard;
 
 /*
@@ -113,3 +115,14 @@ typedef struct
 	const unsigned int size_y = 16;
 	unsigned int value = 50;
 } Fail_Bar;
+
+
+void init_fret(Fret *fret, unsigned int pos_x, unsigned int pos_y);
+void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
+               int delta_y, bool is_played);
+void init_score(Score *score, unsigned int pos_x, unsigned int pos_y,
+                unsigned int value);
+void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
+                     unsigned int pos_y, unsigned int value);
+void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
+                    unsigned int pos_y);
