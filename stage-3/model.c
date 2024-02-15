@@ -61,7 +61,7 @@ void init_fret(Fret *fret, unsigned int pos_x, unsigned int pos_y)
    TODO
 */
 void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
-               int delta_y, bool is_played)
+               int delta_y, BOOL is_played)
 {
     note->pos_x = pos_x;
     note->pos_y = pos_y;
@@ -70,6 +70,52 @@ void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
     note->size_x = 32;          /* constant */
     note->size_y = 32;          /* constant */
     note->is_played = FALSE;
+}
+
+
+/* ---------- FUNCTION: move_note ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void move_note(Note *note, unsigned int pos_y)
+{
+	note->pos_y = pos_y;
+}
+
+
+/* ---------- FUNCTION: set_note_is_played ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void set_note_is_played(Note *note, BOOL is_played)
+{
+	note->is_played = is_played;
 }
 
 
@@ -91,7 +137,7 @@ void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
    TODO
 */
 void init_score(Score *score, unsigned int pos_x, unsigned int pos_y,
-                unsigned int value)
+                unsigned int value, NOTE_TYPE note_type)
 {
     score->pos_x = pos_x;
     score->pos_y = pos_y;
@@ -100,6 +146,30 @@ void init_score(Score *score, unsigned int pos_x, unsigned int pos_y,
     score->digit_size_x = 32;
     score->digit_size_y = 32;
     score->value = value;
+	score->note_type = note_type;
+}
+
+
+/* ---------- FUNCTION: update_score ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void update_score(Score *score, unsigned int value, NOTE_TYPE note_type)
+{
+		score->value += note_type;
 }
 
 
@@ -130,6 +200,29 @@ void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
     multiplier->digit_size_x = 32;
     multiplier->digit_size_y = 32;
     multiplier->value = value;
+}
+
+
+/* ---------- FUNCTION: update_multiplier ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void update_multiplier(Multiplier *multiplier, unsigned int value)
+{
+	multiplier->value = value;
 }
 
 
@@ -186,4 +279,27 @@ void init_fail_bar(Fail_Bar *fail_bar, unsigned int pos_x,
     fail_bar->size_x = 136; 
     fail_bar->size_y = 16; 
     fail_bar->value = 50;
+}
+
+
+/* ---------- FUNCTION: update_fail_bar ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void update_fail_bar(Fail_Bar *fail_bar, unsigned int value)
+{
+	fail_bar->value = value;
 }

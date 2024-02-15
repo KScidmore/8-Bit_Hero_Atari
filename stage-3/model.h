@@ -43,7 +43,7 @@ typedef struct
     int v_dir;                          
     unsigned int size_x;
 	unsigned int size_y; 
-	bool is_played;
+	BOOL is_played;
 } Note;
 
 /*
@@ -61,6 +61,7 @@ typedef struct
 	unsigned int digit_size_x;
 	unsigned int digit_size_y;
 	unsigned int value;
+	NOTE_TYPE note_type;
 } Score;
 
 
@@ -109,16 +110,30 @@ typedef struct
 
 
 /* ---------- FUNCTION PROTOTYPES ---------- */
+
 void init_fret(Fret *fret, unsigned int pos_x, unsigned int pos_y);
+
+
 void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
-               int delta_y, bool is_played);
+               int delta_y, BOOL is_played);
+void move_note(Note *note, unsigned int pos_y);
+void set_note_is_played(Note *note, BOOL is_played);
+
+
 void init_score(Score *score, unsigned int pos_x, unsigned int pos_y,
-                unsigned int value);
+                unsigned int value, NOTE_TYPE note_type);
+void update_score(Score *score, unsigned int value, NOTE_TYPE note_type);
+
+
 void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
                      unsigned int pos_y, unsigned int value);
+void update_multiplier(Multiplier *multiplier, unsigned int value);
+
 void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
                     unsigned int pos_y, unsigned int size_x,
 					unsigned int size_y);
+
+
 void init_fail_bar(Fail_Bar *fail_bar, unsigned int pos_x,
 				   unsigned int pos_y, unsigned int value);
-
+void update_fail_bar(Fail_Bar *fail_bar, unsigned int value);
