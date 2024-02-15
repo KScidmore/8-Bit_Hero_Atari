@@ -1,7 +1,7 @@
 /* ---------- ID HEADER ----------
    Authors:     Andrew Boisvert, Kyle Scidmore
    Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
-   File Name:   events.h
+   File Name:   tst_mod.c
    Citations:   
      - TODO 
 
@@ -13,8 +13,3 @@
    Functions:
      - TODO  
 */
-
-#ifndef EVENTS_H
-#define EVENTS_H
-
-#endif 
