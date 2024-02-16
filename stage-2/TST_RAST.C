@@ -6,6 +6,13 @@
 void test_plot_pixel(UINT8 *base);
 void test_plot_hline(UINT8 *base);
 void test_plot_genline(UINT8 *base);
+void test_plot_low(UINT8 *base);
+void test_plot_high(UINT8 *base);
+void test_plot_diamond(UINT8 *base);
+void test_plot_vline(UINT8 *base);
+void test_plot_bit32(UINT32 *base);
+void test_plot_bit16(UINT16 *base);
+void test_plot_bit8(UINT8 *base);
 
 int main()
 {
@@ -44,6 +51,46 @@ void test_plot_hline(UINT8 *base)
 }
 
 void test_plot_genline(UINT8 *base)
+{
+	plot_gen_line(base,)
+
+}
+
+void test_plot_genline(UINT8 *base);
+{
+
+}
+
+void test_plot_low(UINT8 *base)
+{
+
+}
+
+void test_plot_high(UINT8 *base)
+{
+
+}
+
+void test_plot_diamond(UINT8 *base)
+{
+
+}
+void test_plot_vline(UINT8 *base)
+{
+
+}
+
+void test_plot_bit32(UINT32 *base)
+{
+
+}
+
+void test_plot_bit16(UINT16 *base)
+{
+
+}
+
+void test_plot_bit8(UINT8 *base)
 {
 
 }
