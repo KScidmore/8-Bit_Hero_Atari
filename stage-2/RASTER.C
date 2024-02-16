@@ -367,10 +367,10 @@ void plot_diamond(UINT8 *base, int cx, int cy, int r)
 {
 	/* top to right, right to bottom, bottom to left,
 	left to top */
-	plot_genline(base, cx, cy - r, cx + r, cy);
-	plot_genline(base, cx + r, cy, cx, cy + r);
-	plot_genline(base, cx, cy + r, cx - r, cy);
-	plot_genline(base, cx - r, cy, cx, cy - r);
+	plot_gen_line(base, cx, cy - r, cx + r, cy);
+	plot_gen_line(base, cx + r, cy, cx, cy + r);
+	plot_gen_line(base, cx, cy + r, cx - r, cy);
+	plot_gen_line(base, cx - r, cy, cx, cy - r);
 }
 
 /*
@@ -504,7 +504,7 @@ void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap, unsigned int 
 	for (i = 0; i < height; i++) 
 	{        
 
-            *(base + ((y + i) * 80 ) +  (x / 80) )  = bitmap[i];
+            *(base + ((y + i) * 80 ) +  (x / 8) )  = bitmap[i];
     
     }
 	

@@ -18,6 +18,7 @@ int main()
 	UINT8 *base = (UINT8 *)Physbase();
 	UINT16 *base16 = (UINT16 *)Physbase();
 	UINT32 *base32 = (UINT32 *)Physbase();
+	clear_screen(base);
 	
 	test_plot_pixel(base);
 	test_plot_hline(base);
@@ -28,7 +29,6 @@ int main()
 	test_plot_bit16(base16);
 	test_plot_bit8(base);
 
-	clear_screen(base);
 		
 	return 0;
 }
@@ -46,9 +46,9 @@ void test_plot_pixel(UINT8 *base)
 
 void test_plot_hline(UINT8 *base)
 {
-	plot_hline(base, 300, 400, 200);
-	plot_hline(base, 100, 300, 300);
-	plot_hline(base, 50, 600, 100);
+	plot_h_line(base, 300, 400, 200);
+	plot_h_line(base, 100, 300, 300);
+	plot_h_line(base, 50, 600, 100);
 }
 
 void test_plot_genline(UINT8 *base)
