@@ -254,6 +254,61 @@ void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
 }
 
 
+/* ---------- FUNCTION: init_fretboard_h_bar ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void init_fretboard_h_bar(Fretboard_H_Bar *h_bar, unsigned int pos_x,
+						  unsigned int pos_y, unsigned int size_x,
+						  unsigned int size_y)
+{
+    h_bar->pos_x = pos_x;
+    h_bar->pos_y = pos_y;
+    h_bar->size_x = size_x;
+    h_bar->size_y = size_y;
+}
+
+
+
+/* ---------- FUNCTION: move_fretboard_h_bar ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void init_fretboard_h_bar(Fretboard_H_Bar *h_bar, unsigned int pos_x,
+						  unsigned int pos_y)
+{
+    h_bar->pos_x = pos_x;
+    h_bar->pos_y = pos_y;
+}
+
+
+
 /* ---------- FUNCTION: init_fail_bar ----------
 
  PURPOSE:
