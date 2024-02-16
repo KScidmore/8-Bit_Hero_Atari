@@ -94,6 +94,19 @@ typedef struct
 	unsigned int size_x, size_y;
 } Fretboard;
 
+
+/*
+- type definition for a Fretboard_H_Bar structure
+- pos_x, pos_y 		= position coordinates
+- size_x, size_y	= size of the object in px
+*/
+typedef struct 
+{
+	unsigned int pos_x, pos_y;
+	unsigned int size_x, size_y;
+} Fretboard_H_Bar;
+
+
 /*
 - type definition for a Fail_Bar structure
 - pos_x, pos_y 		= position coordinates
@@ -132,6 +145,12 @@ void update_multiplier(Multiplier *multiplier, unsigned int value);
 void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
                     unsigned int pos_y, unsigned int size_x,
 					unsigned int size_y);
+
+void init_fretboard_h_bar(Fretboard_H_Bar *h_bar, unsigned int pos_x,
+						  unsigned int pos_y, unsigned int size_x,
+						  unsigned int size_y);
+void move_fretboard_h_bar(Fretboard_H_Bar *h_bar, unsigned int pos_x,
+						  unsigned int pos_y);
 
 
 void init_fail_bar(Fail_Bar *fail_bar, unsigned int pos_x,
