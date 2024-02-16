@@ -75,7 +75,7 @@ void test_plot_vline(UINT8 *base)
 
 void test_plot_bit32(UINT32 *base32)
 {
-	ULONG32 a_bitmap[32] =
+	UINT32 a_bitmap[32] =
 	{
 		0xFFFFFFFF,
 		0xFFFFFFFF,
@@ -134,7 +134,7 @@ void test_plot_bit16(UINT16 *base16)
 		0xC003,
 		0xFFFF,
 		0xFFFF
-	}
+	};
 
 	plot_bitmap_16(base16, 64, 100, smile, 16);
 	plot_bitmap_16(base16, 128, 100, smile, 16);
@@ -153,7 +153,7 @@ void test_plot_bit8(UINT8 *base)
 		0xAA,
 		0x55,
 	
-	}
+	};
 
 	plot_bitmap_8(base, 64, 200, greyscale, 8);
 	plot_bitmap_8(base, 128, 200, greyscale, 8);
