@@ -280,7 +280,7 @@ void init_score_digit(Model *model, DIGIT_POS digit_pos, UINT16 pos_x, UINT16 po
 	model->score.scores[digit_pos].pos_x = pos_x;
 	model->score.scores[digit_pos].pos_y = pos_y;
 	model->score.scores[digit_pos].size_x = 32;
-	model->score.scores[digit_pos].size_x = 32;
+	model->score.scores[digit_pos].size_y = 32;
 	model->score.scores[digit_pos].pos_x = 0;
 }
 
