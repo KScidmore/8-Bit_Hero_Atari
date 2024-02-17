@@ -14,7 +14,12 @@
      - TODO  
 */
 
+#include "types.h"
+#include "model.h"
+
 #ifndef EVENTS_H
 #define EVENTS_H
+
+void move_note()
 
 #endif 

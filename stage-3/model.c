@@ -17,6 +17,33 @@
 #include "model.h"
 #include "types.h"
 
+/* ---------- FUNCTION: init_model ----------
+
+ PURPOSE:
+   TODO
+
+ CALLER INPUT:
+   TODO
+
+ CALLER OUTPUT:
+   N/A
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void init_model(Model *model)
+{
+	init_fret(model, FRET_A, 160, 326);
+	init_fret(model, FRET_S, 256, 326);
+	init_fret(model, FRET_D, 352, 326);
+	init_fret(model, FRET_F, 448, 326);
+	init_note(model, 150, 150, 0);
+	init_score(model, 32, 32, 0);
+	init_multiplier(model, 544, 32, 1);
+	init_fretboard(model);
+	init_fail_bar(model, 224, 41, 50);
+}
+
 /* ---------- FUNCTION: init_fret ----------
 
  PURPOSE:
@@ -33,13 +60,12 @@
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void init_fret(Fret *fret, unsigned int pos_x, unsigned int pos_y)
+void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y)
 {
-    /*TODO*/
-    fret->pos_x = pos_x;
-    fret->pos_y = pos_y;
-    fret->size_x = 32;
-    fret->size_y = 32;
+	model->frets[fret_pos].pos_x = pos_x;
+    model->frets[fret_pos].pos_y = pos_y;
+    model->frets[fret_pos].size_x = 32;
+    model->frets[fret_pos].size_y = 32;
 }
 
 
@@ -60,16 +86,15 @@ void init_fret(Fret *fret, unsigned int pos_x, unsigned int pos_y)
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
-               int delta_y, BOOL is_played)
+void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y)
 {
-    note->pos_x = pos_x;
-    note->pos_y = pos_y;
-    note->delta_y = delta_y;
-    note->v_dir = 1;            /* constant */
-    note->size_x = 32;          /* constant */
-    note->size_y = 32;          /* constant */
-    note->is_played = FALSE;
+    model->note.pos_x = pos_x;
+    model->note.pos_y = pos_y;
+    model->note.delta_y = delta_y;
+    model->note.v_dir = 1;            /* constant */
+    model->note.size_x = 32;          /* constant */
+    model->note.size_y = 32;          /* constant */
+    model->note.is_played = FALSE;
 }
 
 
@@ -90,9 +115,9 @@ void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void move_note(Note *note, unsigned int pos_y)
+void move_note(Model *model, UINT16 pos_y)
 {
-	note->pos_y = pos_y;
+	model->note.pos_y = pos_y;
 }
 
 
@@ -113,9 +138,31 @@ void move_note(Note *note, unsigned int pos_y)
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void set_note_is_played(Note *note, BOOL is_played)
+void set_note_is_played(Model *model, BOOL is_played)
 {
-	note->is_played = is_played;
+	model->note.is_played = is_played;
+}
+
+/* ---------- FUNCTION: generate_note ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void generate_note(Model *model)
+{
+	/* TODO */
 }
 
 
@@ -136,17 +183,15 @@ void set_note_is_played(Note *note, BOOL is_played)
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void init_score(Score *score, unsigned int pos_x, unsigned int pos_y,
-                unsigned int value, NOTE_TYPE note_type)
+void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
-    score->pos_x = pos_x;
-    score->pos_y = pos_y;
-    score->total_size_x = 128;
-    score->total_size_y = 32;
-    score->digit_size_x = 32;
-    score->digit_size_y = 32;
-    score->value = value;
-	score->note_type = note_type;
+    model->score.pos_x = pos_x;
+    model->score.pos_y = pos_y;
+    model->score.total_size_x = 128;
+    model->score.total_size_y = 32;
+    model->score.digit_size_x = 32;
+    model->score.digit_size_y = 32;
+    model->score.value = value;
 }
 
 
@@ -167,9 +212,9 @@ void init_score(Score *score, unsigned int pos_x, unsigned int pos_y,
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void update_score(Score *score, unsigned int value, NOTE_TYPE note_type)
+void update_score(Model *model, UINT16 value, NOTE_TYPE note_type)
 {
-		score->value += note_type;
+	model->score.value += note_type;
 }
 
 
@@ -190,16 +235,15 @@ void update_score(Score *score, unsigned int value, NOTE_TYPE note_type)
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
-                     unsigned int pos_y, unsigned int value)
+void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
-    multiplier->pos_x = pos_x;
-    multiplier->pos_y = pos_y;
-    multiplier->total_size_x = 64;
-    multiplier->total_size_y = 32;
-    multiplier->digit_size_x = 32;
-    multiplier->digit_size_y = 32;
-    multiplier->value = value;
+    model->multiplier.pos_x = pos_x;
+    model->multiplier.pos_y = pos_y;
+    model->multiplier.total_size_x = 64;
+    model->multiplier.total_size_y = 32;
+    model->multiplier.digit_size_x = 32;
+    model->multiplier.digit_size_y = 32;
+    model->multiplier.value = value;
 }
 
 
@@ -220,9 +264,9 @@ void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void update_multiplier(Multiplier *multiplier, unsigned int value)
+void update_multiplier(Model *model, UINT16 value)
 {
-	multiplier->value = value;
+	model->multiplier.value = value;
 }
 
 
@@ -243,69 +287,15 @@ void update_multiplier(Multiplier *multiplier, unsigned int value)
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
-                    unsigned int pos_y, unsigned int size_x,
-                    unsigned int size_y)
+void init_fretboard(Model *model)
 {
-    fretboard->pos_x = pos_x;
-    fretboard->pos_y = pos_y;
-    fretboard->size_x = size_x;
-    fretboard->size_y = size_y;
+    model->fretboard.pos_x = 150;
+    model->fretboard.pos_y = 150;
+    model->fretboard.size_x = 350;
+    model->fretboard.size_y = 350;
 }
 
 
-/* ---------- FUNCTION: init_fretboard_h_bar ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
-void init_fretboard_h_bar(Fretboard_H_Bar *h_bar, unsigned int pos_x,
-						  unsigned int pos_y, unsigned int size_x,
-						  unsigned int size_y)
-{
-    h_bar->pos_x = pos_x;
-    h_bar->pos_y = pos_y;
-    h_bar->size_x = size_x;
-    h_bar->size_y = size_y;
-}
-
-
-
-/* ---------- FUNCTION: move_fretboard_h_bar ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
-void init_fretboard_h_bar(Fretboard_H_Bar *h_bar, unsigned int pos_x,
-						  unsigned int pos_y)
-{
-    h_bar->pos_x = pos_x;
-    h_bar->pos_y = pos_y;
-}
 
 
 
@@ -326,14 +316,13 @@ void init_fretboard_h_bar(Fretboard_H_Bar *h_bar, unsigned int pos_x,
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void init_fail_bar(Fail_Bar *fail_bar, unsigned int pos_x,
-				   unsigned int pos_y, unsigned int value)
+void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
-    fail_bar->pos_x = pos_x; 
-    fail_bar->pos_y = pos_y; 
-    fail_bar->size_x = 136; 
-    fail_bar->size_y = 16; 
-    fail_bar->value = 50;
+    model->fail_bar.pos_x = pos_x; 
+    model->fail_bar.pos_y = pos_y; 
+    model->fail_bar.size_x = 136; 
+    model->fail_bar.size_y = 16; 
+    model->fail_bar.value = 50;
 }
 
 
@@ -354,7 +343,7 @@ void init_fail_bar(Fail_Bar *fail_bar, unsigned int pos_x,
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void update_fail_bar(Fail_Bar *fail_bar, unsigned int value)
+void update_fail_bar(Model *model, UINT16 value)
 {
-	fail_bar->value = value;
+	model->fail_bar.value = value;
 }
