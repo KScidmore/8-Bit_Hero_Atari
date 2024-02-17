@@ -253,9 +253,9 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->score.size_x = 128;
     model->score.size_y = 32;
 	init_score_digit(model, THOUSANDS, 32, 32);
-	init_score_digit(model, HUNDREDS, 32, 32);
-	init_score_digit(model, TENS, 32, 32);
-	init_score_digit(model, ONES, 32, 32);
+	init_score_digit(model, HUNDREDS, 64, 32);
+	init_score_digit(model, TENS, 96, 32);
+	init_score_digit(model, ONES, 128, 32);
 }
 
 /* ---------- FUNCTION: init_score_digit ----------

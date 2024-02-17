@@ -148,7 +148,7 @@ void generate_note(Model *model);
 void init_note_streak(Model *model);
 void update_note_streak(Model *model);
 
-void init_score_digit(Model *model);
+void init_score_digit(Model *model, DIGIT_POS digit_pos, UINT16 pos_x, UINT16 pos_y);
 
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
 void update_score(Model *model);
