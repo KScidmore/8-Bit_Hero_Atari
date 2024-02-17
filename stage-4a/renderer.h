@@ -1,15 +1,14 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "raster.h"
-#include "model.h"
-#include "bitmaps.h"
 #include "types.h"
+#include "model.h"
 
-void render_fretboard(UINT8 *base);
-void render_frets(UINT32 *base, Model *model);
+
+void render_fretboard(unsigned char *base);
+void render_frets(unsigned long *base, Model *model);
 void render_score(UINT32 *base, Model *model);
-void render_multiplier(UINT32 *base, Model *model);
+void render_multiplier(unsigned long *base, Model *model);
 void render_failbar();
 
 #endif
