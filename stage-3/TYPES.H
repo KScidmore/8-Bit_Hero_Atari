@@ -26,6 +26,13 @@ typedef unsigned long UINT32;
 #define FRET_D 2
 #define FRET_F 3
 
+/* numerical positions for readability */
+#define DIGIT_POS UINT8
+#define THOUSANDS 0 
+#define HUNDREDS 1 
+#define TENS 2 
+#define ONES 3
+
 
 /* ---------- MISC MAGIC NUMBER DEFINITIONS ---------- */
 
@@ -36,6 +43,7 @@ typedef unsigned long UINT32;
 /* for array sizing */
 #define FRETS_SIZE 4
 #define NOTES_SIZE 100
+#define SCORE_SIZE 4
 
 
 #endif
