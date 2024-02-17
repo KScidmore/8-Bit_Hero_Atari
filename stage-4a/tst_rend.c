@@ -1,16 +1,23 @@
 #include <osbind.h>
-
+#include "raster.h"
+#include "model.h"
+#include "bitmaps.h"
+#include "types.h"
 #include "renderer.h"
 
 int main()
 {
-    UINT8 *base = (UINT8 *)Physbase();
-	UINT16 *base16 = (UINT16 *)Physbase();
-	UINT32 *base32 = (UINT32 *)Physbase();
+    unsigned char *base = Physbase();
+	unsigned long *base32 = Physbase();
+
+    Model model;
+
+    init_model(&model);
 
     render_fretboard(base);
-    render_frets(base32);
-    render_multiplier(base32);
-    render_score(base32);
+    render_frets(base32, &model);
+    render_multiplier(base32, &model);
+
+    return 0;
     
 }

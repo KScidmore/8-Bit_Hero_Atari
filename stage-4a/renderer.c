@@ -1,8 +1,10 @@
 #include <osbind.h>
 #include "types.h"
 #include "renderer.h"
+#include "model.h"
+#include "RASTER.H"
 
-void render_frets(UINT32 *base, Model *model)
+void render_frets(unsigned long *base, Model *model)
 {  
 
     plot_bitmap_32(base, model->frets[FRET_A].pos_x, model->frets[FRET_A].pos_y, a_map, model->frets[FRET_A].size_y);
@@ -13,7 +15,7 @@ void render_frets(UINT32 *base, Model *model)
 }
 
 
-void render_fretboard(UINT8 *base)
+void render_fretboard(unsigned char *base)
 {
     int i;
     int start_y = 108;
@@ -78,20 +80,24 @@ void render_fretboard(UINT8 *base)
 
 }
 
-void render_score(UINT32 *base, Model *model)
+/*void render_score(UINT32 *base, Model *model)
 {
 
-}
+}*/
 
 
-void render_multiplier(UINT32 *base, Model *model)
+void render_multiplier(unsigned long *base, Model *model)
 {
+    plot_bitmap_32(base, model->multiplier.pos_x, model->multiplier.pos_y, x_map, model->multiplier.digit_size_y);
 
+    plot_bitmap_32(base, model->multiplier.pos_x + 32, model->multiplier.pos_y, one_map, model->multiplier.digit_size_y);
+
+    /* TODO: add if statment for different bitmaps based on multiplier value*/
 
 }
 
 
 void render_failbar()
 {
-
+    /* Make fail bar bitmap and add functionality*/
 }
