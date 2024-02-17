@@ -7,9 +7,9 @@
 #include "types.h"
 
 void render_fretboard(UINT8 *base);
-void render_frets(UINT32 *base);
-void render_score(UINT32 *base);
-void render_multiplier(UINT32 *base);
+void render_frets(UINT32 *base, Model *model);
+void render_score(UINT32 *base, Model *model);
+void render_multiplier(UINT32 *base, Model *model);
 void render_failbar();
 
 #endif
