@@ -68,6 +68,29 @@ void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y)
     model->frets[fret_pos].pos_y = pos_y;
     model->frets[fret_pos].size_x = 32;
     model->frets[fret_pos].size_y = 32;
+	model->frets[fret_pos].is_depressed = FALSE;
+}
+
+/* ---------- FUNCTION: set_fret_depressed ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void set_fret_depressed(Model *model, FRET_POS fret, BOOL is_depressed)
+{
+	model->frets[fret].is_depressed = is_depressed;
 }
 
 
