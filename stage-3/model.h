@@ -80,10 +80,16 @@ typedef struct
 typedef struct 
 {
 	UINT16 pos_x, pos_y;
-	UINT8 total_size_x, total_size_y, digit_size_x, digit_size_y;
-	UINT16 value;
+	UINT8 size_x, size_y;
+	Score_Digit scores[SCORE_SIZE];
 } Score;
 
+typedef struct
+{
+	UINT16 pos_x, pos_y;
+	UINT8 size_x, size_y;
+	UINT8 value;
+} Score_Digit;
 
 
 /*
@@ -141,6 +147,8 @@ void generate_note(Model *model);
 
 void init_note_streak(Model *model);
 void update_note_streak(Model *model);
+
+void init_score_digit(Model *model);
 
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
 void update_score(Model *model);

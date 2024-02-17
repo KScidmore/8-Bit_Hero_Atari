@@ -71,6 +71,7 @@ void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y)
 	model->frets[fret_pos].is_depressed = FALSE;
 }
 
+
 /* ---------- FUNCTION: set_fret_depressed ----------
 
  PURPOSE:
@@ -213,7 +214,7 @@ void generate_note(Model *model)
 void init_note_streak(Model *model)
 {
 	model->note_streak.pos_x = 32;
-	model->note_streak.pos_y = 64;
+	model->note_streak.pos_y = 72;
 	model->note_streak.total_size_x = 128;
 	model->note_streak.total_size_y = 32;
 	model->note_streak.digit_size_x = 32;
@@ -221,13 +222,14 @@ void init_note_streak(Model *model)
 	model->note_streak.value = 0;
 }
 
+
 void update_note_streak(Model *model)
 {
 
 }
 
 
-/* ---------- FUNCTION: init_score ----------
+/* ---------- FUNCTION: init_score_digit ----------
 
  PURPOSE:
    TODO - purpose, from the caller's perspective (if not
@@ -248,13 +250,39 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
     model->score.pos_x = pos_x;
     model->score.pos_y = pos_y;
-    model->score.total_size_x = 128;
-    model->score.total_size_y = 32;
-    model->score.digit_size_x = 32;
-    model->score.digit_size_y = 32;
-    model->score.value = value;
+    model->score.size_x = 128;
+    model->score.size_y = 32;
+	init_score_digit(model, THOUSANDS, 32, 32);
+	init_score_digit(model, HUNDREDS, 32, 32);
+	init_score_digit(model, TENS, 32, 32);
+	init_score_digit(model, ONES, 32, 32);
 }
 
+/* ---------- FUNCTION: init_score_digit ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void init_score_digit(Model *model, DIGIT_POS digit_pos, UINT16 pos_x, UINT16 pos_y)
+{
+	model->score.scores[digit_pos].pos_x = pos_x;
+	model->score.scores[digit_pos].pos_y = pos_y;
+	model->score.scores[digit_pos].size_x = 32;
+	model->score.scores[digit_pos].size_x = 32;
+	model->score.scores[digit_pos].pos_x = 0;
+}
 
 /* ---------- FUNCTION: update_score ----------
 
@@ -274,8 +302,32 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
    TODO
 */
 void update_score(Model *model)
-{
-	model->score.value += model->multiplier.value * model->note.note_type;
+{	
+	UINT8 update_val = model->multiplier.value * model->note.note_type;
+	UINT8 ones_val = model->score.scores[ONES].value;
+	UINT8 tens_val = model->score.scores[TENS].value;
+
+	if (update_val == 0)
+	{
+		return;
+	}
+	else if (update_val < 10)
+	{
+		if ((ones_val + update_val) < 10)
+		{
+			model->score.scores[ONES].value += update_val;
+		}
+		else
+		{
+			model->score.scores[TENS].value += update_val / 10; 
+			model->score.scores[ONES].value += update_val % 10;
+		}
+	}
+	else if (update_val >= 10)
+	{
+		model->score.scores[TENS].value += update_val / 10; 
+		model->score.scores[ONES].value += update_val % 10;
+	}
 }
 
 
