@@ -26,6 +26,7 @@ typedef struct
 {
 	Fret frets[FRETS_SIZE]; /* frets A, S, D, and F */
 	Note note;
+	Note_Streak note_streak;
 	Score score;
 	Multiplier multiplier;
 	Fretboard fretboard;
@@ -57,7 +58,15 @@ typedef struct
     int v_dir;                          
     UINT8 size_x, size_y; 
 	BOOL is_played;
+	NOTE_TYPE note_type;
 } Note;
+
+typedef struct 
+{
+	UINT16 pos_x, pos_y; 
+	UINT16 total_size_x, total_size_y, digit_size_x, digit_size_y;
+	UINT16 value;
+} Note_Streak;
 
 /*
 - type definition for a Score structure
@@ -123,17 +132,20 @@ void init_model(Model *model);
 
 void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y);
 
-void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y);
-void move_note(Model *model, UINT16 pos_y);
+void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type);
+void set_note_pos(Model *model);
 void set_note_is_played(Model *model, BOOL is_played);
 void generate_note(Model *model);
 
+void init_note_streak(Model *model);
+void update_note_streak(Model *model);
+
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
-void update_score(Model *model, UINT16 value, NOTE_TYPE note_type);
+void update_score(Model *model);
 
 
 void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
-void update_multiplier(Model *model, UINT16 value);
+void update_multiplier(Model *model);
 
 void init_fretboard(Model *model);
 

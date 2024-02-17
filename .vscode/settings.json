@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "TST_RAST.C": "cpp",
-        "RASTER.C": "cpp"
+        "RASTER.C": "cpp",
+        "types.h": "c"
     }
 }

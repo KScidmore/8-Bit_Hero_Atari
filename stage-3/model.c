@@ -37,12 +37,14 @@ void init_model(Model *model)
 	init_fret(model, FRET_S, 256, 326);
 	init_fret(model, FRET_D, 352, 326);
 	init_fret(model, FRET_F, 448, 326);
-	init_note(model, 150, 150, 0);
+	init_note(model, 150, 150, 0, SHORT_NOTE);
+	init_note_streak(model);
 	init_score(model, 32, 32, 0);
 	init_multiplier(model, 544, 32, 1);
 	init_fretboard(model);
 	init_fail_bar(model, 224, 41, 50);
 }
+
 
 /* ---------- FUNCTION: init_fret ----------
 
@@ -86,7 +88,7 @@ void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y)
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y)
+void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type)
 {
     model->note.pos_x = pos_x;
     model->note.pos_y = pos_y;
@@ -95,10 +97,11 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y)
     model->note.size_x = 32;          /* constant */
     model->note.size_y = 32;          /* constant */
     model->note.is_played = FALSE;
+	model->note.note_type = note_type;
 }
 
 
-/* ---------- FUNCTION: move_note ----------
+/* ---------- FUNCTION: set_note_pos ----------
 
  PURPOSE:
    TODO - purpose, from the caller's perspective (if not
@@ -115,9 +118,9 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y)
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void move_note(Model *model, UINT16 pos_y)
+void set_note_pos(Model *model)
 {
-	model->note.pos_y = pos_y;
+	model->note.pos_y += 1;
 }
 
 
@@ -143,6 +146,7 @@ void set_note_is_played(Model *model, BOOL is_played)
 	model->note.is_played = is_played;
 }
 
+
 /* ---------- FUNCTION: generate_note ----------
 
  PURPOSE:
@@ -163,6 +167,40 @@ void set_note_is_played(Model *model, BOOL is_played)
 void generate_note(Model *model)
 {
 	/* TODO */
+}
+
+
+/* ---------- FUNCTION: init_note_streak ----------
+
+ PURPOSE:
+   TODO - purpose, from the caller's perspective (if not
+   perfectly clear from the name)
+
+ CALLER INPUT:
+   TODO - the purpose of each input parameter (if not 
+   perfectly clear from the name)
+
+ CALLER OUTPUT:
+   TODO - the purose of each output parameter and return 
+   value (if not perfectly clear from the name)
+
+ ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+   TODO
+*/
+void init_note_streak(Model *model)
+{
+	model->note_streak.pos_x = 32;
+	model->note_streak.pos_y = 64;
+	model->note_streak.total_size_x = 128;
+	model->note_streak.total_size_y = 32;
+	model->note_streak.digit_size_x = 32;
+	model->note_streak.digit_size_y = 32;
+	model->note_streak.value = 0;
+}
+
+void update_note_streak(Model *model)
+{
+
 }
 
 
@@ -212,9 +250,9 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void update_score(Model *model, UINT16 value, NOTE_TYPE note_type)
+void update_score(Model *model)
 {
-	model->score.value += note_type;
+	model->score.value += model->multiplier.value * model->note.note_type;
 }
 
 
@@ -264,9 +302,24 @@ void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
    TODO
 */
-void update_multiplier(Model *model, UINT16 value)
+void update_multiplier(Model *model)
 {
-	model->multiplier.value = value;
+	if (model->note_streak.value > 40)
+	{
+		model->multiplier.value = 8;
+	}
+	else if (model->note_streak.value <= 9)
+	{
+		model->multiplier.value = 4;
+	}
+	else if (model->note_streak.value <= 9)
+	{
+		model->multiplier.value = 2;
+	}
+	else 
+	{
+		model->multiplier.value = 1;
+	}
 }
 
 
@@ -294,9 +347,6 @@ void init_fretboard(Model *model)
     model->fretboard.size_x = 350;
     model->fretboard.size_y = 350;
 }
-
-
-
 
 
 /* ---------- FUNCTION: init_fail_bar ----------
@@ -345,5 +395,5 @@ void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 */
 void update_fail_bar(Model *model, UINT16 value)
 {
-	model->fail_bar.value = value;
+	model->fail_bar.value += value;
 }
