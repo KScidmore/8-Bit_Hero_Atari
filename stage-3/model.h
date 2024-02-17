@@ -19,15 +19,29 @@
 /* ---------- STRUCTURE DEFINITIONS ---------- */
 
 /*
+- type definition for a Model structure
+- 
+*/
+typedef struct 
+{
+	Fret frets[FRETS_SIZE]; /* frets A, S, D, and F */
+	Note note;
+	Score score;
+	Multiplier multiplier;
+	Fretboard fretboard;
+	Fail_Bar fail_bar;	
+} Model;
+
+/*
 - type definition for a Fret structure
 - pos_x, pos_y 		= position coordinates
 - size_x, size_y 	= size of the object in px
 */
 typedef struct 
 {
-    unsigned int pos_x, pos_y;    
-    unsigned int size_x, size_y;
-} Fret;
+    UINT16 pos_x, pos_y;    
+    UINT8 size_x, size_y;
+} Fret; 
 
 /*
 - type definition for a Note structure
@@ -38,11 +52,10 @@ typedef struct
 */
 typedef struct 
 {
-    unsigned int pos_x, pos_y;
+    UINT16 pos_x, pos_y;
     int delta_y;                
     int v_dir;                          
-    unsigned int size_x;
-	unsigned int size_y; 
+    UINT8 size_x, size_y; 
 	BOOL is_played;
 } Note;
 
@@ -52,16 +65,13 @@ typedef struct
 - total_size_x, total_size_y 	= total size of the entirety of the object 
 - digit_size_x, digit_size_y	= size of each individual digit 
 - value 						= the value of the score for the game 
+- NOTE_TYPE 					= type of note (SHORT_NOTE, CHORD, LONG_NOTE)
 */
 typedef struct 
 {
-	unsigned int pos_x, pos_y;
-	unsigned int total_size_x;
-	unsigned int total_size_y;
-	unsigned int digit_size_x;
-	unsigned int digit_size_y;
-	unsigned int value;
-	NOTE_TYPE note_type;
+	UINT16 pos_x, pos_y;
+	UINT8 total_size_x, total_size_y, digit_size_x, digit_size_y;
+	UINT16 value;
 } Score;
 
 
@@ -75,12 +85,9 @@ typedef struct
 */
 typedef struct 
 {
-	unsigned int pos_x, pos_y;
-	unsigned int total_size_x;
-	unsigned int total_size_y;
-	unsigned int digit_size_x;
-	unsigned int digit_size_y;
-	unsigned int value;
+	UINT16 pos_x, pos_y;
+	UINT8 total_size_x, total_size_y, digit_size_x, digit_size_y;
+	UINT16 value;
 } Multiplier;
 
 /*
@@ -90,9 +97,10 @@ typedef struct
 */
 typedef struct 
 {
-	unsigned int pos_x, pos_y;
-	unsigned int size_x, size_y;
+	UINT16 pos_x, pos_y;
+	UINT16 size_x, size_y;
 } Fretboard;
+
 
 /*
 - type definition for a Fail_Bar structure
@@ -102,38 +110,33 @@ typedef struct
 */
 typedef struct 
 {
-	unsigned int pos_x, pos_y;
-	unsigned int size_x;
-	unsigned int size_y;
-	unsigned int value;
+	UINT16 pos_x, pos_y;
+	UINT16 size_x, size_y;
+	UINT8 value;
 } Fail_Bar;
+
 
 
 /* ---------- FUNCTION PROTOTYPES ---------- */
 
-void init_fret(Fret *fret, unsigned int pos_x, unsigned int pos_y);
+void init_model(Model *model);
+
+void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y);
+
+void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y);
+void move_note(Model *model, UINT16 pos_y);
+void set_note_is_played(Model *model, BOOL is_played);
+void generate_note(Model *model);
+
+void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
+void update_score(Model *model, UINT16 value, NOTE_TYPE note_type);
 
 
-void init_note(Note *note, unsigned int pos_x, unsigned int pos_y,
-               int delta_y, BOOL is_played);
-void move_note(Note *note, unsigned int pos_y);
-void set_note_is_played(Note *note, BOOL is_played);
+void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
+void update_multiplier(Model *model, UINT16 value);
+
+void init_fretboard(Model *model);
 
 
-void init_score(Score *score, unsigned int pos_x, unsigned int pos_y,
-                unsigned int value, NOTE_TYPE note_type);
-void update_score(Score *score, unsigned int value, NOTE_TYPE note_type);
-
-
-void init_multiplier(Multiplier *multiplier, unsigned int pos_x,
-                     unsigned int pos_y, unsigned int value);
-void update_multiplier(Multiplier *multiplier, unsigned int value);
-
-void init_fretboard(Fretboard *fretboard, unsigned int pos_x,
-                    unsigned int pos_y, unsigned int size_x,
-					unsigned int size_y);
-
-
-void init_fail_bar(Fail_Bar *fail_bar, unsigned int pos_x,
-				   unsigned int pos_y, unsigned int value);
-void update_fail_bar(Fail_Bar *fail_bar, unsigned int value);
+void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
+void update_fail_bar(Model *model, UINT16 value);
