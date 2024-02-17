@@ -42,6 +42,7 @@ typedef struct
 {
     UINT16 pos_x, pos_y;    
     UINT8 size_x, size_y;
+	BOOL is_depressed;
 } Fret; 
 
 /*
@@ -131,6 +132,7 @@ typedef struct
 void init_model(Model *model);
 
 void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y);
+void set_fret_depressed(Model *model, FRET_POS fret, BOOL is_depressed);
 
 void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type);
 void set_note_pos(Model *model);

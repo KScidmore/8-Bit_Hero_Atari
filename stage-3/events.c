@@ -276,7 +276,16 @@ void move_note(Model *model)
 */
 BOOL note_collision_a(Model *model)
 {
-	/* TODO */
+	if (model->note.pos_y > 320 ||
+		model->note.pos_y < 384)
+	{
+		if (model->frets[FRET_A].is_depressed)
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
 }
 
 
@@ -299,7 +308,16 @@ BOOL note_collision_a(Model *model)
 */
 BOOL note_collision_s(Model *model)
 {
-	/* TODO */
+	if (model->note.pos_y > 320 ||
+		model->note.pos_y < 384)
+	{
+		if (model->frets[FRET_S].is_depressed)
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
 }
 
 
@@ -322,7 +340,16 @@ BOOL note_collision_s(Model *model)
 */
 BOOL note_collision_d(Model *model)
 {
-	/* TODO */
+	if (model->note.pos_y > 320 ||
+		model->note.pos_y < 384)
+	{
+		if (model->frets[FRET_D].is_depressed)
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
 }
 
 
@@ -345,7 +372,16 @@ BOOL note_collision_d(Model *model)
 */
 BOOL note_collision_f(Model *model)
 {
-	/* TODO */
+	if (model->note.pos_y > 320 ||
+		model->note.pos_y < 384)
+	{
+		if (model->frets[FRET_F].is_depressed)
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
 }
 
 
