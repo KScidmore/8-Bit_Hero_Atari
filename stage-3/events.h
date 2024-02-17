@@ -36,6 +36,7 @@ BOOL note_collision_a(Model *model);
 BOOL note_collision_s(Model *model);
 BOOL note_collision_d(Model *model);
 BOOL note_collision_f(Model *model);
+
 void fail_song();
 
 #endif 
