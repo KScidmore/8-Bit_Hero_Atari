@@ -1,0 +1,27 @@
+#------------------------------------------------------------------------------
+#
+# Filename
+#   .gitignore
+# 
+# Description
+#   A gitignore file specifies intentionally untracked files that Git should
+#   ignore. Files already tracked by Git are not affected.
+# 
+# Documentation:
+#   https://git-scm.com/docs/gitignore
+#
+#------------------------------------------------------------------------------
+
+#---------- APPLICATION SPECIFIC ----------------------------------------------
+# VS Code stuff  
+.vscode/
+
+
+#---------- MACOS SPECIFIC ----------------------------------------------------
+# Desktop Services Store file
+.DS_Store 
+
+#---------- MISC --------------------------------------------------------------
+# Compiled binaries 
+.exe 
+.dll 
