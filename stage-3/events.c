@@ -1,41 +1,40 @@
-/* ---------- ID HEADER ----------
-   Authors:     Andrew Boisvert, Kyle Scidmore
-   Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
-   File Name:   events.c
-   Citations:   
-     - TODO 
-
-
- Program Purposes:
-   Data Structures: 
-     - TODO
-
-   Functions:
-     - TODO  
-*/
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   events.c
+/  Citations:   
+/    - TODO 
+/
+/
+/  Program Purposes:
+/    Data Structures: 
+/      - TODO
+/
+/    Functions:
+/      - TODO  
+/--------------------------------------------------------*/
 
 #include "model.h"
 #include "types.h"
 
-/* ---------- ASYNCHRONOUS (INPUT) EVENTS ---------- */
+/*---------- ASYNCHRONOUS (INPUT) EVENTS ------------------------------------*/
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: set_play_on_fret_a -----------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void set_play_on_fret_a(Model *model)
 {
 	char input;
@@ -62,23 +61,22 @@ void set_play_on_fret_a(Model *model)
 }
 
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: set_play_on_fret_s -----------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void set_play_on_fret_s(Model *model)
 {
 	char input;
@@ -105,23 +103,22 @@ void set_play_on_fret_s(Model *model)
 }
 
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: set_play_on_fret_d -----------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void set_play_on_fret_d(Model *model)
 {
 	char input;
@@ -148,23 +145,22 @@ void set_play_on_fret_d(Model *model)
 }
 
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: set_play_on_fret_f -----------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void set_play_on_fret_f(Model *model)
 {
 	char input;
@@ -191,23 +187,22 @@ void set_play_on_fret_f(Model *model)
 }
 
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: quit_game --------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void quit_game(Model *model)
 {
 	char input;
@@ -220,25 +215,24 @@ void quit_game(Model *model)
 	}
 }
 
-/* ---------- SYNCHRONOUS (TIMED) EVENTS ---------- */
+/*---------- SYNCHRONOUS (TIMED) EVENTS -------------------------------------*/
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: move_note --------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void move_note(Model *model)
 {
 	char input;
@@ -253,26 +247,24 @@ void move_note(Model *model)
 
 
 
-/* ---------- CONDITION-BASED (CASCADED) EVENTS ---------- */
+/*---------- CONDITION-BASED (CASCADED) EVENTS ------------------------------*/
 
-
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: note_collision_a -------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 BOOL note_collision_a(Model *model)
 {
 	if (model->note.pos_y > 320 ||
@@ -288,23 +280,22 @@ BOOL note_collision_a(Model *model)
 }
 
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: note_collision_s -------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 BOOL note_collision_s(Model *model)
 {
 	if (model->note.pos_y > 320 ||
@@ -320,23 +311,22 @@ BOOL note_collision_s(Model *model)
 }
 
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: note_collision_d -------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 BOOL note_collision_d(Model *model)
 {
 	if (model->note.pos_y > 320 ||
@@ -352,23 +342,22 @@ BOOL note_collision_d(Model *model)
 }
 
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: note_collision_f -------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 BOOL note_collision_f(Model *model)
 {
 	if (model->note.pos_y > 320 ||
@@ -384,23 +373,22 @@ BOOL note_collision_f(Model *model)
 }
 
 
-/* ---------- FUNCTION: TODO ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- FUNCTION: fail_song --------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void fail_song()
 {
 	/* need to replace with return to splash screen or menu */

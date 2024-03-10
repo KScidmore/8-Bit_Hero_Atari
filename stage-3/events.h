@@ -20,17 +20,17 @@
 #ifndef EVENTS_H
 #define EVENTS_H
 
-/* Asynchronous (Input) Events */
+/*---------- Asynchronous (Input) Events ------------------------------------*/
 void set_play_on_fret_a(Model *model);
 void set_play_on_fret_s(Model *model);
 void set_play_on_fret_d(Model *model);
 void set_play_on_fret_f(Model *model);
 void quit_game(Model *model);
 
-/* Synchronous (Timed) Events */
+/*----------Synchronous (Timed) Events --------------------------------------*/
 void move_note(Model *model);
 
-/* Condition-Based (Cascaded) Events */
+/*---------- Condition-Based (Cascaded) Events ------------------------------*/
 BOOL note_collision_a(Model *model);
 BOOL note_collision_s(Model *model);
 BOOL note_collision_d(Model *model);
