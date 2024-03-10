@@ -1,3 +1,9 @@
+Notes:
+    - adjusted these so they are more visually clear from the code 
+    - made all the headers 60 characters long, then I've been seperating sections 
+      of my code with 80 character long comments like this 
+        /*---------- NAME ----...*/
+
 ********** FOR C LANGUAGE FILES ***********************************************
 
 /*---------- ID HEADER ------------------------------------
@@ -6,7 +12,6 @@
 /  File Name:   TODO
 /  Citations:   
 /    - TODO 
-/
 /
 /  Program Purposes:
 /    Data Structures: 

@@ -20,7 +20,6 @@
 #define MODEL_H
 
 /*---------- STRUCTURE DEFINITIONS ------------------------------------------*/
-
 /*---------- STRUCTURE: Model ------------------------------
 /  INFO:
 /    TODO - general explanation 
@@ -100,6 +99,20 @@ typedef struct
 	UINT16 value;
 } Note_Streak;
 
+/*---------- STRUCTURE: Digit -----------------------
+/  INFO:
+/    TODO - general explanation 
+/  
+/  ATTRIBUTES:
+/    TODO - what sort of attributes does this structure 
+/    have that isn't immediately apparent
+/--------------------------------------------------------*/
+typedef struct
+{
+	UINT16 pos_x, pos_y;
+	UINT8 size_x, size_y;
+	UINT8 value;
+} Digit;
 
 /*---------- STRUCTURE: Score -----------------------------
 /  INFO:
@@ -120,23 +133,8 @@ typedef struct
 {
 	UINT16 pos_x, pos_y;
 	UINT8 size_x, size_y;
-	Score_Digit scores[SCORE_SIZE];
+	Digit scores[SCORE_SIZE];
 } Score;
-
-/*---------- STRUCTURE: Score_Digit -----------------------
-/  INFO:
-/    TODO - general explanation 
-/  
-/  ATTRIBUTES:
-/    TODO - what sort of attributes does this structure 
-/    have that isn't immediately apparent
-/--------------------------------------------------------*/
-typedef struct
-{
-	UINT16 pos_x, pos_y;
-	UINT8 size_x, size_y;
-	UINT8 value;
-} Score_Digit;
 
 
 /*---------- STRUCTURE: Multiplier ------------------------
@@ -198,36 +196,36 @@ typedef struct
 
 
 /*---------- FUNCTION PROTOTYPES --------------------------------------------*/
-/*---------- Model Functions ----------------------------*/
+/* Model Functions */
 void init_model(Model *model);
 
-/*---------- Fret Functions -----------------------------*/
+/* Fret Functions */
 void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y);
 void set_fret_depressed(Model *model, FRET_POS fret, BOOL is_depressed);
 
-/*---------- Note Functions -----------------------------*/
+/* Note Functions */
 void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type);
 void set_note_pos(Model *model);
 void set_note_is_played(Model *model, BOOL is_played);
 void generate_note(Model *model);
 
-/*---------- Note Streak Functions ----------------------*/
+/* Note Streak Functions */
 void init_note_streak(Model *model);
 void update_note_streak(Model *model);
 
-/*---------- Score Functions ----------------------------*/
+/* Score Functions */
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
 void init_score_digit(Model *model, DIGIT_POS digit_pos, UINT16 pos_x, UINT16 pos_y);
 void update_score(Model *model);
 
-/*---------- Multiplier Functions -----------------------*/
+/* Multiplier Functions */
 void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
 void update_multiplier(Model *model);
 
-/*---------- Fretboard Functions ------------------------*/
+/* Fretboard Functions */
 void init_fretboard(Model *model);
 
-/*---------- Failbar Functions --------------------------*/
+/* Failbar Functions */
 void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
 void update_fail_bar(Model *model, UINT16 value);
 
