@@ -16,7 +16,7 @@
 
 #include <stdio.h>
 #include "model.h"
-#include "model.c"
+#include "events.h"
 
 int main() 
 {

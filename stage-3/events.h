@@ -1,20 +1,19 @@
-/* ---------- ID HEADER ----------
-   Authors:     Andrew Boisvert, Kyle Scidmore
-   Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
-   File Name:   events.h
-   Citations:   
-     - TODO 
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   events.h
+/  Citations:   
+/    - TODO 
+/
+/
+/  Program Purposes:
+/    Data Structures: 
+/      - TODO
+/
+/    Functions:
+/      - TODO  
+/--------------------------------------------------------*/
 
-
- Program Purposes:
-   Data Structures: 
-     - TODO
-
-   Functions:
-     - TODO  
-*/
-
-#include "model.c"
 #include "model.h"
 #include "types.h"
 

@@ -1,73 +1,72 @@
-********** FOR C FILES **********
+********** FOR C LANGUAGE FILES ***********************************************
 
-/* ---------- ID HEADER ----------:
-   Authors:		Andrew Boisvert, Kyle Scidmore
-   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca 
-   File Name:	TODO 
-   Citations:
-     - TODO
-
-
- Program Purposes:
-   Data Structures: 
-     - TODO
-
-   Functions:
-     - TODO  
-*/
-
-/* ---------- FUNCTION: <function-name> ----------
-
- PURPOSE:
-   TODO - purpose, from the caller's perspective (if not
-   perfectly clear from the name)
-
- CALLER INPUT:
-   TODO - the purpose of each input parameter (if not 
-   perfectly clear from the name)
-
- CALLER OUTPUT:
-   TODO - the purose of each output parameter and return 
-   value (if not perfectly clear from the name)
-
- ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-   TODO
-*/
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   TODO
+/  Citations:   
+/    - TODO 
+/
+/
+/  Program Purposes:
+/    Data Structures: 
+/      - TODO
+/
+/    Functions:
+/      - TODO  
+/--------------------------------------------------------*/
 
 
+/*---------- FUNCTION: <function-name> --------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 
-********** FOR ASSEMBLY FILES **********
 
-; ---------- ID HEADER ----------
-;   Authors: 	TODO
-;   Emails: 	TODO 
-;   File Name:	A5_LIB.S
-;   Citations:  
-;	  -TODO 
+
+********** FOR ASSEMBLY FILES *************************************************
+
+;---------- ID HEADER -------------------------------------
+;  Authors: 	TODO
+;  Emails: 	TODO 
+;  File Name:	A5_LIB.S
+;  Citations:  
+;	   - TODO 
 ;
+;  Program Purposes:
+;    Data Structures: 
+;      - TODO
 ;
-; Program Purposes:
-;   Data Structures: 
-;     - TODO
-;
-;   Functions:
-;     - TODO  
-; 
+;    Functions:
+;      - TODO  
+;----------------------------------------------------------
+
 
 ;---------- FUNCTION: <function-name> ----------
+;  PURPOSE:
+;    TODO - purpose, from the caller's perspective (if not
+;    perfectly clear from the name)
 ;
-; PURPOSE:
-;   TODO - purpose, from the caller's perspective (if not
-;   perfectly clear from the name)
+;  CALLER INPUT:
+;    TODO - the purpose of each input parameter (if not 
+;    perfectly clear from the name)
 ;
-; CALLER INPUT:
-;   TODO - the purpose of each input parameter (if not 
-;   perfectly clear from the name)
+;  CALLER OUTPUT:
+;    TODO - the purose of each output parameter and return 
+;    value (if not perfectly clear from the name)
 ;
-; CALLER OUTPUT:
-;   TODO - the purose of each output parameter and return 
-;   value (if not perfectly clear from the name)
-;
-; ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-;   TODO
-;
+;  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+;    TODO
+;----------------------------------------------------------
