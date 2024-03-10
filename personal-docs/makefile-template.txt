@@ -1,0 +1,48 @@
+# template for makefiles
+
+TARGET=[executable name]
+
+MODULES=[module 1] [module 2] [...]
+CPPFLAGS=-ansi -pedantic-errors -Wall -Wconversion -g 
+
+$(TARGET): $(MODULES)
+	g++ $(MODULES) -o $(TARGET) 
+
+[name]: [.cpp and .h files including the driver]
+	g++ %(CPPFLAGS) -c a4p1.cpp 
+
+[name]: [.h and .o files for utilities]
+	g++ $(CPPFLAGS) -c util.cpp 
+
+all: clean $(TARGET) 
+
+#adjust regex as needed to target or exclude files 
+clean: 
+	/bin/rm -f *.o $(TARGET) 
+
+
+
+
+----------
+
+- this didn't work but saving temporarily for reference 
+
+all: 
+	make clean 
+	make model
+
+clean:
+	!Rm *.o
+	!Rm model
+
+model: tst_mod.o model.o events.o
+	cc68x tst_mod.o model.o events.o -o model
+
+tst_mod.o: tst_mod.c events.h 
+	cc68x -g -c tst_mod.c
+
+model.o: model.c model.h 
+	cc68x -g -c model.c
+	
+events.o: events.c events.h 
+	cc68x -g -c events.c

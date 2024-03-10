@@ -16,6 +16,9 @@
 
 #include "types.h"
 
+#ifndef MODEL_H
+#define MODEL_H
+
 /* ---------- STRUCTURE DEFINITIONS ---------- */
 
 /*
@@ -162,3 +165,6 @@ void init_fretboard(Model *model);
 
 void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
 void update_fail_bar(Model *model, UINT16 value);
+
+
+#endif 

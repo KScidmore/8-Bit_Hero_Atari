@@ -14,7 +14,6 @@
      - TODO  
 */
 
-#include "model.c"
 #include "model.h"
 #include "types.h"
 
