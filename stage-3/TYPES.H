@@ -3,15 +3,11 @@
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
 /  File Name:   types.h
 /  Citations:   
-/    - TODO 
+/    N/A
 /
-/
-/  Program Purposes:
-/    Data Structures: 
-/      - TODO
-/
-/    Functions:
-/      - TODO  
+/  Purpose:
+/    To provide better code legibility, regularly used custom
+/    data types and magic numbers will be defined in this file.
 /--------------------------------------------------------*/
 
 #ifndef TYPES_H
