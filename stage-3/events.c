@@ -13,7 +13,9 @@
 /      - TODO  
 /--------------------------------------------------------*/
 
+#include <stdio.h>
 #include "model.h"
+#include "events.h"
 #include "types.h"
 
 /*---------- ASYNCHRONOUS (INPUT) EVENTS ------------------------------------*/
@@ -41,16 +43,16 @@ void set_play_on_fret_a(Model *model)
 
 	if (input == 'a')
 	{
-		if (note_collision(&model))
+		if (note_collision_a(model))
 		{
-			update_score(&model);
-			update_multiplier(&model);
-			update_fail_bar(&model, 1);
+			update_score(model);
+			update_multiplier(model);
+			update_fail_bar(model, 1);
 		}
 		else 
 		{
-			update_multiplier(&model);
-			update_fail_bar(&model, -1);
+			update_multiplier(model);
+			update_fail_bar(model, -1);
 			if (model->fail_bar.value == 0)
 			{
 				fail_song();
@@ -83,16 +85,16 @@ void set_play_on_fret_s(Model *model)
 
 	if (input == 's')
 	{
-		if (note_collision(&model))
+		if (note_collision_s(model))
 		{
-			update_score(&model);
-			update_multiplier(&model);
-			update_fail_bar(&model, 1);
+			update_score(model);
+			update_multiplier(model);
+			update_fail_bar(model, 1);
 		}
 		else 
 		{
-			update_multiplier(&model);
-			update_fail_bar(&model, -1);
+			update_multiplier(model);
+			update_fail_bar(model, -1);
 			if (model->fail_bar.value == 0)
 			{
 				fail_song();
@@ -125,16 +127,16 @@ void set_play_on_fret_d(Model *model)
 
 	if (input == 'd')
 	{
-		if (note_collision(&model))
+		if (note_collision_d(model))
 		{
-			update_score(&model);
-			update_multiplier(&model);
-			update_fail_bar(&model, 1);
+			update_score(model);
+			update_multiplier(model);
+			update_fail_bar(model, 1);
 		}
 		else 
 		{
-			update_multiplier(&model);
-			update_fail_bar(&model, -1);
+			update_multiplier(model);
+			update_fail_bar(model, -1);
 			if (model->fail_bar.value == 0)
 			{
 				fail_song();
@@ -167,16 +169,16 @@ void set_play_on_fret_f(Model *model)
 
 	if (input == 'f')
 	{
-		if (note_collision(&model))
+		if (note_collision_f(model))
 		{
-			update_score(&model);
-			update_multiplier(&model);
-			update_fail_bar(&model, 1);
+			update_score(model);
+			update_multiplier(model);
+			update_fail_bar(model, 1);
 		}
 		else 
 		{
-			update_multiplier(&model);
-			update_fail_bar(&model, -1);
+			update_multiplier(model);
+			update_fail_bar(model, -1);
 			if (model->fail_bar.value == 0)
 			{
 				fail_song();
@@ -209,8 +211,7 @@ void quit_game(Model *model)
 
 	if (input == 'q')
 	{
-		return 0;
-		/* need to replace later with proper call */
+		/* exit, need to replace later with proper call */
 	}
 }
 
@@ -239,7 +240,7 @@ void move_note(Model *model)
 
 	if (input == ' ') /* emulating clock tick for the time being */
 	{
-		set_note_pos(&model);
+		set_note_pos(model);
 	}
 }
 
@@ -391,5 +392,4 @@ BOOL note_collision_f(Model *model)
 void fail_song()
 {
 	/* need to replace with return to splash screen or menu */
-	return 0;
 }
