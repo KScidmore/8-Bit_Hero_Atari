@@ -2,7 +2,7 @@
 TARGET=tst_mod
 
 # Object files needed for target 
-OBJECTS=tst_mod.o model.o events.o 
+OBJECTS=tst_mod.o model.o events.o
 
 # C compiler and flags
 CC=cc68x
