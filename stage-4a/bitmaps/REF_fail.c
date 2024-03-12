@@ -1,0 +1,23 @@
+#include "bitmaps.h"
+
+const UINT32 REF_fail[] = {
+
+    0xFFFFFFFF,
+	0xFFFFFFFF,
+    0xFFFFFFFF,
+    0xAAAAAAAF,
+    0x55555557,
+    0xAAAAAAAF,
+    0x55555557,
+    0xAAAAAAAF,
+    0x55555557,
+    0xAAAAAAAF,
+    0x55555557,
+    0xAAAAAAAF,
+    0x55555557,
+    0xFFFFFFFF,
+	0xFFFFFFFF,
+    0xFFFFFFFF
+
+
+};

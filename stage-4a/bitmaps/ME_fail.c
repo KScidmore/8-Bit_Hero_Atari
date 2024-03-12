@@ -1,0 +1,23 @@
+#include "bitmaps.h"
+
+const UINT32 ME_fail[] = {
+
+    0xFFFFFFFF,
+	0xFFFFFFFF,
+    0xFFFFFFFF,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0xFFFFFFFF,
+	0xFFFFFFFF,
+    0xFFFFFFFF
+
+
+};
