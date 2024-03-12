@@ -13,31 +13,10 @@
 /    Functions:
 /      - TODO  
 /--------------------------------------------------------*/
-
-#include "types.h"
-
 #ifndef MODEL_H
 #define MODEL_H
 
-/*---------- STRUCTURE DEFINITIONS ------------------------------------------*/
-/*---------- STRUCTURE: Model ------------------------------
-/  INFO:
-/    TODO - general explanation 
-/  
-/  ATTRIBUTES:
-/    TODO - what sort of attributes does this structure 
-/    have that isn't immediately apparent
-/--------------------------------------------------------*/
-typedef struct 
-{
-	Fret frets[FRETS_SIZE]; /* frets A, S, D, and F */
-	Note note;
-	Note_Streak note_streak;
-	Score score;
-	Multiplier multiplier;
-	Fretboard fretboard;
-	Fail_Bar fail_bar;	
-} Model;
+#include "types.h"
 
 
 /*---------- STRUCTURE: Fret ------------------------------
@@ -192,6 +171,26 @@ typedef struct
 	UINT16 size_x, size_y;
 	UINT8 value;
 } Fail_Bar;
+
+/*---------- STRUCTURE DEFINITIONS ------------------------------------------*/
+/*---------- STRUCTURE: Model ------------------------------
+/  INFO:
+/    TODO - general explanation 
+/  
+/  ATTRIBUTES:
+/    TODO - what sort of attributes does this structure 
+/    have that isn't immediately apparent
+/--------------------------------------------------------*/
+typedef struct 
+{
+	Fret frets[FRETS_SIZE]; /* frets A, S, D, and F */
+	Note note;
+	Note_Streak note_streak;
+	Score score;
+	Multiplier multiplier;
+	Fretboard fretboard;
+	Fail_Bar fail_bar;	
+} Model;
 
 
 

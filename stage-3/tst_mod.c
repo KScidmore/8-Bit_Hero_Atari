@@ -17,6 +17,9 @@
 #include "model.h"
 #include "events.h"
 
+void test_1();
+void print_model_details(Model *model);
+
 int main() 
 {
 	test_1();
@@ -45,7 +48,7 @@ void test_1()
 	Model model;
 	init_model(&model);
 	
-	print_model(&model);
+	print_model_details(&model);
 }
 
 
@@ -77,10 +80,10 @@ void print_model_details(Model *model) {
            model->note.pos_x, model->note.pos_y, model->note.delta_y, model->note.v_dir,
            model->note.size_x, model->note.size_y, model->note.is_played ? "True" : "False");
 
-    printf("Score: Position X: %u, Position Y: %u, Total Size X: %u, Total Size Y: %u, ",
-           model->score.pos_x, model->score.pos_y, model->score.size_x, model->score.size_y);
+    /*printf("Score: Position X: %u, Position Y: %u, Total Size X: %u, Total Size Y: %u, ",
+           model->score.pos_x, model->score.pos_y, model->score.size_x, model->score.size_y);*/
 
-    for (int i = 0; i < 4; i++) {
+    for (i = 0; i < 4; i++) {
         printf("Digit Position X: %u, Digit Position Y: %u, Digit Size X: %u, Digit Size Y: %u, Value: %u", model->score.scores[i].pos_x, model->score.scores[i].pos_y, model->score.scores[i].size_x, model->score.scores[i].size_y, model->score.scores[i].value); 
     }
     printf("\n");

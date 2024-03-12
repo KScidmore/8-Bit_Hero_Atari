@@ -14,11 +14,11 @@
 /      - TODO  
 /--------------------------------------------------------*/
 
-#include "model.h"
-#include "types.h"
-
 #ifndef EVENTS_H
 #define EVENTS_H
+
+#include "model.h"
+#include "types.h"
 
 /*---------- Asynchronous (Input) Events ------------------------------------*/
 void set_play_on_fret_a(Model *model);
