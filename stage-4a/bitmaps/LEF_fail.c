@@ -1,0 +1,22 @@
+#include "bitmaps.h"
+
+const UINT32 LEF_fail[] = {
+
+    0xFFFFFFFF,
+	0xFFFFFFFF,
+    0xFFFFFFFF,
+    0xEAAAAAAA,
+    0xF5555555,
+    0xEAAAAAAA,
+    0xF5555555,
+    0xEAAAAAAA,
+    0xF5555555,
+    0xEAAAAAAA,
+    0xF5555555,
+    0xEAAAAAAA,
+    0xF5555555,
+    0xFFFFFFFF,
+	0xFFFFFFFF,
+    0xFFFFFFFF
+
+};

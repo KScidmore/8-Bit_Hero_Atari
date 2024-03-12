@@ -1,0 +1,23 @@
+#include "bitmaps.h"
+
+const UINT32 REE_fail[] = {
+
+    0xFFFFFFFF,
+	0xFFFFFFFF,
+    0xFFFFFFFF,
+    0x00000007,
+    0x00000007,
+    0x00000007,
+    0x00000007,
+    0x00000007,
+    0x00000007,
+    0x00000007,
+    0x00000007,
+    0x00000007,
+    0x00000007,
+    0xFFFFFFFF,
+	0xFFFFFFFF,
+    0xFFFFFFFF
+
+
+};
