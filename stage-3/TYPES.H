@@ -53,7 +53,6 @@ typedef unsigned long UINT32;
 /* for array sizing */
 #define FRETS_SIZE 4
 #define NOTES_SIZE 100
-#define SCORE_SIZE 4
 
 
 #endif

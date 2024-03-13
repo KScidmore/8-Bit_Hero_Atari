@@ -206,7 +206,6 @@ void update_note_streak(Model *model);
 
 /* Score Functions */
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
-void init_score_digit(Model *model, DIGIT_POS digit_pos, UINT16 pos_x, UINT16 pos_y);
 void update_score(Model *model);
 
 /* Multiplier Functions */

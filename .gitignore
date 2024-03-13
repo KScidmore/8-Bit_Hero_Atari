@@ -25,3 +25,5 @@
 # Compiled binaries 
 .exe 
 .dll 
+.o
+.O 

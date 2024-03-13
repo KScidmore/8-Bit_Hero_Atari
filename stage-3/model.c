@@ -113,9 +113,9 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE 
     model->note.pos_x = pos_x;
     model->note.pos_y = pos_y;
     model->note.delta_y = delta_y;
-    model->note.v_dir = 1;            /* constant */
-    model->note.size_x = 32;          /* constant */
-    model->note.size_y = 32;          /* constant */
+    model->note.v_dir = 1;            	/* constant */
+    model->note.size_x = 32;          	/* constant */
+    model->note.size_y = 32;          	/* constant */
     model->note.is_played = FALSE;
 	model->note.note_type = note_type;
 }
@@ -261,30 +261,6 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 	model->score.value = 0;
 }
 
-/*---------- FUNCTION: TODO -------------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
-/ 
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/ 
-/  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
-/--------------------------------------------------------*/
-void init_score_digit(Model *model, DIGIT_POS digit_pos, UINT16 pos_x, UINT16 pos_y)
-{
-	model->score.scores[digit_pos].pos_x = pos_x;
-	model->score.scores[digit_pos].pos_y = pos_y;
-	model->score.scores[digit_pos].size_x = 32;
-	model->score.scores[digit_pos].size_y = 32;
-	model->score.scores[digit_pos].pos_x = 0;
-}
 
 /*---------- FUNCTION: TODO -------------------------------
 /  PURPOSE:
@@ -305,30 +281,7 @@ void init_score_digit(Model *model, DIGIT_POS digit_pos, UINT16 pos_x, UINT16 po
 void update_score(Model *model)
 {	
 	UINT8 update_val = model->multiplier.value * model->note.note_type;
-	UINT8 ones_val = model->score.scores[ONES].value;
-	UINT8 tens_val = model->score.scores[TENS].value;
-
-	if (update_val == 0)
-	{
-		return;
-	}
-	else if (update_val < 10)
-	{
-		if ((ones_val + update_val) < 10)
-		{
-			model->score.scores[ONES].value += update_val;
-		}
-		else
-		{
-			model->score.scores[TENS].value += update_val / 10; 
-			model->score.scores[ONES].value += update_val % 10;
-		}
-	}
-	else if (update_val >= 10)
-	{
-		model->score.scores[TENS].value += update_val / 10; 
-		model->score.scores[ONES].value += update_val % 10;
-	}
+	model->score.value += update_val;
 }
 
 /*---------- Multiplier Functions -------------------------------------------*/
