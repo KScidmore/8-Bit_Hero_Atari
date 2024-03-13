@@ -259,6 +259,7 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->score.size_x = 128;
     model->score.size_y = 32;
 	model->score.value = 0;
+	model->score.updated_flag = FALSE;
 }
 
 
@@ -281,7 +282,15 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 void update_score(Model *model)
 {	
 	UINT8 update_val = model->multiplier.value * model->note.note_type;
-	model->score.value += update_val;
+	if (update_vale == 0)
+	{
+		model->score.updated_flag = FALSE;
+	}
+	else
+	{
+		model->score.updated_flag = TRUE;
+		model->score.value += update_val;
+	}
 }
 
 /*---------- Multiplier Functions -------------------------------------------*/
