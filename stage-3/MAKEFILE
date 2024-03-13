@@ -27,4 +27,4 @@ events.o: events.c model.h types.h
 
 # Cleaning up the old object files and executable
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	$(RM) *.o tst_mod 
