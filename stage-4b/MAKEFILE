@@ -98,4 +98,4 @@ MF_fail.o: MF_fail.c bitmaps.h
 
 # Cleaning up the old object files and executable
 clean:
-	$(RM) *.o tst_mod
+	rm -f $(OBJECTS) $(TARGET)

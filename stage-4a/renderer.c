@@ -23,24 +23,20 @@ void render_fretboard(UINT8 *base)
     start_y = 108;
     start_x = 173;
 
-    for(i=0, i < 8, i++)
+    for(i = 0, i < 8, i++)
     {
 
         plot_h_line(base, 173, 468, start_y);
         
         start_y += 1;
 
-        i++;
-
     }
 
     for(i = 0, i < 8, i++)
     {
-        vertical_line(base, start_x, 116, 217)
+        vertical_line(base, start_x, 116, 217);
 
         start_x += 1;
-
-        i++;
 
     }
 
@@ -48,11 +44,9 @@ void render_fretboard(UINT8 *base)
 
     for(i = 0, i < 8, i++)
     {
-        vertical_line(base, start_x, 116, 217)
+        vertical_line(base, start_x, 116, 217);
 
         start_x += 1;
-
-        i++;
 
     }
 
@@ -60,11 +54,9 @@ void render_fretboard(UINT8 *base)
 
     for(i = 0, i < 8, i++)
     {
-        vertical_line(base, start_x, 116, 217)
+        vertical_line(base, start_x, 116, 217);
 
         start_x += 1;
-
-        i++;
 
     }
 
@@ -72,11 +64,9 @@ void render_fretboard(UINT8 *base)
 
     for(i = 0, i < 8, i++)
     {
-        vertical_line(base, start_x, 116, 217)
+        vertical_line(base, start_x, 116, 217);
 
         start_x += 1;
-
-        i++;
 
     }
 
@@ -123,7 +113,7 @@ void render_failbar(UINT32 *base, Model *model)
     int pos_y, sec_one, sec_two, sec_three, sec_four, sec_five, sec_six, height;
     
     pos_y = model->fail_bar.pos_y;
-    height = model->fail_bar.size_y
+    height = model->fail_bar.size_y;
     sec_one = model->fail_bar.pos_x;
     sec_two = model->fail_bar.pos_x + 32;
     sec_three = model->fail_bar.pos_x + 64;
