@@ -23,7 +23,7 @@ void render_fretboard(UINT8 *base)
     start_y = 108;
     start_x = 173;
 
-    for(i = 0, i < 8, i++)
+    for(i = 0; i < 8; i++)
     {
 
         plot_h_line(base, 173, 468, start_y);
@@ -32,7 +32,7 @@ void render_fretboard(UINT8 *base)
 
     }
 
-    for(i = 0, i < 8, i++)
+    for(i = 0; i < 8; i++)
     {
         vertical_line(base, start_x, 116, 217);
 
@@ -42,7 +42,7 @@ void render_fretboard(UINT8 *base)
 
     start_x += 88;
 
-    for(i = 0, i < 8, i++)
+    for(i = 0; i < 8; i++)
     {
         vertical_line(base, start_x, 116, 217);
 
@@ -52,7 +52,7 @@ void render_fretboard(UINT8 *base)
 
     start_x += 88;
 
-    for(i = 0, i < 8, i++)
+    for(i = 0; i < 8; i++)
     {
         vertical_line(base, start_x, 116, 217);
 
@@ -62,14 +62,13 @@ void render_fretboard(UINT8 *base)
 
     start_x += 88;
 
-    for(i = 0, i < 8, i++)
+    for(i = 0; i < 8; i++)
     {
         vertical_line(base, start_x, 116, 217);
 
         start_x += 1;
 
     }
-
 
 }
 
