@@ -258,10 +258,7 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->score.pos_y = pos_y;
     model->score.size_x = 128;
     model->score.size_y = 32;
-	init_score_digit(model, THOUSANDS, 32, 32);
-	init_score_digit(model, HUNDREDS, 64, 32);
-	init_score_digit(model, TENS, 96, 32);
-	init_score_digit(model, ONES, 128, 32);
+	model->score.value = 0;
 }
 
 /*---------- FUNCTION: TODO -------------------------------
