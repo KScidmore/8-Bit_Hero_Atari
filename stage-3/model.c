@@ -212,6 +212,7 @@ void init_note_streak(Model *model)
 	model->note_streak.digit_size_x = 32;
 	model->note_streak.digit_size_y = 32;
 	model->note_streak.value = 0;
+	model->note_streak.incremented_flag = FALSE;
 }
 
 /*---------- FUNCTION: TODO -------------------------------
@@ -282,7 +283,7 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 void update_score(Model *model)
 {	
 	UINT8 update_val = model->multiplier.value * model->note.note_type;
-	if (update_vale == 0)
+	if (update_val == 0)
 	{
 		model->score.updated_flag = FALSE;
 	}
@@ -319,6 +320,7 @@ void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->multiplier.digit_size_x = 32;
     model->multiplier.digit_size_y = 32;
     model->multiplier.value = value;
+	model->multiplier.updated_flag = FALSE;
 }
 
 
@@ -340,15 +342,15 @@ void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 /--------------------------------------------------------*/
 void update_multiplier(Model *model)
 {
-	if (model->note_streak.value > 40)
+	if (model->note_streak.value >= 40)
 	{
 		model->multiplier.value = 8;
 	}
-	else if (model->note_streak.value <= 9)
+	else if (model->note_streak.value >= 30)
 	{
 		model->multiplier.value = 4;
 	}
-	else if (model->note_streak.value <= 9)
+	else if (model->note_streak.value >= 20)
 	{
 		model->multiplier.value = 2;
 	}

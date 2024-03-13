@@ -77,6 +77,7 @@ typedef struct
 	UINT16 pos_x, pos_y; 
 	UINT16 total_size_x, total_size_y, digit_size_x, digit_size_y;
 	UINT16 value;
+	BOOL incremented_flag;
 } Note_Streak;
 
 /*---------- STRUCTURE: Digit -----------------------
@@ -106,6 +107,7 @@ typedef struct
 	UINT16 pos_x, pos_y;
 	UINT8 size_x, size_y;
 	UINT16 value;
+	BOOL updated_flag;
 } Score;
 
 
@@ -127,6 +129,7 @@ typedef struct
 	UINT16 pos_x, pos_y;
 	UINT8 total_size_x, total_size_y, digit_size_x, digit_size_y;
 	UINT16 value;
+	BOOL updated_flag;
 } Multiplier;
 
 
