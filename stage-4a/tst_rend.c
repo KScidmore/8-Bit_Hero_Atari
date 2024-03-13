@@ -1,14 +1,12 @@
 #include <osbind.h>
-#include "raster.h"
-#include "model.h"
-#include "bitmaps.h"
 #include "types.h"
+#include "model.h"
 #include "renderer.h"
 
 int main()
 {
-    unsigned char *base = Physbase();
-	unsigned long *base32 = Physbase();
+    UINT8 *base = Physbase();
+	UINT32 *base32 = Physbase();
 
     Model model;
 

@@ -1,35 +1,101 @@
-render: tst_rend.o renderer.o raster.o model.o a_map.o s_map.o d_map.o f_map.o one_map.o x_map.o zro_map.o
-	cc68x -g tst_rend.o renderer.o raster.o model.o a_map.o s_map.o d_map.o f_map.o one_map.o x_map.o zro_map.o -o render
+# Executable file produced
+TARGET=render
 
-tst_rend.o: tst_rend.c TYPES.h model.h renderer.h
-	cc68x -g -c tst_rend.c
+# Object files needed for target
+OBJECTS=tst_rend.o renderer.o model.o events.o raster.o a_map.o s_map.o d_map.o f_map.o n_map.o x_map.o zro_map.o one_map.o two_map.o three_map.o four_map.o five_map.o six_map.o sev_map.o eight_map.o nine_map.o LEE_fail.o LEF_fail.o REE_fail.o REF_fail.o ME_fail.o MF_fail.o
 
-renderer.o: renderer.c TYPES.h model.h renderer.h
-	cc68x -g -c renderer.c
+# C compiler and flags
+CC=cc68x
+CFLAGS=-g
 
-raster.o: raster.c TYPES.h raster.h
-	cc68x -g -c raster.c
+# Building the target
+all: clean $(TARGET)
 
-model.o: model.c TYPES.h model.h
-	cc68x -g -c model.c
+# Linking target executable from object files
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET)
+
+tst_rend.o: tst_rend.c types.h model.h renderer.h
+	$(CC) $(CFLAGS) -c tst_rend.c
+
+renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h
+	$(CC) $(CFLAGS) -c renderer.c
+
+model.o: model.c model.h types.h
+	$(CC) $(CFLAGS) -c model.c
+
+events.o: events.c model.h types.h
+	$(CC) $(CFLAGS) -c events.c
+
+raster.o: raster.c types.h raster.h
+	$(CC) $(CFLAGS) -c raster.c
 
 a_map.o: a_map.c bitmaps.h
-	cc68x -g -c a_map.c
+	$(CC) $(CFLAGS) -c a_map.c
 
 s_map.o: s_map.c bitmaps.h
-	cc68x -g -c s_map.c
+	$(CC) $(CFLAGS) -c s_map.c
 
 d_map.o: d_map.c bitmaps.h
-	cc68x -g -c d_map.c
+	$(CC) $(CFLAGS) -c d_map.c
 
 f_map.o: f_map.c bitmaps.h
-	cc68x -g -c f_map.c
+	$(CC) $(CFLAGS) -c f_map.c
 
-one_map.o: one_map.c bitmaps.h
-	cc68x -g -c one_map.c
+n_map.o: n_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c n_map.c
 
 x_map.o: x_map.c bitmaps.h
-	cc68x -g -c x_map.c
+	$(CC) $(CFLAGS) -c x_map.c
 
 zro_map.o: zro_map.c bitmaps.h
-	cc68x -g -c zro_map.c
+	$(CC) $(CFLAGS) -c zro_map.c
+
+one_map.o: one_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c one_map.c
+
+two_map.o: two_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c two_map.c
+
+three_map.o: three_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c three_map.c
+
+four_map.o: four_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c four_map.c
+
+five_map.o: five_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c five_map.c
+
+six_map.o: six_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c six_map.c
+
+sev_map.o: sev_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c sev_map.c
+
+eight_map.o: eight_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c eight_map.c
+
+nine_map.o: nine_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c nine_map.c
+
+LEE_fail.o: LEE_fail.c bitmaps.h
+	$(CC) $(CFLAGS) -c LEE_fail.c
+
+LEF_fail.o: LEF_fail.c bitmaps.h
+	$(CC) $(CFLAGS) -c LEF_fail.c
+
+REE_fail.o: REE_fail.c bitmaps.h
+	$(CC) $(CFLAGS) -c REE_fail.c
+
+REF_fail.o: REF_fail.c bitmaps.h
+	$(CC) $(CFLAGS) -c REF_fail.c
+
+ME_fail.o: ME_fail.c bitmaps.h
+	$(CC) $(CFLAGS) -c ME_fail.c
+
+MF_fail.o: MF_fail.c bitmaps.h
+	$(CC) $(CFLAGS) -c MF_fail.c
+
+# Cleaning up the old object files and executable
+clean:
+	rm -f $(OBJECTS) $(TARGET)
