@@ -5,22 +5,7 @@
 #include "RASTER.H"
 #include "bitmaps.h"
 
-/*---------- FUNCTION: TODO -------------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
-/ 
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/ 
-/  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
-/--------------------------------------------------------*/
+
 void render_frets(UINT32 *base, Model *model)
 {  
 
@@ -31,146 +16,79 @@ void render_frets(UINT32 *base, Model *model)
 
 }
 
-/*---------- FUNCTION: TODO -------------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
-/ 
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/ 
-/  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
-/--------------------------------------------------------*/
+
 void render_fretboard(UINT8 *base)
 {
-    int i;
-    int start_y = 108;
-    int start_x = 173;
+    int i, start_y, start_x;
+    start_y = 108;
+    start_x = 173;
 
-    for(i=0, i < 8, i++){
+    for(i=0, i < 8, i++)
+    {
 
         plot_h_line(base, 173, 468, start_y);
         
         start_y += 1;
 
-        i++
+        i++;
 
     }
 
-    for(i = 0, i < 8, i++);
+    for(i = 0, i < 8, i++)
     {
         vertical_line(base, start_x, 116, 217)
 
         start_x += 1;
 
-        i++
+        i++;
 
     }
 
     start_x += 88;
 
-    for(i = 0, i < 8, i++);
+    for(i = 0, i < 8, i++)
     {
         vertical_line(base, start_x, 116, 217)
 
         start_x += 1;
 
-        i++
+        i++;
 
     }
 
-     start_x += 88;
+    start_x += 88;
 
-    for(i = 0, i < 8, i++);
+    for(i = 0, i < 8, i++)
     {
         vertical_line(base, start_x, 116, 217)
 
         start_x += 1;
 
-        i++
+        i++;
 
     }
 
-     start_x += 88;
+    start_x += 88;
 
-    for(i = 0, i < 8, i++);
+    for(i = 0, i < 8, i++)
     {
         vertical_line(base, start_x, 116, 217)
 
         start_x += 1;
 
-        i++
+        i++;
 
     }
 
 
 }
 
-/*---------- FUNCTION: TODO -------------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
-/ 
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/ 
-/  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
-/--------------------------------------------------------*/
-void render_score(UINT32 *base, Model *model)
-{
-
-}
-
-/*---------- FUNCTION: TODO -------------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
-/ 
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/ 
-/  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
-/--------------------------------------------------------*/
 void render_x(UINT32 *base, Model *model){
     
     plot_bitmap_32(base, model->multiplier.pos_x, model->multiplier.pos_y, x_map, model->multiplier.digit_size_y);
 
 }
 
-/*---------- FUNCTION: TODO -------------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
-/ 
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/ 
-/  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
-/--------------------------------------------------------*/
 void render_multiplier(UINT32 *base, Model *model)
 {
     int pos_x = model->multiplier.pos_x + 32;
@@ -200,22 +118,6 @@ void render_multiplier(UINT32 *base, Model *model)
 
 }
 
-/*---------- FUNCTION: TODO -------------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
-/ 
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/ 
-/  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
-/--------------------------------------------------------*/
 void render_failbar(UINT32 *base, Model *model)
 {
     int pos_y, sec_one, sec_two, sec_three, sec_four, sec_five, sec_six, height;
