@@ -18,6 +18,7 @@
 
 #include "types.h"
 
+/*---------- STRUCTURE DEFINITIONS ------------------------------------------*/
 
 /*---------- STRUCTURE: Fret ------------------------------
 /  INFO:
@@ -98,21 +99,13 @@ typedef struct
 /    TODO - general explanation 
 /  
 /  ATTRIBUTES:
-/    pos_x				= x-val for position coordinate
-/    pos_y				= y-val for position coordinate
-/    total_size_x		= x-val for total object size
-/    total_size_y		= y-val for total object size
-/    digit_size_x		= x-val for digit size
-/    digit_size_y		= y-val for digit size
-/    value				= the value of the score for the game 
-/    NOTE_TYPE			= type of note (SHORT_NOTE, CHORD,
-/                         or LONG_NOTE)
+/    TODO
 /--------------------------------------------------------*/
 typedef struct 
 {
 	UINT16 pos_x, pos_y;
 	UINT8 size_x, size_y;
-	Digit scores[SCORE_SIZE];
+	UINT16 value;
 } Score;
 
 
@@ -172,7 +165,6 @@ typedef struct
 	UINT8 value;
 } Fail_Bar;
 
-/*---------- STRUCTURE DEFINITIONS ------------------------------------------*/
 /*---------- STRUCTURE: Model ------------------------------
 /  INFO:
 /    TODO - general explanation 
