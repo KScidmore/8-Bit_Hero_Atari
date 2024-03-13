@@ -28,3 +28,5 @@ events.o: events.c model.h types.h
 # Cleaning up the old object files and executable
 clean:
 	$(RM) *.o tst_mod 
+
+#IF YOU DELETE THIS EVERYTHING BREAKS, MUST HAVE NEWLINE AFTER CLEAN
