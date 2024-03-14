@@ -38,10 +38,10 @@ void init_model(Model *model)
 	init_fret(model, FRET_F, 448, 326);
 	init_note(model, 150, 150, 0, SHORT_NOTE);
 	init_note_streak(model);
-	init_score(model, 32, 32, 0);
+	init_score(model, 32, 0, 0);
 	init_multiplier(model, 544, 32, 1);
 	init_fretboard(model);
-	init_fail_bar(model, 224, 41, 50);
+	init_fail_bar(model, 224, 0, 50);
 }
 
 /*---------- Fret Functions -------------------------------------------------*/
@@ -115,7 +115,7 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE 
     model->note.delta_y = delta_y;
     model->note.v_dir = 1;            	/* constant */
     model->note.size_x = 32;          	/* constant */
-    model->note.size_y = 32;          	/* constant */
+    model->note.size_y = 16;          	/* constant */
     model->note.is_played = FALSE;
 	model->note.note_type = note_type;
 }

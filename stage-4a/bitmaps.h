@@ -10,17 +10,17 @@ extern const UINT32 d_map[];
 extern const UINT32 f_map[];
 
 /*Note Bitmap*/
-extern const UINT32 n_map[];
+extern const UINT32 note_map[];
 
 /*Number Bitmaps and X Bitmap*/
-extern const UINT32 zro_map[];
+extern const UINT32 zero_map[];
 extern const UINT32 one_map[];
 extern const UINT32 two_map[];
 extern const UINT32 three_map[];
 extern const UINT32 four_map[];
 extern const UINT32 five_map[];
 extern const UINT32 six_map[];
-extern const UINT32 sev_map[];
+extern const UINT32 seven_map[];
 extern const UINT32 eight_map[];
 extern const UINT32 nine_map[];
 extern const UINT32 x_map[];

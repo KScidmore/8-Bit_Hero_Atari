@@ -5,8 +5,7 @@
 #include "RASTER.H"
 #include "bitmaps.h"
 
-const SIZE = 10;
-const UINT32 *num_maps[SIZE] = {zro_map, one_map, two_map, num3_map, four_map, five_map, six_map, sev_map, num8_map, nine_map};
+const UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
 void render_frets(UINT32 *base, Model *model)
 {  
@@ -22,55 +21,112 @@ void render_frets(UINT32 *base, Model *model)
 void render_fretboard(UINT8 *base)
 {
     int i, start_y, start_x;
-    start_y = 108;
-    start_x = 173;
+    start_y = 80;
+    start_x = 156;
 
-    for(i = 0; i < 8; i++)
+    for(i = 0; i < 4; i++)
     {
 
-        plot_h_line(base, 173, 468, start_y);
+        plot_h_line(base, 156, 482, start_y);
         
         start_y += 1;
 
     }
 
-    for(i = 0; i < 8; i++)
+    /* Plot first track*/
+    for(i = 0; i < 4; i++)
     {
-        vertical_line(base, start_x, 116, 217);
+        vertical_line(base, start_x, 84, 274);
+
+        start_x += 1;
+
+    }
+    
+    start_x = 192;
+
+      for(i = 0; i < 4; i++)
+    {
+        vertical_line(base, start_x, 84, 274);
 
         start_x += 1;
 
     }
 
-    start_x += 88;
+    /*Plot second track*/
 
-    for(i = 0; i < 8; i++)
+    start_x = 252;
+    
+    for(i = 0; i < 4; i++)
     {
-        vertical_line(base, start_x, 116, 217);
+        vertical_line(base, start_x, 84, 274);
+
+        start_x += 1;
+
+    }
+    
+    start_x = 287;
+
+      for(i = 0; i < 4; i++)
+    {
+        vertical_line(base, start_x, 84, 274);
 
         start_x += 1;
 
     }
 
-    start_x += 88;
-
-    for(i = 0; i < 8; i++)
+    /*plot third track*/
+    start_x = 348;
+    
+    for(i = 0; i < 4; i++)
     {
-        vertical_line(base, start_x, 116, 217);
+        vertical_line(base, start_x, 84, 274);
+
+        start_x += 1;
+
+    }
+    
+    start_x = 383;
+
+      for(i = 0; i < 4; i++)
+    {
+        vertical_line(base, start_x, 84, 274);
 
         start_x += 1;
 
     }
 
-    start_x += 88;
-
-    for(i = 0; i < 8; i++)
+    
+    start_x = 444;
+    
+    for(i = 0; i < 4; i++)
     {
-        vertical_line(base, start_x, 116, 217);
+        vertical_line(base, start_x, 84, 274);
 
         start_x += 1;
 
     }
+    
+    start_x = 479;
+
+      for(i = 0; i < 4; i++)
+    {
+        vertical_line(base, start_x, 84, 274);
+
+        start_x += 1;
+
+    }
+
+}
+
+void render_start_score(UINT32 *base, Model *model){
+
+    int pos_y = model->score.pos_y;
+    int height = model->score.size_y;
+
+    plot_bitmap_32(base, model->score.ones_x, pos_y, num_maps[0], height);
+    plot_bitmap_32(base, model->score.tens_x, pos_y, num_maps[0], height);
+    plot_bitmap_32(base, model->score.hunds_x, pos_y, num_maps[0], height);
+    plot_bitmap_32(base, model->score.thous_x, pos_y, num_maps[0], height);
 
 }
 
@@ -98,7 +154,7 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_ones = ones;
 
-            plot_bitmap_32(base, model->score.ones_x, pos_y, *num_maps[ones], height);
+            plot_bitmap_32(base, model->score.ones_x, pos_y, num_maps[ones], height);
 
         }
 
@@ -106,7 +162,7 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_tens = tens;
 
-            plot_bitmap_32(base, model->score.tens_x, pos_y, *num_maps[tens], height);
+            plot_bitmap_32(base, model->score.tens_x, pos_y, num_maps[tens], height);
 
         }
 
@@ -114,7 +170,7 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_hunds = hundreds;
 
-            plot_bitmap_32(base, model->score.hunds_x, pos_y, *num_maps[hundreds], height);
+            plot_bitmap_32(base, model->score.hunds_x, pos_y, num_maps[hundreds], height);
 
         }
 
@@ -122,7 +178,7 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_thous = thousands;
 
-            plot_bitmap_32(base, model->score.thous_x, pos_y, *num_maps[thousands], height);
+            plot_bitmap_32(base, model->score.thous_x, pos_y, num_maps[thousands], height);
 
         }
 
@@ -133,6 +189,16 @@ void render_score(UINT32 *base, Model *model){
 void render_x(UINT32 *base, Model *model){
     
     plot_bitmap_32(base, model->multiplier.pos_x, model->multiplier.pos_y, x_map, model->multiplier.digit_size_y);
+
+}
+
+void render_start_multiplier(UINT32 *base, Model *model){
+
+    int pos_x = model->multiplier.pos_x + 32;
+    int pos_y = model->multiplier.pos_y;
+    int height = model->multiplier.digit_size_y;
+
+    plot_bitmap_32(base, pos_x, pos_y, one_map, height);
 
 }
 
@@ -162,7 +228,7 @@ void render_multiplier(UINT32 *base, Model *model)
         }
         else {
 
-            plot_bitmap_32(base, pos_x, pos_y, num8_map, height);
+            plot_bitmap_32(base, pos_x, pos_y, eight_map, height);
 
         }
 

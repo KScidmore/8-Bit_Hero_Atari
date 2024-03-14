@@ -2,7 +2,7 @@
 TARGET=render
 
 # Object files needed for target
-OBJECTS=tst_rend.o renderer.o model.o events.o raster.o a_map.o s_map.o d_map.o f_map.o n_map.o x_map.o zro_map.o one_map.o two_map.o num3_map.o four_map.o five_map.o six_map.o sev_map.o num8_map.o nine_map.o LEE_fail.o LEF_fail.o REE_fail.o REF_fail.o ME_fail.o MF_fail.o rast_asm.o
+OBJECTS=tst_rend.o renderer.o model.o events.o raster.o bitmaps.o rast_asm.o
 
 # C compiler and flags
 CC=cc68x
@@ -30,71 +30,8 @@ events.o: events.c model.h types.h
 raster.o: raster.c types.h raster.h
 	$(CC) $(CFLAGS) -c raster.c
 
-a_map.o: a_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c a_map.c
-
-s_map.o: s_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c s_map.c
-
-d_map.o: d_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c d_map.c
-
-f_map.o: f_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c f_map.c
-
-n_map.o: n_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c n_map.c
-
-x_map.o: x_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c x_map.c
-
-zro_map.o: zro_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c zro_map.c
-
-one_map.o: one_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c one_map.c
-
-two_map.o: two_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c two_map.c
-
-num3_map.o: num3_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c num3_map.c
-
-four_map.o: four_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c four_map.c
-
-five_map.o: five_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c five_map.c
-
-six_map.o: six_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c six_map.c
-
-sev_map.o: sev_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c sev_map.c
-
-num8_map.o: num8_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c num8_map.c
-
-nine_map.o: nine_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c nine_map.c
-
-LEE_fail.o: LEE_fail.c bitmaps.h
-	$(CC) $(CFLAGS) -c LEE_fail.c
-
-LEF_fail.o: LEF_fail.c bitmaps.h
-	$(CC) $(CFLAGS) -c LEF_fail.c
-
-REE_fail.o: REE_fail.c bitmaps.h
-	$(CC) $(CFLAGS) -c REE_fail.c
-
-REF_fail.o: REF_fail.c bitmaps.h
-	$(CC) $(CFLAGS) -c REF_fail.c
-
-ME_fail.o: ME_fail.c bitmaps.h
-	$(CC) $(CFLAGS) -c ME_fail.c
-
-MF_fail.o: MF_fail.c bitmaps.h
-	$(CC) $(CFLAGS) -c MF_fail.c
+bitmaps.o: bitmaps.c bitmaps.h
+	$(CC) $(CFLAGS) -c bitmaps.c
 
 rast_asm.o: rast_asm.s
 	gen -D -L2 rast_asm.s
