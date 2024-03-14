@@ -29,6 +29,8 @@ Faux-Dynamic Sizing
 - notes are "dynamic" in that their values are changable and reusable 
 - max notes on screen at one time should be ~8, so lets use 16 notes to give us a buffer 
 - more complex code, but it might be much more greatly optimized 
+- you could potentially f everything up badly, be VERY careful with creating and destructing notes because if they retain garbage values everything could break 
+
 
 - Tracking Activity:
     - notes that are active/inactive need to be tracked
@@ -56,3 +58,12 @@ Faux-Dynamic Sizing
         - all will have DIFFERENT x 
         - all will have SAME y 
     - now you can generate notes for specific lanes 
+
+- Future Optimization:
+    - might need to fix where it iterates over every note to find ones if it creates a bottleneck for us 
+    - Bitfields for Active State Tracking:
+        - Instead of using a boolean or integer field within each note to track its active state, you could use a single integer as a bitfield to represent the active state of all notes. This could save a bit of memory and potentially simplify some logic at the expense of making the code slightly harder to read and maintain.
+        - instead of using an int or BOOL for each note, we could use a single int as a bitfield to represent the active state of each note 
+        - this could save some memory and maybe even simplify some of the logic 
+            - I think Paul would just like it also haha 
+        - if we have time would be cool to try to do as a fun thing to try 
