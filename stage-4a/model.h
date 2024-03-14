@@ -104,9 +104,9 @@ typedef struct
 /--------------------------------------------------------*/
 typedef struct 
 {
-	UINT16 pos_x, pos_y;
+	UINT16  ones_x, tens_x, hunds_x, thous_x, pos_y;
 	UINT8 size_x, size_y;
-	UINT16 value;
+	UINT16 value, prev_ones, prev_tens, prev_hunds, prev_thous;
 	BOOL updated_flag;
 } Score;
 
@@ -128,8 +128,7 @@ typedef struct
 {
 	UINT16 pos_x, pos_y;
 	UINT8 total_size_x, total_size_y, digit_size_x, digit_size_y;
-	UINT16 value;
-	BOOL updated_flag;
+	UINT16 value, prev_value;
 } Multiplier;
 
 

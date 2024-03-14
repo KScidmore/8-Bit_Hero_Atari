@@ -76,7 +76,7 @@ void render_fretboard(UINT8 *base)
 
 void render_score(UINT32 *base, Model *model){
 
-    int value, ones, tens, hundreds, thousands, height, pos_y;
+    UINT16 value, ones, tens, hundreds, thousands, height, pos_y;
 
     if(model->score.updated_flag == TRUE){
 

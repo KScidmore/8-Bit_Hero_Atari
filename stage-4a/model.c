@@ -263,11 +263,11 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->score.size_x = 128;
     model->score.size_y = 32;
 	model->score.value = 0;
-	model->score.updated_flag = FALSE;
 	model->score.prev_ones = 0;
 	model->score.prev_tens = 0;
 	model->score.prev_hunds = 0;
 	model->score.prev_thous = 0;
+	model->score.updated_flag = FALSE;
 }
 
 
