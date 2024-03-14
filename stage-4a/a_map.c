@@ -32,5 +32,7 @@ const UINT32 a_map[] =
 		0xE0000007,
 		0xFFFFFFFF,
 		0xFFFFFFFF,
+		0xFFFFFFFF,
 		0xFFFFFFFF
+		
 	};

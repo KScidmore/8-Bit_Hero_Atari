@@ -2,7 +2,7 @@
 TARGET=render
 
 # Object files needed for target
-OBJECTS=tst_rend.o renderer.o model.o events.o raster.o a_map.o s_map.o d_map.o f_map.o n_map.o x_map.o zro_map.o one_map.o two_map.o three_map.o four_map.o five_map.o six_map.o sev_map.o eight_map.o nine_map.o LEE_fail.o LEF_fail.o REE_fail.o REF_fail.o ME_fail.o MF_fail.o
+OBJECTS=tst_rend.o renderer.o model.o events.o raster.o a_map.o s_map.o d_map.o f_map.o n_map.o x_map.o zro_map.o one_map.o two_map.o num3_map.o four_map.o five_map.o six_map.o sev_map.o num8_map.o nine_map.o LEE_fail.o LEF_fail.o REE_fail.o REF_fail.o ME_fail.o MF_fail.o rast_asm.o
 
 # C compiler and flags
 CC=cc68x
@@ -15,7 +15,7 @@ all: clean $(TARGET)
 $(TARGET): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(TARGET)
 
-tst_rend.o: tst_rend.c types.h model.h renderer.h
+tst_rend.o: tst_rend.c types.h model.h renderer.h rast_asm.h
 	$(CC) $(CFLAGS) -c tst_rend.c
 
 renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h
@@ -57,8 +57,8 @@ one_map.o: one_map.c bitmaps.h
 two_map.o: two_map.c bitmaps.h
 	$(CC) $(CFLAGS) -c two_map.c
 
-three_map.o: three_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c three_map.c
+num3_map.o: num3_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c num3_map.c
 
 four_map.o: four_map.c bitmaps.h
 	$(CC) $(CFLAGS) -c four_map.c
@@ -72,8 +72,8 @@ six_map.o: six_map.c bitmaps.h
 sev_map.o: sev_map.c bitmaps.h
 	$(CC) $(CFLAGS) -c sev_map.c
 
-eight_map.o: eight_map.c bitmaps.h
-	$(CC) $(CFLAGS) -c eight_map.c
+num8_map.o: num8_map.c bitmaps.h
+	$(CC) $(CFLAGS) -c num8_map.c
 
 nine_map.o: nine_map.c bitmaps.h
 	$(CC) $(CFLAGS) -c nine_map.c
@@ -96,6 +96,9 @@ ME_fail.o: ME_fail.c bitmaps.h
 MF_fail.o: MF_fail.c bitmaps.h
 	$(CC) $(CFLAGS) -c MF_fail.c
 
+rast_asm.o: rast_asm.s
+	gen -D -L2 rast_asm.s
+
 # Cleaning up the old object files and executable
 clean:
-	$(RM) *.o tst_mod
+	$(RM) *.o render
