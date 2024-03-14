@@ -5,6 +5,8 @@
 #include "RASTER.H"
 #include "bitmaps.h"
 
+const SIZE = 10;
+const UINT32 *num_maps[SIZE] = {zro_map, one_map, two_map, num3_map, four_map, five_map, six_map, sev_map, num8_map, nine_map};
 
 void render_frets(UINT32 *base, Model *model)
 {  
@@ -72,6 +74,62 @@ void render_fretboard(UINT8 *base)
 
 }
 
+void render_score(UINT32 *base, Model *model){
+
+    int value, ones, tens, hundreds, thousands, height, pos_y;
+
+    if(model->score.updated_flag == TRUE){
+
+        height = model->score.size_y;
+
+        pos_y = model->score.pos_y;
+
+        value = model->score.value;
+
+        ones = value & 0xF;
+
+        tens = (value >> 4) & 0xF;
+
+        hundreds = (value >> 8) & 0xF;
+
+        thousands = (value >> 12) & 0xF;
+
+        if(ones != model->score.prev_ones){
+
+            model->score.prev_ones = ones;
+
+            plot_bitmap_32(base, model->score.ones_x, pos_y, num_maps[ones], height);
+
+        }
+
+        if(tens != model->score.prev_tens){
+
+            model->score.prev_tens = tens;
+
+            plot_bitmap_32(base, model->score.tens_x, pos_y, num_maps[tens], height);
+
+        }
+
+        if(hundreds != model->score.prev_hunds){
+
+            model->score.prev_hunds = hundreds;
+
+            plot_bitmap_32(base, model->score.hunds_x, pos_y, num_maps[hundreds], height);
+
+        }
+
+        if(thousands != model->score.prev_thous){
+
+            model->score.prev_thous = thousands;
+
+            plot_bitmap_32(base, model->score.thous_x, pos_y, num_maps[thousands], height);
+
+        }
+
+
+    }
+}
+
 void render_x(UINT32 *base, Model *model){
     
     plot_bitmap_32(base, model->multiplier.pos_x, model->multiplier.pos_y, x_map, model->multiplier.digit_size_y);
@@ -84,24 +142,31 @@ void render_multiplier(UINT32 *base, Model *model)
     int pos_y = model->multiplier.pos_y;
     int height = model->multiplier.digit_size_y;
 
-    if(model->multiplier.value == 1){
+    if(model->multiplier.prev_value != model->multiplier.value){
 
-        plot_bitmap_32(base, pos_x, pos_y, one_map, height);
 
-    }
-    else if(model->multiplier.value == 2){
+        if(model->multiplier.value == 1){
 
-        plot_bitmap_32(base, pos_x, pos_y, two_map, height);
+            plot_bitmap_32(base, pos_x, pos_y, one_map, height);
 
-    }
-    else if(model->multiplier.value == 4){
+        }
+        else if(model->multiplier.value == 2){
 
-        plot_bitmap_32(base, pos_x, pos_y, four_map, height);
+            plot_bitmap_32(base, pos_x, pos_y, two_map, height);
 
-    }
-    else {
+        }
+        else if(model->multiplier.value == 4){
 
-        plot_bitmap_32(base, pos_x, pos_y, eight_map, height);
+            plot_bitmap_32(base, pos_x, pos_y, four_map, height);
+
+        }
+        else {
+
+            plot_bitmap_32(base, pos_x, pos_y, num8_map, height);
+
+        }
+
+        model->multiplier.prev_value = model->multiplier.value;
 
     }
 

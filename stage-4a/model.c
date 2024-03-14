@@ -255,12 +255,19 @@ void update_note_streak(Model *model)
 /--------------------------------------------------------*/
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
-    model->score.pos_x = pos_x;
+    model->score.ones_x = pos_x;
+	model->score.tens_x = pos_x + 32;
+	model->score.hunds_x = pos_x + 64;
+	model->score.thous_x = pos_x + 96;
     model->score.pos_y = pos_y;
     model->score.size_x = 128;
     model->score.size_y = 32;
 	model->score.value = 0;
 	model->score.updated_flag = FALSE;
+	model->score.prev_ones = 0;
+	model->score.prev_tens = 0;
+	model->score.prev_hunds = 0;
+	model->score.prev_thous = 0;
 }
 
 
@@ -320,7 +327,7 @@ void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->multiplier.digit_size_x = 32;
     model->multiplier.digit_size_y = 32;
     model->multiplier.value = value;
-	model->multiplier.updated_flag = FALSE;
+	model->multiplier.prev_value = 1;
 }
 
 
