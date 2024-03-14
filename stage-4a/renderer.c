@@ -98,7 +98,7 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_ones = ones;
 
-            plot_bitmap_32(base, model->score.ones_x, pos_y, num_maps[ones], height);
+            plot_bitmap_32(base, model->score.ones_x, pos_y, *num_maps[ones], height);
 
         }
 
@@ -106,7 +106,7 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_tens = tens;
 
-            plot_bitmap_32(base, model->score.tens_x, pos_y, num_maps[tens], height);
+            plot_bitmap_32(base, model->score.tens_x, pos_y, *num_maps[tens], height);
 
         }
 
@@ -114,7 +114,7 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_hunds = hundreds;
 
-            plot_bitmap_32(base, model->score.hunds_x, pos_y, num_maps[hundreds], height);
+            plot_bitmap_32(base, model->score.hunds_x, pos_y, *num_maps[hundreds], height);
 
         }
 
@@ -122,7 +122,7 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_thous = thousands;
 
-            plot_bitmap_32(base, model->score.thous_x, pos_y, num_maps[thousands], height);
+            plot_bitmap_32(base, model->score.thous_x, pos_y, *num_maps[thousands], height);
 
         }
 
