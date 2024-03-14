@@ -47,7 +47,7 @@ void set_play_on_fret_a(Model *model)
 		{
 			update_score(model);
 			update_multiplier(model);
-			update_fail_bar(model, 1);
+			update_fail_bar(model, 1);\
 		}
 		else 
 		{

@@ -34,6 +34,6 @@ const UINT32 s_map[] =
     0xE0000007,
     0xFFFFFFFF,
 	0xFFFFFFFF,
-    0xFFFFFFFF,
+    0xFFFFFFFF
 
 };

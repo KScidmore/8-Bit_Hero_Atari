@@ -429,7 +429,7 @@ void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap, unsigned i
 	
 	int i;
 
-	UINT32 *plot = (base + ((y + i) * 20 ) + (x / 32));  /*Want to change the divide to a shift for performance*/
+	UINT32 *plot = (base + ((y + i) * 20 ) + (x >> 5));  /*Want to change the divide to a shift for performance*/
 	
     	
 	for (i = 0; i < height; i++) 

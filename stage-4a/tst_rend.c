@@ -1,22 +1,24 @@
 #include <osbind.h>
-#include "raster.h"
-#include "model.h"
-#include "bitmaps.h"
 #include "types.h"
+#include "model.h"
 #include "renderer.h"
+#include "rast_asm.h"
 
 int main()
 {
-    unsigned char *base = Physbase();
-	unsigned long *base32 = Physbase();
+    UINT8 *base = Physbase();
+	UINT32 *base32 = Physbase();
 
     Model model;
 
     init_model(&model);
 
+    clear_screen(base);
     render_fretboard(base);
     render_frets(base32, &model);
     render_multiplier(base32, &model);
+    render_x(base32, &model);
+    render_failbar(base32, &model);
 
     return 0;
     
