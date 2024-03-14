@@ -11,5 +11,7 @@ void render_score(UINT32 *base, Model *model);
 void render_multiplier(UINT32 *base, Model *model);
 void render_failbar(UINT32 *base, Model *model);
 void render_x(UINT32 *base, Model *model);
+void render_start_score(UINT32 *base, Model *model);
+void render_start_multiplier(UINT32 *base, Model *model);
 
 #endif
