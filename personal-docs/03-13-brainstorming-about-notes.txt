@@ -1,0 +1,69 @@
+BRAINSTORMING FOR NOTES, NOTES ARRAY, FRETBOARD, ETC 
+==========
+- need to have notes in an array, can do it these ways"
+    - static sizing 
+    - faux-dynamic sizing 
+
+
+Static Sizing
+----------
+- determined by maximum number of notes that can appear in a song
+- will hog up a lot of memory 
+- as it stands each struct will probably take ~20 bytes (including even call, excluding stuff we need to add) 
+    - as such, total array size will be ([SIZE] * 20) bytes total
+
+
+Faux-Dynamic Sizing 
+----------
+- basic algorithm for how this will work in action:
+    - specify info for instantiating the note 
+    - instance of note appears at the top of the designated lane 
+    - moves down lane based on velocity (based on clock speed)
+    - actions:
+        - user sets note to be played, collision happens, points scored etc 
+        - user sets note to be played, no collission, no points etc 
+        - user sets note to be played, misses, reaches hitbox past the fret and the note disappears, no points etc 
+    - repeat 
+
+- sort of a hacky way to do it but seems like a good idea 
+- notes are "dynamic" in that their values are changable and reusable 
+- max notes on screen at one time should be ~8, so lets use 16 notes to give us a buffer 
+- more complex code, but it might be much more greatly optimized 
+- you could potentially f everything up badly, be VERY careful with creating and destructing notes because if they retain garbage values everything could break 
+
+
+- Tracking Activity:
+    - notes that are active/inactive need to be tracked
+        - BOOL is_played does not cover this, but could possibly be copied and adjusted for quick implementation, didn't look at the code as I wrote this 
+    - need to initialize stuff
+    - when a new note needs to be displayed, iterate through the array and find one that is inactive 
+    - when note is needed, deactivate it 
+
+- note generation:
+    - iterate through array and find note marked inactive 
+    - once found, set its properties and activate it 
+    - place it at the start of one of the lanes 
+
+- recycling notes:
+    - opposite of generation basically 
+
+- need to add this to the Note model:
+    - UINT8 generation_lane
+        - specifies which lane the note should generate in 
+
+- need to add this to the Fretboard model:
+    - create a Lane object type 
+    - create an array of Lanes for the Fretboard 
+    - each Lane will have x,y coordinates
+        - all will have DIFFERENT x 
+        - all will have SAME y 
+    - now you can generate notes for specific lanes 
+
+- Future Optimization:
+    - might need to fix where it iterates over every note to find ones if it creates a bottleneck for us 
+    - Bitfields for Active State Tracking:
+        - Instead of using a boolean or integer field within each note to track its active state, you could use a single integer as a bitfield to represent the active state of all notes. This could save a bit of memory and potentially simplify some logic at the expense of making the code slightly harder to read and maintain.
+        - instead of using an int or BOOL for each note, we could use a single int as a bitfield to represent the active state of each note 
+        - this could save some memory and maybe even simplify some of the logic 
+            - I think Paul would just like it also haha 
+        - if we have time would be cool to try to do as a fun thing to try 
