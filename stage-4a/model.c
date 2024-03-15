@@ -181,9 +181,26 @@ void set_note_is_played(Model *model, BOOL is_played)
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /    TODO
 /--------------------------------------------------------*/
-void generate_note(Model *model)
+void generate_note(Model *model, FRET_POS fret)
 {
-	/* TODO */
+	Note *lanes = NULL;
+	switch (fret) 
+	{
+		case FRET_A:
+			lanes = model->lane_a_notes;
+			break;
+		case FRET_S:
+			lanes = model->lane_s_notes;
+			break;
+		case FRET_D:
+			lanes = model->lane_d_notes;
+			break;
+		case FRET_F:
+			lanes = model->lane_f_notes;
+			break;
+	}
+
+
 }
 
 /*---------- Note Streak Functions ------------------------------------------*/
