@@ -74,6 +74,7 @@ typedef struct
 typedef struct 
 {
     UINT16 start_x, start_y, end_x, end_y;
+	UINT8 counter;
 } Lane;
 
 
@@ -191,7 +192,6 @@ typedef struct
 typedef struct 
 {
 	Fret frets[FRETS_SIZE]; /* frets A, S, D, and F */
-	Note note;
 	Note lane_a_notes[NOTES_SIZE];
 	Note lane_s_notes[NOTES_SIZE];
 	Note lane_d_notes[NOTES_SIZE];
@@ -218,6 +218,10 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE 
 void set_note_pos(Model *model);
 void set_note_is_played(Model *model, BOOL is_played);
 void generate_note(Model *model, FRET_POS fret);
+
+/* Lane Functions */
+void init_lane(Model *model, UINT16 start_x, UINT16 start_y, UINT16 end_x, UINT16 end_y,
+			   UINT8 counter, FRET_POS fret);
 
 /* Note Streak Functions */
 void init_note_streak(Model *model);

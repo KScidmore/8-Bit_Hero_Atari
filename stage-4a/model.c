@@ -183,24 +183,60 @@ void set_note_is_played(Model *model, BOOL is_played)
 /--------------------------------------------------------*/
 void generate_note(Model *model, FRET_POS fret)
 {
-	Note *lanes = NULL;
+	Note *lane_notes = NULL;
 	switch (fret) 
 	{
 		case FRET_A:
-			lanes = model->lane_a_notes;
+			lane_notes = model->lane_a_notes;
 			break;
 		case FRET_S:
-			lanes = model->lane_s_notes;
+			lane_notes = model->lane_s_notes;
 			break;
 		case FRET_D:
-			lanes = model->lane_d_notes;
+			lane_notes = model->lane_d_notes;
 			break;
 		case FRET_F:
-			lanes = model->lane_f_notes;
+			lane_notes = model->lane_f_notes;
 			break;
 	}
 
+}
 
+
+void init_lane(Model *model, UINT16 start_x, UINT16 start_y, UINT16 end_x, UINT16 end_y,
+			   UINT8 counter, FRET_POS fret)
+{
+	switch (fret)
+	{
+		case FRET_A:
+			model->lane_a_notes.start_x = 0;
+			model->lane_a_notes.start_y = 0;
+			model->lane_a_notes.end_x = 0;
+			model->lane_a_notes.end_y = 0;
+			model->lane_a_notes.counter = 0;
+			break;
+		case FRET_S:
+			model->lane_s_notes.start_x = 0;
+			model->lane_s_notes.start_y = 0;
+			model->lane_s_notes.end_x = 0;
+			model->lane_s_notes.end_y = 0;
+			model->lane_s_notes.counter = 0;
+			break;
+		case FRET_D:
+			model->lane_d_notes.start_x = 0;
+			model->lane_d_notes.start_y = 0;
+			model->lane_d_notes.end_x = 0;
+			model->lane_d_notes.end_y = 0;
+			model->lane_d_notes.counter = 0;
+			break;
+		case FRET_F:
+			model->lane_f_notes.start_x = 0;
+			model->lane_f_notes.start_y = 0;
+			model->lane_f_notes.end_x = 0;
+			model->lane_f_notes.end_y = 0;
+			model->lane_f_notes.counter = 0;
+			break;
+	}
 }
 
 /*---------- Note Streak Functions ------------------------------------------*/
