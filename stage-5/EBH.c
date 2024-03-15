@@ -5,21 +5,17 @@
 #include "renderer.h"
 #include "rast_asm.h"
 
-UINT32 get_time();
 
 int main()
 {
-    UINT8 *base = Physbase();
-	UINT32 *base32 = Physbase();
-
-    Model model;
-
-    init_model(&model);
-
+    
     UINT32 time_then, time_now, time_elapsed;
     UINT8 *base = Physbase();
 	UINT32 *base_long = Physbase();
 
+    Model model;
+
+    init_model(&model);
 
     initalize_screen(base, base_long, &model);
 
