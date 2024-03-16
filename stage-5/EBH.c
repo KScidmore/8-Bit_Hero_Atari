@@ -24,7 +24,6 @@ int main()
     time_then = get_time();
 
     /*Main game loop*/
-
     while(1){
 
         /*Async Events*/
@@ -63,9 +62,11 @@ int main()
         /*Generate and move notes*/
 
         if(time_elapsed >= (cycles_per_beat * CONVERT_MIL) / REFRESH_RATE){
-
-            generate_note(&model);
-            move_note(&model);
+            
+            move_notes();
+            generate_note();
+            
+            
         }
 
         
@@ -90,4 +91,14 @@ UINT32 get_time(){
 	
 	return time_now;
 	
+}
+
+void move_notes(){
+
+
+}
+
+void generate_note(){
+
+    
 }
