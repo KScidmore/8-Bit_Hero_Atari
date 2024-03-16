@@ -17,6 +17,22 @@
 #include "PSG.h"
 #include "types.h"
 
+/*---------- FUNCTION: psg_write --------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void psg_write(UINT8 register, UINT8 value){
 
     volatile UINT8 *register_select = SELECT_ADDRESS;
@@ -30,31 +46,110 @@ void psg_write(UINT8 register, UINT8 value){
     *register_write = value;
 
     Super(old_ssp);
-
 }
 
+
+/*---------- FUNCTION: psg_read ---------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void psg_read(UINT8 register){
-
+    /* TODO */
 }
 
 
-
+/*---------- FUNCTION: set_tone ---------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void set_tone(){
-
-
+    /* TODO */
 }
 
+
+/*---------- FUNCTION: set_volume -------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void set_volume(){
-
-
+    /* TODO */
 }
 
+
+/*---------- FUNCTION: set_envelope -----------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void set_envelope(){
-    
+    /* TODO */    
 }
 
+
+/*---------- FUNCTION: enable_channel ---------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 void enable_channel(){
-
-
+    /* TODO */
 }
 
