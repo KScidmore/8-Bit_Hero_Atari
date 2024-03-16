@@ -38,7 +38,6 @@ void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
 void render_active_notes(UINT32 *base, Model *model){
 
-    size is size of note array - for kyles ref
 
     int i, size;
 
