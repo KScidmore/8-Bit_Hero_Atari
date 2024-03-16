@@ -4,10 +4,77 @@
 #include "model.h"
 #include "RASTER.H"
 #include "bitmaps.h"
+#include "RAST_ASM.h"
 
 const UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
-void render_frets(UINT32 *base, Model *model)
+
+void init_scene(UINT8 *base, UINT32 *base32, Model *model){
+
+    clear_screen(base);
+    render_frets(base32, model);
+    render_fretboard(base);
+    render_start_score(base32, model);
+    render_x(base32, model);
+    render_start_multiplier(base32, model);
+
+}
+
+void render_next(UINT32 *base, Model *model){
+
+    render_frets(base, model);
+    render_active_notes(base, model);
+    render_new_note(base, model)
+    render_score(base, model);
+    render_multiplier(base, model)
+
+}
+
+void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
+
+
+
+}
+
+void render_active_notes(UINT32 *base, Model *model){
+
+    size is size of note array - for kyles ref
+
+    int i, size;
+
+    for(i = 0; i< size; i++){
+
+        iterate through note array, for active notes update position and render
+    
+        if(Note active){
+
+            Note y_pos +=1
+            plot_bitmap_32(base, pos_x, pos_y, note_map, size_y);
+        }
+
+        if(Note active){
+
+            Note y_pos +=1
+            plot_bitmap_32(base, pos_x, pos_y, note_map, size_y);
+        }
+
+        if(Note active){
+
+            Note y_pos +=1
+            plot_bitmap_32(base, pos_x, pos_y, note_map, size_y);
+        }
+
+        if(Note active){
+
+            Note y_pos +=1
+            plot_bitmap_32(base, pos_x, pos_y, note_map, size_y);
+        }
+
+    }
+
+}
+
+void render_frets(UINT32 *base, Model *model) 
 {  
 
     plot_bitmap_32(base, model->frets[FRET_A].pos_x, model->frets[FRET_A].pos_y, a_map, model->frets[FRET_A].size_y);

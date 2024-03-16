@@ -13,7 +13,13 @@ int main()
 
     init_model(&model);
 
-    init_scene(base, base32, &model);
+    clear_screen(base);
+    render_start_score(base32, &model);
+    render_fretboard(base);
+    render_frets(base32, &model);
+    render_start_multiplier(base32, &model);
+    render_x(base32, &model);
+    render_failbar(base32, &model);
 
     return 0;
     
