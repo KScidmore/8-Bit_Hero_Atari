@@ -1,9 +1,8 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-/* ---------- DATA TYPE DEFINITIONS ---------- */
-
-/* boolean data type; tried to make as an enum but was having some trouble */
+/*---------- DATA TYPE DEFINITIONS ------------------------------------------*/
+/* boolean data type */
 #define BOOL int
 #define TRUE 1
 #define FALSE 0 
@@ -33,9 +32,12 @@ typedef unsigned long UINT32;
 #define TENS 2 
 #define ONES 3
 
+/*---------- REGISTER ADDRESSES ---------------------------------------------*/
+#define SELECT_ADDRESS 0xFF8800
+#define WRITE_ADDRESS 0xFF8802
 
-/* ---------- MISC MAGIC NUMBER DEFINITIONS ---------- */
 
+/*---------- MISC MAGIC NUMBER DEFINITIONS ----------------------------------*/
 /* screen dimensions */
 #define SCREEN_WIDTH 640 
 #define SCREEN_HEIGHT 400
