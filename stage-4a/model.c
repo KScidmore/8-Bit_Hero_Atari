@@ -126,7 +126,7 @@ void init_lane(Model *model, UINT16 start_x, UINT16 curr_x, UINT16 start_y,
 			   NOTE_TYPE note_type)
 {
 	int i;
-	
+
 	model->lane.start_x = start_x;
 	model->lane.curr_x = curr_x;
 	model->lane.start_y = start_y;
@@ -135,7 +135,7 @@ void init_lane(Model *model, UINT16 start_x, UINT16 curr_x, UINT16 start_y,
 
 	for(i = 0; i < NOTES_SIZE; i++)
 	{
-		init_note(model, pos_x, pos_y, delta_y, note_type);
+		init_note(model->lane.notes[i], pos_x, pos_y, delta_y, note_type);
 	}
 }
 
