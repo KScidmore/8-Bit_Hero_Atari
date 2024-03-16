@@ -193,6 +193,7 @@ typedef struct
 typedef struct 
 {
 	Fret frets[FRETS_SIZE]; /* frets A, S, D, and F */
+	Lane lanes[LANES_SIZE]; /* lanes for the 4 frets */
 	Lane lane_a;
 	Lane lane_s;
 	Lane lane_d;
