@@ -60,6 +60,7 @@ typedef struct
     int v_dir;                          
     UINT8 size_x, size_y; 
 	BOOL is_played;
+	BOOL is_active;
 	NOTE_TYPE note_type;
 	Lane lane;
 } Note;
