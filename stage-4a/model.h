@@ -213,13 +213,14 @@ void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y);
 void set_fret_depressed(Model *model, FRET_POS fret, BOOL is_depressed);
 
 /* Note Functions */
-void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type)
+void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, 
+				NOTE_TYPE note_type);
 void set_note_pos(Model *model);
 void set_note_is_played(Model *model, BOOL is_played);
 
 /* Lane Functions */
 void init_lane(Model *model, FRET_POS fret, UINT16 pos_x, UINT16 pos_y,
-			   int delta_y, NOTE_TYPE note_type)
+			   int delta_y, NOTE_TYPE note_type);
 
 /* Note Streak Functions */
 void init_note_streak(Model *model);
