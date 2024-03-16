@@ -121,6 +121,25 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE 
 }
 
 
+void init_lane(Model *model, UINT16 start_x, UINT16 curr_x, UINT16 start_y,
+			   UINT16 end_y, UINT16 pos_x, UINT16 pos_y, int delta_y, 
+			   NOTE_TYPE note_type)
+{
+	int i;
+	
+	model->lane.start_x = start_x;
+	model->lane.curr_x = curr_x;
+	model->lane.start_y = start_y;
+	model->lane.end_y = end_y;
+	model->lane.counter = 0;
+
+	for(i = 0; i < NOTES_SIZE; i++)
+	{
+		init_note(model, pos_x, pos_y, delta_y, note_type);
+	}
+}
+
+
 /*---------- FUNCTION: TODO -------------------------------
 /  PURPOSE:
 /    TODO - purpose, from the caller's perspective (if not
@@ -164,85 +183,6 @@ void set_note_is_played(Model *model, BOOL is_played)
 	model->note.is_played = is_played;
 }
 
-
-/*---------- FUNCTION: TODO -------------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
-/ 
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/ 
-/  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
-/--------------------------------------------------------*/
-void generate_note(Model *model, FRET_POS fret)
-{
-	Note *lane = NULL;
-	UINT8 *counter = NULL;
-
-	switch (fret) 
-	{
-		case FRET_A:
-			lane = model->lane_a_notes;
-			break;
-		case FRET_S:
-			lane = model->lane_s_notes;
-			break;
-		case FRET_D:
-			lane = model->lane_d_notes;
-			break;
-		case FRET_F:
-			lane = model->lane_f_notes;
-			break;
-	}
-
-	init_lane(model, fret);
-
-}
-
-
-void init_lane(Model *model, FRET_POS fret)
-{
-	Lane *lane = NULL;
-
-	UINT16 start_x, curr_x;
-	const UINT16 start_y = 84;
-	const UINT16 end_y = 360;
-
-	switch (fret)
-	{
-		case FRET_A:
-			model->lane_a_notes.start_y = start_y;
-			model->lane_a_notes.end_y = end_y;
-			lane = model->lane_a_notes;
-			break;
-		case FRET_S:
-			model->lane_s_notes.start_y = start_y;
-			model->lane_s_notes.end_y = end_y;
-			lane = model->lane_s_notes;
-			break;
-		case FRET_D:
-			model->lane_d_notes.start_y = start_y;
-			model->lane_d_notes.end_y = end_y;
-			lane = model->lane_d_notes;
-			break;
-		case FRET_F:
-			model->lane_f_notes.start_y = start_y;
-			model->lane_f_notes.end_y = end_y;
-			lane = model->lane_f_notes;
-			break;
-	}
-
-	lane->start_x = start_x;
-	lane->curr_x = curr_x;
-	lane->counter = 0;
-}
 
 /*---------- Note Streak Functions ------------------------------------------*/
 /*---------- FUNCTION: TODO -------------------------------
