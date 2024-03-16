@@ -5,6 +5,7 @@
 #define RX_ENABLE ((UINT8)0x96)
 #define FULL ((UINT8)0x01)
 #define MAKE_MASK ((UINT8)0x80)
+#define TIMEOUT_VALUE ((UINT16)1000)
 
 
 /*Needed make/break values for inputs*/
@@ -21,9 +22,9 @@
 
 
 /*IKBD Address'*/
-#define CONTROL 0xFFFC00
-#define STATUS 0xFFFC00
-#define RDR 0xFFFC02
+#define CONTROL ((UINT32)0xFFFC00)
+#define STATUS ((UINT32)0xFFFC00)
+#define RDR ((UINT32)0xFFFC02)
 
 
 
