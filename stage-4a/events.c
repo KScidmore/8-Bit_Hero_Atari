@@ -36,11 +36,11 @@
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void set_play_on_fret_a(Model *model)
+void set_play_on_fret_a(Model *model, FRET_POS fret, UINT8 index)
 {
-	if (note_collision_a(model))
+	if (note_collision_a(model, fret, index))
 	{
-		update_score(model);
+		update_score(model, fret, index);
 		update_multiplier(model);
 		update_fail_bar(model, 1);
 	}
@@ -72,11 +72,11 @@ void set_play_on_fret_a(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void set_play_on_fret_s(Model *model)
+void set_play_on_fret_s(Model *model, FRET_POS fret, UINT8 index)
 {
-	if (note_collision_s(model))
+	if (note_collision_s(model, fret, index))
 	{
-		update_score(model);
+		update_score(model, fret, index);
 		update_multiplier(model);
 		update_fail_bar(model, 1);
 	}
@@ -108,11 +108,11 @@ void set_play_on_fret_s(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void set_play_on_fret_d(Model *model)
+void set_play_on_fret_d(Model *model, FRET_POS fret, UINT8 index)
 {
-	if (note_collision_d(model))
+	if (note_collision_d(model, fret, index))
 	{
-		update_score(model);
+		update_score(model, fret, index);
 		update_multiplier(model);
 		update_fail_bar(model, 1);
 	}
@@ -144,11 +144,11 @@ void set_play_on_fret_d(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void set_play_on_fret_f(Model *model)
+void set_play_on_fret_f(Model *model, FRET_POS fret, UINT8 index)
 {
-	if (note_collision_f(model))
+	if (note_collision_f(model, fret, index))
 	{
-		update_score(model);
+		update_score(model, fret, index);
 		update_multiplier(model);
 		update_fail_bar(model, 1);
 	}
@@ -203,9 +203,9 @@ void quit_game(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void move_note(Model *model)
+void move_note(Model *model, FRET_POS fret, UINT8 index)
 {
-	set_note_pos(model);
+	set_note_pos(model, fret, index);
 }
 
 
@@ -229,10 +229,10 @@ void move_note(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-BOOL note_collision_a(Model *model)
+BOOL note_collision_a(Model *model, FRET_POS fret, UINT8 index)
 {
-	if (model->note.pos_y > 320 ||
-		model->note.pos_y < 384)
+	if (model->lanes[fret].notes[index].pos_y > 320 ||
+		model->lanes[fret].notes[index].pos_y < 384)
 	{
 		if (model->frets[FRET_A].is_depressed)
 		{
@@ -260,10 +260,10 @@ BOOL note_collision_a(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-BOOL note_collision_s(Model *model)
+BOOL note_collision_s(Model *model, FRET_POS fret, UINT8 index)
 {
-	if (model->note.pos_y > 320 ||
-		model->note.pos_y < 384)
+	if (model->lanes[fret].notes[index].pos_y > 320 ||
+		model->lanes[fret].notes[index].pos_y < 384)
 	{
 		if (model->frets[FRET_S].is_depressed)
 		{
@@ -291,10 +291,10 @@ BOOL note_collision_s(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-BOOL note_collision_d(Model *model)
+BOOL note_collision_d(Model *model, FRET_POS fret, UINT8 index)
 {
-	if (model->note.pos_y > 320 ||
-		model->note.pos_y < 384)
+	if (model->lanes[fret].notes[index].pos_y > 320 ||
+		model->lanes[fret].notes[index].pos_y < 384)
 	{
 		if (model->frets[FRET_D].is_depressed)
 		{
@@ -322,10 +322,10 @@ BOOL note_collision_d(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-BOOL note_collision_f(Model *model)
+BOOL note_collision_f(Model *model, FRET_POS fret, UINT8 index)
 {
-	if (model->note.pos_y > 320 ||
-		model->note.pos_y < 384)
+	if (model->lanes[fret].notes[index].pos_y > 320 ||
+		model->lanes[fret].notes[index].pos_y < 384)
 	{
 		if (model->frets[FRET_F].is_depressed)
 		{

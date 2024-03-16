@@ -42,6 +42,7 @@ typedef unsigned long UINT32;
 
 /* for array sizing */
 #define FRETS_SIZE 4
+#define LANES_SIZE 4
 #define NOTES_SIZE 50
 
 
