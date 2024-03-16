@@ -117,54 +117,44 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE 
     model->note.size_x = 32;          	/* constant */
     model->note.size_y = 16;          	/* constant */
     model->note.is_played = FALSE;
+	model->note.is_active = FALSE;
 	model->note.note_type = note_type;
 }
 
 
-void init_lane(Model *model, UINT16 start_x, UINT16 curr_x, FRET_POS fret, 
-			   UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type)
+void init_lane(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, 
+				NOTE_TYPE note_type)
 {
 	int i;
-	
-	switch (fret)
-	{
 
-		case FRET_A:
-			model->lanes[fret].start_x = start_x; 
-			model->lanes[fret].curr_x = curr_x; 
-			for(i = 0; i < NOTES_SIZE; i++)
-			{
-				init_note(model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
-			}
-			break;
-		case FRET_S:
-			model->lanes[fret].start_x = start_x; 
-			model->lanes[fret].curr_x = curr_x; 
-			for(i = 0; i < NOTES_SIZE; i++)
-			{
-				init_note(model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
-			}
-			break;
-		case FRET_D:
-			model->lanes[fret].start_x = start_x; 
-			model->lanes[fret].curr_x = curr_x; 
-			for(i = 0; i < NOTES_SIZE; i++)
-			{
-				init_note(model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
-			}
-			break;
-		case FRET_F:
-			model->lanes[fret].start_x = start_x; 
-			model->lanes[fret].curr_x = curr_x; 
-			for(i = 0; i < NOTES_SIZE; i++)
-			{
-				init_note(model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
-			}
-			break;
+	model->lanes[FRET_A].start_x = 0;
+	model->lanes[FRET_A].curr_x = 0;
+	model->lanes[FRET_S].start_x = 0;
+	model->lanes[FRET_S].curr_x = 0;
+	model->lanes[FRET_D].start_x = 0;
+	model->lanes[FRET_D].curr_x = 0;
+	model->lanes[FRET_F].start_x = 0;
+	model->lanes[FRET_F].curr_x = 0;
+
+	for(i = 0; i < NOTES_SIZE; i++)
+	{
+		init_note(&model->lanes[FRET_A].notes[i], pos_x, pos_y, delta_y, note_type);
 	}
 
+	for(i = 0; i < NOTES_SIZE; i++)
+	{
+		init_note(&model->lanes[FRET_S].notes[i], pos_x, pos_y, delta_y, note_type);
+	}
 
+	for(i = 0; i < NOTES_SIZE; i++)
+	{
+		init_note(&model->lanes[FRET_D].notes[i], pos_x, pos_y, delta_y, note_type);
+	}
 
+	for(i = 0; i < NOTES_SIZE; i++)
+	{
+		init_note(&model->lanes[FRET_F].notes[i], pos_x, pos_y, delta_y, note_type);
+	}
 }
 
 
