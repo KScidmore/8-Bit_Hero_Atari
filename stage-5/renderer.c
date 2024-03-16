@@ -7,6 +7,8 @@
 
 const UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
+void render_next()
+
 void initalize_scene(UINT8 *base, UINT32 *base_long, Model *model){
 
     render_frets(base_long, &model);
@@ -17,15 +19,6 @@ void initalize_scene(UINT8 *base, UINT32 *base_long, Model *model){
 
 }
 
-void render_note(UINT32 *base, Model *model){
-
-    UINT16 pos_y = 84;
-
-    plot_bitmap_32(base, 160, pos_y, note_map, 32);
-    plot_bitmap_32(base, 256, pos_y, note_map, 32);
-    plot_bitmap_32(base, 352, pos_y, note_map, 32);
-    plot_bitmap_32(base, 448, pos_y, note_map, 32);
-}
 void render_frets(UINT32 *base, Model *model)
 {  
 
