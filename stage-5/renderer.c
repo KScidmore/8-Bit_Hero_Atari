@@ -7,7 +7,14 @@
 
 const UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
-void render_next()
+void render_next(UINT32 *base, Model *model){
+
+    render_frets(base, &model);
+    render_note(base, &model);
+    render_score(base, &model);
+    render_multiplier(base, &model)
+
+}
 
 void initalize_scene(UINT8 *base, UINT32 *base_long, Model *model){
 
@@ -18,6 +25,12 @@ void initalize_scene(UINT8 *base, UINT32 *base_long, Model *model){
     render_start_multiplier(base_long, &model);
 
 }
+
+void render_note(UINT32 *base, Model *model){
+
+
+}
+
 
 void render_frets(UINT32 *base, Model *model)
 {  
