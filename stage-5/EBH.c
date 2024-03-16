@@ -5,6 +5,7 @@
 #include "renderer.h"
 #include "rast_asm.h"
 #include "inputs.h"
+#include "events.h"
 
 
 int main()
@@ -12,14 +13,14 @@ int main()
     
     UINT32 time_then, time_now, time_elapsed;
     UINT8 *base = Physbase();
-	UINT32 *base_long = Physbase();
+	UINT32 *base32 = Physbase();
     SCANCODE scancode;
 
     Model model;
-
+    UINT8 i = 0;
     init_model(&model);
 
-    initalize_screen(base, base_long, &model);
+    init_scene(base, base32, &model);
 
     time_then = get_time();
 
@@ -29,7 +30,10 @@ int main()
         /*Async Events*/
 
         /*Check for user input*/
-        scancode = read_scancode();
+        
+        /*Input currently broke as heck*/
+
+        /*scancode = read_scancode();
 
         if(scancode == ESC_MAKE)
         {
@@ -37,20 +41,20 @@ int main()
         }
         else if(scancode == A_MAKE){
 
-            set_play_on_fret_a(&model);
+            set_play_on_fret_a(&model, FRET_A, 1);
         }
         else if(scancode == S_MAKE){
 
-            set_play_on_fret_s(&model);
+            set_play_on_fret_s(&model, FRET_S, 1);
         }
         else if(scancode == D_MAKE){
 
-            set_play_on_fret_d(&model);
+            set_play_on_fret_d(&model, FRET_D, 1);
         }
         else if(scancode == F_MAKE){
 
-            set_play_on_fret_f(&model);
-        }
+            set_play_on_fret_f(&model, FRET_F, 1);
+        }*/
 
 
         /*Sync Events*/
@@ -59,17 +63,19 @@ int main()
         time_now = get_time();
         time_elapsed = time_now - time_then;
 
-        /*Generate and move notes*/
+        /*Generate and move notes - THIS WAS A TEST AND IT WENT BADLY*/
 
-        if(time_elapsed >= (cycles_per_beat * CONVERT_MIL) / REFRESH_RATE){
-            
-            move_notes();
-            generate_note();
-            
-            
+        if(time_elapsed >= 1 and i < 50){
+
+            render_active_notes(base32, &model);
+            render_new_note(base32, &model, FRET_A, i);
+            render_new_note(base32, &model, FRET_S, i);
+            render_new_note(base32, &model, FRET_D, i);
+            render_new_note(base32, &model, FRET_F, i);
+               
         }
 
-        
+        i++;
 
     }
 
@@ -91,14 +97,4 @@ UINT32 get_time(){
 	
 	return time_now;
 	
-}
-
-void move_notes(){
-
-
-}
-
-void generate_note(){
-
-    
 }

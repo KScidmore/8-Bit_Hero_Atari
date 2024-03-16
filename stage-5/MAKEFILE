@@ -2,7 +2,7 @@
 TARGET=EBH
 
 # Object files needed for target
-OBJECTS=renderer.o model.o events.o raster.o bitmaps.o rast_asm.o EBH.o inputs.o 
+OBJECTS=EBH.o renderer.o model.o events.o raster.o bitmaps.o rast_asm.o inputs.o 
 
 # C compiler and flags
 CC=cc68x
@@ -15,8 +15,8 @@ all: clean $(TARGET)
 $(TARGET): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(TARGET)
 
-tst_rend.o: tst_rend.c types.h model.h renderer.h rast_asm.h
-	$(CC) $(CFLAGS) -c tst_rend.c
+EBH.o: EBH.c types.h model.h events.h renderer.h rast_asm.h inputs.h
+	$(CC) $(CFLAGS) -c EBH.c
 
 renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h
 	$(CC) $(CFLAGS) -c renderer.c
@@ -36,12 +36,8 @@ bitmaps.o: bitmaps.c bitmaps.h
 rast_asm.o: rast_asm.s
 	gen -D -L2 rast_asm.s
 
-EBH.o: EBH.c types.h model.h renderer.h rast_asm.h inputs.h
-	$(CC) $(CFLAGS) -c EBH.c
-
 inputs.o: inputs.c types.h inputs.h
 	$(CC) $(CFLAGS) -c inputs.c
-
 
 # Cleaning up the old object files and executable
 clean:
