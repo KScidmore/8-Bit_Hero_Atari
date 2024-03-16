@@ -1,0 +1,12 @@
+- Key:
+    <> this will be some sort of variable 
+
+- Note Object Access:
+    - instead of:
+        model->notes.<attribute>
+    - it is this now:
+        model->lanes[<index>].notes[<index>].<attribute>
+    - notes:
+        - FRET_POS fret and UINT8 index are new function arguments 
+        - every events function has been changed 
+        - any model functions that use lanes or notes are likely changed 
