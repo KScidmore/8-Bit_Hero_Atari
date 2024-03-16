@@ -32,11 +32,6 @@ typedef unsigned long UINT32;
 #define TENS 2 
 #define ONES 3
 
-/*---------- REGISTER ADDRESSES ---------------------------------------------*/
-#define SELECT_ADDRESS 0xFF8800
-#define WRITE_ADDRESS 0xFF8802
-
-
 /*---------- MISC MAGIC NUMBER DEFINITIONS ----------------------------------*/
 /* screen dimensions */
 #define SCREEN_WIDTH 640 
@@ -46,6 +41,5 @@ typedef unsigned long UINT32;
 #define FRETS_SIZE 4
 #define NOTES_SIZE 100
 #define SCORE_SIZE 4
-
 
 #endif

@@ -18,12 +18,14 @@
 
 #include "types.h"
 
-/*Prototypes*/
+/*---------- REGISTER ADDRESSES ---------------------------------------------*/
+#define SELECT_ADDRESS 0xFF8800
+#define WRITE_ADDRESS 0xFF8802
+
+/*---------- NOTES ----------------------------------------------------------*/
+/* TODO */
+
+/*---------- FUNCTION PROTOTYPES --------------------------------------------*/
 void psg_write(UINT8 register, UINT8 value);
-
-
-/*Notes*/
-
-
 
 #endif
