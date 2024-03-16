@@ -1,0 +1,2 @@
+- accessing lanes array > notes array > attributes 
+    model->lanes[fret].notes[i].<struct-attribute>
