@@ -220,8 +220,7 @@ void set_note_is_played(Model *model, BOOL is_played);
 void generate_note(Model *model, FRET_POS fret);
 
 /* Lane Functions */
-void init_lane(Model *model, UINT16 start_x, UINT16 start_y, UINT16 end_x, UINT16 end_y,
-			   UINT8 counter, FRET_POS fret);
+void init_lane(Model *model, FRET_POS fret);
 
 /* Note Streak Functions */
 void init_note_streak(Model *model);

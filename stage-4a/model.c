@@ -200,11 +200,12 @@ void generate_note(Model *model, FRET_POS fret)
 			break;
 	}
 
+	init_lane(model, fret);
+
 }
 
 
-void init_lane(Model *model, UINT16 start_x, UINT16 start_y, UINT16 end_x, UINT16 end_y,
-			   UINT8 counter, FRET_POS fret)
+void init_lane(Model *model, FRET_POS fret)
 {
 	switch (fret)
 	{
