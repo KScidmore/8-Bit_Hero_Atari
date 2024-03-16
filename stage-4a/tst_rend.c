@@ -13,7 +13,7 @@ int main()
 
     init_model(&model);
 
-    init_scene(base, base32, model);
+    init_scene(base, base32, &model);
 
     return 0;
     
