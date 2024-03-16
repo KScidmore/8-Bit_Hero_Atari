@@ -121,22 +121,50 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE 
 }
 
 
-void init_lane(Model *model, UINT16 start_x, UINT16 curr_x, UINT16 start_y,
-			   UINT16 end_y, UINT16 pos_x, UINT16 pos_y, int delta_y, 
-			   NOTE_TYPE note_type)
+void init_lane(Model *model, UINT16 start_x, UINT16 curr_x, FRET_POS fret, 
+			   UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type)
 {
 	int i;
-
-	model->lane.start_x = start_x;
-	model->lane.curr_x = curr_x;
-	model->lane.start_y = start_y;
-	model->lane.end_y = end_y;
-	model->lane.counter = 0;
-
-	for(i = 0; i < NOTES_SIZE; i++)
+	
+	switch (fret)
 	{
-		init_note(model->lane.notes[i], pos_x, pos_y, delta_y, note_type);
+
+		case FRET_A:
+			model->lanes[fret].start_x = start_x; 
+			model->lanes[fret].curr_x = curr_x; 
+			for(i = 0; i < NOTES_SIZE; i++)
+			{
+				init_note(model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
+			}
+			break;
+		case FRET_S:
+			model->lanes[fret].start_x = start_x; 
+			model->lanes[fret].curr_x = curr_x; 
+			for(i = 0; i < NOTES_SIZE; i++)
+			{
+				init_note(model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
+			}
+			break;
+		case FRET_D:
+			model->lanes[fret].start_x = start_x; 
+			model->lanes[fret].curr_x = curr_x; 
+			for(i = 0; i < NOTES_SIZE; i++)
+			{
+				init_note(model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
+			}
+			break;
+		case FRET_F:
+			model->lanes[fret].start_x = start_x; 
+			model->lanes[fret].curr_x = curr_x; 
+			for(i = 0; i < NOTES_SIZE; i++)
+			{
+				init_note(model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
+			}
+			break;
 	}
+
+
+
 }
 
 
