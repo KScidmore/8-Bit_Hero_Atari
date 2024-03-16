@@ -36,7 +36,10 @@ void init_model(Model *model)
 	init_fret(model, FRET_S, 256, 326);
 	init_fret(model, FRET_D, 352, 326);
 	init_fret(model, FRET_F, 448, 326);
-	init_note(model, 150, 150, 0, SHORT_NOTE);
+	init_lane(model, FRET_A, 160, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_S, 256, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_D, 352, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_F, 448, 84, 0, SHORT_NOTE);
 	init_note_streak(model);
 	init_score(model, 32, 0, 0);
 	init_multiplier(model, 544, 32, 1);
@@ -122,42 +125,18 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE 
 }
 
 
-void init_lane(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, 
+void init_lane(Model *model, FRET_POS fret, UINT16 pos_x, int delta_y, 
 				NOTE_TYPE note_type)
 {
 	int i;
 
-	model->lanes[FRET_A].start_x = 0;
-	model->lanes[FRET_A].curr_x = 0;
-	model->lanes[FRET_A].counter = 0;
-	model->lanes[FRET_S].start_x = 0;
-	model->lanes[FRET_S].curr_x = 0;
-	model->lanes[FRET_S].counter = 0;
-	model->lanes[FRET_D].start_x = 0;
-	model->lanes[FRET_D].curr_x = 0;
-	model->lanes[FRET_D].counter = 0;
-	model->lanes[FRET_F].start_x = 0;
-	model->lanes[FRET_F].curr_x = 0;
-	model->lanes[FRET_F].counter = 0;
+	model->lanes[fret].start_x = 0;
+	model->lanes[fret].curr_x = 0;
+	model->lanes[fret].counter = 0;
 
 	for(i = 0; i < NOTES_SIZE; i++)
 	{
-		init_note(&model->lanes[FRET_A].notes[i], pos_x, pos_y, delta_y, note_type);
-	}
-
-	for(i = 0; i < NOTES_SIZE; i++)
-	{
-		init_note(&model->lanes[FRET_S].notes[i], pos_x, pos_y, delta_y, note_type);
-	}
-
-	for(i = 0; i < NOTES_SIZE; i++)
-	{
-		init_note(&model->lanes[FRET_D].notes[i], pos_x, pos_y, delta_y, note_type);
-	}
-
-	for(i = 0; i < NOTES_SIZE; i++)
-	{
-		init_note(&model->lanes[FRET_F].notes[i], pos_x, pos_y, delta_y, note_type);
+		init_note(&model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
 	}
 }
 
