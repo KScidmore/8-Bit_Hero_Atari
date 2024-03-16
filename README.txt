@@ -4,6 +4,10 @@
 Hi Paul, we will be noting any information that you should know in this document
 such as glitches or issues we're facing that will affect you.
 
+- we got the rendering working fine and we're currently in the middle of 
+  some deep debugging, so this probably won't run for you, but we will have 
+  it fixed by the time you get the final submission
+- we fixed almost everything that was messed up at checkpoint 1 
 - we are saving our code in stages to preserve our previous work 
     - we've only changed errors or unintentional mistakes 
 - we've needed to constantly go back and fix model issues that hadn't previously 
