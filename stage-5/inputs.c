@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <osbind.h>
 #include "types.h"
 #include "inputs.h"
 
