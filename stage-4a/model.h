@@ -73,7 +73,7 @@ typedef struct
 /--------------------------------------------------------*/
 typedef struct 
 {
-    UINT16 start_x, start_y, end_x, end_y;
+    UINT16 start_x, curr_x, start_y, end_y;
 	UINT8 counter;
 } Lane;
 

@@ -183,20 +183,22 @@ void set_note_is_played(Model *model, BOOL is_played)
 /--------------------------------------------------------*/
 void generate_note(Model *model, FRET_POS fret)
 {
-	Note *lane_notes = NULL;
+	Note *lane = NULL;
+	UINT8 *counter = NULL;
+
 	switch (fret) 
 	{
 		case FRET_A:
-			lane_notes = model->lane_a_notes;
+			lane = model->lane_a_notes;
 			break;
 		case FRET_S:
-			lane_notes = model->lane_s_notes;
+			lane = model->lane_s_notes;
 			break;
 		case FRET_D:
-			lane_notes = model->lane_d_notes;
+			lane = model->lane_d_notes;
 			break;
 		case FRET_F:
-			lane_notes = model->lane_f_notes;
+			lane = model->lane_f_notes;
 			break;
 	}
 
@@ -207,37 +209,39 @@ void generate_note(Model *model, FRET_POS fret)
 
 void init_lane(Model *model, FRET_POS fret)
 {
+	Lane *lane = NULL;
+
+	UINT16 start_x, curr_x;
+	const UINT16 start_y = 84;
+	const UINT16 end_y = 360;
+
 	switch (fret)
 	{
 		case FRET_A:
-			model->lane_a_notes.start_x = 0;
-			model->lane_a_notes.start_y = 0;
-			model->lane_a_notes.end_x = 0;
-			model->lane_a_notes.end_y = 0;
-			model->lane_a_notes.counter = 0;
+			model->lane_a_notes.start_y = start_y;
+			model->lane_a_notes.end_y = end_y;
+			lane = model->lane_a_notes;
 			break;
 		case FRET_S:
-			model->lane_s_notes.start_x = 0;
-			model->lane_s_notes.start_y = 0;
-			model->lane_s_notes.end_x = 0;
-			model->lane_s_notes.end_y = 0;
-			model->lane_s_notes.counter = 0;
+			model->lane_s_notes.start_y = start_y;
+			model->lane_s_notes.end_y = end_y;
+			lane = model->lane_s_notes;
 			break;
 		case FRET_D:
-			model->lane_d_notes.start_x = 0;
-			model->lane_d_notes.start_y = 0;
-			model->lane_d_notes.end_x = 0;
-			model->lane_d_notes.end_y = 0;
-			model->lane_d_notes.counter = 0;
+			model->lane_d_notes.start_y = start_y;
+			model->lane_d_notes.end_y = end_y;
+			lane = model->lane_d_notes;
 			break;
 		case FRET_F:
-			model->lane_f_notes.start_x = 0;
-			model->lane_f_notes.start_y = 0;
-			model->lane_f_notes.end_x = 0;
-			model->lane_f_notes.end_y = 0;
-			model->lane_f_notes.counter = 0;
+			model->lane_f_notes.start_y = start_y;
+			model->lane_f_notes.end_y = end_y;
+			lane = model->lane_f_notes;
 			break;
 	}
+
+	lane->start_x = start_x;
+	lane->curr_x = curr_x;
+	lane->counter = 0;
 }
 
 /*---------- Note Streak Functions ------------------------------------------*/
