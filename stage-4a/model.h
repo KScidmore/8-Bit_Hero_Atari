@@ -195,10 +195,6 @@ typedef struct
 {
 	Fret frets[FRETS_SIZE]; /* frets A, S, D, and F */
 	Lane lanes[LANES_SIZE]; /* lanes for the 4 frets */
-	Lane lane_a;
-	Lane lane_s;
-	Lane lane_d;
-	Lane lane_f;
 	Note_Streak note_streak;
 	Score score;
 	Multiplier multiplier;
@@ -222,7 +218,8 @@ void set_note_pos(Model *model);
 void set_note_is_played(Model *model, BOOL is_played);
 
 /* Lane Functions */
-void init_lane(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type)
+void init_lane(Model *model, FRET_POS fret, UINT16 pos_x, UINT16 pos_y,
+			   int delta_y, NOTE_TYPE note_type)
 
 /* Note Streak Functions */
 void init_note_streak(Model *model);

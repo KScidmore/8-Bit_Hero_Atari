@@ -124,23 +124,6 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE 
 	model->note.note_type = note_type;
 }
 
-
-void init_lane(Model *model, FRET_POS fret, UINT16 pos_x, int delta_y, 
-				NOTE_TYPE note_type)
-{
-	int i;
-
-	model->lanes[fret].start_x = 0;
-	model->lanes[fret].curr_x = 0;
-	model->lanes[fret].counter = 0;
-
-	for(i = 0; i < NOTES_SIZE; i++)
-	{
-		init_note(&model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
-	}
-}
-
-
 /*---------- FUNCTION: TODO -------------------------------
 /  PURPOSE:
 /    TODO - purpose, from the caller's perspective (if not
@@ -184,6 +167,37 @@ void set_note_is_played(Model *model, BOOL is_played)
 	model->note.is_played = is_played;
 }
 
+/*---------- Lane Functions -------------------------------------------------*/
+/*---------- FUNCTION: init_lane --------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not
+/    perfectly clear from the name)
+/ 
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/ 
+/  CALLER OUTPUT:
+/    TODO - the purose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
+void init_lane(Model *model, FRET_POS fret, UINT16 pos_x, int delta_y, 
+				NOTE_TYPE note_type)
+{
+	int i;
+
+	model->lanes[fret].start_x = 0;
+	model->lanes[fret].curr_x = 0;
+	model->lanes[fret].counter = 0;
+
+	for(i = 0; i < NOTES_SIZE; i++)
+	{
+		init_note(&model->lanes[fret].notes[i], pos_x, pos_y, delta_y, note_type);
+	}
+}
 
 /*---------- Note Streak Functions ------------------------------------------*/
 /*---------- FUNCTION: TODO -------------------------------
@@ -232,7 +246,7 @@ void init_note_streak(Model *model)
 /--------------------------------------------------------*/
 void update_note_streak(Model *model)
 {
-	/* TODO */
+	model->note_streak.value += 1;
 }
 
 /*---------- Score Functions ------------------------------------------------*/
