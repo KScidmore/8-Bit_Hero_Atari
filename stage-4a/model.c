@@ -129,12 +129,16 @@ void init_lane(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y,
 
 	model->lanes[FRET_A].start_x = 0;
 	model->lanes[FRET_A].curr_x = 0;
+	model->lanes[FRET_A].counter = 0;
 	model->lanes[FRET_S].start_x = 0;
 	model->lanes[FRET_S].curr_x = 0;
+	model->lanes[FRET_S].counter = 0;
 	model->lanes[FRET_D].start_x = 0;
 	model->lanes[FRET_D].curr_x = 0;
+	model->lanes[FRET_D].counter = 0;
 	model->lanes[FRET_F].start_x = 0;
 	model->lanes[FRET_F].curr_x = 0;
+	model->lanes[FRET_F].counter = 0;
 
 	for(i = 0; i < NOTES_SIZE; i++)
 	{
