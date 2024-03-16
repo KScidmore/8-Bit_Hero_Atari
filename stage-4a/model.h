@@ -217,7 +217,7 @@ void set_note_pos(Model *model, FRET_POS fret, UINT8 index);
 void set_note_is_played(Model *model, FRET_POS fret, UINT8 index, BOOL is_played);
 
 /* Lane Functions */
-void init_lane(Model *model, FRET_POS fret, UINT16 pos_x, UINT16 pos_y, int delta_y, 
+void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_y, int delta_y, 
 				NOTE_TYPE note_type);
 
 /* Note Streak Functions */

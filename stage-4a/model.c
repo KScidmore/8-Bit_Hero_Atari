@@ -36,10 +36,10 @@ void init_model(Model *model)
 	init_fret(model, FRET_S, 256, 326);
 	init_fret(model, FRET_D, 352, 326);
 	init_fret(model, FRET_F, 448, 326);
-	init_lane(model, FRET_A, 160, 84, 0, SHORT_NOTE);
-	init_lane(model, FRET_S, 256, 84, 0, SHORT_NOTE);
-	init_lane(model, FRET_D, 352, 84, 0, SHORT_NOTE);
-	init_lane(model, FRET_F, 448, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_A, 0, 160, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_S, 0, 256, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_D, 0, 352, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_F, 0, 448, 84, 0, SHORT_NOTE);
 	init_note_streak(model);
 	init_score(model, 32, 0, 0);
 	init_multiplier(model, 544, 32, 1);
@@ -184,7 +184,7 @@ void set_note_is_played(Model *model, FRET_POS fret, UINT8 index, BOOL is_played
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /    TODO
 /--------------------------------------------------------*/
-void init_lane(Model *model, FRET_POS fret, UINT16 pos_x, UINT16 pos_y, int delta_y, 
+void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_y, int delta_y, 
 				NOTE_TYPE note_type)
 {
 	UINT8 i;
@@ -195,7 +195,7 @@ void init_lane(Model *model, FRET_POS fret, UINT16 pos_x, UINT16 pos_y, int delt
 
 	for(i = 0; i < NOTES_SIZE; i++)
 	{
-		init_note(&model->lanes[fret].notes[i], fret, pos_x, pos_y, delta_y, note_type);
+		init_note(&model->lanes[fret].notes[i], fret, index, pos_x, pos_y, delta_y, note_type);
 	}
 }
 
