@@ -17,16 +17,18 @@ void init_scene(UINT8 *base, UINT32 *base32, Model *model){
     render_start_score(base32, model);
     render_x(base32, model);
     render_start_multiplier(base32, model);
+    render_failbar(base32, model);
 
 }
 
-void render_next(UINT32 *base, Model *model){
+void render_next(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
     render_frets(base, model);
     render_active_notes(base, model);
-    render_new_note(base, model)
+    render_new_note(base, model, fret, note_index);
     render_score(base, model);
     render_multiplier(base, model);
+    render_failbar(base, model);
 
 }
 
