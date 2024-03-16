@@ -13,7 +13,5 @@ void render_failbar(UINT32 *base, Model *model);
 void render_x(UINT32 *base, Model *model);
 void render_start_score(UINT32 *base, Model *model);
 void render_start_multiplier(UINT32 *base, Model *model);
-void initalize_scene(UINT8 *base, UINT32 *base_long, Model *model);
-/*void render_next(UINT32 *base, Model *model);*/
 
 #endif
