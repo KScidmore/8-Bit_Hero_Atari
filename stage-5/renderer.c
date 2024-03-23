@@ -43,9 +43,10 @@ void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 void render_active_notes(UINT32 *base, Model *model){
 
 
-    int i, size;
+    int i, SIZE;
+    SIZE = 50;
 
-    for(i = 0; i< size; i++){
+    for(i = 0; i< SIZE; i++){
 
         /*iterate through note array, for active notes update position and render*/
     
@@ -74,6 +75,11 @@ void render_active_notes(UINT32 *base, Model *model){
         }
     }
 
+}
+
+void clear_bottom(UINT32 *base, Model *model){
+
+    
 }
 
 void render_frets(UINT32 *base, Model *model) 

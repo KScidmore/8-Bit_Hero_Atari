@@ -6,9 +6,27 @@
 #include "bitmaps.h"
 #include "RAST_ASM.h"
 
+/*figure out something with this global so paul doesnt kill you*/
 const UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
-
+/*---------- FUNCTION: init_scene ----------------------
+/  PURPOSE:
+/  	Renders the initial game scene
+/  
+/  CALLER INPUT:
+/    UINT8 *base
+/  	- Starting point of the frame buffer (8bit)
+/    UINT32 *base
+/  	- Starting point of the frame buffer (32bit)
+/    Model *model
+/  	- Address of the game model
+/  
+/  CALLER OUTPUT:
+/    Returns Void
+/  
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/   
+/--------------------------------------------------------*/
 void init_scene(UINT8 *base, UINT32 *base32, Model *model){
 
     clear_screen(base);
@@ -21,6 +39,22 @@ void init_scene(UINT8 *base, UINT32 *base32, Model *model){
 
 }
 
+/*---------- FUNCTION: render_next ---------------------
+/  PURPOSE:
+/ 	Renders the next frame
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_next(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
     render_frets(base, model);
@@ -32,6 +66,22 @@ void render_next(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
 }
 
+/*---------- FUNCTION: render_new_note ------------------
+/  PURPOSE:
+/  	Renders a new note and activates it
+/  
+/  CALLER INPUT:
+/    UINT32 *base
+/  	- Starting point of the frame buffer
+/    Model *model
+/  	- Address of the game model
+/  
+/  CALLER OUTPUT:
+/    Returns Void
+/  
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/   
+/--------------------------------------------------------*/
 void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
     model->lanes[fret].notes[note_index].is_active = TRUE;
@@ -40,6 +90,23 @@ void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
 }
 
+
+/*---------- FUNCTION: render_active_notes ---------------
+/  PURPOSE:
+/ 	de-renders and re-renders all active notes
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_active_notes(UINT32 *base, Model *model){
 
 
@@ -76,6 +143,23 @@ void render_active_notes(UINT32 *base, Model *model){
 
 }
 
+
+/*---------- FUNCTION: render_frets ---------------------
+/  PURPOSE:
+/ 	Renders the 4 frets
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_frets(UINT32 *base, Model *model) 
 {  
 
@@ -86,7 +170,20 @@ void render_frets(UINT32 *base, Model *model)
 
 }
 
-
+/*---------- FUNCTION: render_fretboard -----------------
+/  PURPOSE:
+/ 	Renders the 4 fretboard lanes and upper bar
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_fretboard(UINT8 *base)
 {
     int i, start_y, start_x;
@@ -164,7 +261,7 @@ void render_fretboard(UINT8 *base)
 
     }
 
-    
+    /*Plot fourth track*/
     start_x = 444;
     
     for(i = 0; i < 4; i++)
@@ -184,9 +281,24 @@ void render_fretboard(UINT8 *base)
         start_x += 1;
 
     }
-
 }
 
+/*---------- FUNCTION: render_start_score ----------------
+/  PURPOSE:
+/ 	Renders the initial score
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_start_score(UINT32 *base, Model *model){
 
     int pos_y = model->score.pos_y;
@@ -199,6 +311,22 @@ void render_start_score(UINT32 *base, Model *model){
 
 }
 
+/*---------- FUNCTION: render_score ---------------------
+/  PURPOSE:
+/ 	Renders the updated score based on models value
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_score(UINT32 *base, Model *model){
 
     UINT16 value, ones, tens, hundreds, thousands, height, pos_y;
@@ -250,17 +378,47 @@ void render_score(UINT32 *base, Model *model){
             plot_bitmap_32(base, model->score.thous_x, pos_y, num_maps[thousands], height);
 
         }
-
-
     }
 }
 
+/*---------- FUNCTION: render_x -------------------------
+/  PURPOSE:
+/ 	Renders the X for the multiplier
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_x(UINT32 *base, Model *model){
     
     plot_bitmap_32(base, model->multiplier.pos_x, model->multiplier.pos_y, x_map, model->multiplier.digit_size_y);
 
 }
 
+/*---------- FUNCTION: render_start_multiplier -----------
+/  PURPOSE:
+/ 	Renders the initial multiplier number
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_start_multiplier(UINT32 *base, Model *model){
 
     int pos_x = model->multiplier.pos_x + 32;
@@ -271,6 +429,24 @@ void render_start_multiplier(UINT32 *base, Model *model){
 
 }
 
+
+/*---------- FUNCTION: render_multiplier -----------------
+/  PURPOSE:
+/ 	Renders the updated multipler number based 
+/   on the models value
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_multiplier(UINT32 *base, Model *model)
 {
     int pos_x = model->multiplier.pos_x + 32;
@@ -307,6 +483,22 @@ void render_multiplier(UINT32 *base, Model *model)
 
 }
 
+/*---------- FUNCTION: render_failbar -------------------
+/  PURPOSE:
+/   Renders the failbar based on the models value
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/   - Re-renders the entire failbar every update
+/--------------------------------------------------------*/
 void render_failbar(UINT32 *base, Model *model)
 {
     int pos_y, sec_one, sec_two, sec_three, sec_four, sec_five, sec_six, height;
