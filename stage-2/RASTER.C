@@ -345,13 +345,20 @@ int abs_val(int value)
 ----- FUNCTION: TODO -----
 
 PURPOSE:
-  TODO
+  Plots a vertical line of a defined pixel height
 
 CALLER INPUT:
-  TODO 
+  UINT8 *base
+	-Starting point of the frame buffer
+  int x
+	- x coordinate for defining the hotspot
+  int y_start
+	- Starting y coordinate
+  int height
+	- The height in pixels of the line to be plotted
 
 CALLER OUTPUT:
-  TODO
+  Returns Void
 
 ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
   -  
@@ -414,7 +421,7 @@ void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap, unsigned i
 ----- FUNCTION: TODO -----
 
 PURPOSE:
-  TODO
+	Plots a 16 pixel wide bitmap
 
 CALLER INPUT:
   UINT16 *base
@@ -429,11 +436,12 @@ CALLER INPUT:
 	-The height of the bitmap to be plotted
 
 CALLER OUTPUT:
-  TODO
+  Returns Void
 
 ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  -  
+  -  Only plots to multiples of 16 bits
 */
+
 void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned int height) /*Edit to match 32 bit for speed*/
 {
 
@@ -453,16 +461,25 @@ void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned i
 ----- FUNCTION: TODO -----
 
 PURPOSE:
-  TODO
+	Plots an 8 pixel wide bitmap
 
 CALLER INPUT:
-  TODO 
+  UINT8 *base
+	-Starting point of the frame buffer
+  int x
+	- x coordinate for defining the hotspot
+  int y
+	- y coordinate for defining the hotspot
+  const UINT8 *bitmap
+	- The bitmap to be plotted
+  unsigned int height
+	-The height of the bitmap to be plotted
 
 CALLER OUTPUT:
-  TODO
+  Returns Void
 
 ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  -  
+  -  Only plots to multiples of 8 bits
 */
 void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap, unsigned int height) /*Edit to match 32 bit for speed*/
 {

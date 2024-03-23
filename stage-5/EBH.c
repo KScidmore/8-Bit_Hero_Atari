@@ -65,7 +65,7 @@ int main()
 
         /*Generate and move notes - THIS WAS A TEST AND IT WENT BADLY*/
 
-        if(time_elapsed >= 1 and i < 50){
+        if(time_elapsed >= 1){
 
             render_active_notes(base32, &model);
             render_new_note(base32, &model, FRET_A, i);
