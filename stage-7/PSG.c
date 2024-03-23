@@ -14,7 +14,7 @@
 /--------------------------------------------------------*/
 
 #include <stdio>
-#include "PSG.h"
+#include "psg.h"
 #include "types.h"
 
 /*---------- FUNCTION: psg_write --------------------------

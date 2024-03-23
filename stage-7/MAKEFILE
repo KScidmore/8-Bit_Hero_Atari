@@ -1,0 +1,23 @@
+TARGET=sndtst
+OBJECTS=sndtst.o psg.o 
+CC=cc68x
+CFLAGS=-g
+
+# Building the target
+all: clean $(TARGET)
+
+# Linking target executable from object files
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET)
+
+sndtst.o: sndtst.c psg.h types.h
+	$(CC) $(CFLAGS) -c sndtst.c
+
+psg.o: psg.c psg.h types.h
+	$(CC) $(CFLAGS) -c psg.c
+
+# Cleaning up the old object files and executable
+clean:
+	$(RM) *.o $(TARGET)
+
+# DON'T DELETE THIS LINE OR IT BREAKS

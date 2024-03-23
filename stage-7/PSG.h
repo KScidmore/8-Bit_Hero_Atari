@@ -27,5 +27,10 @@
 
 /*---------- FUNCTION PROTOTYPES --------------------------------------------*/
 void psg_write(UINT8 register, UINT8 value);
+void set_tone();
+void set_volume();
+void set_envelope();
+void enable_channel();
+
 
 #endif
