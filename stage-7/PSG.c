@@ -34,11 +34,15 @@
 /    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    N/A
+/    As a result of val being a UINT8, negative numbers roll
+/    to max values and have unpredictible behaviours. This is
+/    a helper function for the other functions and the input 
+/    parameters for those functions check if the input value 
+/    is out of range. If it is, the request is ignored.
 /--------------------------------------------------------*/
 void write_psg(int reg, UINT8 val)
 {
-    if (reg >= 0 && reg <= 15 && val <= 255) 
+    if (reg >= 0 && reg <= 0xF && val <= 0xFF) 
     {
         volatile UINT8 *register_select = SELECT_ADDRESS;
         volatile UINT8 *register_write = WRITE_ADDRESS;
@@ -68,24 +72,21 @@ void write_psg(int reg, UINT8 val)
 /      the current value held by the selected register
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    This function is currently fubar'd, need to work on 
-/    it. It is returning 255 regardless of the value it
-/    actually currently holds.
+/    N/A
 /--------------------------------------------------------*/
 UINT8 read_psg(int reg)
 {
-    if (reg >= 0 && reg <= 15) 
+    if (reg >= 0 && reg <= 0xF) 
     {
         volatile UINT8 *register_select = SELECT_ADDRESS;
         volatile UINT8 *register_write = WRITE_ADDRESS;
         UINT8 curr_val;
 
         UINT32 old_ssp;
-
         old_ssp = Super(0);
 
         *register_select = (UINT8)reg;
-        curr_val = *register_write;
+        curr_val = *register_select;
 
         Super(old_ssp);
 
@@ -259,11 +260,16 @@ void set_noise(int tuning)
 /--------------------------------------------------------*/
 void set_envelope(int shape, unsigned int sustain)
 {
+    /*
+    - currently not working and I don't know why
+    */
+
+
     if (shape >= 0 && shape <= 0xF &&
         sustain >= 0 && sustain <= 0xFFFF)
     {
-        UINT16 fine = sustain & 0x00FF;
-        UINT16 rough = (sustain & 0x00FF) >> 8;
+        int fine = sustain & 0x00FF;
+        int rough = (sustain >> 8) & 0x00FF;
 
         write_psg(11, fine);
         write_psg(12, rough);
