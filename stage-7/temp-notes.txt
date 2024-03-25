@@ -1,0 +1,20 @@
+Useful Sections 
+==========
+- section 1 (introduction)                        page 1
+- section 2 (overview of functions)             pages 2-4
+    - mainly subsections 2-1 to 2-3
+- section 3 (description of operation)          pages 13-14, 16-18, 23
+    - mainly subsections 3-1, 3-3, 3-4 and 3-8
+    - ignore the I/O ports described in 3-3
+- start of section 4 (interface)                first half of page 24
+- For later, also note the immense usefulness of section 5 (page 31) and 6 (page 34)
+
+
+things to remember
+    - each function must check its input parameters to make sure they are in range, ignore requests if they are not 
+    - 
+
+
+questions to brainstorm with kyle:
+    - can't seem to figure out read_psg() or the envelope function 
+
