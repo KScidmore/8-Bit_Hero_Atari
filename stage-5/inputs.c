@@ -8,6 +8,19 @@ volatile       UINT8    * const IKBD_control = CONTROL;
 volatile const UINT8    * const IKBD_status = STATUS;
 volatile const SCANCODE * const IKBD_RDR = RDR;
 
+
+char read_char() {
+    if (Cconis() != 0) { 
+        char ch = Cconin();
+        if (ch >= 'A' && ch <= 'Z') { 
+            ch += 32;
+        }
+        return ch;
+    } else {
+        return -1; 
+    }
+}
+
 SCANCODE read_scancode()
 {
 

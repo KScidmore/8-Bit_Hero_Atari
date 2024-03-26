@@ -21,11 +21,10 @@ void init_scene(UINT8 *base, UINT32 *base32, Model *model){
 
 }
 
-void render_next(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
+void render_next(UINT32 *base, Model *model){
 
     render_frets(base, model);
     render_active_notes(base, model);
-    render_new_note(base, model, fret, note_index);
     render_score(base, model);
     render_multiplier(base, model);
     render_failbar(base, model);
@@ -43,35 +42,69 @@ void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 void render_active_notes(UINT32 *base, Model *model){
 
 
-    int i, SIZE;
+    int i, SIZE, bottom;
     SIZE = 50;
+    bottom = 358;
 
     for(i = 0; i< SIZE; i++){
 
         /*iterate through note array, for active notes update position and render*/
     
         if(model->lanes[FRET_A].notes[i].is_active == TRUE){
-
+            
+            clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
             set_note_pos(model, FRET_A, i);
             plot_bitmap_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, note_map, model->lanes[FRET_A].notes[i].size_y);
+
+            if(model->lanes[FRET_A].notes[i].pos_y >= bottom){
+                
+                model->lanes[FRET_A].notes[i].is_active = FALSE;
+                clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
+
+            }
+            
         }
 
         if(model->lanes[FRET_S].notes[i].is_active == TRUE){
-
+            
+            clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, model->lanes[FRET_S].notes[i].size_y);
             set_note_pos(model, FRET_S, i);
             plot_bitmap_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, note_map, model->lanes[FRET_S].notes[i].size_y);
+
+            if(model->lanes[FRET_S].notes[i].pos_y >= bottom){
+                
+                model->lanes[FRET_S].notes[i].is_active = FALSE;
+                clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, model->lanes[FRET_S].notes[i].size_y);
+
+            }
         }
 
         if(model->lanes[FRET_D].notes[i].is_active == TRUE){
-
+            
+            clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, model->lanes[FRET_D].notes[i].size_y);
             set_note_pos(model, FRET_D, i);
             plot_bitmap_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, note_map, model->lanes[FRET_D].notes[i].size_y);
+
+            if(model->lanes[FRET_D].notes[i].pos_y >= bottom){
+                
+                model->lanes[FRET_D].notes[i].is_active = FALSE;
+                clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, model->lanes[FRET_D].notes[i].size_y);
+
+            }
         }
 
         if(model->lanes[FRET_F].notes[i].is_active == TRUE){
 
-            set_note_pos(model, FRET_D, i);
+            clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, model->lanes[FRET_F].notes[i].size_y);
+            set_note_pos(model, FRET_F, i);
             plot_bitmap_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, note_map, model->lanes[FRET_F].notes[i].size_y);
+
+            if(model->lanes[FRET_F].notes[i].pos_y >= bottom){
+                
+                model->lanes[FRET_F].notes[i].is_active = FALSE;
+                clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, model->lanes[FRET_F].notes[i].size_y);
+
+            }
         }
     }
 

@@ -33,6 +33,7 @@ typedef UINT8 SCANCODE;
 
 SCANCODE read_scancode();
 UINT32 get_time();
+char read_char();
 
 
 

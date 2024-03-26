@@ -118,7 +118,7 @@ void init_note(Note *note, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_
     note->delta_y = delta_y;
     note->v_dir = 1;            	/* constant */
     note->size_x = 32;          	/* constant */
-    note->size_y = 16;          	/* constant */
+    note->size_y = 32;          	/* constant */
     note->is_played = FALSE;
 	note->is_active = FALSE;
 	note->note_type = note_type;
