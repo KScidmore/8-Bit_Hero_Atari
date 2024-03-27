@@ -1,7 +1,7 @@
 /*---------- ID HEADER ------------------------------------
 /  Authors:     Andrew Boisvert, Kyle Scidmore
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
-/  File Name:   psg.h
+/  File Name:   sndconst.h
 /  Citations:   
 /    - http://poi.ribbon.free.fr/tmp/freq2regs.htm 
 /
@@ -18,9 +18,22 @@
 /
 /--------------------------------------------------------*/
 
-#ifndef NOTEFRQS_H
-#define NOTEFRQS_H
+#ifndef SNDCONST_H
+#define SNDCONST_H
 
+/*---------- DEFINING ENVELOPE SHAPES ---------------------------------------*/
+#define ENV_SHAPE_1 0x0
+#define ENV_SHAPE_2 0x4
+#define ENV_SHAPE_3 0x8
+#define ENV_SHAPE_4 0x9
+#define ENV_SHAPE_5 0xA
+#define ENV_SHAPE_6 0xB
+#define ENV_SHAPE_7 0xC
+#define ENV_SHAPE_8 0xD
+#define ENV_SHAPE_9 0xE
+#define ENV_SHAPE_10 0xF
+
+/*---------- DEFINING NOTE VALUES -------------------------------------------*/
 #define C5          0x0EF
 #define C5_SHARP    0x0E2
 #define D5          0x0D5

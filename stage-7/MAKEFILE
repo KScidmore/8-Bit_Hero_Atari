@@ -45,6 +45,6 @@ effects.o: effects.c psg.h types.h notefrqs.h
 
 # Cleaning up the old object files and executable
 clean:
-	$(RM) *.o $(TARGET)
+	$(RM) *.o $(TARGET_A) $(TARGET_B) $(TARGET_C)
 
 # DON'T DELETE THIS LINE OR IT BREAKS
