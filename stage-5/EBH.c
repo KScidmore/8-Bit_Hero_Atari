@@ -15,7 +15,6 @@ int main()
     UINT32 time_then, time_now, time_elapsed;
     UINT8 *base = Physbase();
 	UINT32 *base32 = Physbase();
-    SCANCODE scancode;
 
     Model model;
     int note_gen = 0;
@@ -24,7 +23,9 @@ int main()
     UINT8 k = 0;
     UINT8 l = 0;
     UINT8 note_counter = 0;
+    char input_value;
     char ch;
+    UINT16 score;
     init_model(&model);
 
     init_scene(base, base32, &model);
@@ -34,32 +35,35 @@ int main()
     /*Main game loop*/
     while(1){
 
-                /*Get time*/
+        /*Get time*/
         time_now = get_time();
         time_elapsed = time_now - time_then;
 
 
+        /*Check for input*/
         ch = read_char();
+
+        /*Handle input*/
         if(ch != -1){
             switch(ch) {
                 case 'a':
-                 printf("You pressed 'a'. Action confirmed.\n");
-                 break;
+                    play_on_fret(&model, FRET_A, base32);
+                    break;
                 case 's':
-                    printf("You pressed 's'. Action confirmed.\n");
+                    play_on_fret(&model, FRET_S, base32);
                     break;
                 case 'd':
-                    printf("You pressed 'd'. Action confirmed.\n");
+                    play_on_fret(&model, FRET_D, base32);
                     break;
                 case 'f':
-                    printf("You pressed 'f'. Action confirmed.\n");
+                    play_on_fret(&model, FRET_F, base32);
                     break;
-                case 27: 
-                    printf("Exiting the program.\n");
-                    return 0; 
-                default:
-                
-                    break;
+                case 27:
+                    score = model.score.value;
+
+                    printf("Model score value: %d\n", score);
+                    return 0;
+
         }
     }
 

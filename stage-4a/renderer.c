@@ -112,7 +112,9 @@ void render_active_notes(UINT32 *base, Model *model){
 
     int i, size;
 
-    for(i = 0; i< size; i++){
+    size = 50;
+
+    for(i = 0; i < size; i++){
 
         /*iterate through note array, for active notes update position and render*/
     
@@ -378,6 +380,8 @@ void render_score(UINT32 *base, Model *model){
             plot_bitmap_32(base, model->score.thous_x, pos_y, num_maps[thousands], height);
 
         }
+
+        model->score.updated_flag = FALSE;
     }
 }
 

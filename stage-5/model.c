@@ -268,10 +268,10 @@ void update_note_streak(Model *model)
 /--------------------------------------------------------*/
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
-    model->score.ones_x = pos_x;
-	model->score.tens_x = pos_x + 32;
-	model->score.hunds_x = pos_x + 64;
-	model->score.thous_x = pos_x + 96;
+    model->score.thous_x = pos_x;
+	model->score.hunds_x = pos_x + 32;
+	model->score.tens_x = pos_x + 64;
+	model->score.ones_x = pos_x + 96;
     model->score.pos_y = pos_y;
     model->score.size_x = 128;
     model->score.size_y = 32;
@@ -300,7 +300,7 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /    TODO
 /--------------------------------------------------------*/
-void update_score(Model *model, FRET_POS fret, UINT8 index)
+/*void update_score(Model *model, FRET_POS fret, UINT8 index)
 {	
 	UINT8 update_val = model->multiplier.value * model->lanes[fret].notes[index].note_type;
 	if (update_val == 0)
@@ -312,6 +312,14 @@ void update_score(Model *model, FRET_POS fret, UINT8 index)
 		model->score.updated_flag = TRUE;
 		model->score.value += update_val;
 	}
+}*/
+
+void update_score(Model *model)
+{	
+
+		model->score.value += NOTE_VALUE * model->multiplier.value;
+		model->score.updated_flag = TRUE;
+	
 }
 
 /*---------- Multiplier Functions -------------------------------------------*/
@@ -362,15 +370,15 @@ void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 /--------------------------------------------------------*/
 void update_multiplier(Model *model)
 {
-	if (model->note_streak.value >= 40)
+	if (model->note_streak.value >= 30)
 	{
 		model->multiplier.value = 8;
 	}
-	else if (model->note_streak.value >= 30)
+	else if (model->note_streak.value >= 20)
 	{
 		model->multiplier.value = 4;
 	}
-	else if (model->note_streak.value >= 20)
+	else if (model->note_streak.value >= 10)
 	{
 		model->multiplier.value = 2;
 	}
@@ -428,7 +436,7 @@ void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->fail_bar.pos_y = pos_y; 
     model->fail_bar.size_x = 136; 
     model->fail_bar.size_y = 16; 
-    model->fail_bar.value = 50;
+    model->fail_bar.value = 60;
 }
 
 
@@ -450,5 +458,9 @@ void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 /--------------------------------------------------------*/
 void update_fail_bar(Model *model, UINT16 value)
 {
-	model->fail_bar.value += value;
+	if(model->fail_bar.value > 0 || model->fail_bar.value < 120){
+
+		model->fail_bar.value += value;
+
+	}
 }

@@ -246,22 +246,20 @@ void render_score(UINT32 *base, Model *model){
 
         height = model->score.size_y;
 
-        pos_y = model->score.pos_y;
+        pos_y = 16;
 
         value = model->score.value;
 
-        ones = value & 0xF;
-
-        tens = (value >> 4) & 0xF;
-
-        hundreds = (value >> 8) & 0xF;
-
-        thousands = (value >> 12) & 0xF;
-
+        ones = value % 10;         
+        tens = (value / 10) % 10;    
+        hundreds = (value / 100) % 10;
+        thousands = (value / 1000); 
+    
         if(ones != model->score.prev_ones){
 
             model->score.prev_ones = ones;
 
+            clear_32(base, model->score.ones_x, pos_y, height);
             plot_bitmap_32(base, model->score.ones_x, pos_y, num_maps[ones], height);
 
         }
@@ -270,6 +268,7 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_tens = tens;
 
+            clear_32(base, model->score.tens_x, pos_y, height);
             plot_bitmap_32(base, model->score.tens_x, pos_y, num_maps[tens], height);
 
         }
@@ -277,7 +276,7 @@ void render_score(UINT32 *base, Model *model){
         if(hundreds != model->score.prev_hunds){
 
             model->score.prev_hunds = hundreds;
-
+            clear_32(base, model->score.hunds_x, pos_y, height);
             plot_bitmap_32(base, model->score.hunds_x, pos_y, num_maps[hundreds], height);
 
         }
@@ -286,11 +285,12 @@ void render_score(UINT32 *base, Model *model){
 
             model->score.prev_thous = thousands;
 
+            clear_32(base, model->score.thous_x, pos_y, height);
             plot_bitmap_32(base, model->score.thous_x, pos_y, num_maps[thousands], height);
 
         }
 
-
+         model->score.updated_flag = FALSE;
     }
 }
 
@@ -313,29 +313,33 @@ void render_start_multiplier(UINT32 *base, Model *model){
 void render_multiplier(UINT32 *base, Model *model)
 {
     int pos_x = model->multiplier.pos_x + 32;
-    int pos_y = model->multiplier.pos_y;
+    int pos_y = 0;
     int height = model->multiplier.digit_size_y;
 
     if(model->multiplier.prev_value != model->multiplier.value){
 
 
         if(model->multiplier.value == 1){
-
+            
+            clear_32(base, pos_x, pos_y, height);
             plot_bitmap_32(base, pos_x, pos_y, one_map, height);
 
         }
         else if(model->multiplier.value == 2){
 
+            clear_32(base, pos_x, pos_y, height);
             plot_bitmap_32(base, pos_x, pos_y, two_map, height);
 
         }
         else if(model->multiplier.value == 4){
 
+            clear_32(base, pos_x, pos_y, height);
             plot_bitmap_32(base, pos_x, pos_y, four_map, height);
 
         }
         else {
 
+            clear_32(base, pos_x, pos_y, height);
             plot_bitmap_32(base, pos_x, pos_y, eight_map, height);
 
         }
