@@ -290,7 +290,7 @@ void render_score(UINT32 *base, Model *model){
 
         }
 
-
+         model->score.updated_flag = FALSE;
     }
 }
 
