@@ -61,12 +61,12 @@ void play_wrong_note_fx()
     - need to work out timing 
     */
 
-    long i
-    long length = 12000;
+    long i;
+    long length = 80000;
     set_tone(0, A5_SHARP<<3);
     set_volume(0, 0x08);                /* M = off, vol = 8/15 */
     enable_channel(0, 1, 0);
-    for (i = 0; i < length_1; i++);
+    for (i = 0; i < length; i++);
     stop_sound();
 }
 
@@ -89,11 +89,11 @@ void play_wrong_note_fx()
 /--------------------------------------------------------*/
 void play_note_not_played_fx()
 {
-    long int i; 
-    long length = 20000;
-    set_noise(0x10);
+    long i; 
+    long length = 100000;
+    set_noise(0x00);
     set_volume(2, 0x18);                /* M = on, vol = 8/15 */
-    set_envelope(ENV_SHAPE_4, 0x8F00);
+    set_envelope(ENV_SHAPE_4, 0x0600);
     enable_channel(2, 0, 1);
     for (i = 0; i < length; i++);
     stop_sound();
@@ -156,20 +156,24 @@ void play_game_over_lose_fx()
     - need to work out timing 
     */
 
-    long i
-    long length_1 = 40000;
-    long length_2 = 120000;
+    long i;
+    long length_1 = 100000;
+    long length_2 = 200000;
     set_tone(0, D5_SHARP<<3);
     set_volume(0, 0x08);                /* M = off, vol = 8/15 */
     enable_channel(0, 1, 0);
     for (i = 0; i < length_1; i++);
     stop_sound();
-    
+
+    for (i = 0; i < length_1; i++);
+
     set_tone(0, C5<<3);
     set_volume(0, 0x08);                /* M = off, vol = 8/15 */
     enable_channel(0, 1, 0);
     for (i = 0; i < length_1; i++);
     stop_sound();
+
+    for (i = 0; i < length_1; i++);
     
     set_tone(0, F6_SHARP<<3);
     set_volume(0, 0x08);                /* M = off, vol = 8/15 */
@@ -201,7 +205,7 @@ void play_menu_selection_fx()
 
     long i;
     UINT32 length_1 = 60000;
-    UINT32 length_2 = 80000;
+    UINT32 length_2 = 120000;
     UINT16 sustain_1 = 0x0F00;
     UINT16 sustain_2 = 0x8F00;  
 
