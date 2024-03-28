@@ -13,10 +13,13 @@
 /      - TODO  
 /--------------------------------------------------------*/
 
+#include <stdio.h>
 #include <osbind.h>
 #include "psg.h  "
 #include "types.h"
-#include "notefrqs.h"
+#include "sndconst.h"
+#include "effects.h"
+
 
 int main ()
 {

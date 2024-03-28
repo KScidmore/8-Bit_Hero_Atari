@@ -33,6 +33,10 @@
 #define ENV_SHAPE_9 0xE
 #define ENV_SHAPE_10 0xF
 
+
+/*---------- DEFINING ENVELOPE SHAPES ---------------------------------------*/
+
+
 /*---------- DEFINING NOTE VALUES -------------------------------------------*/
 #define C5          0x0EF
 #define C5_SHARP    0x0E2

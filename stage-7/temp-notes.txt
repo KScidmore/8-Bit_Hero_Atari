@@ -18,3 +18,22 @@ things to remember
 questions to brainstorm with kyle:
     - can't seem to figure out read_psg() or the envelope function 
 
+
+Name:           selected song
+Description:    main song, plays throughout         
+
+Name:           wrong note played
+Description:    "bzzzzz"
+
+Name:           note not played at all
+Description:    "tik"         
+
+Name:           game over win 
+Description:    little arpeggio, like guitar solo         
+
+Name:           game over lose 
+Description:    "dun dun dunnnn"        
+
+Name:           menu selection
+Description:    "buh-ding" (note-jump)        
+      

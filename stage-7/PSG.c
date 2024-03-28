@@ -269,8 +269,8 @@ void set_envelope(int shape, unsigned int sustain)
         int fine = sustain & 0x00FF;
         int rough = (sustain >> 8) & 0x00FF;
 
+        write_psg(13, shape);    
         write_psg(11, fine);
         write_psg(12, rough);
-        write_psg(13, shape);    
     }
 }
