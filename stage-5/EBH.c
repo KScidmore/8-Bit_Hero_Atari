@@ -25,6 +25,7 @@ int main()
     UINT8 note_counter = 0;
     char input_value;
     char ch;
+    UINT16 score;
     init_model(&model);
 
     init_scene(base, base32, &model);
@@ -57,6 +58,12 @@ int main()
                 case 'f':
                     play_on_fret(&model, FRET_F, base32);
                     break;
+                case 27:
+                    score = model.score.value;
+
+                    printf("Model score value: %d\n", score);
+                    return 0;
+
         }
     }
 

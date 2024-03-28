@@ -45,5 +45,7 @@ typedef unsigned long UINT32;
 #define LANES_SIZE 4
 #define NOTES_SIZE 50
 
+/*Note score*/
+#define NOTE_VALUE 10
 
 #endif

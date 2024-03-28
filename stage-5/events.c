@@ -41,18 +41,19 @@ void set_play_on_fret_a(Model *model, UINT8 index, UINT32 *base)
 {
 	if (note_collision_a(model, index, base))
 	{
-		/*update_score(model);
-		update_multiplier(model);*/
+		update_score(model);
+		update_multiplier(model);
 		update_fail_bar(model, 20);
+		update_note_streak(model);
 	}
 	else 
 	{
-		/*update_multiplier(model);
+		update_multiplier(model);
 		update_fail_bar(model, -20);
 		if (model->fail_bar.value == 0)
 		{
 			fail_song();
-		}*/
+		}
 	}
 }
 
@@ -80,6 +81,7 @@ void set_play_on_fret_s(Model *model, UINT8 index, UINT32 *base)
 		update_score(model);
 		update_multiplier(model);
 		update_fail_bar(model, 20);
+		update_note_streak(model);
 	}
 	else 
 	{
@@ -116,6 +118,7 @@ void set_play_on_fret_d(Model *model, UINT8 index, UINT32 *base)
 		update_score(model);
 		update_multiplier(model);
 		update_fail_bar(model, 20);
+		update_note_streak(model);
 		
 	}
 	else 
@@ -153,6 +156,7 @@ void set_play_on_fret_f(Model *model, UINT8 index, UINT32 *base)
 		update_score(model);
 		update_multiplier(model);
 		update_fail_bar(model, 20);
+		update_note_streak(model);
 	}
 	else 
 	{
@@ -208,7 +212,7 @@ void quit_game(Model *model)
 /--------------------------------------------------------*/
 BOOL note_collision_a(Model *model, UINT8 index, UINT32 *base)
 {
-	if (model->lanes[FRET_A].notes[index].pos_y > 320 ||
+	if (model->lanes[FRET_A].notes[index].pos_y > 320 &&
 		model->lanes[FRET_A].notes[index].pos_y < 384)
 	{
 		model->lanes[FRET_A].notes[index].is_active = FALSE;
@@ -239,7 +243,7 @@ BOOL note_collision_a(Model *model, UINT8 index, UINT32 *base)
 /--------------------------------------------------------*/
 BOOL note_collision_s(Model *model, UINT8 index, UINT32 *base)
 {
-	if (model->lanes[FRET_S].notes[index].pos_y > 320 ||
+	if (model->lanes[FRET_S].notes[index].pos_y > 320 &&
 		model->lanes[FRET_S].notes[index].pos_y < 384)
 	{
 
@@ -271,7 +275,7 @@ BOOL note_collision_s(Model *model, UINT8 index, UINT32 *base)
 /--------------------------------------------------------*/
 BOOL note_collision_d(Model *model, UINT8 index, UINT32 *base)
 {
-	if (model->lanes[FRET_D].notes[index].pos_y > 320 ||
+	if (model->lanes[FRET_D].notes[index].pos_y > 320 &&
 		model->lanes[FRET_D].notes[index].pos_y < 384)
 	{
 		model->lanes[FRET_D].notes[index].is_active = FALSE;
@@ -302,7 +306,7 @@ BOOL note_collision_d(Model *model, UINT8 index, UINT32 *base)
 /--------------------------------------------------------*/
 BOOL note_collision_f(Model *model, UINT8 index, UINT32 *base)
 {
-	if (model->lanes[FRET_F].notes[index].pos_y > 320 ||
+	if (model->lanes[FRET_F].notes[index].pos_y > 320 &&
 		model->lanes[FRET_F].notes[index].pos_y < 384)
 	{
 		model->lanes[FRET_F].notes[index].is_active = FALSE;
