@@ -5,6 +5,7 @@
 #include "RASTER.H"
 #include "bitmaps.h"
 #include "RAST_ASM.h"
+#include "events.h"
 
 const UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
@@ -17,13 +18,14 @@ void init_scene(UINT8 *base, UINT32 *base32, Model *model){
     render_start_score(base32, model);
     render_x(base32, model);
     render_start_multiplier(base32, model);
-    render_failbar(base32, model);
+    render_start_failbar(base32, model);
 
 }
 
 void render_next(UINT32 *base, Model *model){
 
     render_frets(base, model);
+    clear_top(base, model);
     render_active_notes(base, model);
     render_score(base, model);
     render_multiplier(base, model);
@@ -110,8 +112,12 @@ void render_active_notes(UINT32 *base, Model *model){
 
 }
 
-void clear_bottom(UINT32 *base, Model *model){
+void clear_top(UINT32 *base, Model *model){
 
+    clear_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, 84, model->lanes[FRET_A].notes[FRET_A].size_y);
+    clear_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, 84, model->lanes[FRET_S].notes[FRET_S].size_y);
+    clear_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, 84, model->lanes[FRET_D].notes[FRET_D].size_y);
+    clear_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, 84, model->lanes[FRET_F].notes[FRET_F].size_y);
     
 }
 
@@ -350,6 +356,28 @@ void render_multiplier(UINT32 *base, Model *model)
 
 }
 
+void render_start_failbar(UINT32 *base, Model *model){
+
+    int pos_y, sec_one, sec_two, sec_three, sec_four, sec_five, sec_six, height;
+    
+    pos_y = model->fail_bar.pos_y;
+    height = model->fail_bar.size_y;
+    sec_one = model->fail_bar.pos_x;
+    sec_two = model->fail_bar.pos_x + 32;
+    sec_three = model->fail_bar.pos_x + 64;
+    sec_four = model->fail_bar.pos_x + 96;
+    sec_five = model->fail_bar.pos_x + 128;
+    sec_six = model->fail_bar.pos_x + 160;
+        
+    
+    plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
+    plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
+    plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);
+    plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
+    plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
+    plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);
+
+}
 void render_failbar(UINT32 *base, Model *model)
 {
     int pos_y, sec_one, sec_two, sec_three, sec_four, sec_five, sec_six, height;
@@ -363,72 +391,89 @@ void render_failbar(UINT32 *base, Model *model)
     sec_five = model->fail_bar.pos_x + 128;
     sec_six = model->fail_bar.pos_x + 160;
 
+
     if(model->fail_bar.value == 0 ){
 
+        clear_32(base, sec_one, pos_y, height);
         plot_bitmap_32(base, sec_one, pos_y, LEE_fail, height);
-        plot_bitmap_32(base, sec_two, pos_y, ME_fail, height);
+
+        /*plot_bitmap_32(base, sec_two, pos_y, ME_fail, height);
         plot_bitmap_32(base, sec_three, pos_y, ME_fail, height);
         plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
         plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);
+        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
     }
     else if(model->fail_bar.value == 20 ){
 
         plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
+        clear_32(base, sec_two, pos_y, height);
         plot_bitmap_32(base, sec_two, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_three, pos_y, ME_fail, height);
+
+        /*plot_bitmap_32(base, sec_three, pos_y, ME_fail, height);
         plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
         plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);
+        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
 
     }
     else if(model->fail_bar.value == 40 ){
 
-        plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
+        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);*/
+
         plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
+        clear_32(base, sec_three, pos_y, height);
         plot_bitmap_32(base, sec_three, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
+
+        /*plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
         plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);
+        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
 
     }
     else if(model->fail_bar.value == 60 ){
 
-        plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
-        plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
+        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
+        plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);*/
+
         plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);
+        clear_32(base, sec_four, pos_y, height);
         plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);
+
+        /*plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
+        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
 
     }
     else if(model->fail_bar.value == 80 ){
 
-        plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
+        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
         plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
-        plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);
+        plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);*/
+
         plot_bitmap_32(base, sec_four, pos_y, MF_fail, height);
+        clear_32(base, sec_five, pos_y, height);
         plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);
+
+        /*plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
 
     }
     else if(model->fail_bar.value == 100 ){
 
-        plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
+        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
         plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
         plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);
-        plot_bitmap_32(base, sec_four, pos_y, MF_fail, height);
+        plot_bitmap_32(base, sec_four, pos_y, MF_fail, height);*/
+
         plot_bitmap_32(base, sec_five, pos_y, MF_fail, height);
+        clear_32(base, sec_six, pos_y, height);
         plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);
 
     }
     else{
 
-        plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
+        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
         plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
         plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);
         plot_bitmap_32(base, sec_four, pos_y, MF_fail, height);
-        plot_bitmap_32(base, sec_five, pos_y, MF_fail, height);
+        plot_bitmap_32(base, sec_five, pos_y, MF_fail, height);*/
+
         plot_bitmap_32(base, sec_six, pos_y, REF_fail, height);
 
     }

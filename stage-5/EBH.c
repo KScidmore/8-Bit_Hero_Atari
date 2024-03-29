@@ -59,7 +59,7 @@ int main()
                     play_on_fret(&model, FRET_F, base32);
                     break;
                 case 27:
-                    score = model.score.value;
+                    score = model.fail_bar.value;
 
                     printf("Model score value: %d\n", score);
                     return 0;
@@ -113,7 +113,10 @@ int main()
             } 
         }
 
-        
+        if(model.fail_bar.value == 0){
+
+            break;
+        } 
 
     }
 
