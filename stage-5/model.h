@@ -222,11 +222,11 @@ void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 po
 
 /* Note Streak Functions */
 void init_note_streak(Model *model);
-void update_note_streak(Model *model);
+void update_note_streak(Model *model, BOOL miss);
 
 /* Score Functions */
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
-void update_score(Model *model, FRET_POS fret, UINT8 index);
+void update_score(Model *model);
 
 /* Multiplier Functions */
 void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
