@@ -44,16 +44,13 @@ void set_play_on_fret_a(Model *model, UINT8 index, UINT32 *base)
 		update_score(model);
 		update_multiplier(model);
 		update_fail_bar(model, 20);
-		update_note_streak(model);
+		update_note_streak(model, FALSE);
 	}
 	else 
 	{
 		update_multiplier(model);
 		update_fail_bar(model, -20);
-		if (model->fail_bar.value == 0)
-		{
-			fail_song();
-		}
+		update_note_streak(model, TRUE);
 	}
 }
 
@@ -81,16 +78,14 @@ void set_play_on_fret_s(Model *model, UINT8 index, UINT32 *base)
 		update_score(model);
 		update_multiplier(model);
 		update_fail_bar(model, 20);
-		update_note_streak(model);
+		update_note_streak(model, FALSE);
+
 	}
 	else 
 	{
 		update_multiplier(model);
 		update_fail_bar(model, -20);
-		if (model->fail_bar.value == 0)
-		{
-			fail_song();
-		}
+		update_note_streak(model, TRUE);
 	}
 }
 
@@ -118,17 +113,14 @@ void set_play_on_fret_d(Model *model, UINT8 index, UINT32 *base)
 		update_score(model);
 		update_multiplier(model);
 		update_fail_bar(model, 20);
-		update_note_streak(model);
+		update_note_streak(model, FALSE);
 		
 	}
 	else 
 	{
 		update_multiplier(model);
 		update_fail_bar(model, -20);
-		if (model->fail_bar.value == 0)
-		{
-			fail_song();
-		}
+		update_note_streak(model, TRUE);
 	}
 }
 
@@ -156,16 +148,13 @@ void set_play_on_fret_f(Model *model, UINT8 index, UINT32 *base)
 		update_score(model);
 		update_multiplier(model);
 		update_fail_bar(model, 20);
-		update_note_streak(model);
+		update_note_streak(model, FALSE);
 	}
 	else 
 	{
 		update_multiplier(model);
 		update_fail_bar(model, -20);
-		if (model->fail_bar.value == 0)
-		{
-			fail_song();
-		}
+		update_note_streak(model, TRUE);
 	}
 }
 
@@ -212,16 +201,19 @@ void quit_game(Model *model)
 /--------------------------------------------------------*/
 BOOL note_collision_a(Model *model, UINT8 index, UINT32 *base)
 {
-	if (model->lanes[FRET_A].notes[index].pos_y > 320 &&
+	if (model->lanes[FRET_A].notes[index].pos_y > 300 &&
 		model->lanes[FRET_A].notes[index].pos_y < 384)
 	{
-		model->lanes[FRET_A].notes[index].is_active = FALSE;
-		clear_32(base, model->lanes[FRET_A].notes[index].pos_x, model->lanes[FRET_A].notes[index].pos_y, model->lanes[FRET_A].notes[index].size_y);
+		/*model->lanes[FRET_A].notes[index].is_active = FALSE;
+		clear_32(base, model->lanes[FRET_A].notes[index].pos_x, model->lanes[FRET_A].notes[index].pos_y, model->lanes[FRET_A].notes[index].size_y);*/
 	
 		return TRUE;
 	}
+	else{
 
-	return FALSE;
+			return FALSE;
+	}
+
 }
 
 
@@ -243,17 +235,19 @@ BOOL note_collision_a(Model *model, UINT8 index, UINT32 *base)
 /--------------------------------------------------------*/
 BOOL note_collision_s(Model *model, UINT8 index, UINT32 *base)
 {
-	if (model->lanes[FRET_S].notes[index].pos_y > 320 &&
+	if (model->lanes[FRET_S].notes[index].pos_y > 300 &&
 		model->lanes[FRET_S].notes[index].pos_y < 384)
 	{
 
-		model->lanes[FRET_S].notes[index].is_active = FALSE;
-		clear_32(base, model->lanes[FRET_S].notes[index].pos_x, model->lanes[FRET_S].notes[index].pos_y, model->lanes[FRET_S].notes[index].size_y);
+		/*model->lanes[FRET_S].notes[index].is_active = FALSE;
+		clear_32(base, model->lanes[FRET_S].notes[index].pos_x, model->lanes[FRET_S].notes[index].pos_y, model->lanes[FRET_S].notes[index].size_y);*/
 	
 		return TRUE;
-	}
 
-	return FALSE;
+	}else{
+
+		return FALSE;
+	}
 }
 
 
@@ -275,16 +269,18 @@ BOOL note_collision_s(Model *model, UINT8 index, UINT32 *base)
 /--------------------------------------------------------*/
 BOOL note_collision_d(Model *model, UINT8 index, UINT32 *base)
 {
-	if (model->lanes[FRET_D].notes[index].pos_y > 320 &&
+	if (model->lanes[FRET_D].notes[index].pos_y > 300 &&
 		model->lanes[FRET_D].notes[index].pos_y < 384)
 	{
-		model->lanes[FRET_D].notes[index].is_active = FALSE;
-		clear_32(base, model->lanes[FRET_D].notes[index].pos_x, model->lanes[FRET_D].notes[index].pos_y, model->lanes[FRET_D].notes[index].size_y);
+		/*model->lanes[FRET_D].notes[index].is_active = FALSE;
+		clear_32(base, model->lanes[FRET_D].notes[index].pos_x, model->lanes[FRET_D].notes[index].pos_y, model->lanes[FRET_D].notes[index].size_y);*/
 	
 		return TRUE;
-	}
+
+	}else{
 
 	return FALSE;
+	}
 }
 
 
@@ -306,16 +302,19 @@ BOOL note_collision_d(Model *model, UINT8 index, UINT32 *base)
 /--------------------------------------------------------*/
 BOOL note_collision_f(Model *model, UINT8 index, UINT32 *base)
 {
-	if (model->lanes[FRET_F].notes[index].pos_y > 320 &&
+	if (model->lanes[FRET_F].notes[index].pos_y > 300 &&
 		model->lanes[FRET_F].notes[index].pos_y < 384)
 	{
-		model->lanes[FRET_F].notes[index].is_active = FALSE;
-		clear_32(base, model->lanes[FRET_F].notes[index].pos_x, model->lanes[FRET_F].notes[index].pos_y, model->lanes[FRET_F].notes[index].size_y);
+		/*model->lanes[FRET_F].notes[index].is_active = FALSE;
+		clear_32(base, model->lanes[FRET_F].notes[index].pos_x, model->lanes[FRET_F].notes[index].pos_y, model->lanes[FRET_F].notes[index].size_y);*/
 	
 		return TRUE;
-	}
+
+	}else{
 
 	return FALSE;
+
+	}
 }
 
 

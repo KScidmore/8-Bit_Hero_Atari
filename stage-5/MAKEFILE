@@ -18,7 +18,7 @@ $(TARGET): $(OBJECTS)
 EBH.o: EBH.c types.h model.h events.h renderer.h rast_asm.h inputs.h
 	$(CC) $(CFLAGS) -c EBH.c
 
-renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h
+renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h events.h
 	$(CC) $(CFLAGS) -c renderer.c
 
 model.o: model.c model.h types.h

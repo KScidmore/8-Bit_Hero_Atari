@@ -28,7 +28,7 @@ void play_on_fret(Model *model, FRET_POS fret, UINT32 *base) {
         if (model->lanes[fret].notes[i].is_active == TRUE) {
             switch (fret) {
                 case FRET_A:
-                    set_play_on_fret_a(model, i, base);
+                    set_play_on_fret_a(model, i, base);                
                     break;
                 case FRET_S:
                     set_play_on_fret_s(model, i, base);
@@ -44,73 +44,5 @@ void play_on_fret(Model *model, FRET_POS fret, UINT32 *base) {
         }
     }
 }
-/*void check_input(Model *model, char input_value){
 
-    int i, size;
-
-    size = 50;
-
-    switch(input_value){
-        case 'a':
-        
-        for(i = 0; i < size; i++){
-
-            if(model->lanes[FRET_A].notes[i].is_active == TRUE){
-
-                set_play_on_fret_a(model, i);
-
-                break;
-                
-            }
-
-        }
-            break;
-
-        case 's':
-        
-        for(i = 0; i < size; i++){
-
-            if(model->lanes[FRET_S].notes[i].is_active == TRUE){
-
-                set_play_on_fret_s(model, i);
-
-                break;
-                
-            }
-
-        }
-            break;
-
-        case 'd':
-        for(i = 0; i < size; i++){
-
-            if(model->lanes[FRET_D].notes[i].is_active == TRUE){
-
-                set_play_on_fret_d(model, i);
-
-                break;
-                
-            }
-
-        }
-            break;
-
-        case 'f':
-
-        for(i = 0; i < size; i++){
-
-            if(model->lanes[FRET_F].notes[i].is_active == TRUE){
-
-                set_play_on_fret_f(model, i);
-
-                break;
-                
-            }
-
-        }
-            break;
-    }
-
-
-}*/
 

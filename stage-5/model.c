@@ -44,7 +44,7 @@ void init_model(Model *model)
 	init_score(model, 32, 0, 0);
 	init_multiplier(model, 544, 32, 1);
 	init_fretboard(model);
-	init_fail_bar(model, 224, 0, 50);
+	init_fail_bar(model, 224, 0, 60);
 }
 
 /*---------- Fret Functions -------------------------------------------------*/
@@ -244,9 +244,17 @@ void init_note_streak(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void update_note_streak(Model *model)
+void update_note_streak(Model *model, BOOL miss)
 {
-	model->note_streak.value += 1;
+	if(miss){
+
+		model->note_streak.value = 0;
+
+	}else{
+
+		model->note_streak.value += 1;
+
+	}
 }
 
 /*---------- Score Functions ------------------------------------------------*/
@@ -436,7 +444,7 @@ void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->fail_bar.pos_y = pos_y; 
     model->fail_bar.size_x = 136; 
     model->fail_bar.size_y = 16; 
-    model->fail_bar.value = 60;
+    model->fail_bar.value = value;
 }
 
 
@@ -458,9 +466,14 @@ void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 /--------------------------------------------------------*/
 void update_fail_bar(Model *model, UINT16 value)
 {
-	if(model->fail_bar.value > 0 || model->fail_bar.value < 120){
+	if(model->fail_bar.value >= 0 && model->fail_bar.value <= 120){
 
 		model->fail_bar.value += value;
 
+	}
+
+	if(model->fail_bar.value > 120){
+
+		model->fail_bar.value = 120;
 	}
 }
