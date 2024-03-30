@@ -17,15 +17,10 @@ int main()
 	UINT32 *base32 = Physbase();
 
     Model model;
-    int note_gen = 0;
-    UINT8 i = 0;
-    UINT8 j = 0;
-    UINT8 k = 0;
-    UINT8 l = 0;
-    UINT8 note_counter = 0;
+
     char input_value;
     char ch;
-    UINT16 score;
+
     init_model(&model);
 
     init_scene(base, base32, &model);
@@ -59,58 +54,18 @@ int main()
                     play_on_fret(&model, FRET_F, base32);
                     break;
                 case 27:
-                    score = model.fail_bar.value;
-
-                    printf("Model score value: %d\n", score);
                     return 0;
 
+            }
         }
-    }
 
         /*Sync Events*/
 
-        /*Generate and move notesY*/
+        /*Generate and move notes*/
 
         if(time_elapsed >= 1){
 
             render_next(base32, &model);  
-        }
-
-         if(time_elapsed >= note_gen){
-
-            if(note_counter == 0){
-
-                render_new_note(base32, &model, FRET_A, i);
-                note_counter += 1;
-                i++;
-                note_gen += 60;
-
-            }
-            else if(note_counter == 1){
-
-                render_new_note(base32, &model, FRET_S, j);
-                note_counter += 1;
-                j++;
-                note_gen += 60;
-
-
-            }
-            else if(note_counter == 2){
-
-                render_new_note(base32, &model, FRET_D, k);
-                note_counter += 1;
-                k++;
-                note_gen += 60;
-
-            }
-            else{
-
-                render_new_note(base32, &model, FRET_F, l);
-                note_counter = 0;
-                l++;
-                note_gen += 60;
-
-            } 
         }
 
         if(model.fail_bar.value == 0){
@@ -119,8 +74,6 @@ int main()
         } 
 
     }
-
-
 
     return 0;
     
