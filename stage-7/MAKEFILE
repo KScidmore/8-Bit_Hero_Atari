@@ -2,7 +2,7 @@ TARGET_A=psg_tst
 OBJECTS_A=psg_tst.o psg.o 
 
 TARGET_B=mus_tst
-OBJECTS_B=mus_tst.o music.o psg.o
+OBJECTS_B=mus_tst.o music.o psg.o vblisr.o songdat.o
 
 TARGET_C=eff_tst
 OBJECTS_C=eff_tst.o effects.o psg.o
@@ -28,7 +28,7 @@ $(TARGET_C): $(OBJECTS_C)
 psg_tst.o: psg_tst.c psg.h types.h sndconst.h
 	$(CC) $(CFLAGS) -c psg_tst.c
 
-mus_tst.o: mus_tst.c psg.h types.h sndconst.h 
+mus_tst.o: mus_tst.c psg.h types.h sndconst.h music.h
 	$(CC) $(CFLAGS) -c mus_tst.c
 
 eff_tst.o: eff_tst.c psg.h types.h sndconst.h 
@@ -42,6 +42,13 @@ music.o: music.c psg.h types.h
 
 effects.o: effects.c psg.h types.h sndconst.h
 	$(CC) $(CFLAGS) -c effects.c 
+
+vblisr.o: vblisr.s 
+	gen -D -L2 vblisr.s
+
+songdat.o: songdat.c sndconst.h types.h
+	$(CC) $(CFLAGS) -c songdat.c 
+
 
 # Cleaning up the old object files and executable
 clean:

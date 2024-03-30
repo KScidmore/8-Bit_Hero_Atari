@@ -17,6 +17,9 @@
 #include "psg.h"
 #include "types.h"
 
+UINT32 curr_note_index = 0;
+UINT32 note_start_time = 0;
+
 /*---------- FUNCTION: start_music ------------------------
 /  PURPOSE:
 /    TODO - purpose, from the caller's perspective (if not 
@@ -35,7 +38,15 @@
 /--------------------------------------------------------*/
 void start_music()
 {
-    /* TODO */
+    curr_note_index = 0;
+    note_start_time = 0;
+
+    Psg_notes first_note = channel_a[curr_note_index];
+
+    set_tone(0, first_note.pitch);
+    set_volume(0, first_note.level);
+    set_envelope(first_note.env_shape, first_note.env_sustain);
+
 }
 
 /*---------- FUNCTION: update_music -----------------------
@@ -56,5 +67,5 @@ void start_music()
 /--------------------------------------------------------*/
 void update_music(UINT32 time_elapsed)
 {
-    /* TODO */
+    
 }

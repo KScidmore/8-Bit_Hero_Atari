@@ -117,18 +117,10 @@ void play_note_not_played_fx()
 void play_game_over_win_fx()
 {
     /* 
-    - need to work out timing, but heres the notes 
-    G   C   D#      x8
-    G#  C   D#      x8
-    G#  D   F       x8 
-    A#  D#  G       x8
-    B   D#  F#      x8 
-    C#  F   G#      x8
-    D#  G   A#      x12
-
-    - might want to figure out the circular array first as it could apply well to this stuff also 
-    - 
-
+    - using part of the solo from Megdeth's "Sweating Bullets"
+    - 140 BPM
+    E3 D3 E3 G3 E3 G3 A3 G3 A3 B3 A3 
+    B3 D4 B3 D4 E4 D4 E4 G4 F4 E4 F4
     */
 
     /* TODO */

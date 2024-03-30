@@ -1,0 +1,320 @@
+Measure:		1
+Whole Beats:	1
+Half Beats:		1
+Quarter Beats:	1
+
+Measure:		1
+Whole Beats:	1
+Half Beats:		1
+Quarter Beats:	2
+
+Measure:		1
+Whole Beats:	1
+Half Beats:		2
+Quarter Beats:	3
+
+Measure:		1
+Whole Beats:	1
+Half Beats:		2
+Quarter Beats:	4
+
+Measure:		1
+Whole Beats:	2
+Half Beats:		3
+Quarter Beats:	5
+
+Measure:		1
+Whole Beats:	2
+Half Beats:		3
+Quarter Beats:	6
+
+Measure:		1
+Whole Beats:	2
+Half Beats:		4
+Quarter Beats:	7
+
+Measure:		1
+Whole Beats:	2
+Half Beats:		4
+Quarter Beats:	8
+
+Measure:		1
+Whole Beats:	3
+Half Beats:		5
+Quarter Beats:	9
+
+Measure:		1
+Whole Beats:	3
+Half Beats:		5
+Quarter Beats:	10
+
+Measure:		1
+Whole Beats:	3
+Half Beats:		6
+Quarter Beats:	11
+
+Measure:		1
+Whole Beats:	3
+Half Beats:		6
+Quarter Beats:	12
+
+Measure:		1
+Whole Beats:	4
+Half Beats:		7
+Quarter Beats:	13
+
+Measure:		1
+Whole Beats:	4
+Half Beats:		7
+Quarter Beats:	14
+
+Measure:		1
+Whole Beats:	4
+Half Beats:		8
+Quarter Beats:	15
+
+Measure:		1
+Whole Beats:	4
+Half Beats:		8
+Quarter Beats:	16
+
+Measure:		2
+Whole Beats:	1
+Half Beats:		1
+Quarter Beats:	1
+
+Measure:		2
+Whole Beats:	1
+Half Beats:		1
+Quarter Beats:	2
+
+Measure:		2
+Whole Beats:	1
+Half Beats:		2
+Quarter Beats:	3
+
+Measure:		2
+Whole Beats:	1
+Half Beats:		2
+Quarter Beats:	4
+
+Measure:		2
+Whole Beats:	2
+Half Beats:		3
+Quarter Beats:	5
+
+Measure:		2
+Whole Beats:	2
+Half Beats:		3
+Quarter Beats:	6
+
+Measure:		2
+Whole Beats:	2
+Half Beats:		4
+Quarter Beats:	7
+
+Measure:		2
+Whole Beats:	2
+Half Beats:		4
+Quarter Beats:	8
+
+Measure:		2
+Whole Beats:	3
+Half Beats:		5
+Quarter Beats:	9
+
+Measure:		2
+Whole Beats:	3
+Half Beats:		5
+Quarter Beats:	10
+
+Measure:		2
+Whole Beats:	3
+Half Beats:		6
+Quarter Beats:	11
+
+Measure:		2
+Whole Beats:	3
+Half Beats:		6
+Quarter Beats:	12
+
+Measure:		2
+Whole Beats:	4
+Half Beats:		7
+Quarter Beats:	13
+
+Measure:		2
+Whole Beats:	4
+Half Beats:		7
+Quarter Beats:	14
+
+Measure:		2
+Whole Beats:	4
+Half Beats:		8
+Quarter Beats:	15
+
+Measure:		2
+Whole Beats:	4
+Half Beats:		8
+Quarter Beats:	16
+
+Measure:		3
+Whole Beats:	1
+Half Beats:		1
+Quarter Beats:	1
+
+Measure:		3
+Whole Beats:	1
+Half Beats:		1
+Quarter Beats:	2
+
+Measure:		3
+Whole Beats:	1
+Half Beats:		2
+Quarter Beats:	3
+
+Measure:		3
+Whole Beats:	1
+Half Beats:		2
+Quarter Beats:	4
+
+Measure:		3
+Whole Beats:	2
+Half Beats:		3
+Quarter Beats:	5
+
+Measure:		3
+Whole Beats:	2
+Half Beats:		3
+Quarter Beats:	6
+
+Measure:		3
+Whole Beats:	2
+Half Beats:		4
+Quarter Beats:	7
+
+Measure:		3
+Whole Beats:	2
+Half Beats:		4
+Quarter Beats:	8
+
+Measure:		3
+Whole Beats:	3
+Half Beats:		5
+Quarter Beats:	9
+
+Measure:		3
+Whole Beats:	3
+Half Beats:		5
+Quarter Beats:	10
+
+Measure:		3
+Whole Beats:	3
+Half Beats:		6
+Quarter Beats:	11
+
+Measure:		3
+Whole Beats:	3
+Half Beats:		6
+Quarter Beats:	12
+
+Measure:		3
+Whole Beats:	4
+Half Beats:		7
+Quarter Beats:	13
+
+Measure:		3
+Whole Beats:	4
+Half Beats:		7
+Quarter Beats:	14
+
+Measure:		3
+Whole Beats:	4
+Half Beats:		8
+Quarter Beats:	15
+
+Measure:		3
+Whole Beats:	4
+Half Beats:		8
+Quarter Beats:	16
+
+Measure:		4
+Whole Beats:	1
+Half Beats:		1
+Quarter Beats:	1
+
+Measure:		4
+Whole Beats:	1
+Half Beats:		1
+Quarter Beats:	2
+
+Measure:		4
+Whole Beats:	1
+Half Beats:		2
+Quarter Beats:	3
+
+Measure:		4
+Whole Beats:	1
+Half Beats:		2
+Quarter Beats:	4
+
+Measure:		4
+Whole Beats:	2
+Half Beats:		3
+Quarter Beats:	5
+
+Measure:		4
+Whole Beats:	2
+Half Beats:		3
+Quarter Beats:	6
+
+Measure:		4
+Whole Beats:	2
+Half Beats:		4
+Quarter Beats:	7
+
+Measure:		4
+Whole Beats:	2
+Half Beats:		4
+Quarter Beats:	8
+
+Measure:		4
+Whole Beats:	3
+Half Beats:		5
+Quarter Beats:	9
+
+Measure:		4
+Whole Beats:	3
+Half Beats:		5
+Quarter Beats:	10
+
+Measure:		4
+Whole Beats:	3
+Half Beats:		6
+Quarter Beats:	11
+
+Measure:		4
+Whole Beats:	3
+Half Beats:		6
+Quarter Beats:	12
+
+Measure:		4
+Whole Beats:	4
+Half Beats:		7
+Quarter Beats:	13
+
+Measure:		4
+Whole Beats:	4
+Half Beats:		7
+Quarter Beats:	14
+
+Measure:		4
+Whole Beats:	4
+Half Beats:		8
+Quarter Beats:	15
+
+Measure:		4
+Whole Beats:	4
+Half Beats:		8
+Quarter Beats:	16
+

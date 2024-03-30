@@ -37,3 +37,28 @@ Description:    "dun dun dunnnn"
 Name:           menu selection
 Description:    "buh-ding" (note-jump)        
       
+------
+
+- music stuff 
+
+- one measure/bar is v-line to v-line 
+|===========|===========|
+
+- one measure/bar can fit:
+    - 1 whole note 
+    - 2 half notes 
+    - 4 quarter notes 
+    - 8 eighth notes 
+
+initialize model
+render model's first frame
+play_music();
+set quit = false
+
+repeat until quit
+    if input is pending 
+        process asynchronous event 
+    if clock has ticked 
+        process sync events 
+        render model's next frame 
+        update_music();
