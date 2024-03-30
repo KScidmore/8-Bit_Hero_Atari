@@ -1,7 +1,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-/* ---------- DATA TYPE DEFINITIONS ---------- */
+/*----------- DATA TYPE DEFINITIONS ---------------------*/
 
 /* boolean data type; tried to make as an enum but was having some trouble */
 #define BOOL int
@@ -12,8 +12,8 @@
 typedef unsigned char UINT8;
 typedef unsigned int  UINT16;
 typedef unsigned long UINT32;
-typedef UINT8 SCANCODE
 
+/*----------- ARRAY STUFF -------------------------------*/
 /* note types for scoring */
 #define NOTE_TYPE UINT8
 #define SHORT_NOTE 1
@@ -34,8 +34,7 @@ typedef UINT8 SCANCODE
 #define TENS 2 
 #define ONES 3
 
-
-/* ---------- MISC MAGIC NUMBER DEFINITIONS ---------- */
+/*----------- MISC MAGIC NUMBER DEFINITIONS -------------*/
 
 /* screen dimensions */
 #define SCREEN_WIDTH 640 
@@ -43,8 +42,10 @@ typedef UINT8 SCANCODE
 
 /* for array sizing */
 #define FRETS_SIZE 4
-#define NOTES_SIZE 100
-#define SCORE_SIZE 4
+#define LANES_SIZE 4
+#define NOTES_SIZE 50
 
+/*Note score*/
+#define NOTE_VALUE 10
 
 #endif

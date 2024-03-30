@@ -17,6 +17,7 @@
 #include "model.h"
 #include "events.h"
 #include "types.h"
+#include "raster.h"
 
 /*---------- ASYNCHRONOUS (INPUT) EVENTS ------------------------------------*/
 
@@ -36,28 +37,20 @@
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void set_play_on_fret_a(Model *model)
+void set_play_on_fret_a(Model *model, UINT8 index)
 {
-	char input;
-	scanf("%c", input);
-
-	if (input == 'a')
+	if (note_collision_a(model, index))
 	{
-		if (note_collision_a(model))
-		{
-			update_score(model);
-			update_multiplier(model);
-			update_fail_bar(model, 1);
-		}
-		else 
-		{
-			update_multiplier(model);
-			update_fail_bar(model, -1);
-			if (model->fail_bar.value == 0)
-			{
-				fail_song();
-			}
-		}
+		update_score(model);
+		update_multiplier(model);
+		update_fail_bar(model, 20);
+		update_note_streak(model, FALSE);
+	}
+	else 
+	{
+		update_multiplier(model);
+		update_fail_bar(model, -20);
+		update_note_streak(model, TRUE);
 	}
 }
 
@@ -78,28 +71,21 @@ void set_play_on_fret_a(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void set_play_on_fret_s(Model *model)
+void set_play_on_fret_s(Model *model, UINT8 index)
 {
-	char input;
-	scanf("%c", input);
-
-	if (input == 's')
+	if (note_collision_s(model, index))
 	{
-		if (note_collision_s(model))
-		{
-			update_score(model);
-			update_multiplier(model);
-			update_fail_bar(model, 1);
-		}
-		else 
-		{
-			update_multiplier(model);
-			update_fail_bar(model, -1);
-			if (model->fail_bar.value == 0)
-			{
-				fail_song();
-			}
-		}
+		update_score(model);
+		update_multiplier(model);
+		update_fail_bar(model, 20);
+		update_note_streak(model, FALSE);
+
+	}
+	else 
+	{
+		update_multiplier(model);
+		update_fail_bar(model, -20);
+		update_note_streak(model, TRUE);
 	}
 }
 
@@ -120,28 +106,21 @@ void set_play_on_fret_s(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void set_play_on_fret_d(Model *model)
+void set_play_on_fret_d(Model *model, UINT8 index)
 {
-	char input;
-	scanf("%c", input);
-
-	if (input == 'd')
+	if (note_collision_d(model, index))
 	{
-		if (note_collision_d(model))
-		{
-			update_score(model);
-			update_multiplier(model);
-			update_fail_bar(model, 1);
-		}
-		else 
-		{
-			update_multiplier(model);
-			update_fail_bar(model, -1);
-			if (model->fail_bar.value == 0)
-			{
-				fail_song();
-			}
-		}
+		update_score(model);
+		update_multiplier(model);
+		update_fail_bar(model, 20);
+		update_note_streak(model, FALSE);
+		
+	}
+	else 
+	{
+		update_multiplier(model);
+		update_fail_bar(model, -20);
+		update_note_streak(model, TRUE);
 	}
 }
 
@@ -162,28 +141,20 @@ void set_play_on_fret_d(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void set_play_on_fret_f(Model *model)
+void set_play_on_fret_f(Model *model, UINT8 index)
 {
-	char input;
-	scanf("%c", input);
-
-	if (input == 'f')
+	if (note_collision_f(model, index))
 	{
-		if (note_collision_f(model))
-		{
-			update_score(model);
-			update_multiplier(model);
-			update_fail_bar(model, 1);
-		}
-		else 
-		{
-			update_multiplier(model);
-			update_fail_bar(model, -1);
-			if (model->fail_bar.value == 0)
-			{
-				fail_song();
-			}
-		}
+		update_score(model);
+		update_multiplier(model);
+		update_fail_bar(model, 20);
+		update_note_streak(model, FALSE);
+	}
+	else 
+	{
+		update_multiplier(model);
+		update_fail_bar(model, -20);
+		update_note_streak(model, TRUE);
 	}
 }
 
@@ -206,45 +177,8 @@ void set_play_on_fret_f(Model *model)
 /--------------------------------------------------------*/
 void quit_game(Model *model)
 {
-	char input;
-	scanf("%c", input);
-
-	if (input == 'q')
-	{
-		/* exit, need to replace later with proper call */
-	}
+	/* exit, need to replace later with proper call */
 }
-
-/*---------- SYNCHRONOUS (TIMED) EVENTS -------------------------------------*/
-
-/*---------- FUNCTION: move_note --------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
-/  
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/  
-/  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/  
-/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
-/--------------------------------------------------------*/
-void move_note(Model *model)
-{
-	char input;
-	scanf("%c", input);
-
-	if (input == ' ') /* emulating clock tick for the time being */
-	{
-		set_note_pos(model);
-	}
-}
-
-
 
 
 /*---------- CONDITION-BASED (CASCADED) EVENTS ------------------------------*/
@@ -265,18 +199,19 @@ void move_note(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-BOOL note_collision_a(Model *model)
+BOOL note_collision_a(Model *model, UINT8 index)
 {
-	if (model->note.pos_y > 320 ||
-		model->note.pos_y < 384)
+	if (model->lanes[FRET_A].notes[index].pos_y > 300 &&
+		model->lanes[FRET_A].notes[index].pos_y < 384)
 	{
-		if (model->frets[FRET_A].is_depressed)
-		{
-			return TRUE;
-		}
+	
+		return TRUE;
+	}
+	else{
+
+			return FALSE;
 	}
 
-	return FALSE;
 }
 
 
@@ -296,18 +231,18 @@ BOOL note_collision_a(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-BOOL note_collision_s(Model *model)
+BOOL note_collision_s(Model *model, UINT8 index)
 {
-	if (model->note.pos_y > 320 ||
-		model->note.pos_y < 384)
+	if (model->lanes[FRET_S].notes[index].pos_y > 300 &&
+		model->lanes[FRET_S].notes[index].pos_y < 384)
 	{
-		if (model->frets[FRET_S].is_depressed)
-		{
-			return TRUE;
-		}
-	}
+	
+		return TRUE;
 
-	return FALSE;
+	}else{
+
+		return FALSE;
+	}
 }
 
 
@@ -327,18 +262,18 @@ BOOL note_collision_s(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-BOOL note_collision_d(Model *model)
+BOOL note_collision_d(Model *model, UINT8 index)
 {
-	if (model->note.pos_y > 320 ||
-		model->note.pos_y < 384)
+	if (model->lanes[FRET_D].notes[index].pos_y > 300 &&
+		model->lanes[FRET_D].notes[index].pos_y < 384)
 	{
-		if (model->frets[FRET_D].is_depressed)
-		{
-			return TRUE;
-		}
-	}
+	
+		return TRUE;
+
+	}else{
 
 	return FALSE;
+	}
 }
 
 
@@ -358,18 +293,19 @@ BOOL note_collision_d(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-BOOL note_collision_f(Model *model)
+BOOL note_collision_f(Model *model, UINT8 index)
 {
-	if (model->note.pos_y > 320 ||
-		model->note.pos_y < 384)
+	if (model->lanes[FRET_F].notes[index].pos_y > 300 &&
+		model->lanes[FRET_F].notes[index].pos_y < 384)
 	{
-		if (model->frets[FRET_F].is_depressed)
-		{
-			return TRUE;
-		}
-	}
+	
+		return TRUE;
+
+	}else{
 
 	return FALSE;
+
+	}
 }
 
 

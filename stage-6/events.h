@@ -21,20 +21,20 @@
 #include "types.h"
 
 /*---------- Asynchronous (Input) Events ------------------------------------*/
-void set_play_on_fret_a(Model *model);
-void set_play_on_fret_s(Model *model);
-void set_play_on_fret_d(Model *model);
-void set_play_on_fret_f(Model *model);
+void set_play_on_fret_a(Model *model, UINT8 index);
+void set_play_on_fret_s(Model *model, UINT8 index);
+void set_play_on_fret_d(Model *model, UINT8 index);
+void set_play_on_fret_f(Model *model, UINT8 index);
 void quit_game(Model *model);
 
 /*----------Synchronous (Timed) Events --------------------------------------*/
-void move_note(Model *model);
+void move_note(Model *model, FRET_POS fret, UINT8 index);
 
 /*---------- Condition-Based (Cascaded) Events ------------------------------*/
-BOOL note_collision_a(Model *model);
-BOOL note_collision_s(Model *model);
-BOOL note_collision_d(Model *model);
-BOOL note_collision_f(Model *model);
+BOOL note_collision_a(Model *model, UINT8 index);
+BOOL note_collision_s(Model *model, UINT8 index);
+BOOL note_collision_d(Model *model, UINT8 index);
+BOOL note_collision_f(Model *model, UINT8 index);
 
 void fail_song();
 

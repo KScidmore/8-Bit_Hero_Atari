@@ -36,12 +36,15 @@ void init_model(Model *model)
 	init_fret(model, FRET_S, 256, 326);
 	init_fret(model, FRET_D, 352, 326);
 	init_fret(model, FRET_F, 448, 326);
-	init_note(model, 150, 150, 0, SHORT_NOTE);
+	init_lane(model, FRET_A, 0, 160, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_S, 0, 256, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_D, 0, 352, 84, 0, SHORT_NOTE);
+	init_lane(model, FRET_F, 0, 448, 84, 0, SHORT_NOTE);
 	init_note_streak(model);
 	init_score(model, 32, 0, 0);
 	init_multiplier(model, 544, 32, 1);
 	init_fretboard(model);
-	init_fail_bar(model, 224, 0, 50);
+	init_fail_bar(model, 224, 0, 60);
 }
 
 /*---------- Fret Functions -------------------------------------------------*/
@@ -108,16 +111,38 @@ void set_fret_depressed(Model *model, FRET_POS fret, BOOL is_depressed)
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /    TODO
 /--------------------------------------------------------*/
-void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type)
+void init_note(Note *note, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type)
 {
-    model->note.pos_x = pos_x;
-    model->note.pos_y = pos_y;
-    model->note.delta_y = delta_y;
-    model->note.v_dir = 1;            	/* constant */
-    model->note.size_x = 32;          	/* constant */
-    model->note.size_y = 16;          	/* constant */
-    model->note.is_played = FALSE;
-	model->note.note_type = note_type;
+    note->pos_x = pos_x;
+    note->pos_y = pos_y;
+    note->delta_y = delta_y;
+    note->v_dir = 1;            	/* constant */
+    note->size_x = 32;          	/* constant */
+    note->size_y = 32;          	/* constant */
+    note->is_played = FALSE;
+	note->is_active = FALSE;
+	note->note_type = note_type;
+}
+
+/*---------- FUNCTION: TODO -------------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not
+/    perfectly clear from the name)
+/ 
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/ 
+/  CALLER OUTPUT:
+/    TODO - the purose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
+void set_note_pos(Model *model, FRET_POS fret, UINT8 index)
+{
+	model->lanes[fret].notes[index].pos_y += 1;
 }
 
 
@@ -137,13 +162,13 @@ void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /    TODO
 /--------------------------------------------------------*/
-void set_note_pos(Model *model)
+void set_note_is_played(Model *model, FRET_POS fret, UINT8 index, BOOL is_played)
 {
-	model->note.pos_y += 1;
+	model->lanes[fret].notes[index].is_played = is_played;
 }
 
-
-/*---------- FUNCTION: TODO -------------------------------
+/*---------- Lane Functions -------------------------------------------------*/
+/*---------- FUNCTION: init_lane --------------------------
 /  PURPOSE:
 /    TODO - purpose, from the caller's perspective (if not
 /    perfectly clear from the name)
@@ -159,31 +184,19 @@ void set_note_pos(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /    TODO
 /--------------------------------------------------------*/
-void set_note_is_played(Model *model, BOOL is_played)
+void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_y, int delta_y, 
+				NOTE_TYPE note_type)
 {
-	model->note.is_played = is_played;
-}
+	UINT8 i;
 
+	model->lanes[fret].start_x = 0;
+	model->lanes[fret].curr_x = 0;
+	model->lanes[fret].counter = 0;
 
-/*---------- FUNCTION: TODO -------------------------------
-/  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
-/ 
-/  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
-/ 
-/  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
-/--------------------------------------------------------*/
-void generate_note(Model *model)
-{
-	/* TODO */
+	for(i = 0; i < NOTES_SIZE; i++)
+	{
+		init_note(&model->lanes[fret].notes[i], fret, index, pos_x, pos_y, delta_y, note_type);
+	}
 }
 
 /*---------- Note Streak Functions ------------------------------------------*/
@@ -231,9 +244,17 @@ void init_note_streak(Model *model)
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void update_note_streak(Model *model)
+void update_note_streak(Model *model, BOOL miss)
 {
-	/* TODO */
+	if(miss){
+
+		model->note_streak.value = 0;
+
+	}else{
+
+		model->note_streak.value += 1;
+
+	}
 }
 
 /*---------- Score Functions ------------------------------------------------*/
@@ -255,10 +276,10 @@ void update_note_streak(Model *model)
 /--------------------------------------------------------*/
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
-    model->score.ones_x = pos_x;
-	model->score.tens_x = pos_x + 32;
-	model->score.hunds_x = pos_x + 64;
-	model->score.thous_x = pos_x + 96;
+    model->score.thous_x = pos_x;
+	model->score.hunds_x = pos_x + 32;
+	model->score.tens_x = pos_x + 64;
+	model->score.ones_x = pos_x + 96;
     model->score.pos_y = pos_y;
     model->score.size_x = 128;
     model->score.size_y = 32;
@@ -287,9 +308,9 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /    TODO
 /--------------------------------------------------------*/
-void update_score(Model *model)
+/*void update_score(Model *model, FRET_POS fret, UINT8 index)
 {	
-	UINT8 update_val = model->multiplier.value * model->note.note_type;
+	UINT8 update_val = model->multiplier.value * model->lanes[fret].notes[index].note_type;
 	if (update_val == 0)
 	{
 		model->score.updated_flag = FALSE;
@@ -299,6 +320,14 @@ void update_score(Model *model)
 		model->score.updated_flag = TRUE;
 		model->score.value += update_val;
 	}
+}*/
+
+void update_score(Model *model)
+{	
+
+		model->score.value += NOTE_VALUE * model->multiplier.value;
+		model->score.updated_flag = TRUE;
+	
 }
 
 /*---------- Multiplier Functions -------------------------------------------*/
@@ -349,15 +378,15 @@ void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 /--------------------------------------------------------*/
 void update_multiplier(Model *model)
 {
-	if (model->note_streak.value >= 40)
+	if (model->note_streak.value >= 30)
 	{
 		model->multiplier.value = 8;
 	}
-	else if (model->note_streak.value >= 30)
+	else if (model->note_streak.value >= 20)
 	{
 		model->multiplier.value = 4;
 	}
-	else if (model->note_streak.value >= 20)
+	else if (model->note_streak.value >= 10)
 	{
 		model->multiplier.value = 2;
 	}
@@ -415,7 +444,7 @@ void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->fail_bar.pos_y = pos_y; 
     model->fail_bar.size_x = 136; 
     model->fail_bar.size_y = 16; 
-    model->fail_bar.value = 50;
+    model->fail_bar.value = value;
 }
 
 
@@ -437,5 +466,14 @@ void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 /--------------------------------------------------------*/
 void update_fail_bar(Model *model, UINT16 value)
 {
-	model->fail_bar.value += value;
+	if(model->fail_bar.value >= 0 && model->fail_bar.value <= 120){
+
+		model->fail_bar.value += value;
+
+	}
+
+	if(model->fail_bar.value > 120){
+
+		model->fail_bar.value = 120;
+	}
 }
