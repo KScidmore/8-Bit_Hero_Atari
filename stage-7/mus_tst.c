@@ -21,39 +21,39 @@
 #include "music.h"
 #include "songdat.h"
 
-#define VEC_VBL_ISR 28
-#define ESC 27
-
 #define BPM 80
 
-typedef void (*Vector)(); 
+UINT32 get_time();
 
-Vector install_vector(int num, Vector vector);
-void vbl_isr();
-void do_vbl_isr(int *counterPtr);
-
-int measures = 1;
-int w_beats = 1;
-int h_beats = 1;
-int q_beats = 1;
+int time_then, time_now, time_elapsed;
 
 int main() {
-    int old_w_beats = 0;
-    int old_h_beats = 0;
-    int old_q_beats = 0;
+    BOOL quit = FALSE;
+    time_then = get_time();
 
-    Vector orig_vector = install_vector(VEC_VBL_ISR, vbl_isr);
+    start_music();
+
+    while(!quit) {
+        time_now = get_time();
+
+        /* if clock has ticked */
+
+        if(time_elapsed >=1) {
+            update_music(time_elapsed);
+
+            time_then = time_now;
+        }
+        
+
+    }
     
-    
-
-
-
     /*
     start_music();
     */
-
+    
+    /*
     while (measures <= 4) {
-        /* prints past 4 w/o second if condition */
+        //prints past 4 w/o second if condition
         if ((w_beats != old_w_beats || h_beats != old_h_beats ||
             q_beats != old_q_beats) && measures <= 4) {
             printf("Measure:\t\t%u\n", measures);
@@ -65,22 +65,10 @@ int main() {
             old_q_beats = q_beats;
         }
     }
+    */
 
-    install_vector(VEC_VBL_ISR, orig_vector);
 
     return 0;
-}
-
-Vector install_vector(int num, Vector vector) {
-    Vector orig;
-    Vector *vectp = (Vector *)((long)num << 2);
-    long old_ssp = Super(0);
-
-    orig = *vectp;
-    *vectp = vector;
-
-    Super(old_ssp);
-    return orig;
 }
 
 void do_vbl_isr() {
@@ -88,15 +76,13 @@ void do_vbl_isr() {
     - math is very slightly off to avoid floats or weird logic
     - shouldn't affect timing, miniscule difference 
     */
+    static UINT32 vbl_counter = 0;
     static UINT32 measure_counter = 0;
     static UINT32 w_beat_counter = 0;
     static UINT32 h_beat_counter = 0;
     static UINT32 q_beat_counter = 0;
 
-    measure_counter += 1;
-    w_beat_counter += 1;
-    h_beat_counter += 1;
-    q_beat_counter += 1;
+    vbl_counter += 1;
 
     /*-------- measures ------------------------*/
     if (measure_counter == 210) 
@@ -142,4 +128,16 @@ void do_vbl_isr() {
         q_beat_counter = 0;
     }
 
+}
+
+UINT32 get_time() {
+    UINT32 time_now;
+    UINT32 old_ssp;
+    UINT32 *timer = (UINT32 *)0x462;
+    
+    old_ssp = Super(0); 
+    time_now = *timer;
+    Super(old_ssp); 
+    
+    return time_now;
 }
