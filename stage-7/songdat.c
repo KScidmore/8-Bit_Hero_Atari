@@ -40,5 +40,3 @@ Psg_notes channel_b[SONG_LENGTH] = {
     {C4, 0x13, ENV_SHAPE_4, 0X0F00}
 };
 
-extern Psg_notes channel_a[];
-extern Psg_notes channel_b[];

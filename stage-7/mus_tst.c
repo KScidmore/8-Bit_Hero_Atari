@@ -19,6 +19,7 @@
 #include "types.h"
 #include "sndconst.h"
 #include "music.h"
+#include "songdat.h"
 
 #define VEC_VBL_ISR 28
 #define ESC 27
@@ -43,6 +44,10 @@ int main() {
 
     Vector orig_vector = install_vector(VEC_VBL_ISR, vbl_isr);
     
+    
+
+
+
     /*
     start_music();
     */

@@ -44,5 +44,8 @@ typedef struct {
     unsigned int env_sustain;
 } Psg_notes;
 
+extern Psg_notes channel_a[];
+extern Psg_notes channel_b[];
+
 
 #endif
