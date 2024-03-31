@@ -10,13 +10,14 @@
 
 
 UINT32 get_time();
+void take_snapshot(Model *model, Model *snapshot);
 
 UINT8 buffer_array[32256];
 
 int main() {
 
     /*Game Model*/
-    Model model;
+    Model model, snapshot;
 
     /*Frame Buffer variables*/
     UINT8 *original_buffer = Physbase();
@@ -44,6 +45,7 @@ int main() {
 
     /*Initalize Game Model/Render Start Scene*/
     init_model(&model);
+    init_model(&snapshot);
 
     init_scene(front_buffer, (UINT32*)(front_buffer), &model);
     init_scene(back_buffer, (UINT32*)(back_buffer), &model);
@@ -82,6 +84,8 @@ int main() {
         if (time_elapsed >= 1) {
 
             Vsync();
+
+            take_snapshot(&model, &snapshot);
             if(curr_buffer == TRUE) {
 				render_next((UINT32*)(back_buffer), &model);
 				Setscreen(-1,back_buffer,-1);
@@ -105,6 +109,12 @@ int main() {
     Setscreen(-1, original_buffer, -1);
 
     return 0;
+}
+
+void take_snapshot(Model *model, Model *snapshot) {
+
+    *snapshot = *model;
+
 }
 
 UINT32 get_time() {
