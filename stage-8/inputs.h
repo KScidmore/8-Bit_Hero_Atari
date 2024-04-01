@@ -6,7 +6,7 @@
 
 UINT32 get_time();
 char read_char();
-void play_on_fret(Model *model, FRET_POS fret, UINT32 *base);
+void play_on_fret(Model *model, FRET_POS fret);
 
 
 

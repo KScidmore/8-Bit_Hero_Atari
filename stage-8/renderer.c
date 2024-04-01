@@ -7,6 +7,8 @@
 #include "RAST_ASM.h"
 #include "events.h"
 
+#define CHECK_GENERATE 69
+
 const UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
 
@@ -30,28 +32,32 @@ void render_next(UINT32 *base, Model *model){
     static UINT8 j = 0;
     static UINT8 k = 0;
     static UINT8 l = 0;
-    render_frets(base, model);
-    clear_top(base, model);
+
     render_active_notes(base, model);
     render_score(base, model);
     render_multiplier(base, model);
     render_failbar(base, model);
+    render_frets(base, model);
 
-     if(note_gen == 69){
+     if(note_gen == CHECK_GENERATE){
         switch (note_counter){
                 case 0:
+                    clear_top(base, model);
                     render_new_note(base, model, FRET_A, i);
                     i++;
                     break;
                 case 1:
+                    clear_top(base, model);
                     render_new_note(base, model, FRET_S, j);
                     j++;
                     break;
                 case 2:
+                    clear_top(base, model);
                     render_new_note(base, model, FRET_D, k);
                     k++;
                     break;
                 case 3:
+                    clear_top(base, model);
                     render_new_note(base, model, FRET_F, l);
                     l++;
                     break;
@@ -83,8 +89,6 @@ int i, j;
 void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
     model->lanes[fret].notes[note_index].is_active = TRUE;
-
-    plot_bitmap_32(base, model->lanes[fret].notes[note_index].pos_x, model->lanes[fret].notes[note_index].pos_y, note_map, model->lanes[fret].notes[note_index].size_y);
 
 }
 

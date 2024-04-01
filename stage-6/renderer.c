@@ -76,7 +76,7 @@ void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
     model->lanes[fret].notes[note_index].is_active = TRUE;
 
-    /*plot_bitmap_32(base, model->lanes[fret].notes[note_index].pos_x, model->lanes[fret].notes[note_index].pos_y, note_map, model->lanes[fret].notes[note_index].size_y);*/
+
 
 }
 

@@ -340,38 +340,7 @@ int abs_val(int value)
 	return result;
 }
 
-/*
------ FUNCTION: plot_diamond -----
 
-PURPOSE:
-  Plots a diamond shape to the screen by 
-  drawing pixels.
-
-CALLER INPUT:
-  UINT8 *base 
-    - starting point of the frame buffer 
-  int cx 
-    - centre x coordinate for plotting location 
-  int cy 
-    - centre y coordinate for plotting location 
-  int r 
-    - the "radius" of the
-
-CALLER OUTPUT:
-  returns void 
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  - want to figure out a better way of doing this 
-*/
-void plot_diamond(UINT8 *base, int cx, int cy, int r)
-{
-	/* top to right, right to bottom, bottom to left,
-	left to top */
-	plot_gen_line(base, cx, cy - r, cx + r, cy);
-	plot_gen_line(base, cx + r, cy, cx, cy + r);
-	plot_gen_line(base, cx, cy + r, cx - r, cy);
-	plot_gen_line(base, cx - r, cy, cx, cy - r);
-}
 
 /*
 ----- FUNCTION: TODO -----
@@ -457,20 +426,6 @@ void clear_32(UINT32 *base, int x , int y, unsigned int height){
 	}
 }
 
-void black_32(UINT32 *base, int x , int y, unsigned int height){
-
-	int i;
-
-	UINT32 *plot = (base + ((y + i) * 20 ) + (x >> 5)); 
-	
-    	
-	for (i = 0; i < height; i++) 
-	{        
-
-            *plot = 0xFFFFFFFF; 
-			plot += 20;
-	}
-}
 	
 /*
 ----- FUNCTION: TODO -----

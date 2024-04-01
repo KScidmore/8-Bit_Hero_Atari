@@ -122,12 +122,6 @@ void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer
 
 }
 
-void take_snapshot(Model *model, Model *snapshot) {
-
-    *snapshot = *model;
-
-}
-
 UINT32 get_time() {
     UINT32 time_now;
     UINT32 old_ssp;

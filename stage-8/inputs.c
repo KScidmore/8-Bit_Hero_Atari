@@ -20,7 +20,7 @@ char read_char() {
     }
 }
 
-void play_on_fret(Model *model, FRET_POS fret, UINT32 *base) {
+void play_on_fret(Model *model, FRET_POS fret) {
     
     int i;
 
@@ -28,16 +28,16 @@ void play_on_fret(Model *model, FRET_POS fret, UINT32 *base) {
         if (model->lanes[fret].notes[i].is_active == TRUE) {
             switch (fret) {
                 case FRET_A:
-                    set_play_on_fret_a(model, i, base);                
+                    set_play_on_fret_a(model, i);                
                     break;
                 case FRET_S:
-                    set_play_on_fret_s(model, i, base);
+                    set_play_on_fret_s(model, i);
                     break;
                 case FRET_D:
-                    set_play_on_fret_d(model, i, base);
+                    set_play_on_fret_d(model, i);
                     break;
                 case FRET_F:
-                    set_play_on_fret_f(model, i, base);
+                    set_play_on_fret_f(model, i);
                     break;
             }
             break;
