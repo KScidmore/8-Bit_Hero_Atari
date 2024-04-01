@@ -15,7 +15,7 @@ all: clean $(TARGET)
 $(TARGET): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(TARGET)
 
-EBH.o: EBH.c types.h model.h events.h renderer.h rast_asm.h inputs.h
+EBH.o: EBH.c types.h model.h events.h renderer.h rast_asm.h inputs.h ebh.h
 	$(CC) $(CFLAGS) -c EBH.c
 
 renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h events.h

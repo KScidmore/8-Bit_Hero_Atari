@@ -31,12 +31,13 @@ void render_next(UINT32 *base, Model *model){
     static UINT8 k = 0;
     static UINT8 l = 0;
 
+
     clear_top(base, model);
-    render_frets(base, model);
     render_active_notes(base, model);
     render_score(base, model);
     render_multiplier(base, model);
     render_failbar(base, model);
+    render_frets(base, model);
 
      if(note_gen == 69){
         switch (note_counter){
@@ -66,6 +67,7 @@ void render_next(UINT32 *base, Model *model){
     else{
         note_gen++;
     }
+
 }
 
 void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
@@ -91,12 +93,12 @@ void render_active_notes(UINT32 *base, Model *model){
             
             clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
             set_note_pos(model, FRET_A, i);
-            plot_bitmap_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y + 2, note_map, model->lanes[FRET_A].notes[i].size_y);
+            plot_bitmap_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y , note_map, model->lanes[FRET_A].notes[i].size_y);
 
             if(model->lanes[FRET_A].notes[i].pos_y >= bottom){
                 
                 model->lanes[FRET_A].notes[i].is_active = FALSE;
-                clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y , model->lanes[FRET_A].notes[i].size_y);
+                clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
 
             }
             
@@ -106,7 +108,7 @@ void render_active_notes(UINT32 *base, Model *model){
             
             clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, model->lanes[FRET_S].notes[i].size_y);
             set_note_pos(model, FRET_S, i);
-            plot_bitmap_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y + 2, note_map, model->lanes[FRET_S].notes[i].size_y);
+            plot_bitmap_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, note_map, model->lanes[FRET_S].notes[i].size_y);
 
             if(model->lanes[FRET_S].notes[i].pos_y >= bottom){
                 
@@ -120,7 +122,7 @@ void render_active_notes(UINT32 *base, Model *model){
             
             clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, model->lanes[FRET_D].notes[i].size_y);
             set_note_pos(model, FRET_D, i);
-            plot_bitmap_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y + 2, note_map, model->lanes[FRET_D].notes[i].size_y);
+            plot_bitmap_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, note_map, model->lanes[FRET_D].notes[i].size_y);
 
             if(model->lanes[FRET_D].notes[i].pos_y >= bottom){
                 
@@ -134,7 +136,7 @@ void render_active_notes(UINT32 *base, Model *model){
 
             clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, model->lanes[FRET_F].notes[i].size_y);
             set_note_pos(model, FRET_F, i);
-            plot_bitmap_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y + 2, note_map, model->lanes[FRET_F].notes[i].size_y);
+            plot_bitmap_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, note_map, model->lanes[FRET_F].notes[i].size_y);
 
             if(model->lanes[FRET_F].notes[i].pos_y >= bottom){
                 
@@ -149,10 +151,10 @@ void render_active_notes(UINT32 *base, Model *model){
 
 void clear_top(UINT32 *base, Model *model){
 
-    clear_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, 84, model->lanes[FRET_A].notes[FRET_A].size_y);
-    clear_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, 84, model->lanes[FRET_S].notes[FRET_S].size_y);
-    clear_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, 84, model->lanes[FRET_D].notes[FRET_D].size_y);
-    clear_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, 84, model->lanes[FRET_F].notes[FRET_F].size_y);
+    black_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, 84, model->lanes[FRET_A].notes[FRET_A].size_y);
+    black_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, 84, model->lanes[FRET_S].notes[FRET_S].size_y);
+    black_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, 84, model->lanes[FRET_D].notes[FRET_D].size_y);
+    black_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, 84, model->lanes[FRET_F].notes[FRET_F].size_y);
     
 }
 
