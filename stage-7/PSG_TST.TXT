@@ -1,66 +1,403 @@
-***** Setting R0-RD to 0 *****
+**********
 
-* Values passed to registers *
+Running test_enable_channel()
 
-* Reading R0-RF *
-R0 Value: 0 
-R1 Value: 0 
-R2 Value: 0 
-R3 Value: 0 
-R4 Value: 0 
-R5 Value: 0 
-R6 Value: 0 
-R7 Value: 0 
-R8 Value: 0 
-R9 Value: 0 
-RA Value: 0 
-RB Value: 0 
-RC Value: 0 
-RD Value: 0 
-RE Value: 128 
-RF Value: 255 
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x1B
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x1B
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x37, Read Value: 0x1B
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x1B
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x1B
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x3F
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x37, Read Value: 0x37
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x37
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3E, Read Value: 0x37
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3E, Read Value: 0x3E
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x36, Read Value: 0x36
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3E, Read Value: 0x36
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x36
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x36
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x37, Read Value: 0x36
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x36
 
-***** Setting R0-RD to -1 *****
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x36
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x36
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x2F, Read Value: 0x36
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x36
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x36
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x3F
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x2F, Read Value: 0x2F
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x2F
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3D, Read Value: 0x2F
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3D, Read Value: 0x3D
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x2D, Read Value: 0x2D
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3D, Read Value: 0x2D
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x2D
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x2D
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x2F, Read Value: 0x2D
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x2D
 
-* Reading R0-RF *
-R0 Value: 255 
-R1 Value: 15 
-R2 Value: 255 
-R3 Value: 15 
-R4 Value: 255 
-R5 Value: 15 
-R6 Value: 31 
-R7 Value: 255 
-R8 Value: 31 
-R9 Value: 31 
-RA Value: 31 
-RB Value: 255 
-RC Value: 255 
-RD Value: 15 
-RE Value: 128 
-RF Value: 255 
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x2D
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x2D
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x1F, Read Value: 0x2D
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x2D
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x2D
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x3F
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x1F, Read Value: 0x1F
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x1F
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3B, Read Value: 0x1F
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3B, Read Value: 0x3B
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 7, Expected Value: 0x1B, Read Value: 0x1B
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3B, Read Value: 0x1B
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x1B
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x1B
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x1F, Read Value: 0x1B
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 7, Expected Value: 0x3F, Read Value: 0x1B
 
-* R0-RD Cleared to 0 *
+Completed running test_enable_channel()
 
-***** Setting to Max Value *****
+**********
 
-* Reading R0-RF *
-R0 Value: 255 
-R1 Value: 15 
-R2 Value: 255 
-R3 Value: 15 
-R4 Value: 255 
-R5 Value: 15 
-R6 Value: 31 
-R7 Value: 255 
-R8 Value: 31 
-R9 Value: 31 
-RA Value: 31 
-RB Value: 255 
-RC Value: 255 
-RD Value: 15 
-RE Value: 128 
-RF Value: 255 
+**********
 
-* R0-RD Cleared to 0 *
+Running test_set_tone()
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 0, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 1, Expected Value: 0xFF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 0, Expected Value: 0x0, Read Value: 0x0
+	Register: 1, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 0, Expected Value: 0x1, Read Value: 0x1
+	Register: 1, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 0, Expected Value: 0xFE, Read Value: 0xFE
+	Register: 1, Expected Value: 0xF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 0, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 1, Expected Value: 0xF, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 0, Expected Value: 0x0, Read Value: 0xFF
+	Register: 1, Expected Value: 0x10, Read Value: 0xF
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 2, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 3, Expected Value: 0xFF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 2, Expected Value: 0x0, Read Value: 0x0
+	Register: 3, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 2, Expected Value: 0x1, Read Value: 0x1
+	Register: 3, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 2, Expected Value: 0xFE, Read Value: 0xFE
+	Register: 3, Expected Value: 0xF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 2, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 3, Expected Value: 0xF, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 2, Expected Value: 0x0, Read Value: 0xFF
+	Register: 3, Expected Value: 0x10, Read Value: 0xF
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 4, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 5, Expected Value: 0xFF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 4, Expected Value: 0x0, Read Value: 0x0
+	Register: 5, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 4, Expected Value: 0x1, Read Value: 0x1
+	Register: 5, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 4, Expected Value: 0xFE, Read Value: 0xFE
+	Register: 5, Expected Value: 0xF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 4, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 5, Expected Value: 0xF, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 4, Expected Value: 0x0, Read Value: 0xFF
+	Register: 5, Expected Value: 0x10, Read Value: 0xF
+
+Completed running test_set_tone()
+
+**********
+
+**********
+
+Running test_set_volume()
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 8, Expected Value: 0xFFFF, Read Value: 0x1F
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 8, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 8, Expected Value: 0x1, Read Value: 0x1
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 8, Expected Value: 0x1E, Read Value: 0x1E
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 8, Expected Value: 0x1F, Read Value: 0x1F
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 8, Expected Value: 0x20, Read Value: 0x1F
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 9, Expected Value: 0xFFFF, Read Value: 0x1F
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 9, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 9, Expected Value: 0x1, Read Value: 0x1
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 9, Expected Value: 0x1E, Read Value: 0x1E
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 9, Expected Value: 0x1F, Read Value: 0x1F
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 9, Expected Value: 0x20, Read Value: 0x1F
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 10, Expected Value: 0xFFFF, Read Value: 0x1F
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 10, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 10, Expected Value: 0x1, Read Value: 0x1
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 10, Expected Value: 0x1E, Read Value: 0x1E
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 10, Expected Value: 0x1F, Read Value: 0x1F
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 10, Expected Value: 0x20, Read Value: 0x1F
+
+Completed running test_set_volume()
+
+**********
+
+**********
+
+Running test_set_noise()
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 6, Expected Value: 0xFFFF, Read Value: 0x1F
+
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 6, Expected Value: 0x0, Read Value: 0x0
+
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 6, Expected Value: 0x1, Read Value: 0x1
+
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 6, Expected Value: 0x1E, Read Value: 0x1E
+
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 6, Expected Value: 0x1F, Read Value: 0x1F
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 6, Expected Value: 0x20, Read Value: 0x1F
+
+Completed running test_set_noise()
+
+**********
+
+**********
+
+Running test_set_envelope()
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0x0
+	Register: 12, Expected Value: 0xFF, Read Value: 0x0
+	Register: 13, Expected Value: 0xFFFF, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0xFFFF, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0x1, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0xFFFF, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFE, Read Value: 0x0
+	Register: 12, Expected Value: 0xFF, Read Value: 0x0
+	Register: 13, Expected Value: 0xFFFF, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0x0
+	Register: 12, Expected Value: 0xFF, Read Value: 0x0
+	Register: 13, Expected Value: 0xFFFF, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0xFFFF, Read Value: 0xF
+
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x1, Read Value: 0x1
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFE, Read Value: 0xFE
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0x0, Read Value: 0x0
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0x0, Read Value: 0x0
+
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0x1, Read Value: 0x1
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0x1, Read Value: 0x1
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x1, Read Value: 0x1
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0x1, Read Value: 0x1
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFE, Read Value: 0xFE
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0x1, Read Value: 0x1
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0x1, Read Value: 0x1
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0x1, Read Value: 0x1
+
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0xE, Read Value: 0xE
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0xE, Read Value: 0xE
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x1, Read Value: 0x1
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0xE, Read Value: 0xE
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFE, Read Value: 0xFE
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0xE, Read Value: 0xE
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0xE, Read Value: 0xE
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0xE, Read Value: 0xE
+
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0xF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0xF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x1, Read Value: 0x1
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0xF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFE, Read Value: 0xFE
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0xF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 12, Expected Value: 0xFF, Read Value: 0xFF
+	Register: 13, Expected Value: 0xF, Read Value: 0xF
+PASS -- EDGE CASE AND IN-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0xF, Read Value: 0xF
+
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0x0
+	Register: 12, Expected Value: 0xFF, Read Value: 0x0
+	Register: 13, Expected Value: 0x10, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0x10, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0x1, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0x10, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFE, Read Value: 0x0
+	Register: 12, Expected Value: 0xFF, Read Value: 0x0
+	Register: 13, Expected Value: 0x10, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0xFF, Read Value: 0x0
+	Register: 12, Expected Value: 0xFF, Read Value: 0x0
+	Register: 13, Expected Value: 0x10, Read Value: 0xF
+VALID FAIL -- OUT-OF-BOUNDS CHECK
+	Register: 11, Expected Value: 0x0, Read Value: 0x0
+	Register: 12, Expected Value: 0x0, Read Value: 0x0
+	Register: 13, Expected Value: 0x10, Read Value: 0xF
+
+Completed running test_set_envelope()
+
+**********
 

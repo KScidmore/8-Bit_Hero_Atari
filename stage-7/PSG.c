@@ -135,7 +135,10 @@ void set_tone(int channel, int tuning)
 /    int channel
 /      The channel to be selected (0=A, 1=B, 2=C)
 /    int volume 
-/      The value to load the register with.
+/      The 5-bit value to load the register with.
+/      B4 = Mode (0 = fixed, 1 = variable)
+/      B3-B0 = volume level selection 
+/      Variable mode uses the envelope generator.
 /  
 /  CALLER OUTPUT:
 /    N/A
@@ -177,17 +180,17 @@ void enable_channel(int channel, int tone_on, int noise_on)
         tone_on >= 0 && tone_on <= 1 &&
         noise_on >= 0 && noise_on <= 1)
     {
-        int foo = IO_PORT_BITS; /* everything disabled but I/O ports */
+        int mixer_settings = IO_PORT_BITS; /* everything disabled but I/O ports */
 
         if (tone_on) {
-            foo &= ~(1 << channel); /* clear bit for tone */
+            mixer_settings &= ~(1 << channel); /* clear bit for tone */
         }
 
         if (noise_on) {
-            foo &= ~(1 << (channel + 3)); /* clear bit for noise */
+            mixer_settings &= ~(1 << (channel + 3)); /* clear bit for noise */
         }
         
-        write_psg(7, foo);
+        write_psg(7, mixer_settings);
     }
 }
 
@@ -260,19 +263,14 @@ void set_noise(int tuning)
 /--------------------------------------------------------*/
 void set_envelope(int shape, unsigned int sustain)
 {
-    /*
-    - currently not working and I don't know why
-    */
-
-
     if (shape >= 0 && shape <= 0xF &&
         sustain >= 0 && sustain <= 0xFFFF)
     {
         int fine = sustain & 0x00FF;
         int rough = (sustain >> 8) & 0x00FF;
 
+        write_psg(13, shape);    
         write_psg(11, fine);
         write_psg(12, rough);
-        write_psg(13, shape);    
     }
 }
