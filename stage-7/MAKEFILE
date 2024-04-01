@@ -2,10 +2,10 @@ TARGET_A=psg_tst
 OBJECTS_A=psg_tst.o psg.o 
 
 TARGET_B=mus_tst
-OBJECTS_B=mus_tst.o music.o 
+OBJECTS_B=mus_tst.o music.o psg.o songdat.o #vblisr.o 
 
 TARGET_C=eff_tst
-OBJECTS_C=eff_tst.o effects.o 
+OBJECTS_C=eff_tst.o effects.o psg.o
 
 CC=cc68x
 CFLAGS=-g
@@ -25,23 +25,30 @@ $(TARGET_B): $(OBJECTS_B)
 $(TARGET_C): $(OBJECTS_C)
 	$(CC) $(OBJECTS_C) -o $(TARGET_C)
 
-psg_tst.o: psg_tst.c psg.h types.h notefrqs.h
+psg_tst.o: psg_tst.c psg.h types.h sndconst.h
 	$(CC) $(CFLAGS) -c psg_tst.c
 
-mus_tst.o: mus_tst.c psg.h types.h notefrqs.h 
+mus_tst.o: mus_tst.c psg.h types.h sndconst.h music.h songdat.h
 	$(CC) $(CFLAGS) -c mus_tst.c
 
-eff_tst.o: eff_tst.c psg.h types.h notefrqs.h 
+eff_tst.o: eff_tst.c psg.h types.h sndconst.h 
 	$(CC) $(CFLAGS) -c eff_tst.c
 
 psg.o: psg.c psg.h types.h
 	$(CC) $(CFLAGS) -c psg.c
 
-music.o: music.c psg.h types.h 
+music.o: music.c music.h psg.h types.h songdat.h sndconst.h
 	$(CC) $(CFLAGS) -c music.c 
 
-effects.o: effects.c psg.h types.h notefrqs.h
+effects.o: effects.c psg.h types.h sndconst.h
 	$(CC) $(CFLAGS) -c effects.c 
+
+#vblisr.o: vblisr.s 
+#	gen -D -L2 vblisr.s
+
+songdat.o: songdat.c songdat.h sndconst.h types.h
+	$(CC) $(CFLAGS) -c songdat.c 
+
 
 # Cleaning up the old object files and executable
 clean:
