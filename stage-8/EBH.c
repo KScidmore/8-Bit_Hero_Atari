@@ -7,19 +7,46 @@
 #include "rast_asm.h"
 #include "inputs.h"
 #include "events.h"
+#include "raster.h"
 
+void game_loop();
 
 int main()
 {
+    char ch;
+
+    UINT8 *base = get_video_base();
+
+    render_splashscreen(base);
+
+
+    while(ch != 27){
+
+        ch = read_char();
+
+        if(ch == ' '){
+
+            game_loop();
+            break;
+        }
+
+    }
+
+    return 0;
     
+}
+
+void game_loop(){
+
     UINT32 time_then, time_now, time_elapsed;
-    UINT8 *base = Physbase();
-	UINT32 *base32 = Physbase();
+    UINT8 *base = get_video_base();
+    UINT32 *base32 = (UINT32 *)get_video_base();
 
     Model model;
 
     char input_value;
     char ch;
+    BOOL exit = FALSE;
 
     init_model(&model);
 
@@ -28,7 +55,7 @@ int main()
     time_then = get_time();
 
     /*Main game loop*/
-    while(1){
+    while(!exit){
 
         /*Get time*/
         time_now = get_time();
@@ -54,7 +81,8 @@ int main()
                     play_on_fret(&model, FRET_F, base32);
                     break;
                 case 27:
-                    return 0;
+                    exit = TRUE;
+                    break;
 
             }
         }
@@ -75,8 +103,6 @@ int main()
 
     }
 
-    return 0;
-    
 }
 
 UINT32 get_time(){

@@ -34,4 +34,7 @@ extern const UINT32 REE_fail[];
 extern const UINT32 MF_fail[];
 extern const UINT32 ME_fail[];
 
+
+extern const UINT8 splashscreen[];
+
 #endif

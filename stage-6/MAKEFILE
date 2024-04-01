@@ -1,0 +1,46 @@
+# Executable file produced
+TARGET=EBH
+
+# Object files needed for target
+OBJECTS=EBH.o renderer.o model.o events.o raster.o bitmaps.o rast_asm.o inputs.o 
+
+# C compiler and flags
+CC=cc68x
+CFLAGS=-g
+
+# Building the target
+all: clean $(TARGET)
+
+# Linking target executable from object files
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET)
+
+EBH.o: EBH.c types.h model.h events.h renderer.h rast_asm.h inputs.h
+	$(CC) $(CFLAGS) -c EBH.c
+
+renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h events.h
+	$(CC) $(CFLAGS) -c renderer.c
+
+model.o: model.c model.h types.h
+	$(CC) $(CFLAGS) -c model.c
+
+events.o: events.c model.h types.h raster.h
+	$(CC) $(CFLAGS) -c events.c
+
+raster.o: raster.c types.h raster.h
+	$(CC) $(CFLAGS) -c raster.c
+
+bitmaps.o: bitmaps.c bitmaps.h
+	$(CC) $(CFLAGS) -c bitmaps.c
+
+rast_asm.o: rast_asm.s
+	gen -D -L2 rast_asm.s
+
+inputs.o: inputs.c types.h inputs.h raster.h events.h
+	$(CC) $(CFLAGS) -c inputs.c
+
+# Cleaning up the old object files and executable
+clean:
+	$(RM) *.o $(TARGET)
+
+# DON'T DELETE THIS LINE OR IT BREAKS

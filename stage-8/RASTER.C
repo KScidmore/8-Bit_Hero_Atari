@@ -24,6 +24,23 @@
 #define SCREEN_WIDTH 640 
 #define SCREEN_HEIGHT 400
 
+UINT8* get_video_base()
+{
+	UINT8 *high = 0xFFFF8201L;
+	UINT8 *low = 0xFFFF8203L;
+	long address;
+	long old_ssp;
+	
+	old_ssp = Super(0);
+	
+	address = ((long)(*high) << 16) | ((long)(*low) << 8);
+	
+	Super(old_ssp);
+	
+	return (UINT8*)(address);
+}
+
+
 /*
 ----- FUNCTION: plot_pixel -----
 
@@ -489,7 +506,7 @@ void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned i
 	for (i = 0; i < height; i++) 
 	{        
 
-            *(base + ((y + i) * 40 ) + (x / 16))  = bitmap[i];
+            *(base + ((y + i) * 40 ) + (x >> 4))  = bitmap[i];
     
   }
 	
@@ -519,7 +536,7 @@ void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap, unsigned int 
 	for (i = 0; i < height; i++) 
 	{        
 
-            *(base + ((y + i) * 80 ) +  (x / 8) )  = bitmap[i];
+            *(base + ((y + i) * 80 ) +  (x >> 3) )  = bitmap[i];
     
     }
 	

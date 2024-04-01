@@ -67,6 +67,19 @@ void render_next(UINT32 *base, Model *model){
     }
 }
 
+void render_splashscreen(UINT8* base){
+
+int i, j;
+    for (i = 0; i < 400; i++) {
+        
+        for (j = 0; j < 640 / 8; j++) {
+            plot_bitmap_8(base, 0 + j * 8, 0 + i, splashscreen + i * (640 / 8) + j, 1);
+        }
+    }
+
+
+}
+
 void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
     model->lanes[fret].notes[note_index].is_active = TRUE;
