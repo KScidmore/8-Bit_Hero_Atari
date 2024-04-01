@@ -7,10 +7,8 @@
 #include "rast_asm.h"
 #include "inputs.h"
 #include "events.h"
+#include "ebh.h"
 
-
-UINT32 get_time();
-void take_snapshot(Model *model, Model *snapshot);
 
 UINT8 buffer_array[32256];
 
@@ -20,13 +18,8 @@ int main() {
     Model model, snapshot;
 
     /*Frame Buffer variables*/
+    UINT32 *front_buffer, *back_buffer, *curr_buffer;
     UINT8 *original_buffer = Physbase();
-    UINT8 *front_buffer = original_buffer;
-    UINT8 *back_buffer = buffer_array;
-
-    UINT32 temp = (UINT32)(back_buffer);
-
-    BOOL curr_buffer = TRUE;
 
     /*Time variables*/
     UINT32 time_then, time_now, time_elapsed;
@@ -35,20 +28,18 @@ int main() {
     char ch;
     BOOL quit = FALSE;
 
-
-    /*Set Buffers*/
-	while ((temp % 256) != 0)
-	{
-		temp++;
-	}
-	back_buffer = (UINT8*)(temp);
+    /*Set Buffers Up*/
+    set_buffer(&front_buffer, &back_buffer, buffer_array);
 
     /*Initalize Game Model/Render Start Scene*/
     init_model(&model);
     init_model(&snapshot);
 
-    init_scene(front_buffer, (UINT32*)(front_buffer), &model);
-    init_scene(back_buffer, (UINT32*)(back_buffer), &model);
+    init_scene((UINT8*) front_buffer, front_buffer, &model);
+
+    back_buffer = front_buffer;
+    
+    curr_buffer = back_buffer;
 
     /*Get Start Time*/
     time_then = get_time();
@@ -85,15 +76,9 @@ int main() {
 
             Vsync();
 
-            if(curr_buffer == TRUE) {
-				render_next((UINT32*)(back_buffer), &model);
-				Setscreen(-1, back_buffer,-1);
-				curr_buffer = FALSE;
-			} else {
-				render_next((UINT32*)(front_buffer), &model);
-				Setscreen(-1, front_buffer,-1);
-				curr_buffer = TRUE;
-			}
+            render_frets(curr_buffer, &model);
+			render_next(curr_buffer, &model);
+			Setscreen(-1, curr_buffer,-1);
 
             time_then = time_now;
 
@@ -108,6 +93,35 @@ int main() {
     Setscreen(-1, original_buffer, -1);
 
     return 0;
+}
+
+void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[]){
+
+    UINT8 *address = buffer_array;
+
+	while (((UINT32)address) % 256 != 0)
+	{
+		address++;
+	}
+
+	*back_buffer = (UINT32*)address;
+    *front_buffer = Physbase();
+
+
+}
+
+void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer){
+
+    if(*curr_buffer == front_buffer) {
+
+        *curr_buffer = back_buffer;
+
+    } else {
+
+        *curr_buffer = front_buffer;
+
+    }
+
 }
 
 void take_snapshot(Model *model, Model *snapshot) {
