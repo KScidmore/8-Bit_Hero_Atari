@@ -21,27 +21,51 @@
 #include "music.h"
 #include "songdat.h"
 
-#define BPM 80
+
+#define ESC_KEY 27
 
 UINT32 get_time();
 
-int time_then, time_now, time_elapsed;
+
+
 
 int main() {
+    UINT32 time_then, time_now, time_elapsed;
     BOOL quit = FALSE;
-    time_then = get_time();
+    char ch;
 
+    time_then = 0;
+    time_now = 0;
+    time_elapsed = 0;
+
+
+    
     start_music();
+    
 
     while(!quit) {
         time_now = get_time();
+        time_elapsed += time_now - time_then;
 
         /* if clock has ticked */
 
-        if(time_elapsed >=1) {
+        if(time_elapsed > 0) {
+            
             update_music(time_elapsed);
+            
+            printf("Time Then: %d \n", time_then);
+            printf("Time Now: %d \n", time_now);
+            printf("Time Elapsed: %d \n", time_elapsed);
 
             time_then = time_now;
+        }
+
+        if (Cconis()) {
+            ch = (char)Cnecin();
+            if(ch == ESC_KEY) {
+                quit = TRUE;
+                stop_sound();
+            }
         }
         
 
@@ -71,73 +95,14 @@ int main() {
     return 0;
 }
 
-void do_vbl_isr() {
-    /*
-    - math is very slightly off to avoid floats or weird logic
-    - shouldn't affect timing, miniscule difference 
-    */
-    static UINT32 vbl_counter = 0;
-    static UINT32 measure_counter = 0;
-    static UINT32 w_beat_counter = 0;
-    static UINT32 h_beat_counter = 0;
-    static UINT32 q_beat_counter = 0;
-
-    vbl_counter += 1;
-
-    /*-------- measures ------------------------*/
-    if (measure_counter == 210) 
-    {
-        measures += 1;
-        measure_counter = 0;
-    }
-
-    /*-------- whole beats ---------------------*/
-    if (w_beat_counter == 52 || w_beat_counter == 105 || w_beat_counter == 157) 
-    {
-        w_beats += 1;
-    }
-    else if (w_beat_counter == 210) {
-        w_beats = 1;
-        w_beat_counter = 0;
-    }
-
-    /*-------- half beats ----------------------*/
-    if (h_beat_counter == 26 || h_beat_counter == 52 || h_beat_counter == 78 || 
-        h_beat_counter == 105 || h_beat_counter == 131 || h_beat_counter == 157 || 
-        h_beat_counter == 183) 
-    {
-        h_beats += 1;
-    }
-    else if (h_beat_counter == 210) {
-        h_beats = 1;
-        h_beat_counter = 0;
-    }
-
-
-    /*-------- quarter beats -------------------*/
-    if (q_beat_counter == 13 || q_beat_counter == 26 || q_beat_counter == 39 || 
-        q_beat_counter == 52 || q_beat_counter == 65 || q_beat_counter == 78 || 
-        q_beat_counter == 91 || q_beat_counter == 105 || q_beat_counter == 118 || 
-        q_beat_counter == 131 || q_beat_counter == 144 || q_beat_counter == 157 || 
-        q_beat_counter == 170 || q_beat_counter == 183 || q_beat_counter == 196 )
-    {
-        q_beats += 1;
-    }
-    else if (q_beat_counter == 210) {
-        q_beats = 1;
-        q_beat_counter = 0;
-    }
-
-}
-
 UINT32 get_time() {
-    UINT32 time_now;
-    UINT32 old_ssp;
-    UINT32 *timer = (UINT32 *)0x462;
-    
-    old_ssp = Super(0); 
+    long *timer = (long *)0x462;
+    long time_now;
+    long old_ssp;
+
+    old_ssp = Super(0);
     time_now = *timer;
-    Super(old_ssp); 
-    
-    return time_now;
+    Super(old_ssp);
+
+    return (UINT32)time_now;
 }

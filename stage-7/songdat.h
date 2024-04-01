@@ -18,6 +18,8 @@
 
 #include "types.h"
 
+#define SONG_LENGTH 8
+
 
 /*---------- STRUCTURE DEFINITIONS ------------------------------------------*/
 /*---------- STRUCTURE: TODO ------------------------------

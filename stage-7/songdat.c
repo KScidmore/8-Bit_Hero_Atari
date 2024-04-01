@@ -16,17 +16,15 @@
 #include "songdat.h"
 #include "sndconst.h"
 
-#define SONG_LENGTH 200
-
 Psg_notes channel_a[SONG_LENGTH] = {
-    {C6, 0x0B, 0, 0},
-    {D6, 0x0B, 0, 0},
-    {E6, 0x0B, 0, 0},
-    {F6, 0x0B, 0, 0},
-    {G6, 0x0B, 0, 0},
-    {A7, 0x0B, 0, 0},
-    {B7, 0x0B, 0, 0},
-    {C7, 0x0B, 0, 0}
+    {C6<<3, 0x0B, 0, 0},
+    {D6<<3, 0x0B, 0, 0},
+    {E6<<3, 0x0B, 0, 0},
+    {F6<<3, 0x0B, 0, 0},
+    {G6<<3, 0x0B, 0, 0},
+    {A7<<3, 0x0B, 0, 0},
+    {B7<<3, 0x0B, 0, 0},
+    {C7<<3, 0x0B, 0, 0}
 };
 
 Psg_notes channel_b[SONG_LENGTH] = {
