@@ -38,7 +38,7 @@ int main() {
     init_scene((UINT8*) front_buffer, front_buffer, &model);
 
     back_buffer = front_buffer;
-    
+
     curr_buffer = back_buffer;
 
     /*Get Start Time*/
@@ -75,8 +75,6 @@ int main() {
         if (time_elapsed >= 1) {
 
             Vsync();
-
-            render_frets(curr_buffer, &model);
 			render_next(curr_buffer, &model);
 			Setscreen(-1, curr_buffer,-1);
 
