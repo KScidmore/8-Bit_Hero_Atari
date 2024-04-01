@@ -31,8 +31,6 @@ void render_next(UINT32 *base, Model *model){
     static UINT8 k = 0;
     static UINT8 l = 0;
 
-
-    clear_top(base, model);
     render_active_notes(base, model);
     render_score(base, model);
     render_multiplier(base, model);
@@ -42,18 +40,22 @@ void render_next(UINT32 *base, Model *model){
      if(note_gen == 69){
         switch (note_counter){
                 case 0:
+                    clear_top(base, model);
                     render_new_note(base, model, FRET_A, i);
                     i++;
                     break;
                 case 1:
+                    clear_top(base, model);
                     render_new_note(base, model, FRET_S, j);
                     j++;
                     break;
                 case 2:
+                    clear_top(base, model);
                     render_new_note(base, model, FRET_D, k);
                     k++;
                     break;
                 case 3:
+                    clear_top(base, model);
                     render_new_note(base, model, FRET_F, l);
                     l++;
                     break;
@@ -74,7 +76,7 @@ void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
     model->lanes[fret].notes[note_index].is_active = TRUE;
 
-    plot_bitmap_32(base, model->lanes[fret].notes[note_index].pos_x, model->lanes[fret].notes[note_index].pos_y, note_map, model->lanes[fret].notes[note_index].size_y);
+    /*plot_bitmap_32(base, model->lanes[fret].notes[note_index].pos_x, model->lanes[fret].notes[note_index].pos_y, note_map, model->lanes[fret].notes[note_index].size_y);*/
 
 }
 
@@ -151,10 +153,10 @@ void render_active_notes(UINT32 *base, Model *model){
 
 void clear_top(UINT32 *base, Model *model){
 
-    black_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, 84, model->lanes[FRET_A].notes[FRET_A].size_y);
-    black_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, 84, model->lanes[FRET_S].notes[FRET_S].size_y);
-    black_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, 84, model->lanes[FRET_D].notes[FRET_D].size_y);
-    black_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, 84, model->lanes[FRET_F].notes[FRET_F].size_y);
+    clear_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, 84, model->lanes[FRET_A].notes[FRET_A].size_y);
+    clear_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, 84, model->lanes[FRET_S].notes[FRET_S].size_y);
+    clear_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, 84, model->lanes[FRET_D].notes[FRET_D].size_y);
+    clear_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, 84, model->lanes[FRET_F].notes[FRET_F].size_y);
     
 }
 
