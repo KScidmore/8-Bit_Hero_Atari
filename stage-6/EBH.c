@@ -85,14 +85,13 @@ int main() {
 
             Vsync();
 
-            take_snapshot(&model, &snapshot);
             if(curr_buffer == TRUE) {
 				render_next((UINT32*)(back_buffer), &model);
-				Setscreen(-1,back_buffer,-1);
+				Setscreen(-1, back_buffer,-1);
 				curr_buffer = FALSE;
 			} else {
 				render_next((UINT32*)(front_buffer), &model);
-				Setscreen(-1,front_buffer,-1);
+				Setscreen(-1, front_buffer,-1);
 				curr_buffer = TRUE;
 			}
 
@@ -120,7 +119,7 @@ void take_snapshot(Model *model, Model *snapshot) {
 UINT32 get_time() {
     UINT32 time_now;
     UINT32 old_ssp;
-    UINT32 *timer = (UINT32 *)0x462;
+    UINT32 *timer = (UINT32*)0x462;
     
     old_ssp = Super(0); 
     time_now = *timer;
