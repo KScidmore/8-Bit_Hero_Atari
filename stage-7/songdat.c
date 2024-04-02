@@ -22,9 +22,9 @@ Psg_notes channel_a[SONG_LENGTH] = {
     {E3, 0x0B, 0, 0},
     {F3, 0x0B, 0, 0},
     {G3, 0x0B, 0, 0},
-    {A4, 0x0B, 0, 0},
-    {B4, 0x0B, 0, 0},
-    {C4, 0x0B, 0, 0}
+    {F3, 0x0B, 0, 0},
+    {E3, 0x0B, 0, 0},
+    {D3, 0x0B, 0, 0}
 };
 
 Psg_notes channel_b[SONG_LENGTH] = {
