@@ -17,6 +17,10 @@
 #include "inputs.h"
 #include "events.h"
 #include "ebh.h"
+#include "sndconst.h"
+#include "music.h"
+#include "songdat.h"
+#include "psg.h "
 
 
 UINT8 buffer_array[32256];
@@ -31,11 +35,12 @@ int main() {
     UINT8 *original_buffer = Physbase();
 
     /*Time variables*/
-    UINT32 time_then, time_now, time_elapsed;
+    UINT32 time_then, time_now, time_elapsed, total_time_elapsed;
 
     /*Input Variables*/
     char ch;
     BOOL quit = FALSE;
+    BOOL music_on = FALSE;
 
     /*Set Buffers Up*/
     set_buffer(&front_buffer, &back_buffer, buffer_array);
@@ -59,6 +64,13 @@ int main() {
         time_now = get_time();
 
         time_elapsed = time_now - time_then;
+        total_time_elapsed += time_now - time_then;
+
+        /*wait to start music until first note hits fret*/
+        if (total_time_elapsed == 320){
+            start_music();
+            music_on = TRUE;
+        }
 
         ch = read_char();
         if (ch != -1) {
@@ -87,6 +99,12 @@ int main() {
 			render_next(curr_buffer, &model);
 			Setscreen(-1, curr_buffer,-1);
 
+            if(music_on){
+
+                update_music(total_time_elapsed);
+
+            }
+
             time_then = time_now;
 
         }
@@ -96,9 +114,9 @@ int main() {
         }
 
     }
-
+    stop_sound();
     Setscreen(-1, original_buffer, -1);
-
+    printf("Time: %d \n", total_time_elapsed);
     return 0;
 }
 

@@ -79,16 +79,14 @@ int main()
     
 }
 
-UINT32 get_time(){
+UINT32 get_time() {
+    long *timer = (long *)0x462;
+    long time_now;
+    long old_ssp;
 
-	UINT32 time_now;
-	UINT32 old_ssp;
-	UINT32 *timer = (UINT32 *)0x462;
-	
-	old_ssp = Super(0); 
-	time_now = *timer;
-	Super(old_ssp); 
-	
-	return time_now;
-	
+    old_ssp = Super(0);
+    time_now = *timer;
+    Super(old_ssp);
+
+    return (UINT32)time_now;
 }

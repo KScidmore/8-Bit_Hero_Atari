@@ -204,8 +204,6 @@ BOOL note_collision_a(Model *model, UINT8 index)
 	if (model->lanes[FRET_A].notes[index].pos_y > 300 &&
 		model->lanes[FRET_A].notes[index].pos_y < 384)
 	{
-		/*model->lanes[FRET_A].notes[index].is_active = FALSE;
-		clear_32(base, model->lanes[FRET_A].notes[index].pos_x, model->lanes[FRET_A].notes[index].pos_y, model->lanes[FRET_A].notes[index].size_y);*/
 	
 		return TRUE;
 	}

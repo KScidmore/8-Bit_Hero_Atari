@@ -77,7 +77,7 @@ void start_music()
 /--------------------------------------------------------*/
 void update_music(UINT32 total_time_elapsed)
 {    
-    if(total_time_elapsed % 20 == 0) {
+    if(total_time_elapsed % 70 == 0) {
 
         stop_sound();
         set_tone(0, channel_a[curr_note_index].pitch);

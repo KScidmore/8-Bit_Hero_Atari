@@ -8,13 +8,18 @@
 #include "inputs.h"
 #include "events.h"
 #include "raster.h"
+#include "ebh.h"
+#include "sndconst.h"
+#include "music.h"
+#include "songdat.h"
+#include "psg.h "
 
-void game_loop();
+UINT8 buffer_array[32256];
 
 int main()
 {
     char ch;
-
+    UINT8 *original_buffer = get_video_base();
     UINT8 *base = get_video_base();
 
     render_splashscreen(base);
@@ -32,89 +37,126 @@ int main()
 
     }
 
+    Setscreen(-1, original_buffer, -1);
+
     return 0;
     
 }
 
 void game_loop(){
 
-    UINT32 time_then, time_now, time_elapsed;
-    UINT8 *base = get_video_base();
-    UINT32 *base32 = (UINT32 *)get_video_base();
-
+    /*Game Model*/
     Model model;
 
-    char input_value;
-    char ch;
-    BOOL exit = FALSE;
+    /*Frame Buffer variables*/
+    UINT32 *front_buffer, *back_buffer, *curr_buffer;
 
+    /*Time variables*/
+    UINT32 time_then, time_now, time_elapsed;
+
+    /*Input Variables*/
+    char ch;
+    BOOL quit = FALSE;
+
+    /*Set Buffers Up*/
+    set_buffer(&front_buffer, &back_buffer, buffer_array);
+
+    /*Initalize Game Model/Render Start Scene*/
     init_model(&model);
 
-    init_scene(base, base32, &model);
-   
+    init_scene((UINT8*) front_buffer, front_buffer, &model);
+
+    back_buffer = front_buffer;
+
+    curr_buffer = back_buffer;
+
+    /*Get Start Time*/
     time_then = get_time();
 
-    /*Main game loop*/
-    while(!exit){
 
-        /*Get time*/
+    while (!quit) {
+
         time_now = get_time();
+
         time_elapsed = time_now - time_then;
 
-
-        /*Check for input*/
         ch = read_char();
-
-        /*Handle input*/
-        if(ch != -1){
-            switch(ch) {
+        if (ch != -1) {
+            switch (ch) {
                 case 'a':
-                    play_on_fret(&model, FRET_A, base32);
+                    play_on_fret(&model, FRET_A);
                     break;
                 case 's':
-                    play_on_fret(&model, FRET_S, base32);
+                    play_on_fret(&model, FRET_S);
                     break;
                 case 'd':
-                    play_on_fret(&model, FRET_D, base32);
+                    play_on_fret(&model, FRET_D);
                     break;
                 case 'f':
-                    play_on_fret(&model, FRET_F, base32);
+                    play_on_fret(&model, FRET_F);
                     break;
-                case 27:
-                    exit = TRUE;
+                case 27: 
+                    quit = TRUE;
                     break;
-
             }
         }
 
-        /*Sync Events*/
+        if (time_elapsed >= 1) {
 
-        /*Generate and move notes*/
+            Vsync();
+			render_next(curr_buffer, &model);
+			set_video_base(curr_buffer);
 
-        if(time_elapsed >= 1){
+            time_then = time_now;
 
-            render_next(base32, &model);  
         }
 
-        if(model.fail_bar.value == 0){
-
+        if (model.fail_bar.value == 0) {
             break;
-        } 
+        }
+
+    }
+
+
+}
+
+void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[]){
+
+    UINT8 *address = buffer_array;
+
+	while (((UINT32)address) % 256 != 0)
+	{
+		address++;
+	}
+
+	*back_buffer = (UINT32*)address;
+    *front_buffer = (UINT32*)get_video_base();
+
+
+}
+
+void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer){
+
+    if(*curr_buffer == front_buffer) {
+
+        *curr_buffer = back_buffer;
+
+    } else {
+
+        *curr_buffer = front_buffer;
 
     }
 
 }
 
-UINT32 get_time(){
+UINT32 get_time() {
+    long *timer = (long *)0x462;
+    long time_now;
+    long old_ssp;
 
-	UINT32 time_now;
-	UINT32 old_ssp;
-	UINT32 *timer = (UINT32 *)0x462;
-	
-	old_ssp = Super(0); 
-	time_now = *timer;
-	Super(old_ssp); 
-	
-	return time_now;
-	
+    old_ssp = Super(0);
+    time_now = *timer;
+    Super(old_ssp);
+
+    return (UINT32)time_now;
 }

@@ -19,6 +19,7 @@ void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap,
                     unsigned int height);
 void clear_32(UINT32 *base, int x , int y, unsigned int height);
 UINT8* get_video_base();
+void set_video_base(UINT32 *buffer);
 
 
 #endif
