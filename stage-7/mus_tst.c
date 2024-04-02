@@ -26,11 +26,22 @@
 #define ESC_KEY 27
 
 UINT32 get_time();
+void clock_test();
+void temp_storage();
+
 
 
 
 
 int main() {
+    
+    temp_storage();
+    
+    return 0;
+}
+
+
+void clock_test() {
     char ch;
     BOOL quit = FALSE;
 
@@ -51,7 +62,7 @@ int main() {
     }
 
     
-    return 0;
+
 }
 
 
@@ -82,6 +93,7 @@ void temp_storage() {
             printf("Time Elapsed: %d \n", time_elapsed);
             printf("Addr 0x462: %u \n\n", get_time());
             */
+            
 
             time_then = time_now;
         }
@@ -98,7 +110,7 @@ void temp_storage() {
 }
 
 UINT32 get_time() {
-    long *timer = (long *)0x462;
+    long *timer = (long *)0x462; /* # of v-blanks processed since last reset*/
     long time_now;
     long old_ssp;
 

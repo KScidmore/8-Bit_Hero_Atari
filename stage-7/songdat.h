@@ -24,7 +24,8 @@
 /*---------- STRUCTURE DEFINITIONS ------------------------------------------*/
 /*---------- STRUCTURE: TODO ------------------------------
 /  INFO:
-/    Circular array for music using the PSG.
+/    Struct for the notes of a circular array for our game 
+/    music using the PSG.
 /  
 /  ATTRIBUTES:
 /    pitch      

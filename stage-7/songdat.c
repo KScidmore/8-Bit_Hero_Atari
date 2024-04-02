@@ -17,14 +17,14 @@
 #include "sndconst.h"
 
 Psg_notes channel_a[SONG_LENGTH] = {
-    {C6<<3, 0x0B, 0, 0},
-    {D6<<3, 0x0B, 0, 0},
-    {E6<<3, 0x0B, 0, 0},
-    {F6<<3, 0x0B, 0, 0},
-    {G6<<3, 0x0B, 0, 0},
-    {A7<<3, 0x0B, 0, 0},
-    {B7<<3, 0x0B, 0, 0},
-    {C7<<3, 0x0B, 0, 0}
+    {C5, 0x0B, 0, 0},
+    {D5, 0x0B, 0, 0},
+    {E5, 0x0B, 0, 0},
+    {F5, 0x0B, 0, 0},
+    {G5, 0x0B, 0, 0},
+    {A5>>1, 0x0B, 0, 0},
+    {B5>>1, 0x0B, 0, 0},
+    {C5>>1, 0x0B, 0, 0}
 };
 
 Psg_notes channel_b[SONG_LENGTH] = {
