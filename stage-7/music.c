@@ -21,10 +21,14 @@
 #include "sndconst.h"
 
 #define BPM 80
-
-const UINT32 ms_per_q_note = 60000 / BPM;
+#define TICKS_PER_SEC 70
+#define TICKS_PER_W_NOTE (TICKS_PER_SEC * 3)
+#define TICKS_PER_H_NOTE (TICKS_PER_W_NOTE / 2)
+#define TICKS_PER_Q_NOTE (TICKS_PER_W_NOTE / 4)
+#define TICKS_PER_E_NOTE (TICKS_PER_W_NOTE / 8)
 
 UINT32 curr_note_index;
+UINT32 time_since_last_note = 0;
 
 /*---------- FUNCTION: start_music ------------------------
 /  PURPOSE:
@@ -71,21 +75,13 @@ void start_music()
 /    TODO 
 /--------------------------------------------------------*/
 void update_music(UINT32 time_elapsed)
-{
-    static UINT32 time_last_note, foo, note_duration;
-    
-    time_last_note = 0;
-    foo = 0;
-    note_duration = ms_per_q_note;
+{    
+    time_since_last_note += time_elapsed;
 
     if(time_elapsed > 0) {
-        foo += time_elapsed;
-
-        if(foo >= note_duration) {
-            foo = 0;
+        if(time_since_last_note >= TICKS_PER_Q_NOTE) {
     
             stop_sound();
-
             set_tone(0, channel_a[curr_note_index].pitch);
             set_volume(0, channel_a[curr_note_index].level);
             enable_channel(0, 1, 0);
@@ -94,6 +90,7 @@ void update_music(UINT32 time_elapsed)
             
             /* making sure it wraps back around */
             curr_note_index = (curr_note_index + 1) % SONG_LENGTH; 
+            time_since_last_note = 0;
         }
     }
 
