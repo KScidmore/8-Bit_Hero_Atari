@@ -125,3 +125,27 @@ void do_vbl_isr() {
     }
 
 }
+
+
+-----------------------------------------------------------
+
+
+    /*
+    start_music();
+    */
+    
+    /*
+    while (measures <= 4) {
+        //prints past 4 w/o second if condition
+        if ((w_beats != old_w_beats || h_beats != old_h_beats ||
+            q_beats != old_q_beats) && measures <= 4) {
+            printf("Measure:\t\t%u\n", measures);
+            printf("Whole Beats:\t%u\n", w_beats);
+            printf("Half Beats:\t\t%u\n", h_beats);
+            printf("Quarter Beats:\t%u\n\n", q_beats);
+            old_w_beats = w_beats;
+            old_h_beats = h_beats;
+            old_q_beats = q_beats;
+        }
+    }
+    */
