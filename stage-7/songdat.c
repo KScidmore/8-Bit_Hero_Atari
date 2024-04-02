@@ -17,24 +17,24 @@
 #include "sndconst.h"
 
 Psg_notes channel_a[SONG_LENGTH] = {
-    {C3, 0x0B, 0, 0},
-    {D3, 0x0B, 0, 0},
-    {E3, 0x0B, 0, 0},
-    {F3, 0x0B, 0, 0},
-    {G3, 0x0B, 0, 0},
-    {F3, 0x0B, 0, 0},
-    {E3, 0x0B, 0, 0},
-    {D3, 0x0B, 0, 0}
+    {C5<<2, 0x0B, 0, 0},
+    {D5<<2, 0x0B, 0, 0},
+    {E5<<2, 0x0B, 0, 0},
+    {F5<<2, 0x0B, 0, 0},
+    {G5<<2, 0x0B, 0, 0},
+    {F5<<2, 0x0B, 0, 0},
+    {E5<<2, 0x0B, 0, 0},
+    {D5<<2, 0x0B, 0, 0}
 };
 
 Psg_notes channel_b[SONG_LENGTH] = {
-    {C3, 0x13, ENV_SHAPE_4, 0X0F00},
-    {D3, 0x13, ENV_SHAPE_4, 0X0F00},
-    {E3, 0x13, ENV_SHAPE_4, 0X0F00},
-    {F3, 0x13, ENV_SHAPE_4, 0X0F00},
-    {G3, 0x13, ENV_SHAPE_4, 0X0F00},
-    {A4, 0x13, ENV_SHAPE_4, 0X0F00},
-    {B4, 0x13, ENV_SHAPE_4, 0X0F00},
-    {C4, 0x13, ENV_SHAPE_4, 0X0F00}
+    {C5<<2, 0x13, ENV_SHAPE_4, 0X0F00},
+    {D5<<2, 0x13, ENV_SHAPE_4, 0X0F00},
+    {E5<<2, 0x13, ENV_SHAPE_4, 0X0F00},
+    {F5<<2, 0x13, ENV_SHAPE_4, 0X0F00},
+    {G5<<2, 0x13, ENV_SHAPE_4, 0X0F00},
+    {F5<<2, 0x13, ENV_SHAPE_4, 0X0F00},
+    {E5<<2, 0x13, ENV_SHAPE_4, 0X0F00},
+    {D5<<2, 0x13, ENV_SHAPE_4, 0X0F00}
 };
 
