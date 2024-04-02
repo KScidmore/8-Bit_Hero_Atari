@@ -26,66 +26,26 @@
 #define ESC_KEY 27
 
 UINT32 get_time();
-void clock_test();
-void temp_storage();
-
-
-
 
 
 int main() {
-    
-    temp_storage();
-    
-    return 0;
-}
-
-
-void clock_test() {
-    char ch;
-    BOOL quit = FALSE;
-
-    /*
-    temp_storage()
-    */
-
-    printf("0x462 Value: %u \n\n", get_time());
-
-    while(!quit) {
-        if (Cconis()) {
-            ch = (char)Cnecin();
-            if(ch == ESC_KEY) {
-                quit = TRUE;
-                stop_sound();
-            }
-        }
-    }
-
-    
-
-}
-
-
-void temp_storage() {
-    UINT32 time_then, time_now, time_elapsed;
+    UINT32 time_then, time_now, time_elapsed, total_time_elapsed;
     BOOL quit = FALSE;
     char ch;
-
-    time_then = 0;
-    time_now = 0;
-    time_elapsed = 0;
 
     start_music();
     
     while(!quit) {
         time_now = get_time();
-        time_elapsed += time_now - time_then;
+        time_elapsed = time_now - time_then;
+        total_time_elapsed += time_now - time_then;
+
 
         /* if clock has ticked */
 
         if(time_elapsed > 0) {
             
-            update_music(time_elapsed);
+            update_music(total_time_elapsed);
             
             /*
             printf("Time Then: %d \n", time_then);
@@ -107,7 +67,9 @@ void temp_storage() {
         }
         
     }
+    
 }
+
 
 UINT32 get_time() {
     long *timer = (long *)0x462; /* # of v-blanks processed since last reset*/

@@ -55,6 +55,8 @@ void start_music()
     set_envelope(channel_a[curr_note_index].env_shape, 
                  channel_a[curr_note_index].env_sustain);
 
+    curr_note_index += 1;
+
 }
 
 /*---------- FUNCTION: update_music -----------------------
@@ -73,9 +75,9 @@ void start_music()
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
 /--------------------------------------------------------*/
-void update_music(UINT32 time_elapsed)
+void update_music(UINT32 total_time_elapsed)
 {    
-    if(time_elapsed % 20 == 0) {
+    if(total_time_elapsed % 20 == 0) {
 
         stop_sound();
         set_tone(0, channel_a[curr_note_index].pitch);
@@ -86,7 +88,6 @@ void update_music(UINT32 time_elapsed)
         
         /* making sure it wraps back around */
         curr_note_index = (curr_note_index + 1) % SONG_LENGTH; 
-        time_since_last_note = 0;
     }
 
     
