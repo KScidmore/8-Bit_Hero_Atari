@@ -1,3 +1,12 @@
+/*
+ ID Header:
+   Authors: 	Andrew Boisvert, Kyle Scidmore
+   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
+   File Name:	EBH.c
+   Citations:  
+ Program Purposes: Main game module
+*/
+
 #include <osbind.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -7,62 +16,38 @@
 #include "rast_asm.h"
 #include "inputs.h"
 #include "events.h"
-#include "raster.h"
 #include "ebh.h"
 #include "sndconst.h"
 #include "music.h"
 #include "songdat.h"
 #include "psg.h "
 
+
 UINT8 buffer_array[32256];
 
-int main()
-{
-    char ch;
-    UINT8 *original_buffer = get_video_base();
-    UINT8 *base = get_video_base();
-
-    render_splashscreen(base);
-
-
-    while(ch != 27){
-
-        ch = read_char();
-
-        if(ch == ' '){
-
-            game_loop();
-            break;
-        }
-
-    }
-
-    Setscreen(-1, original_buffer, -1);
-
-    return 0;
-    
-}
-
-void game_loop(){
+int main() {
 
     /*Game Model*/
-    Model model;
+    Model model, snapshot;
 
     /*Frame Buffer variables*/
     UINT32 *front_buffer, *back_buffer, *curr_buffer;
+    UINT8 *original_buffer = Physbase();
 
     /*Time variables*/
-    UINT32 time_then, time_now, time_elapsed;
+    UINT32 time_then, time_now, time_elapsed, total_time_elapsed;
 
     /*Input Variables*/
     char ch;
     BOOL quit = FALSE;
+    BOOL music_on = FALSE;
 
     /*Set Buffers Up*/
     set_buffer(&front_buffer, &back_buffer, buffer_array);
 
     /*Initalize Game Model/Render Start Scene*/
     init_model(&model);
+    init_model(&snapshot);
 
     init_scene((UINT8*) front_buffer, front_buffer, &model);
 
@@ -79,6 +64,13 @@ void game_loop(){
         time_now = get_time();
 
         time_elapsed = time_now - time_then;
+        total_time_elapsed += time_now - time_then;
+
+        /*wait to start music until first note hits fret*/
+        if (total_time_elapsed == 320){
+            start_music();
+            music_on = TRUE;
+        }
 
         ch = read_char();
         if (ch != -1) {
@@ -105,7 +97,13 @@ void game_loop(){
 
             Vsync();
 			render_next(curr_buffer, &model);
-			set_video_base(curr_buffer);
+			Setscreen(-1, curr_buffer,-1);
+
+            if(music_on){
+
+                update_music(total_time_elapsed);
+
+            }
 
             time_then = time_now;
 
@@ -116,10 +114,25 @@ void game_loop(){
         }
 
     }
-
-
+    stop_sound();
+    Setscreen(-1, original_buffer, -1);
+    printf("Time: %d \n", total_time_elapsed);
+    return 0;
 }
 
+/*---------- FUNCTION: set_buffer -------------------------
+/  PURPOSE:
+/    TODO
+/ 
+/  CALLER INPUT:
+/    TODO
+/ 
+/  CALLER OUTPUT:
+/    N/A
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
 void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[]){
 
     UINT8 *address = buffer_array;
@@ -130,11 +143,24 @@ void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[
 	}
 
 	*back_buffer = (UINT32*)address;
-    *front_buffer = (UINT32*)get_video_base();
+    *front_buffer = Physbase();
 
 
 }
 
+/*---------- FUNCTION: swap_buffer -------------------------
+/  PURPOSE:
+/    Checks what the current buffer is and swaps if needed
+/ 
+/  CALLER INPUT:
+/    TODO
+/ 
+/  CALLER OUTPUT:
+/    N/A
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
 void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer){
 
     if(*curr_buffer == front_buffer) {
@@ -149,6 +175,19 @@ void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer
 
 }
 
+/*---------- FUNCTION: get_time -------------------------
+/  PURPOSE:
+/    TODO
+/ 
+/  CALLER INPUT:
+/    TODO
+/ 
+/  CALLER OUTPUT:
+/    N/A
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
 UINT32 get_time() {
     long *timer = (long *)0x462;
     long time_now;

@@ -32,6 +32,7 @@ void render_next(UINT32 *base, Model *model){
     static UINT8 j = 0;
     static UINT8 k = 0;
     static UINT8 l = 0;
+    static BOOL swap = FALSE;
 
     render_active_notes(base, model);
     render_score(base, model);
@@ -39,33 +40,67 @@ void render_next(UINT32 *base, Model *model){
     render_failbar(base, model);
     render_frets(base, model);
 
-     if(note_gen == CHECK_GENERATE){
-        switch (note_counter){
-                case 0:
-                    clear_top(base, model);
-                    render_new_note(base, model, FRET_A, i);
-                    i++;
-                    break;
-                case 1:
-                    clear_top(base, model);
-                    render_new_note(base, model, FRET_S, j);
-                    j++;
-                    break;
-                case 2:
-                    clear_top(base, model);
-                    render_new_note(base, model, FRET_D, k);
-                    k++;
-                    break;
-                case 3:
-                    clear_top(base, model);
-                    render_new_note(base, model, FRET_F, l);
-                    l++;
-                    break;
+     if(note_gen == 69){
+        if(!swap){
+            switch (note_counter){
+                    case 0:
+                        clear_top(base, model);
+                        render_new_note(base, model, FRET_A, i);
+                        i++;
+                        break;
+                    case 1:
+                        clear_top(base, model);
+                        render_new_note(base, model, FRET_S, j);
+                        j++;
+                        break;
+                    case 2:
+                        clear_top(base, model);
+                        render_new_note(base, model, FRET_D, k);
+                        k++;
+                        break;
+                    case 3:
+                        clear_top(base, model);
+                        render_new_note(base, model, FRET_F, l);
+                        l++;
+                        break;
+                }
+            note_counter++;
+            note_gen = 0;
+            if(note_counter == 4){
+                note_counter = 0;
+                swap = TRUE;
             }
-        note_counter++;
-        note_gen = 0;
-        if(note_counter == 4){
-            note_counter = 0;
+        }
+        else{
+            switch (note_counter){
+                    case 3:
+                        clear_top(base, model);
+                        render_new_note(base, model, FRET_A, i);
+                        i++;
+                        break;
+                    case 2:
+                        clear_top(base, model);
+                        render_new_note(base, model, FRET_S, j);
+                        j++;
+                        break;
+                    case 1:
+                        clear_top(base, model);
+                        render_new_note(base, model, FRET_D, k);
+                        k++;
+                        break;
+                    case 0:
+                        clear_top(base, model);
+                        render_new_note(base, model, FRET_F, l);
+                        l++;
+                        break;
+                }
+            note_counter++;
+            note_gen = 0;
+            if(note_counter == 4){
+                note_counter = 0;
+                swap = FALSE;
+            }
+
         }
     }
     else{
