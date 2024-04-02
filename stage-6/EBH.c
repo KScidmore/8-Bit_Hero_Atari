@@ -1,3 +1,12 @@
+/*
+ ID Header:
+   Authors: 	Andrew Boisvert, Kyle Scidmore
+   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
+   File Name:	EBH.c
+   Citations:  
+ Program Purposes: Main game module
+*/
+
 #include <osbind.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -93,6 +102,19 @@ int main() {
     return 0;
 }
 
+/*---------- FUNCTION: set_buffer -------------------------
+/  PURPOSE:
+/    TODO
+/ 
+/  CALLER INPUT:
+/    TODO
+/ 
+/  CALLER OUTPUT:
+/    N/A
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
 void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[]){
 
     UINT8 *address = buffer_array;
@@ -108,6 +130,19 @@ void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[
 
 }
 
+/*---------- FUNCTION: swap_buffer -------------------------
+/  PURPOSE:
+/    Checks what the current buffer is and swaps if needed
+/ 
+/  CALLER INPUT:
+/    TODO
+/ 
+/  CALLER OUTPUT:
+/    N/A
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
 void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer){
 
     if(*curr_buffer == front_buffer) {
@@ -122,14 +157,27 @@ void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer
 
 }
 
+/*---------- FUNCTION: get_time -------------------------
+/  PURPOSE:
+/    TODO
+/ 
+/  CALLER INPUT:
+/    TODO
+/ 
+/  CALLER OUTPUT:
+/    N/A
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
 UINT32 get_time() {
-    UINT32 time_now;
-    UINT32 old_ssp;
-    UINT32 *timer = (UINT32*)0x462;
-    
-    old_ssp = Super(0); 
+    long *timer = (long *)0x462;
+    long time_now;
+    long old_ssp;
+
+    old_ssp = Super(0);
     time_now = *timer;
-    Super(old_ssp); 
-    
-    return time_now;
+    Super(old_ssp);
+
+    return (UINT32)time_now;
 }

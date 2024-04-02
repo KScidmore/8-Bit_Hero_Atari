@@ -24,6 +24,8 @@
 #define SCREEN_WIDTH 640 
 #define SCREEN_HEIGHT 400
 
+void set_video();
+
 UINT8* get_video_base()
 {
 	UINT8 *high = 0xFFFF8201L;
@@ -33,11 +35,28 @@ UINT8* get_video_base()
 	
 	old_ssp = Super(0);
 	
+	/*Combine high and low bytes and set address*/
 	address = ((long)(*high) << 16) | ((long)(*low) << 8);
 	
 	Super(old_ssp);
 	
 	return (UINT8*)(address);
+}
+
+void set_video_base(UINT32 *buffer){
+
+	long buffer_address = (long)buffer;
+	long old_ssp;
+	UINT16 address;
+
+	old_ssp = Super(0);
+
+	address = (UINT16)buffer;
+	set_video(address);
+
+	Super(old_ssp);
+
+
 }
 
 
