@@ -17,6 +17,7 @@
 #include "sndconst.h"
 
 Psg_notes channel_a[SONG_LENGTH] = {
+    {C5, 0, 0, 0},
     {C5<<2, 0x0B, 0, 0},
     {D5<<2, 0x0B, 0, 0},
     {E5<<2, 0x0B, 0, 0},
