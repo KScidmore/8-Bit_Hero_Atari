@@ -24,16 +24,14 @@ Notes:
 
 /*---------- FUNCTION: TODO -------------------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    TODO - purpose, from the caller's perspective
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/    TODO - the purpose of each input parameter
 /  
 /  CALLER OUTPUT:
 /    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    value 
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
@@ -70,16 +68,14 @@ Notes:
 
 ;---------- FUNCTION: TODO --------------------------------
 ;  PURPOSE:
-;    TODO - purpose, from the caller's perspective (if not
-;    perfectly clear from the name)
+;    TODO - purpose, from the caller's perspective 
 ;
 ;  CALLER INPUT:
-;    TODO - the purpose of each input parameter (if not 
-;    perfectly clear from the name)
+;    TODO - the purpose of each input parameter 
 ;
 ;  CALLER OUTPUT:
 ;    TODO - the purose of each output parameter and return 
-;    value (if not perfectly clear from the name)
+;    value 
 ;
 ;  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 ;    TODO

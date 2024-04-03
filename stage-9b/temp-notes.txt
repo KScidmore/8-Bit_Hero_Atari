@@ -1,0 +1,33 @@
+-------------------------------------------------------------------------------
+FROM LAB6.C FILE
+
+int main()
+{
+    SCANCODE scancode;
+    char *scancode_2_ascii = (char *)((Keytbl(-1, -1, -1))->unshift);
+    char ch;
+    long orig_ssp;
+
+    orig_ssp = Super(0);                    /* enter supervisor mode */
+    *IKBD_control = RX_DISABLE;             /* disable Rx interrupts */
+
+    while (1)
+    {
+        scancode = read_scancode();
+        if (scancode == ESC_MAKE){
+            break;
+        } 
+        else if (!(scancode & MAKE_MASK)) { /* check high order bit */
+            ch = scancode_2_ascii[scancode];
+            (void)Cconout(ch);
+        }
+    }
+
+    *IKBD_control = RX_ENABLE;              /* enable Rx interrupts */
+    Super(orig_ssp);                        /* leave supervisor mode */
+
+    return 0;
+}
+
+END OF LAB6.C CODE
+-------------------------------------------------------------------------------
