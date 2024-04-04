@@ -29,8 +29,9 @@ UINT32 get_time();
 
 
 int main() {
-    UINT32 time_then, time_now, time_elapsed, total_time_elapsed;
+    UINT32 time_then = 0, time_now, time_elapsed, total_time_elapsed;
     BOOL quit = FALSE;
+    BOOL first_loop = TRUE;
     char ch;
 
     start_music();
@@ -39,31 +40,22 @@ int main() {
         time_now = get_time();
         time_elapsed = time_now - time_then;
         total_time_elapsed += time_now - time_then;
+        /*
+        */
 
-
-        /* if clock has ticked */
-
-        if(time_elapsed > 0) {
-            
-            update_music(total_time_elapsed);
-            
-            /*
-            printf("Time Then: %d \n", time_then);
-            printf("Time Now: %d \n", time_now);
-            printf("Time Elapsed: %d \n", time_elapsed);
-            printf("Addr 0x462: %u \n\n", get_time());
-            */
-            
-
-            time_then = time_now;
-        }
-
+        /*---------- asynchronous events --------*/
         if (Cconis()) {
             ch = (char)Cnecin();
             if(ch == ESC_KEY) {
                 quit = TRUE;
                 stop_sound();
             }
+        }
+
+        /*---------- synchronous events ---------*/
+        if(time_elapsed > 0) {
+            update_music(total_time_elapsed);
+            time_then = time_now;
         }
         
     }

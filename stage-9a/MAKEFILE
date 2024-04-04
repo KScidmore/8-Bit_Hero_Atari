@@ -1,0 +1,38 @@
+# Variable declarations
+TARGET_A=vbl_tst
+OBJECTS_A=vbl.o vblisr.o
+
+TARGET_B=ikbdtst
+OBJECTS_B=ikbd.o ikbdisr.o
+
+CC=cc68x
+CFLAGS=-g
+
+# Building the target
+all: clean $(TARGET_A) $(TARGET_B)
+
+# Linking target executables from object files
+$(TARGET_A): $(OBJECTS_A)
+	$(CC) $(OBJECTS_A) -o $(TARGET_A)
+
+$(TARGET_B): $(OBJECTS_B)
+	$(CC) $(OBJECTS_B) -o $(TARGET_B)
+
+# Compiling object files 
+vbl.o: vbl.c
+	$(CC) $(CFLAGS) -c vbl.c 
+
+vblisr.o: vblisr.s 
+	gen -D -L2 vblisr.s
+
+ikbd.o: ikbd.c 
+	$(CC) $(CFLAGS) -c vbl.c 
+
+ikbdisr.o: ikbdisr.s
+	gen -D -L2 vblisr.s
+
+# Cleaning up the old object files and executable
+clean:
+	$(RM) *.o $(TARGET_A) $(TARGET_B)
+
+# DON'T DELETE THIS LINE OR IT BREAKS
