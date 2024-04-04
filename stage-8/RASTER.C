@@ -54,7 +54,22 @@ UINT8* get_video_base()
 	return (UINT8*)(address);
 }
 
-/*Will doc when working*/
+/*------------- FUNCTION: set_video_base ----------------
+/
+/	PURPOSE:
+/	  Align and sets the video base address using the
+/ 	  given buffer pointer
+/	
+/	CALLER INPUT:
+/	  UINT32 *buffer 
+/		- Pointer to the buffer to be set
+/	
+/	CALLER OUTPUT:
+/	  returns void 
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  - tested and working as expected 
+/------------------------------------------------------*/
 void set_video_base(UINT32 *buffer){
 
 	long buffer_address = (long)buffer;
@@ -63,7 +78,8 @@ void set_video_base(UINT32 *buffer){
 
 	old_ssp = Super(0);
 
-	address = (UINT16)buffer;
+	address = buffer_address >> 8;
+
 	set_video(address);
 
 	Super(old_ssp);
