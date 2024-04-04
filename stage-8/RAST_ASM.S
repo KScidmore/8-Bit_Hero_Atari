@@ -63,7 +63,7 @@ _set_video:
 		
 		move.w	STACK_OFFSET(a6),d0		;Get buffer address from stack
 		lsr		#8,d0					
-		move.l 	ADDRESS,a0				;Load video base Hi address into a0
+		move.l 	#ADDRESS,a0				;Load video base Hi address into a0
 		movep.w d0,(a0)					;Set Buffer 
 		
 		movem.l	(sp)+,d0-d2/a0-a2

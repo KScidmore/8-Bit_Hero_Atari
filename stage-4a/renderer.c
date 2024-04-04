@@ -1,3 +1,16 @@
+/*
+ ID Header:
+   Authors: 	Andrew Boisvert, Kyle Scidmore
+   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
+   File Name:	RASTER.C
+   Citations:  
+     - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+     - 
+
+
+ Program Purposes:
+   Library of functions to render screen elements
+*/
 #include <osbind.h>
 #include "types.h"
 #include "renderer.h"
@@ -5,9 +18,6 @@
 #include "RASTER.H"
 #include "bitmaps.h"
 #include "RAST_ASM.h"
-
-/*figure out something with this global so paul doesnt kill you*/
-const UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
 /*---------- FUNCTION: init_scene ----------------------
 /  PURPOSE:
@@ -110,11 +120,9 @@ void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 void render_active_notes(UINT32 *base, Model *model){
 
 
-    int i, size;
+    int i;
 
-    size = 50;
-
-    for(i = 0; i < size; i++){
+    for(i = 0; i < ARRAY_SIZE; i++){
 
         /*iterate through note array, for active notes update position and render*/
     
@@ -189,32 +197,32 @@ void render_frets(UINT32 *base, Model *model)
 void render_fretboard(UINT8 *base)
 {
     int i, start_y, start_x;
-    start_y = 80;
-    start_x = 156;
+    start_y = START_Y;
+    start_x = LANE_1_LEFT;
 
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
 
-        plot_h_line(base, 156, 482, start_y);
+        plot_h_line(base, START_X, END_X, start_y);
         
         start_y += 1;
 
     }
 
     /* Plot first track*/
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
     
-    start_x = 192;
+    start_x = LANE_1_RIGHT;
 
-      for(i = 0; i < 4; i++)
+      for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
@@ -222,67 +230,68 @@ void render_fretboard(UINT8 *base)
 
     /*Plot second track*/
 
-    start_x = 252;
+    start_x = LANE_2_LEFT;
     
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
     
-    start_x = 287;
+    start_x = LANE_2_RIGHT;
 
-      for(i = 0; i < 4; i++)
+      for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
 
     /*plot third track*/
-    start_x = 348;
+    start_x = LANE_3_LEFT;
     
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
     
-    start_x = 383;
+    start_x = LANE_3_RIGHT;
 
-      for(i = 0; i < 4; i++)
+      for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
 
-    /*Plot fourth track*/
-    start_x = 444;
+    /*plot fourth track*/
+    start_x = LANE_4_LEFT;
     
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
     
-    start_x = 479;
+    start_x = LANE_4_RIGHT;
 
-      for(i = 0; i < 4; i++)
+      for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
+
 }
 
 /*---------- FUNCTION: render_start_score ----------------
@@ -306,10 +315,10 @@ void render_start_score(UINT32 *base, Model *model){
     int pos_y = model->score.pos_y;
     int height = model->score.size_y;
 
-    plot_bitmap_32(base, model->score.ones_x, pos_y, num_maps[0], height);
-    plot_bitmap_32(base, model->score.tens_x, pos_y, num_maps[0], height);
-    plot_bitmap_32(base, model->score.hunds_x, pos_y, num_maps[0], height);
-    plot_bitmap_32(base, model->score.thous_x, pos_y, num_maps[0], height);
+    plot_bitmap_32(base, model->score.ones_x, pos_y, zero_map, height);
+    plot_bitmap_32(base, model->score.tens_x, pos_y, zero_map, height);
+    plot_bitmap_32(base, model->score.hunds_x, pos_y, zero_map, height);
+    plot_bitmap_32(base, model->score.thous_x, pos_y, zero_map, height);
 
 }
 
@@ -332,6 +341,7 @@ void render_start_score(UINT32 *base, Model *model){
 void render_score(UINT32 *base, Model *model){
 
     UINT16 value, ones, tens, hundreds, thousands, height, pos_y;
+    UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
     if(model->score.updated_flag == TRUE){
 
@@ -341,13 +351,10 @@ void render_score(UINT32 *base, Model *model){
 
         value = model->score.value;
 
-        ones = value & 0xF;
-
-        tens = (value >> 4) & 0xF;
-
-        hundreds = (value >> 8) & 0xF;
-
-        thousands = (value >> 12) & 0xF;
+        ones = value % 10;         
+        tens = (value / 10) % 10;    
+        hundreds = (value / 100) % 10;
+        thousands = (value / 1000); 
 
         if(ones != model->score.prev_ones){
 
@@ -484,6 +491,45 @@ void render_multiplier(UINT32 *base, Model *model)
         model->multiplier.prev_value = model->multiplier.value;
 
     }
+
+}
+
+/*---------- FUNCTION: render_failbar -------------------
+/  PURPOSE:
+/   Renders the starting failbar
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/   None
+/--------------------------------------------------------*/
+void render_start_failbar(UINT32 *base, Model *model){
+
+    int pos_y, sec_one, sec_two, sec_three, sec_four, sec_five, sec_six, height;
+    
+    pos_y = model->fail_bar.pos_y;
+    height = model->fail_bar.size_y;
+    sec_one = model->fail_bar.pos_x;
+    sec_two = model->fail_bar.pos_x + 32;
+    sec_three = model->fail_bar.pos_x + 64;
+    sec_four = model->fail_bar.pos_x + 96;
+    sec_five = model->fail_bar.pos_x + 128;
+    sec_six = model->fail_bar.pos_x + 160;
+        
+    
+    plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
+    plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
+    plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);
+    plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
+    plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
+    plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);
 
 }
 

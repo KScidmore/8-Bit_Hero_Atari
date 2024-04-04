@@ -1,3 +1,12 @@
+/*
+ ID Header:
+   Authors: 	Andrew Boisvert, Kyle Scidmore
+   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
+   File Name:	EBH.c
+   Citations:  
+ Program Purposes: Main game module
+*/
+
 #include <osbind.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -9,12 +18,11 @@
 #include "events.h"
 #include "raster.h"
 #include "ebh.h"
-#include "sndconst.h"
-#include "music.h"
-#include "songdat.h"
-#include "psg.h "
 
-UINT8 buffer_array[32256];
+#define ESC 27
+#define BUFFER_SIZE 32256
+
+UINT8 buffer_array[BUFFER_SIZE];
 
 int main()
 {
@@ -95,7 +103,7 @@ void game_loop(){
                 case 'f':
                     play_on_fret(&model, FRET_F);
                     break;
-                case 27: 
+                case ESC: 
                     quit = TRUE;
                     break;
             }
@@ -105,7 +113,7 @@ void game_loop(){
 
             Vsync();
 			render_next(curr_buffer, &model);
-			set_video_base(curr_buffer);
+            Setscreen(-1, curr_buffer, -1);
 
             time_then = time_now;
 
@@ -120,6 +128,22 @@ void game_loop(){
 
 }
 
+/*---------- FUNCTION: set_buffer -------------------------
+/  PURPOSE:
+/    Finds a 256 byte aligned address and sets the front 
+/    and back buffer pointers.
+/ 
+/  CALLER INPUT:
+/    - front_buffer: Pointer to the front buffer pointer
+/    - back_buffer: Pointer to the back buffer pointer
+/    - buffer_array: Array containing the buffer memory
+/
+/  CALLER OUTPUT:
+/    None
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    None
+/--------------------------------------------------------*/
 void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[]){
 
     UINT8 *address = buffer_array;
@@ -135,17 +159,23 @@ void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[
 
 }
 
+/*---------- FUNCTION: swap_buffer -------------------------
+/  PURPOSE:
+/    Swaps the current buffer pointer between front and back
+/ 
+/  CALLER INPUT:
+/       - front_buffer: Pointer to the front buffer.
+/       - back_buffer: Pointer to the back buffer.
+/       - curr_buffer: Pointer to the the current buffer pointer.
+/  CALLER OUTPUT:
+/    none
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    none
+/--------------------------------------------------------*/
 void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer){
 
-    if(*curr_buffer == front_buffer) {
-
-        *curr_buffer = back_buffer;
-
-    } else {
-
-        *curr_buffer = front_buffer;
-
-    }
+    *curr_buffer = (*curr_buffer == front_buffer) ? back_buffer : front_buffer;
 
 }
 
