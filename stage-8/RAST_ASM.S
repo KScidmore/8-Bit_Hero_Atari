@@ -1,6 +1,6 @@
 		xdef	_clear_screen
 		xdef	_set_video
-GEMDOS	equ		1
+
 base	equ		64		; offset from SP, not A6
 ADDRESS  equ	$FFFF8201
 STACK_OFFSET	equ		8
@@ -57,12 +57,26 @@ fill_loop:	movem.l		d1-7/a1-6,-(a0)
 		rts
 ;---------------------------------------------------------
 
+;----- FUNCTION: _set_video -----
+;
+; PURPOSE:
+;   Sets the video base address using the provided buffer address.
+;
+; CALLER INPUT:
+;   address - shifted address of buffer (passed on stack)
+;
+; CALLER OUTPUT:
+;   None
+;
+; ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+;   - working as expected
+;
+;--------------------------------------------------------
 _set_video:
 		link	a6,#0
-		movem.l	d0-d2/a0-a2,-(sp)
+		movem.l	d0-d2/a0-a2,-(sp)		;Save Registers
 		
-		move.w	STACK_OFFSET(a6),d0		;Get buffer address from stack
-		lsr		#8,d0					
+		move.w	STACK_OFFSET(a6),d0		;Get buffer address from stack				
 		move.l 	#ADDRESS,a0				;Load video base Hi address into a0
 		movep.w d0,(a0)					;Set Buffer 
 		
@@ -70,42 +84,4 @@ _set_video:
 		unlk	a6
 		rts
 
-;----- FUNCTION: _super_start -----
-;
-; PURPOSE:
-;   Enters supervisor mode
-;
-;
-;----------------------------------------------------------
-_super_start:	movem.l	d0,-(sp)	;Save register
-
-				clr.l	-(sp)		;Prepare stack
-				move.w	#$20,-(sp)	;Move $20 to the stack
-				trap	#GEMDOS		;Invoke GEMDOS
-				addq.l	#6,sp		;Clean stack
-				move.l	d0,old_ssp	;Save old stack pointer
-		
-				movem.l	(sp)+,d0	;Restore Register
-				rts
-;----------------------------------------------------------
-
-;----- FUNCTION: _super_end -----
-;
-; PURPOSE:
-;   Exits supervisor mode
-;
-;---------------------------------------------------------
-_super_end:		movem.l	d0,-(sp)			;Save register
-
-				move.l	old_ssp(pc),-(sp)	;Move old ssp to the stack
-				move.w	#$20,-(sp)			;Move $20 to the stack
-				trap	#GEMDOS				;Invoke GEMDOS
-				addq.l	#6,sp				;Clean Stack
-		
-				movem.l	(sp)+,d0			;Restore Register
-				rts
-;----------------------------------------------------------
-
-
-old_ssp		ds.l 		1
 zeros:		ds.l		13

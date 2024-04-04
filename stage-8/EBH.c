@@ -45,7 +45,7 @@ int main()
 
     }
 
-    Setscreen(-1, original_buffer, -1);
+    set_video_base(original_buffer);
 
     return 0;
     
@@ -113,7 +113,7 @@ void game_loop(){
 
             Vsync();
 			render_next(curr_buffer, &model);
-            Setscreen(-1, curr_buffer, -1);
+            set_video_base(curr_buffer);
 
             time_then = time_now;
 
