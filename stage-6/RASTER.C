@@ -9,11 +9,7 @@
 
 
  Program Purposes:
-   Data Structures: 
-     - TODO
-
-   Functions:
-     - TODO  
+   Library of Raster Plotting Routines
 */
 
 #include <stdio.h>
@@ -24,26 +20,25 @@
 #define SCREEN_WIDTH 640 
 #define SCREEN_HEIGHT 400
 
-/*
------ FUNCTION: plot_pixel -----
-
-PURPOSE:
-  Plots a pixel to the screen at the provided coordinates.
-
-CALLER INPUT:
-  UINT8 *base 
-    - starting point of the frame buffer 
-  int x 
-    - x coordinate for plotting location 
-  int y 
-    - y coordinate for plotting location 
-
-CALLER OUTPUT:
-  returns void 
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  - tested and working as expected 
-*/
+/*------------- FUNCTION: plot_pixel --------------------
+/
+/	PURPOSE:
+/	  Plots a pixel to the screen at the provided coordinates.
+/	
+/	CALLER INPUT:
+/	  UINT8 *base 
+/	    - starting point of the frame buffer 
+/	  int x 
+/	    - x coordinate for plotting location 
+/	  int y 
+/	    - y coordinate for plotting location 
+/	
+/	CALLER OUTPUT:
+/	  returns void 
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  - tested and working as expected 
+/------------------------------------------------------*/
 void plot_pixel(UINT8 *base, int x, int y)
 {
 	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
@@ -52,31 +47,29 @@ void plot_pixel(UINT8 *base, int x, int y)
 	}
 }
 
-/*
------ FUNCTION: plot_h_line -----
-
-PURPOSE:
-  Plots a horizontal line to the screen between
-  the provided coordinates.
-
-CALLER INPUT:
-  char *base 
-    - starting point of the frame buffer 
-  int x1
-    - starting coordinate for the line 
-  int x2
-    - ending coordinate for the line 
-  int y 
-    - y coordinate for plotting location 
-
-CALLER OUTPUT:
-  returns void 
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  - briefly tested and seems to be working, need to 
-    complete more thorough testing 
-  - want to comment out for our copy 
-*/
+/*----------- FUNCTION: plot_h_line -----------------
+/	
+/	PURPOSE:
+/	  Plots a horizontal line to the screen between
+/	  the provided coordinates.
+/	
+/	CALLER INPUT:
+/	  char *base 
+/	    - starting point of the frame buffer 
+/	  int x1
+/	    - starting coordinate for the line 
+/	  int x2
+/	    - ending coordinate for the line 
+/	  int y 
+/	    - y coordinate for plotting location 
+/	
+/	CALLER OUTPUT:
+/	  returns void 
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  - briefly tested and seems to be working, need to 
+/	    complete more thorough testing 
+/-----------------------------------------------------*/
 void plot_h_line(UINT8 *base, int x1, int x2, int y)
 {
 	UINT8 *start, *end;
@@ -130,32 +123,30 @@ void plot_h_line(UINT8 *base, int x1, int x2, int y)
 }
 
 
-/*
------ FUNCTION: plot_gen_line -----
-
-PURPOSE:
-  Plots an approximation of a straight line between two coordinates.
-
-CALLER INPUT:
-  UINT8 *base 
-    - starting point of the frame buffer 
-  int x0
-    - starting x-coordinate for the line 
-  int y0
-    - starting y-coordinate for the line 
-  int x1
-    - ending x-coordinate for the line 
-  int y1
-    - ending y-coordinate for the line 
-
-CALLER OUTPUT:
-  returns void 
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  - need to test this, have only written this so far, but it should work 
-  - relies on the plot_line_low and plot_line_high subroutines
-  - 
-*/
+/*-------------- FUNCTION: plot_gen_line ---------------
+/
+/	PURPOSE:
+/	  Plots an approximation of a straight line between two coordinates.
+/	
+/	CALLER INPUT:
+/	  UINT8 *base 
+/	    - starting point of the frame buffer 
+/	  int x0
+/	    - starting x-coordinate for the line 
+/	  int y0
+/	    - starting y-coordinate for the line 
+/	  int x1
+/	    - ending x-coordinate for the line 
+/	  int y1
+/	    - ending y-coordinate for the line 
+/	
+/	CALLER OUTPUT:
+/	  returns void 
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS: 
+/	  - relies on the plot_line_low and plot_line_high subroutines
+/	  
+/------------------------------------------------------*/
 void plot_gen_line(UINT8 *base, int x0, int y0, int x1, int y1)
 {
 	/*
@@ -192,31 +183,30 @@ void plot_gen_line(UINT8 *base, int x0, int y0, int x1, int y1)
 }
 
 
-/*
------ FUNCTION: plot_line_low -----
-
-PURPOSE:
-  Sub-function for plot_genline. Handles the case when the line 
-  has an absolute slope less than or equal to 1 (more horizontal).
-
-CALLER INPUT:
-  UINT8 *base 
-    - starting point of the frame buffer 
-  int x1
-    - starting x-coordinate for the line 
-  int x2
-    - ending x-coordinate for the line 
-  int y1
-    - starting y-coordinate for the line 
-  int y2
-    - ending y-coordinate for the line 
-
-CALLER OUTPUT:
-  returns void 
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  - 
-*/
+/*------------- FUNCTION: plot_line_low --------------
+/	
+/	PURPOSE:
+/	  Sub-function for plot_genline. Handles the case when the line 
+/	  has an absolute slope less than or equal to 1 (more horizontal).
+/	
+/	CALLER INPUT:
+/	  UINT8 *base 
+/	    - starting point of the frame buffer 
+/	  int x1
+/	    - starting x-coordinate for the line 
+/	  int x2
+/	    - ending x-coordinate for the line 
+/	  int y1
+/	    - starting y-coordinate for the line 
+/	  int y2
+/	    - ending y-coordinate for the line 
+/	
+/	CALLER OUTPUT:
+/	  returns void 
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  - tested and working as expected 
+/-----------------------------------------------------*/
 void plot_line_low(UINT8 *base, int x0, int y0, int x1, int y1)
 {
 	int dx, dy, yi, d, y, x;
@@ -248,31 +238,30 @@ void plot_line_low(UINT8 *base, int x0, int y0, int x1, int y1)
 	}
 }
 
-/*
------ FUNCTION: plot_line_high -----
-
-PURPOSE:
-  Sub-function for plot_genline. Handles the case when the line 
-  has an absolute slope greater than 1 (more vertical).
-
-CALLER INPUT:
-  UINT8 *base 
-    - starting point of the frame buffer 
-  int x1
-    - starting x-coordinate for the line 
-  int x2
-    - ending x-coordinate for the line 
-  int y1
-    - starting y-coordinate for the line 
-  int y2
-    - ending y-coordinate for the line 
-
-CALLER OUTPUT:
-  returns void 
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  - 
-*/
+/*------------- FUNCTION: plot_line_high --------------
+/	
+/	PURPOSE:
+/	  Sub-function for plot_genline. Handles the case when the line 
+/	  has an absolute slope greater than 1 (more vertical).
+/	
+/	CALLER INPUT:
+/	  UINT8 *base 
+/	    - starting point of the frame buffer 
+/	  int x1
+/	    - starting x-coordinate for the line 
+/	  int x2
+/	    - ending x-coordinate for the line 
+/	  int y1
+/	    - starting y-coordinate for the line 
+/	  int y2
+/	    - ending y-coordinate for the line 
+/	
+/	CALLER OUTPUT:
+/	  returns void 
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  - tested and working as expected  
+/-------------------------------------------------------*/
 void plot_line_high(UINT8 *base, int x0, int y0, int x1, int y1)
 {
 	int dx, dy, xi, d, x, y;
@@ -304,27 +293,26 @@ void plot_line_high(UINT8 *base, int x0, int y0, int x1, int y1)
 	}
 }
 
-/*
------ FUNCTION: abs_val -----
-
-PURPOSE:
-  Produces the absolute value of an integer.
-
-CALLER INPUT:
-  int value
-    - the integer the operation will be 
-	  performed upon 
-
-CALLER OUTPUT:
-  int result 
-    - the absolute value of the input value
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  - Limitations:
-    - only works with integers 
-	- helper function only designed to be used 
-	  by plot_genline 
-*/
+/*------------ FUNCTION: abs_val ------------------------
+/	
+/	PURPOSE:
+/	  Produces the absolute value of an integer.
+/	
+/	CALLER INPUT:
+/	  int value
+/	    - the integer the operation will be 
+/		  performed upon 
+/	
+/	CALLER OUTPUT:
+/	  int result 
+/	    - the absolute value of the input value
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  - Limitations:
+/	    - only works with integers 
+/		- helper function only designed to be used 
+/		  by plot_genline 
+/------------------------------------------------------*/
 int abs_val(int value)
 {
 	int result;
@@ -341,22 +329,28 @@ int abs_val(int value)
 }
 
 
+/*------------- FUNCTION: vertical_line ------------------
+/	
+/	PURPOSE:
+/	  Plots a vertical line from a given (x,y) with a given
+/	  height
+/	
+/	CALLER INPUT:
+/	  UINT8 *base 
+/	    - starting point of the frame buffer 
+/	  int x 
+/	    - x coordinate for defining the hotspot 
+/	  int y 
+/	    - y coordinate for defining the hotspot 
+/	  int height 
+/	    - the height of the line to be plotted
 
-/*
------ FUNCTION: TODO -----
-
-PURPOSE:
-  TODO
-
-CALLER INPUT:
-  TODO 
-
-CALLER OUTPUT:
-  TODO
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  -  
-*/
+/	CALLER OUTPUT:
+/	  Returns Void
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  - tested and working as expected 
+/---------------------------------------------------------*/
 void vertical_line(UINT8 *base, int x, int y_start, int height)
 {
 	int i;
@@ -369,30 +363,29 @@ void vertical_line(UINT8 *base, int x, int y_start, int height)
 	
 }
 
-/*
------ FUNCTION: TODO -----
-
-PURPOSE:
-	Plots a 32 pixel wide bitmap
-
-CALLER INPUT:
-  UINT32 *base
-	-Starting point of the frame buffer
-  int x
-	- x coordinate for defining the hotspot
-  int y
-	- y coordinate for defining the hotspot
-  const UINT32 *bitmap
-	- The bitmap to be plotted
-  unsigned int height
-	-The height of the bitmap to be plotted
-
-CALLER OUTPUT:
-  Returns Void
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  -  Only plots to multiples of 32 bits
-*/
+/*------------- FUNCTION: plot_bitmap_32 ----------
+/
+/	PURPOSE:
+/		Plots a 32 pixel wide bitmap
+/	
+/	CALLER INPUT:
+/	  UINT32 *base
+/		-Starting point of the frame buffer
+/	  int x
+/		- x coordinate for defining the hotspot
+/	  int y
+/		- y coordinate for defining the hotspot
+/	  const UINT32 *bitmap
+/		- The bitmap to be plotted
+/	  unsigned int height
+/		-The height of the bitmap to be plotted
+/	
+/	CALLER OUTPUT:
+/	  Returns Void
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  -  Only plots to multiples of 32 bits
+/----------------------------------------------------*/
 void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap, unsigned int height)
 {
 	
@@ -411,6 +404,27 @@ void plot_bitmap_32(UINT32 *base, int x, int y, const UINT32 *bitmap, unsigned i
     
 }
 
+/*------------- FUNCTION: clear_32 -----------------
+/
+/	PURPOSE:
+/		clears a 32 pixel wide area wiht a given height
+/	
+/	CALLER INPUT:
+/	  UINT32 *base
+/		-Starting point of the frame buffer
+/	  int x
+/		- x coordinate for defining the hotspot
+/	  int y
+/		- y coordinate for defining the hotspot
+/	  unsigned int height
+/		-The height of the bitmap to be plotted
+/	
+/	CALLER OUTPUT:
+/	  Returns Void
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  - tested and working as expected 
+/----------------------------------------------------*/
 void clear_32(UINT32 *base, int x , int y, unsigned int height){
 
 	int i;
@@ -426,31 +440,29 @@ void clear_32(UINT32 *base, int x , int y, unsigned int height){
 	}
 }
 
-	
-/*
------ FUNCTION: TODO -----
-
-PURPOSE:
-  TODO
-
-CALLER INPUT:
-  UINT16 *base
-	-Starting point of the frame buffer
-  int x
-	- x coordinate for defining the hotspot
-  int y
-	- y coordinate for defining the hotspot
-  const UINT16 *bitmap
-	- The bitmap to be plotted
-  unsigned int height
-	-The height of the bitmap to be plotted
-
-CALLER OUTPUT:
-  TODO
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  -  
-*/
+/*----------- FUNCTION: plot_bitmap_16 -------------
+/
+/	PURPOSE:
+/	  Plots a 16 pixel wide bitmap
+/	
+/	CALLER INPUT:
+/	  UINT16 *base
+/		-Starting point of the frame buffer
+/	  int x
+/		- x coordinate for defining the hotspot
+/	  int y
+/		- y coordinate for defining the hotspot
+/	  const UINT16 *bitmap
+/		- The bitmap to be plotted
+/	  unsigned int height
+/		-The height of the bitmap to be plotted
+/	
+/	CALLER OUTPUT:
+/	  Returns Void
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  -  Only plots to multiples of 16 bits
+/----------------------------------------------------*/
 void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned int height) /*Edit to match 32 bit for speed*/
 {
 
@@ -466,21 +478,29 @@ void plot_bitmap_16(UINT16 *base, int x, int y, const UINT16 *bitmap, unsigned i
 	
 }
 
-/*
------ FUNCTION: TODO -----
-
-PURPOSE:
-  TODO
-
-CALLER INPUT:
-  TODO 
-
-CALLER OUTPUT:
-  TODO
-
-ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-  -  
-*/
+/*----------- FUNCTION: plot_bitmap_8 -------------
+/
+/	PURPOSE:
+/	  Plots an 8 pixel wide bitmap
+/	
+/	CALLER INPUT:
+/	  UINT8 *base
+/		-Starting point of the frame buffer
+/	  int x
+/		- x coordinate for defining the hotspot
+/	  int y
+/		- y coordinate for defining the hotspot
+/	  const UINT8 *bitmap
+/		- The bitmap to be plotted
+/	  unsigned int height
+/		-The height of the bitmap to be plotted
+/	
+/	CALLER OUTPUT:
+/	  Returns Void
+/	
+/	ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/	  -  Only plots to multiples of 8 bits 
+/----------------------------------------------------*/
 void plot_bitmap_8(UINT8 *base, int x, int y, const UINT8 *bitmap, unsigned int height) /*Edit to match 32 bit for speed*/
 {
 
