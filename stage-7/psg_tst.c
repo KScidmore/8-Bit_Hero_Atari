@@ -24,6 +24,7 @@ void play_noise();
 void env_example();
 void play_note(int note);
 void play_cmaj_scale();
+void play_all_notes();
 
 void test_set_tone();
 void test_set_volume();
@@ -34,14 +35,19 @@ void test_set_envelope();
 
 int main()
 {    
+    /*
     test_set_tone();
     test_set_volume();
     test_set_noise();
     test_enable_channel();
     test_set_envelope();
+    */
+
+    play_all_notes();
 
     return 0;
 }
+
 
 void play_tone_C5()
 {
