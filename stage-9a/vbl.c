@@ -13,11 +13,11 @@
 
 #include <stdio.h>
 #include <osbind.h>
-#include <psg.h>
-#include <music.h>
-#include <sndconst.h>
-#include <songdat.h>
-#include <types.h>
+#include "psg.h"
+#include "music.h"
+#include "sndconst.h"
+#include "songdat.h"
+#include "types.h"
 
 #define VEC_VBL_ISR 28
 
@@ -31,17 +31,9 @@ UINT16 vbl_counter = 1;
 BOOL render_request;
 
 int main() {
-    long i;
-    int old_seconds = -1; /* start at -1 to offset it */
-
     Vector orig_vector = install_vector(VEC_VBL_ISR, vbl_isr);
     
-    while (seconds <= 10) {
-        if (seconds != old_seconds && seconds <= 10) {
-            printf("Seconds passed: %d \n", seconds);
-            old_seconds = seconds;
-        }
-    }
+    /* TODO */
 
     install_vector(VEC_VBL_ISR, orig_vector);
 
@@ -86,14 +78,13 @@ Vector install_vector(int num, Vector vector) {
 
 /*---------- FUNCTION: do_vbl_isr -------------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective
+/    TODO 
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter
+/    N/A
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value 
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    TODO 
@@ -113,10 +104,16 @@ void do_vbl_isr() {
         h_beat_counter == 105 || h_beat_counter == 131 || h_beat_counter == 157 || 
         h_beat_counter == 183) 
     {
+        /*
+        - need to add parameter
         update_music();
+        */
     }
     else if (h_beat_counter == 210) {
+        /*
+        - need to add parameter
         update_music();
+        */
         h_beat_counter = 0;
     }
 

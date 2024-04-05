@@ -115,3 +115,21 @@ void do_vbl_isr() {
     */
 
 -------------------------------------------------------------------------------
+
+DOCUMENTATION DRAFTING 
+max 75 ch to fit in bounds 
+
+/*---------- FUNCTION: do_vbl_isr -------------------------
+/  PURPOSE:
+/    TODO
+/  
+/  CALLER INPUT:
+/    N/A
+/  
+/  CALLER OUTPUT:
+/    N/A
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
+This is a custom Vertical Blank Interrupt Service Routine
