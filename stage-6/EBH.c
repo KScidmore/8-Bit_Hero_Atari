@@ -84,6 +84,7 @@ int main() {
 
         if (time_elapsed >= 1) {
 
+            generate_note(&model);
             Vsync();
 			render_next(curr_buffer, &model);
 			Setscreen(-1, curr_buffer,-1);

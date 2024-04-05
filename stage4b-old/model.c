@@ -6,7 +6,11 @@
 /    - TODO 
 /
 /  Program Purposes:
-/    - Library of model functions
+/    Data Structures: 
+/      - TODO
+/
+/    Functions:
+/      - TODO  
 /--------------------------------------------------------*/
 
 #include "model.h"
@@ -15,18 +19,16 @@
 /*---------- Model Functions ------------------------------------------------*/
 /*---------- FUNCTION: init_model -------------------------
 /  PURPOSE:
-/    Initializes the model structure with default values for various 
-/	 components such as frets, lanes, notes, score, etc.
+/    TODO
 / 
 /  CALLER INPUT:
-/    Model *model
-/ 	 	- Pointer to a Model structure
+/    TODO
 / 
 /  CALLER OUTPUT:
 /    N/A
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    Working as expected
+/    TODO
 /--------------------------------------------------------*/
 void init_model(Model *model)
 {
@@ -38,8 +40,10 @@ void init_model(Model *model)
 	init_lane(model, FRET_S, 0, 256, 84, 0, SHORT_NOTE);
 	init_lane(model, FRET_D, 0, 352, 84, 0, SHORT_NOTE);
 	init_lane(model, FRET_F, 0, 448, 84, 0, SHORT_NOTE);
+	init_note_streak(model);
 	init_score(model, 32, 0, 0);
 	init_multiplier(model, 544, 32, 1);
+	init_fretboard(model);
 	init_fail_bar(model, 224, 0, 60);
 }
 
@@ -49,20 +53,15 @@ void init_model(Model *model)
 /    Initializes a fret object. 
 / 
 /  CALLER INPUT:
-/	 Model *model 
-/ 		- Pointer to a Model structure
-/    FRET_POS fret_pos 
-/ 		- which fret to initalize
-/    UINT16 pos_x 
-/ 		- the object's x-coordinate for its screen position
-/    UINT16 pos_y 
-/ 		- the object's y-coordinate for its screen position
+/    *fret	=	a pointer to the fret object
+/    pos_x	=	the object's x-coordinate for its screen position
+/    pos_y	= 	the object's y-coordinate for its screen position
 / 
 /  CALLER OUTPUT:
 /    N/A
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    Working as expected
+/    TODO
 /--------------------------------------------------------*/
 void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y)
 {
@@ -73,32 +72,44 @@ void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y)
 	model->frets[fret_pos].is_depressed = FALSE;
 }
 
-/*---------- Note Functions -------------------------------------------------*/
-/*---------- FUNCTION: init_note --------------------------
+
+/*---------- FUNCTION: set_fret_depressed -----------------
 /  PURPOSE:
-/    Initializes a note object. 
+/    TODO - purpose, from the caller's perspective (if not
+/    perfectly clear from the name)
 / 
 /  CALLER INPUT:
-/	 Note *note 
-/	 	- Pointer to a note structure
-/    FRET_POS fret_pos 
-/		- which fret to initalize the note on
-/	 UINT8 index
-/ 		- the index of the note to be initalized
-/    UINT16 pos_x 
-/ 		- the object's x-coordinate for its screen position
-/    UINT16 pos_y	
-/	 	- the object's y-coordinate for its screen position
-/	 int delta_y 
-/	 	- current y position
-/	 NOTE_TYPE note_type 
-/		- The type of note to initalize
-/
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/ 
 /  CALLER OUTPUT:
-/    N/A
+/    TODO - the purose of each output parameter and return 
+/    value (if not perfectly clear from the name)
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    Working as expected
+/    TODO
+/--------------------------------------------------------*/
+void set_fret_depressed(Model *model, FRET_POS fret, BOOL is_depressed)
+{
+	model->frets[fret].is_depressed = is_depressed;
+}
+
+/*---------- Note Functions -------------------------------------------------*/
+/*---------- FUNCTION: TODO -------------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not
+/    perfectly clear from the name)
+/ 
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/ 
+/  CALLER OUTPUT:
+/    TODO - the purose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
 /--------------------------------------------------------*/
 void init_note(Note *note, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type)
 {
@@ -113,55 +124,65 @@ void init_note(Note *note, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_
 	note->note_type = note_type;
 }
 
-/*---------- FUNCTION: set_note_pos-----------------------
+/*---------- FUNCTION: TODO -------------------------------
 /  PURPOSE:
-/    Updates a notes position
+/    TODO - purpose, from the caller's perspective (if not
+/    perfectly clear from the name)
 / 
 /  CALLER INPUT:
-/	 Model *model 
-/	 	- Pointer to a model structure
-/    FRET_POS fret_pos 
-/		- which fret the note is on
-/	 UINT8 index
-/ 		- the index of the note to be updated
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
 / 
 /  CALLER OUTPUT:
-/	 N/A
+/    TODO - the purose of each output parameter and return 
+/    value (if not perfectly clear from the name)
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    Working as expected
+/    TODO
 /--------------------------------------------------------*/
 void set_note_pos(Model *model, FRET_POS fret, UINT8 index)
 {
 	model->lanes[fret].notes[index].pos_y += 1;
 }
 
+
+/*---------- FUNCTION: TODO -------------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not
+/    perfectly clear from the name)
+/ 
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/ 
+/  CALLER OUTPUT:
+/    TODO - the purose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
+void set_note_is_played(Model *model, FRET_POS fret, UINT8 index, BOOL is_played)
+{
+	model->lanes[fret].notes[index].is_played = is_played;
+}
+
 /*---------- Lane Functions -------------------------------------------------*/
 /*---------- FUNCTION: init_lane --------------------------
 /  PURPOSE:
-/    Initalizes a lane structure
+/    TODO - purpose, from the caller's perspective (if not
+/    perfectly clear from the name)
 / 
 /  CALLER INPUT:
-/	 Model *model 
-/	 	- Pointer to a model structure
-/    FRET_POS fret_pos 
-/		- which lane is being initalized
-/	 UINT8 index
-/ 		- the index of the note to be initalized
-/    UINT16 pos_x 
-/ 		- the object's x-coordinate for its screen position
-/    UINT16 pos_y	
-/	 	- the object's y-coordinate for its screen position
-/	 int delta_y 
-/	 	- current y position
-/	 NOTE_TYPE note_type 
-/		- The type of note
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
 / 
 /  CALLER OUTPUT:
-/    N/A
+/    TODO - the purose of each output parameter and return 
+/    value (if not perfectly clear from the name)
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    Working as expected
+/    TODO
 /--------------------------------------------------------*/
 void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_y, int delta_y, 
 				NOTE_TYPE note_type)
@@ -179,6 +200,34 @@ void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 po
 }
 
 /*---------- Note Streak Functions ------------------------------------------*/
+/*---------- FUNCTION: TODO -------------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not
+/    perfectly clear from the name)
+/ 
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/ 
+/  CALLER OUTPUT:
+/    TODO - the purose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    TODO
+/--------------------------------------------------------*/
+void init_note_streak(Model *model)
+{
+	model->note_streak.pos_x = 32;
+	model->note_streak.pos_y = 72;
+	model->note_streak.total_size_x = 128;
+	model->note_streak.total_size_y = 32;
+	model->note_streak.digit_size_x = 32;
+	model->note_streak.digit_size_y = 32;
+	model->note_streak.value = 0;
+	model->note_streak.incremented_flag = FALSE;
+}
+
 /*---------- FUNCTION: TODO -------------------------------
 /  PURPOSE:
 /    TODO - purpose, from the caller's perspective (if not 
@@ -345,6 +394,31 @@ void update_multiplier(Model *model)
 	{
 		model->multiplier.value = 1;
 	}
+}
+
+/*---------- Fretboard Functions --------------------------------------------*/
+/*---------- FUNCTION: TODO -------------------------------
+/  PURPOSE:
+/    TODO - purpose, from the caller's perspective (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER INPUT:
+/    TODO - the purpose of each input parameter (if not 
+/    perfectly clear from the name)
+/  
+/  CALLER OUTPUT:
+/    TODO - the purpose of each output parameter and return 
+/    value (if not perfectly clear from the name)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
+void init_fretboard(Model *model)
+{
+    model->fretboard.pos_x = 150;
+    model->fretboard.pos_y = 150;
+    model->fretboard.size_x = 350;
+    model->fretboard.size_y = 350;
 }
 
 /*---------- Failbar Functions ----------------------------------------------*/

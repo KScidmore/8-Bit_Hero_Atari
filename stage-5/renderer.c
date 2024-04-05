@@ -68,109 +68,14 @@ void init_scene(UINT8 *base, UINT32 *base32, Model *model){
 /--------------------------------------------------------*/
 void render_next(UINT32 *base, Model *model){
 
-    static int note_counter = 0;
-    static int note_gen = 0;
-    static UINT8 i = 0;
-    static UINT8 j = 0;
-    static UINT8 k = 0;
-    static UINT8 l = 0;
-    static BOOL swap = FALSE;
-
     render_active_notes(base, model);
     render_score(base, model);
     render_multiplier(base, model);
     render_failbar(base, model);
     render_frets(base, model);
-
-     if(note_gen == GENERATE){
-        if(!swap){
-            switch (note_counter){
-                    case 0:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_A, i);
-                        i++;
-                        break;
-                    case 1:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_S, j);
-                        j++;
-                        break;
-                    case 2:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_D, k);
-                        k++;
-                        break;
-                    case 3:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_F, l);
-                        l++;
-                        break;
-                }
-            note_counter++;
-            note_gen = 0;
-            if(note_counter == 4){
-                note_counter = 0;
-                swap = TRUE;
-            }
-        }
-        else{
-            switch (note_counter){
-                    case 3:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_A, i);
-                        i++;
-                        break;
-                    case 2:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_S, j);
-                        j++;
-                        break;
-                    case 1:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_D, k);
-                        k++;
-                        break;
-                    case 0:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_F, l);
-                        l++;
-                        break;
-                }
-            note_counter++;
-            note_gen = 0;
-            if(note_counter == 4){
-                note_counter = 0;
-                swap = FALSE;
-            }
-
-        }
-    }
-    else{
-        note_gen++;
-    }
+   
 }
 
-/*---------- FUNCTION: render_new_note ------------------
-/  PURPOSE:
-/  	Activates a new note
-/  
-/  CALLER INPUT:
-/    UINT32 *base
-/  	- Starting point of the frame buffer
-/    Model *model
-/  	- Address of the game model
-/  
-/  CALLER OUTPUT:
-/    Returns Void
-/  
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/   
-/--------------------------------------------------------*/
-void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
-
-    model->lanes[fret].notes[note_index].is_active = TRUE;
-
-}
 
 /*---------- FUNCTION: render_active_notes ---------------
 /  PURPOSE:
@@ -195,7 +100,7 @@ void render_active_notes(UINT32 *base, Model *model){
 
     for(i = 0; i< ARRAY_SIZE; i++){
 
-        /*iterate through note array, for active notes: clear note, update position and render*/
+        /*iterate through note arrays, for active notes: clear note, update position and render*/
     
         if(model->lanes[FRET_A].notes[i].is_active == TRUE){
             

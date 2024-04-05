@@ -20,22 +20,21 @@
 #include "model.h"
 #include "types.h"
 
-/*---------- Asynchronous (Input) Events ------------------------------------*/
-void set_play_on_fret_a(Model *model, FRET_POS fret, UINT8 index);
-void set_play_on_fret_s(Model *model, FRET_POS fret, UINT8 index);
-void set_play_on_fret_d(Model *model, FRET_POS fret, UINT8 index);
-void set_play_on_fret_f(Model *model, FRET_POS fret, UINT8 index);
-void quit_game(Model *model);
+/*---------- Synchronous (Input) Events ------------------------------------*/
+void generate_note(Model *model);
+void activate_note();
 
-/*----------Synchronous (Timed) Events --------------------------------------*/
-void move_note(Model *model, FRET_POS fret, UINT8 index);
+/*---------- Asynchronous (Input) Events ------------------------------------*/
+void set_play_on_fret_a(Model *model, UINT8 index);
+void set_play_on_fret_s(Model *model, UINT8 index);
+void set_play_on_fret_d(Model *model, UINT8 index);
+void set_play_on_fret_f(Model *model, UINT8 index);
 
 /*---------- Condition-Based (Cascaded) Events ------------------------------*/
-BOOL note_collision_a(Model *model, FRET_POS fret, UINT8 index);
-BOOL note_collision_s(Model *model, FRET_POS fret, UINT8 index);
-BOOL note_collision_d(Model *model, FRET_POS fret, UINT8 index);
-BOOL note_collision_f(Model *model, FRET_POS fret, UINT8 index);
+void note_collision_a(Model *model, UINT8 index);
+void note_collision_s(Model *model, UINT8 index);
+void note_collision_d(Model *model, UINT8 index);
+void note_collision_f(Model *model, UINT8 index);
 
-void fail_song();
 
 #endif 

@@ -45,7 +45,7 @@ int main()
 
     }
 
-    set_video_base(original_buffer);
+    set_video_base((UINT32*)original_buffer);
 
     return 0;
     
@@ -111,6 +111,7 @@ void game_loop(){
 
         if (time_elapsed >= 1) {
 
+            generate_note(&model);
             Vsync();
 			render_next(curr_buffer, &model);
             set_video_base(curr_buffer);

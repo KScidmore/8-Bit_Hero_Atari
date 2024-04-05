@@ -78,38 +78,6 @@ typedef struct
 	Note notes[NOTES_SIZE];
 } Lane;
 
-
-/*---------- STRUCTURE: Note_Streak -----------------------
-/  INFO:
-/    TODO - general explanation 
-/  
-/  ATTRIBUTES:
-/    TODO - what sort of attributes does this structure 
-/    have that isn't immediately apparent
-/--------------------------------------------------------*/
-typedef struct 
-{
-	UINT16 pos_x, pos_y; 
-	UINT16 total_size_x, total_size_y, digit_size_x, digit_size_y;
-	UINT16 value;
-	BOOL incremented_flag;
-} Note_Streak;
-
-/*---------- STRUCTURE: Digit -----------------------
-/  INFO:
-/    TODO - general explanation 
-/  
-/  ATTRIBUTES:
-/    TODO - what sort of attributes does this structure 
-/    have that isn't immediately apparent
-/--------------------------------------------------------*/
-typedef struct
-{
-	UINT16 pos_x, pos_y;
-	UINT8 size_x, size_y;
-	UINT8 value;
-} Digit;
-
 /*---------- STRUCTURE: Score -----------------------------
 /  INFO:
 /    TODO - general explanation 
@@ -145,23 +113,6 @@ typedef struct
 	UINT8 total_size_x, total_size_y, digit_size_x, digit_size_y;
 	UINT16 value, prev_value;
 } Multiplier;
-
-
-/*---------- STRUCTURE: Fretboard -------------------------
-/  INFO:
-/    TODO - general explanation 
-/  
-/  ATTRIBUTES:
-/    pos_x		= x-val for position coordinate
-/    pos_y		= y-val for position coordinate
-/    size_x		= x-val for size of the object in px
-/    size_y		= y-val for size of the object in px
-/--------------------------------------------------------*/
-typedef struct 
-{
-	UINT16 pos_x, pos_y;
-	UINT16 size_x, size_y;
-} Fretboard;
 
 
 /*---------- STRUCTURE: Fail_Bar --------------------------
@@ -221,7 +172,6 @@ void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 po
 				NOTE_TYPE note_type);
 
 /* Note Streak Functions */
-void init_note_streak(Model *model);
 void update_note_streak(Model *model, BOOL miss);
 
 /* Score Functions */
@@ -231,9 +181,6 @@ void update_score(Model *model);
 /* Multiplier Functions */
 void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
 void update_multiplier(Model *model);
-
-/* Fretboard Functions */
-void init_fretboard(Model *model);
 
 /* Failbar Functions */
 void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);

@@ -7,7 +7,7 @@
 #include "rast_asm.h"
 #include "inputs.h"
 #include "events.h"
-
+#define ESC 27
 
 int main()
 {
@@ -20,6 +20,7 @@ int main()
 
     char input_value;
     char ch;
+    BOOL quit = FALSE;
 
     init_model(&model);
 
@@ -28,7 +29,7 @@ int main()
     time_then = get_time();
 
     /*Main game loop*/
-    while(1){
+    while(!quit){
 
         /*Get time*/
         time_now = get_time();
@@ -39,23 +40,23 @@ int main()
         ch = read_char();
 
         /*Handle input*/
-        if(ch != -1){
-            switch(ch) {
+        if (ch != -1) {
+            switch (ch) {
                 case 'a':
-                    play_on_fret(&model, FRET_A, base32);
+                    play_on_fret(&model, FRET_A);
                     break;
                 case 's':
-                    play_on_fret(&model, FRET_S, base32);
+                    play_on_fret(&model, FRET_S);
                     break;
                 case 'd':
-                    play_on_fret(&model, FRET_D, base32);
+                    play_on_fret(&model, FRET_D);
                     break;
                 case 'f':
-                    play_on_fret(&model, FRET_F, base32);
+                    play_on_fret(&model, FRET_F);
                     break;
-                case 27:
-                    return 0;
-
+                case ESC: 
+                    quit = TRUE;
+                    break;
             }
         }
 
@@ -64,7 +65,8 @@ int main()
         /*Generate and move notes*/
 
         if(time_elapsed >= 1){
-
+            
+            generate_note(&model);
             render_next(base32, &model);  
         }
 

@@ -21,6 +21,7 @@
 #include "sndconst.h"
 #include "music.h"
 #include "songdat.h"
+#include "effects.c"
 
 
 #define ESC_KEY 27
@@ -59,6 +60,11 @@ int main() {
         }
         
     }
+
+    play_wrong_note_fx();
+    play_note_not_played_fx();
+    play_game_over_lose_fx();
+    play_menu_selection_fx();
     
 }
 
