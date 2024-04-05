@@ -13,18 +13,40 @@
 
 #include <stdio.h>
 #include <osbind.h>
+#include "types.h"
 
-#define RX_DISABLE 0x16;
-#define RX_ENABLE 0x96;
-#define ESC_MAKE ((SCANCODE) 0x01)
-#define ESC_BREAK ((SCANCODE) 0x81)
-#define RDR_FULL ((UINT8) 0x01)
-#define MAKE_MASK ((SCANCODE) 0x80)
-#define VEC_IKBD_ISR 70
-
-typedef unsigned char UINT8;
 typedef UINT8 SCANCODE;
 typedef void (*Vector)(); 
+
+/* IKBD ISR Vector */
+#define VEC_IKBD_ISR 70
+
+/* IKBD Addresses */
+#define CONTROL ((UINT32)0xFFFC00)
+#define STATUS  ((UINT32)0xFFFC00)
+#define RDR     ((UINT32)0xFFFC02)
+
+/* Register Values */
+#define RX_ENABLE       ((UINT8)0x96)
+#define RX_DISABLE      ((UINT8)0x16)
+#define RDR_FULL        ((UINT8)0x01)
+
+/* NOT SURE WHAT THIS IS, KYLE HAD IT IN HIS LAB CODE 
+#define TIMEOUT_VALUE   ((UINT16)1000)
+*/
+
+/* Make/Break Codes and Masks */
+#define MAKE_MASK   ((SCANCODE)0x80)
+#define ESC_MAKE    ((SCANCODE)0x01)
+#define ESC_BREAK   ((SCANCODE)0x81)
+#define A_MAKE      ((SCANCODE)0x1E)
+#define A_BREAK     ((SCANCODE)0x9E)
+#define S_MAKE      ((SCANCODE)0x1F)
+#define S_BREAK     ((SCANCODE)0x9F)
+#define D_MAKE      ((SCANCODE)0x20)
+#define D_BREAK     ((SCANCODE)0xA0)
+#define F_MAKE      ((SCANCODE)0x21)
+#define F_BREAK     ((SCANCODE)0xA1)
 
 volatile       UINT8    * const IKBD_control = 0xFFFC00;
 volatile const UINT8    * const IKBD_status  = 0xFFFC00;
@@ -34,15 +56,23 @@ SCANCODE read_scancode();
 Vector install_vector(int num, Vector vector);
 void ikbd_isr();
 void do_ikbd_isr(int *ptr);
+void lab_6_reference();
 
 
 int main() {
 
+    
+    lab_6_reference();
+
+    /*
     Vector orig_vector = install_vector(VEC_IKBD_ISR, ikbd_isr);
+    */
     
     /* TODO */
 
+    /*
     install_vector(VEC_IKBD_ISR, orig_vector);
+    */
 
     return 0;
 }
@@ -72,13 +102,13 @@ int main() {
 /--------------------------------------------------------*/
 Vector install_vector(int num, Vector vector) {
     Vector orig;
-    Vector *vectp = (Vector *)((long)num << 2);
-    long old_ssp = Super(0);
-
+    Vector *vectp = (Vector *)((long)num << 2); /* request vector, over */
+    
+    long old_ssp = Super(0); /* we have clearance, Clarence */
     orig = *vectp;
-    *vectp = vector;
-
+    *vectp = vector; /* what's our vector, Victor? */
     Super(old_ssp);
+
     return orig;
 }
 
@@ -99,6 +129,7 @@ Vector install_vector(int num, Vector vector) {
 /--------------------------------------------------------*/
 void do_ikbd_isr() {
     /* TODO */
+    lab_6_reference();
 }
 
 
@@ -120,4 +151,29 @@ SCANCODE read_scancode() {
     while (!(*IKBD_status & RDR_FULL));
 
     return *IKBD_RDR;
+}
+
+void lab_6_reference() {
+    SCANCODE scancode;
+    char *scancode_2_ascii = (char *)((Keytbl(-1, -1, -1))->unshift);
+    char ch;
+    long orig_ssp;
+
+    orig_ssp = Super(0);                    /* enter supervisor mode */
+    *IKBD_control = RX_DISABLE;             /* disable Rx interrupts */
+
+    while (1)
+    {
+        scancode = read_scancode();
+        if (scancode == ESC_MAKE){
+            break;
+        } 
+        else if (!(scancode & MAKE_MASK)) { /* check high order bit */
+            ch = scancode_2_ascii[scancode];
+            (void)Cconout(ch);
+        }
+    }
+
+    *IKBD_control = RX_ENABLE;              /* enable Rx interrupts */
+    Super(orig_ssp);                        /* leave supervisor mode */
 }
