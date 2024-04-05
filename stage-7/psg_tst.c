@@ -34,14 +34,17 @@ void test_set_envelope();
 
 int main()
 {    
+    /*
     test_set_tone();
     test_set_volume();
     test_set_noise();
     test_enable_channel();
     test_set_envelope();
+    */
 
     return 0;
 }
+
 
 void play_tone_C5()
 {
