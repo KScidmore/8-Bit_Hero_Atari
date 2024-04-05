@@ -2,8 +2,6 @@
 /  Authors:     Andrew Boisvert, Kyle Scidmore
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
 /  File Name:   model.c
-/  Citations:   
-/    - TODO 
 /
 /  Program Purposes:
 /    - Library of model functions
@@ -11,6 +9,9 @@
 
 #include "model.h"
 #include "types.h"
+
+#define FULL 120
+#define EMPTY 0
 
 /*---------- Model Functions ------------------------------------------------*/
 /*---------- FUNCTION: init_model -------------------------
@@ -170,7 +171,6 @@ void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 po
 
 	model->lanes[fret].start_x = 0;
 	model->lanes[fret].curr_x = 0;
-	model->lanes[fret].counter = 0;
 
 	for(i = 0; i < NOTES_SIZE; i++)
 	{
@@ -179,51 +179,56 @@ void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 po
 }
 
 /*---------- Note Streak Functions ------------------------------------------*/
-/*---------- FUNCTION: TODO -------------------------------
+/*---------- FUNCTION: update_note_streak -----------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    Updates note streak when a note is hit and sets
+/	 it to zero if a note is missed
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/	 Model *model 
+/	 	- Pointer to a model structure
+/    BOOL miss 
+/		- Flag for whether the note was missed
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    Working as expected 
 /--------------------------------------------------------*/
 void update_note_streak(Model *model, BOOL miss)
 {
 	if(miss){
 
-		model->note_streak.value = 0;
+		model->score.note_streak = 0;
 
 	}else{
 
-		model->note_streak.value += 1;
+		model->score.note_streak += 1;
 
 	}
 }
 
 /*---------- Score Functions ------------------------------------------------*/
-/*---------- FUNCTION: TODO -------------------------------
+/*---------- FUNCTION: init_score -------------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
+/    Initalizes the score structure with starting values
 / 
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/	 Model *model 
+/	 	- Pointer to a model structure
+/    UINT16 pos_x 
+/ 		- the object's x-coordinate for its screen position
+/    UINT16 pos_y	
+/	 	- the object's y-coordinate for its screen position
+/ 	 UINT16 value
+/		- the scores starting value
 / 
 /  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
+/    Working as expected
 /--------------------------------------------------------*/
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
@@ -235,6 +240,7 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
     model->score.size_x = 128;
     model->score.size_y = 32;
 	model->score.value = 0;
+	model->score.note_streak = 0;
 	model->score.prev_ones = 0;
 	model->score.prev_tens = 0;
 	model->score.prev_hunds = 0;
@@ -243,36 +249,22 @@ void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 }
 
 
-/*---------- FUNCTION: TODO -------------------------------
+/*---------- FUNCTION: update_score ----------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not
-/    perfectly clear from the name)
+/    Updates the scores value by a base amount of 10 
+/	 multiplied by the muultiplier value and sets the 
+/	 updated flag to true
 / 
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/	 Model *model 
+/	 	- Pointer to a model structure
 / 
 /  CALLER OUTPUT:
-/    TODO - the purose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
+/    Working as expected
 /--------------------------------------------------------*/
-/*void update_score(Model *model, FRET_POS fret, UINT8 index)
-{	
-	UINT8 update_val = model->multiplier.value * model->lanes[fret].notes[index].note_type;
-	if (update_val == 0)
-	{
-		model->score.updated_flag = FALSE;
-	}
-	else
-	{
-		model->score.updated_flag = TRUE;
-		model->score.value += update_val;
-	}
-}*/
-
 void update_score(Model *model)
 {	
 
@@ -282,21 +274,25 @@ void update_score(Model *model)
 }
 
 /*---------- Multiplier Functions -------------------------------------------*/
-/*---------- FUNCTION: TODO -------------------------------
+/*---------- FUNCTION: init_multiplier --------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    Initalizes the multiplier structure with starting values
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/	 Model *model 
+/	 	- Pointer to a model structure
+/    UINT16 pos_x 
+/ 		- the object's x-coordinate for its screen position
+/    UINT16 pos_y	
+/	 	- the object's y-coordinate for its screen position
+/ 	 UINT16 value
+/		- the multiplier's starting value
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    Working as expected
 /--------------------------------------------------------*/
 void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
@@ -311,33 +307,32 @@ void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 }
 
 
-/*---------- FUNCTION: TODO -------------------------------
+/*---------- FUNCTION: update_multiplier ----------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    Updates the multiplier value based on the current
+/ 	 note streak value
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/	 Model *model 
+/	 	- Pointer to a model structure
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    Working as expected
 /--------------------------------------------------------*/
 void update_multiplier(Model *model)
 {
-	if (model->note_streak.value >= 30)
+	if (model->score.note_streak >= 30)
 	{
 		model->multiplier.value = 8;
 	}
-	else if (model->note_streak.value >= 20)
+	else if (model->score.note_streak >= 20)
 	{
 		model->multiplier.value = 4;
 	}
-	else if (model->note_streak.value >= 10)
+	else if (model->score.note_streak >= 10)
 	{
 		model->multiplier.value = 2;
 	}
@@ -348,21 +343,25 @@ void update_multiplier(Model *model)
 }
 
 /*---------- Failbar Functions ----------------------------------------------*/
-/*---------- FUNCTION: TODO -------------------------------
+/*---------- FUNCTION: init_failbar ----------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    Initializes the failbar structure with starting values
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/	 Model *model 
+/	 	- Pointer to a model structure
+/    UINT16 pos_x 
+/ 		- the object's x-coordinate for its screen position
+/    UINT16 pos_y	
+/	 	- the object's y-coordinate for its screen position
+/ 	 UINT16 value
+/		- the failbar's starting value
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    Working as expected
 /--------------------------------------------------------*/
 void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 {
@@ -374,32 +373,38 @@ void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value)
 }
 
 
-/*---------- FUNCTION: TODO -------------------------------
+/*---------- FUNCTION: update_fail_bar ------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    Updates the failbar value ensuring the value stays
+/ 	 below 120
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/	 Model *model 
+/	 	- Pointer to a model structure
+/    UINT16 pos_x 
+/ 		- the object's x-coordinate for its screen position
+/    UINT16 pos_y	
+/	 	- the object's y-coordinate for its screen position
+/ 	 UINT16 value
+/		- the value to add to the failbar
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    - Without a fail state at zero elsewhere value could
+/ 	   go below zero
 /--------------------------------------------------------*/
 void update_fail_bar(Model *model, UINT16 value)
 {
-	if(model->fail_bar.value >= 0 && model->fail_bar.value <= 120){
+	if(model->fail_bar.value >= EMPTY && model->fail_bar.value <= FULL){
 
 		model->fail_bar.value += value;
 
 	}
 
-	if(model->fail_bar.value > 120){
+	if(model->fail_bar.value > FULL){
 
-		model->fail_bar.value = 120;
+		model->fail_bar.value = FULL;
 	}
 }
