@@ -63,9 +63,9 @@ void play_wrong_note_fx()
 
     long i;
     long length = 80000;
-    set_tone(0, A5_SHARP<<3);
-    set_volume(0, 0x08);                /* M = off, vol = 8/15 */
-    enable_channel(0, 1, 0);
+    set_tone(2, A5_SHARP<<3);
+    set_volume(2, 0x08);                /* M = off, vol = 8/15 */
+    enable_channel(2, 1, 0);
     for (i = 0; i < length; i++);
     stop_sound();
 }
@@ -151,25 +151,25 @@ void play_game_over_lose_fx()
     long i;
     long length_1 = 100000;
     long length_2 = 200000;
-    set_tone(0, D5_SHARP<<3);
-    set_volume(0, 0x08);                /* M = off, vol = 8/15 */
-    enable_channel(0, 1, 0);
+    set_tone(2, D5_SHARP<<3);
+    set_volume(2, 0x08);                /* M = off, vol = 8/15 */
+    enable_channel(2, 1, 0);
     for (i = 0; i < length_1; i++);
     stop_sound();
 
     for (i = 0; i < length_1; i++);
 
-    set_tone(0, C5<<3);
-    set_volume(0, 0x08);                /* M = off, vol = 8/15 */
-    enable_channel(0, 1, 0);
+    set_tone(2, C5<<3);
+    set_volume(2, 0x08);                /* M = off, vol = 8/15 */
+    enable_channel(2, 1, 0);
     for (i = 0; i < length_1; i++);
     stop_sound();
 
     for (i = 0; i < length_1; i++);
     
-    set_tone(0, F5_SHARP<<4);
-    set_volume(0, 0x08);                /* M = off, vol = 8/15 */
-    enable_channel(0, 1, 0);
+    set_tone(2, F5_SHARP<<4);
+    set_volume(2, 0x08);                /* M = off, vol = 8/15 */
+    enable_channel(2, 1, 0);
     for (i = 0; i < length_2; i++);
     stop_sound();
 }
@@ -201,14 +201,14 @@ void play_menu_selection_fx()
     UINT16 sustain_1 = 0x0F00;
     UINT16 sustain_2 = 0x8F00;  
 
-    set_tone(0, B5>>2);
-    set_volume(0, 0x18);                    /* M = 1, vol = 8/15 */
+    set_tone(2, B5>>2);
+    set_volume(2, 0x18);                    /* M = 1, vol = 8/15 */
     set_envelope(ENV_SHAPE_4, sustain_1);
     for (i = 0; i < length_1; i++);
     stop_sound();
 
-    set_tone(0, E5>>2);
-    set_volume(0, 0x18);                    /* M = 1, vol = 8/15 */
+    set_tone(2, E5>>2);
+    set_volume(2, 0x18);                    /* M = 1, vol = 8/15 */
     set_envelope(ENV_SHAPE_4, sustain_2);
     for (i = 0; i < length_2; i++);
     stop_sound();
