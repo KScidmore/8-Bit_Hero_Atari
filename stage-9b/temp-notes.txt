@@ -36,10 +36,6 @@ END OF LAB6.C CODE
 KEEPING HERE IN CASE IT ENDS UP BEING USEFUL 
 
 void do_vbl_isr() {
-    /*
-    - math is very slightly off to avoid floats or weird logic
-    - shouldn't affect timing, miniscule difference 
-    */
     static UINT32 vbl_counter = 0;
     static UINT32 measure_counter = 0;
     static UINT32 w_beat_counter = 0;

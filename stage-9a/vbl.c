@@ -13,6 +13,11 @@
 
 #include <stdio.h>
 #include <osbind.h>
+#include <psg.h>
+#include <music.h>
+#include <sndconst.h>
+#include <songdat.h>
+#include <types.h>
 
 #define VEC_VBL_ISR 28
 
@@ -22,8 +27,7 @@ Vector install_vector(int num, Vector vector);
 void vbl_isr();
 void do_vbl_isr(int *counterPtr);
 
-/* has to be global to work */
-int seconds = 0;
+UINT16 vbl_counter = 1;
 BOOL render_request;
 
 int main() {
@@ -95,18 +99,27 @@ Vector install_vector(int num, Vector vector) {
 /    TODO 
 /--------------------------------------------------------*/
 void do_vbl_isr() {
-    /* 
-    TODO
-    - update music (as necessary)
-    - process synchronous events and update model (as necessary)
-    - set render_request = TRUE
-    */
+    static UINT32 h_beat_counter = 0; /* half-notes */
 
-    static int counter = 0;
-    if (counter == 69) {
-        seconds += 1;
-        counter = 0;
-    } else {
-        counter += 1;
+    if (vbl_counter == 70) {
+        vbl_counter = 1;
     }
+    else {
+        vbl_counter += 1;
+    }
+
+    /*-------- half beats ----------------------*/
+    if (h_beat_counter == 26 || h_beat_counter == 52 || h_beat_counter == 78 || 
+        h_beat_counter == 105 || h_beat_counter == 131 || h_beat_counter == 157 || 
+        h_beat_counter == 183) 
+    {
+        update_music();
+    }
+    else if (h_beat_counter == 210) {
+        update_music();
+        h_beat_counter = 0;
+    }
+
+    render_request = TRUE;
+
 }
