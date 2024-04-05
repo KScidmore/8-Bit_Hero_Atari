@@ -18,9 +18,11 @@
 #include "events.h"
 #include "raster.h"
 #include "ebh.h"
+#include "effects.h"
 
 #define ESC 27
 #define BUFFER_SIZE 32256
+#define LAST_NOTE 19
 
 UINT8 buffer_array[BUFFER_SIZE];
 
@@ -30,6 +32,7 @@ int main()
     UINT8 *original_buffer = get_video_base();
     UINT8 *base = get_video_base();
 
+    clear_screen(base);
     render_splashscreen(base);
 
 
@@ -38,7 +41,7 @@ int main()
         ch = read_char();
 
         if(ch == ' '){
-
+            play_menu_selection_fx();
             game_loop();
             break;
         }
@@ -65,6 +68,8 @@ void game_loop(){
     /*Input Variables*/
     char ch;
     BOOL quit = FALSE;
+    BOOL music_on = FALSE;
+    int count = 0;
 
     /*Set Buffers Up*/
     set_buffer(&front_buffer, &back_buffer, buffer_array);
@@ -87,6 +92,12 @@ void game_loop(){
         time_now = get_time();
 
         time_elapsed = time_now - time_then;
+
+        /*wait to start music until first note hits fret*/
+        if (count == 300){
+            start_music();
+            music_on = TRUE;
+        }
 
         ch = read_char();
         if (ch != -1) {
@@ -111,19 +122,45 @@ void game_loop(){
 
         if (time_elapsed >= 1) {
 
+        if (!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
+            
             generate_note(&model);
             Vsync();
 			render_next(curr_buffer, &model);
             set_video_base(curr_buffer);
+            if(music_on){
+
+                update_music(total_time_elapsed, count);
+
+            }
+
+        }else{
+
+            Vsync();
+			render_next(curr_buffer, &model);
+            set_video_base(curr_buffer);
+            if(music_on){
+
+                update_music(total_time_elapsed, count);
+
+            }
+
+            if(!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
+                stop_sound();
+                break;
+            }
+        }
 
             time_then = time_now;
 
         }
 
         if (model.fail_bar.value == 0) {
+            play_game_over_lose_fx();
+            stop_sound();
             break;
         }
-
+        count++;
     }
 
 

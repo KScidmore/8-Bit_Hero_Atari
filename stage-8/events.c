@@ -12,6 +12,8 @@
 #include "events.h"
 #include "types.h"
 #include "raster.h"
+#include "effects.h"
+
 #define GENERATE 69
 #define UPPER_BOUND 384
 #define LOWER_BOUND 300
@@ -227,6 +229,7 @@ void note_collision_a(Model *model, UINT8 index)
 		update_multiplier(model);
 		update_fail_bar(model, -20);
 		update_note_streak(model, TRUE);
+		play_wrong_note_fx();
 	}
 }
 
@@ -263,6 +266,7 @@ void note_collision_s(Model *model, UINT8 index)
 		update_multiplier(model);
 		update_fail_bar(model, -20);
 		update_note_streak(model, TRUE);
+		play_wrong_note_fx();
 	}
 }
 
@@ -299,6 +303,7 @@ void note_collision_d(Model *model, UINT8 index)
 		update_multiplier(model);
 		update_fail_bar(model, -20);
 		update_note_streak(model, TRUE);
+		play_wrong_note_fx();
 	}
 }
 
@@ -335,5 +340,6 @@ void note_collision_f(Model *model, UINT8 index)
 		update_multiplier(model);
 		update_fail_bar(model, -20);
 		update_note_streak(model, TRUE);
+		play_wrong_note_fx();
 	}
 }

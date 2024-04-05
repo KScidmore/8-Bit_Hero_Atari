@@ -19,6 +19,7 @@
 #include "bitmaps.h"
 #include "RAST_ASM.h"
 #include "events.h"
+#include "effects.h"
 
 /*---------- FUNCTION: init_scene ----------------------
 /  PURPOSE:
@@ -129,7 +130,7 @@ void render_active_notes(UINT32 *base, Model *model){
 
     int i;
 
-    for(i = 0; i< ARRAY_SIZE; i++){
+    for(i = 0; i< NOTES_SIZE ; i++){
 
         /*iterate through note arrays, for active notes: clear note, update position and render*/
     
@@ -142,6 +143,7 @@ void render_active_notes(UINT32 *base, Model *model){
             if(model->lanes[FRET_A].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_A].notes[i].is_active = FALSE;
+                play_note_not_played_fx();
                 clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
 
             }
@@ -157,6 +159,7 @@ void render_active_notes(UINT32 *base, Model *model){
             if(model->lanes[FRET_S].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_S].notes[i].is_active = FALSE;
+                play_note_not_played_fx();
                 clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, model->lanes[FRET_S].notes[i].size_y);
 
             }
@@ -171,6 +174,7 @@ void render_active_notes(UINT32 *base, Model *model){
             if(model->lanes[FRET_D].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_D].notes[i].is_active = FALSE;
+                play_note_not_played_fx();
                 clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, model->lanes[FRET_D].notes[i].size_y);
 
             }
@@ -185,6 +189,7 @@ void render_active_notes(UINT32 *base, Model *model){
             if(model->lanes[FRET_F].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_F].notes[i].is_active = FALSE;
+                play_note_not_played_fx();
                 clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, model->lanes[FRET_F].notes[i].size_y);
 
             }

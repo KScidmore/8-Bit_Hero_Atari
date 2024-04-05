@@ -98,7 +98,7 @@ void render_active_notes(UINT32 *base, Model *model){
 
     int i;
 
-    for(i = 0; i< ARRAY_SIZE; i++){
+    for(i = 0; i< NOTES_SIZE; i++){
 
         /*iterate through note arrays, for active notes: clear note, update position and render*/
     
