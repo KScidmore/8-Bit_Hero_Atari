@@ -41,7 +41,7 @@ void play_wrong_note_fx()
     long i;
     play_note(2, A5_SHARP<<3, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < 100000; i++);
-    stop_sound();
+    stop_sound_channel_c();
 }
 
 
@@ -70,7 +70,7 @@ void play_note_not_played_fx()
     long length = 100000;
     play_note(2, 0, 0x00, 0x18, ENV_SHAPE_4, 0x0600, 0, 1);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
 }
 
 
@@ -103,91 +103,113 @@ void play_game_over_win_fx()
 
     play_note(2, E5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, D5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, E5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, G5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, E5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, G5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, A5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, G5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, A5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, B5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, A5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, B5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, B5<<2, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, G5<<1, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, F5<<1, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     play_note(2, 0x166, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length_2; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
 }
 
@@ -214,19 +236,22 @@ void play_game_over_lose_fx()
 
     play_note(2, D5_SHARP<<3, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length_1; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     for (i = 0; i < length_1; i++);
 
     play_note(2, C5<<3, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length_1; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 
     for (i = 0; i < length_1; i++);
     
     play_note(2, F5_SHARP<<3, 0, 0x08, 0, 0, 1, 0);
     for (i = 0; i < length_2; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 }
 
 
@@ -256,7 +281,8 @@ void play_menu_selection_fx()
 
     play_note(2, E5>>1, 0, 0x18, ENV_SHAPE_4, 0x0D00, 1, 0);
     for (i = 0; i < 80000; i++);
-    stop_sound();
+    stop_sound_channel_c();
+
 }
 
 

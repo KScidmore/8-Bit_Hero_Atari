@@ -274,3 +274,58 @@ void set_envelope(int shape, unsigned int sustain)
         write_psg(12, rough);
     }
 }
+
+/*---------- FUNCTION: stop_sound_channel_a ---------------
+/  PURPOSE:
+/    Silences all PSG sound production on channel a.
+/  
+/  CALLER INPUT:
+/    N/A
+/  
+/  CALLER OUTPUT:
+/    N/A
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    N/A
+/--------------------------------------------------------*/
+void stop_sound_channel_a()
+{
+    write_psg(8, 0);
+}
+
+
+/*---------- FUNCTION: stop_sound_channel_b ---------------
+/  PURPOSE:
+/    Silences all PSG sound production on channel b.
+/  
+/  CALLER INPUT:
+/    N/A
+/  
+/  CALLER OUTPUT:
+/    N/A
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    N/A
+/--------------------------------------------------------*/
+void stop_sound_channel_b()
+{
+    write_psg(9, 0);
+}
+
+/*---------- FUNCTION: stop_sound_channel_c ---------------
+/  PURPOSE:
+/    Silences all PSG sound production on channel c.
+/  
+/  CALLER INPUT:
+/    N/A
+/  
+/  CALLER OUTPUT:
+/    N/A
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    N/A
+/--------------------------------------------------------*/
+void stop_sound_channel_c()
+{
+    write_psg(10, 0);
+}

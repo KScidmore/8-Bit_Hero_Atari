@@ -55,7 +55,7 @@ void start_music()
                  channel_a[curr_note_index].env_sustain);
 
     curr_note_index += 1;
-
+    
 }
 
 /*---------- FUNCTION: update_music -----------------------
@@ -78,7 +78,7 @@ void update_music(UINT32 total_time_elapsed)
 {    
     if(total_time_elapsed % 50 == 0) {
 
-        stop_sound();
+        stop_sound_channel_a();
         set_tone(0, channel_a[curr_note_index].pitch);
         set_volume(0, channel_a[curr_note_index].level);
         enable_channel(0, 1, 0);
