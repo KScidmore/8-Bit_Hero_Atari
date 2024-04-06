@@ -21,7 +21,7 @@
 #ifndef SNDCONST_H
 #define SNDCONST_H
 
-/*---------- DEFINING ENVELOPE SHAPES ---------------------------------------*/
+/*---------- DEFINING ENVELOPE SHAPES AND FREQ ------------------------------*/
 #define ENV_SHAPE_1 0x0
 #define ENV_SHAPE_2 0x4
 #define ENV_SHAPE_3 0x8
@@ -32,6 +32,8 @@
 #define ENV_SHAPE_8 0xD
 #define ENV_SHAPE_9 0xE
 #define ENV_SHAPE_10 0xF
+
+#define ENV_FREQ 0x1F00
 
 
 /*---------- DEFINING ENVELOPE SHAPES ---------------------------------------*/

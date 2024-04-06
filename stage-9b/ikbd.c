@@ -18,24 +18,20 @@
 typedef UINT8 SCANCODE;
 typedef void (*Vector)(); 
 
-/* IKBD ISR Vector */
+/* IKBD 6850 IRQ Vector */
 #define VEC_IKBD_ISR 70
 
-/* IKBD Addresses */
+/* IKBD 6850 Addresses */
 #define CONTROL ((UINT32)0xFFFC00)
 #define STATUS  ((UINT32)0xFFFC00)
 #define RDR     ((UINT32)0xFFFC02)
 
-/* Register Values */
+/* IKBD 6850 Register Values */
 #define RX_ENABLE       ((UINT8)0x96)
 #define RX_DISABLE      ((UINT8)0x16)
 #define RDR_FULL        ((UINT8)0x01)
 
-/* NOT SURE WHAT THIS IS, KYLE HAD IT IN HIS LAB CODE 
-#define TIMEOUT_VALUE   ((UINT16)1000)
-*/
-
-/* Make/Break Codes and Masks */
+/* Make and Break Codes, Masks */
 #define MAKE_MASK   ((SCANCODE)0x80)
 #define ESC_MAKE    ((SCANCODE)0x01)
 #define ESC_BREAK   ((SCANCODE)0x81)
@@ -48,16 +44,17 @@ typedef void (*Vector)();
 #define F_MAKE      ((SCANCODE)0x21)
 #define F_BREAK     ((SCANCODE)0xA1)
 
+/* IKBD 6850 Register Values */
 volatile       UINT8    * const IKBD_control = 0xFFFC00;
 volatile const UINT8    * const IKBD_status  = 0xFFFC00;
 volatile const SCANCODE * const IKBD_RDR     = 0xFFFC02;
 
+/* Function Prototypes */
 SCANCODE read_scancode();
 Vector install_vector(int num, Vector vector);
 void ikbd_isr();
 void do_ikbd_isr(int *ptr);
 void lab_6_reference();
-
 
 int main() {
 
