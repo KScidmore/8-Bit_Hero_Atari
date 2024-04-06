@@ -1,0 +1,14 @@
+- this info is noted in the Project Stage 4 document 
+
+Stage 4b: Minimizing Screen Plotting
+In the first version of your renderer (call it “stage 4a”), it is acceptable to plot an entire frame each time 
+the master render routine is invoked. Later, an easy way to animate the game (in stage 5) is to clear the 
+screen and then completely re-render the entire model, for each frame. Of course, the disadvantage of this 
+approach is that it is slow. It is therefore difficult to achieve, smooth, high-quality graphics with a high 
+frame rate. 
+Once stage 4a is working, you may wish to consider improving the renderer so that it only re-plots the
+aspects of the model that have changed since a previous invocation. There is more than one way to 
+accomplish this – working out the details is your responsibility. 
+Completing stage 4b is not mandatory before starting stage 5. However, it is strongly recommended that 
+you start thinking about how to do it. By the end of stage 6, it is likely that your game’s graphics will 
+suffer very noticeably if it naively and inefficiently over-plots. 

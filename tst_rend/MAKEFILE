@@ -1,0 +1,41 @@
+# Executable file produced
+TARGET=render
+
+# Object files needed for target
+OBJECTS=tst_rend.o renderer.o model.o events.o raster.o bitmaps.o rast_asm.o
+
+# C compiler and flags
+CC=cc68x
+CFLAGS=-g
+
+# Building the target
+all: clean $(TARGET)
+
+# Linking target executable from object files
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET)
+
+tst_rend.o: tst_rend.c types.h model.h renderer.h rast_asm.h
+	$(CC) $(CFLAGS) -c tst_rend.c
+
+renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h
+	$(CC) $(CFLAGS) -c renderer.c
+
+model.o: model.c model.h types.h
+	$(CC) $(CFLAGS) -c model.c
+
+events.o: events.c model.h types.h
+	$(CC) $(CFLAGS) -c events.c
+
+raster.o: raster.c types.h raster.h
+	$(CC) $(CFLAGS) -c raster.c
+
+bitmaps.o: bitmaps.c bitmaps.h
+	$(CC) $(CFLAGS) -c bitmaps.c
+
+rast_asm.o: rast_asm.s
+	gen -D -L2 rast_asm.s
+
+# Cleaning up the old object files and executable
+clean:
+	$(RM) *.o render
