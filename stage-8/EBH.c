@@ -19,6 +19,8 @@
 #include "raster.h"
 #include "ebh.h"
 #include "effects.h"
+#include "music.h"
+#include "psg.h"
 
 #define ESC 27
 #define BUFFER_SIZE 32256
@@ -63,7 +65,7 @@ void game_loop(){
     UINT32 *front_buffer, *back_buffer, *curr_buffer;
 
     /*Time variables*/
-    UINT32 time_then, time_now, time_elapsed;
+    UINT32 time_then, time_now, time_elapsed, total_time_elapsed;
 
     /*Input Variables*/
     char ch;
@@ -92,6 +94,7 @@ void game_loop(){
         time_now = get_time();
 
         time_elapsed = time_now - time_then;
+        total_time_elapsed += time_now - time_then;
 
         /*wait to start music until first note hits fret*/
         if (count == 300){

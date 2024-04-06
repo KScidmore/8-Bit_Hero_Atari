@@ -42,8 +42,7 @@ void play_wrong_note_fx()
     long length = 80000;
     set_tone(2, A5_SHARP<<3);
     set_volume(2, 0x08);                /* M = off, vol = 8/15 */
-    enable_channel(2, 1, 0);
-    for (i = 0; i < length; i++);
+    enable_channel(2, 1, 0);;
     stop_sound();
 }
 
@@ -72,7 +71,6 @@ void play_note_not_played_fx()
     set_volume(2, 0x18);                /* M = on, vol = 8/15 */
     set_envelope(ENV_SHAPE_4, 0x0600);
     enable_channel(2, 0, 1);
-    for (i = 0; i < length; i++);
     stop_sound();
 }
 

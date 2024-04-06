@@ -143,7 +143,9 @@ void render_active_notes(UINT32 *base, Model *model){
             if(model->lanes[FRET_A].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_A].notes[i].is_active = FALSE;
-                play_note_not_played_fx();
+                if(!model->lanes[FRET_A].notes[i].is_played){
+                    play_note_not_played_fx();
+                }
                 clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
 
             }
@@ -159,7 +161,9 @@ void render_active_notes(UINT32 *base, Model *model){
             if(model->lanes[FRET_S].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_S].notes[i].is_active = FALSE;
-                play_note_not_played_fx();
+                if(!model->lanes[FRET_S].notes[i].is_played){
+                    play_note_not_played_fx();
+                }
                 clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, model->lanes[FRET_S].notes[i].size_y);
 
             }
@@ -174,7 +178,9 @@ void render_active_notes(UINT32 *base, Model *model){
             if(model->lanes[FRET_D].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_D].notes[i].is_active = FALSE;
-                play_note_not_played_fx();
+                if(!model->lanes[FRET_D].notes[i].is_played){
+                    play_note_not_played_fx();
+                }
                 clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, model->lanes[FRET_D].notes[i].size_y);
 
             }
@@ -189,7 +195,9 @@ void render_active_notes(UINT32 *base, Model *model){
             if(model->lanes[FRET_F].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_F].notes[i].is_active = FALSE;
-                play_note_not_played_fx();
+                if(!model->lanes[FRET_F].notes[i].is_played){
+                    play_note_not_played_fx();
+                }
                 clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, model->lanes[FRET_F].notes[i].size_y);
 
             }
