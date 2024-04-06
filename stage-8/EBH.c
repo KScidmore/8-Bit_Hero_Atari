@@ -149,7 +149,8 @@ void game_loop(){
             }
 
             if(!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
-                stop_sound();
+                stop_sound_channel_a();
+                play_game_over_win_fx();
                 break;
             }
         }
@@ -160,7 +161,6 @@ void game_loop(){
 
         if (model.fail_bar.value == 0) {
             play_game_over_lose_fx();
-            stop_sound();
             break;
         }
         count++;

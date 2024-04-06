@@ -18,13 +18,13 @@ $(TARGET): $(OBJECTS)
 EBH.o: EBH.c types.h model.h events.h renderer.h rast_asm.h inputs.h raster.h effects.h music.h psg.h
 	$(CC) $(CFLAGS) -c EBH.c
 
-renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h events.h effects.h
+renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h events.h effects.h psg.h
 	$(CC) $(CFLAGS) -c renderer.c
 
 model.o: model.c model.h types.h
 	$(CC) $(CFLAGS) -c model.c
 
-events.o: events.c model.h types.h raster.h effects.c
+events.o: events.c model.h types.h raster.h effects.c psg.h
 	$(CC) $(CFLAGS) -c events.c
 
 raster.o: raster.c types.h raster.h

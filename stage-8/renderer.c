@@ -20,6 +20,7 @@
 #include "RAST_ASM.h"
 #include "events.h"
 #include "effects.h"
+#include "psg.h"
 
 /*---------- FUNCTION: init_scene ----------------------
 /  PURPOSE:

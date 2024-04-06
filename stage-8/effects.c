@@ -3,7 +3,8 @@
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
 /  File Name:   effects.c
 /  Citations:   
-/    - https://www.songsterr.com/a/wsa/van-halen-eruption-tab-s92811
+/    - play_game_over_win_fx: Megadeth's "Sweating Bullets"
+/    - play_menu_selection_fx: Super Mario Bros "Coin Sound"
 /
 /  Program Purposes:
 /    Data Structures: 
@@ -37,13 +38,9 @@
 /--------------------------------------------------------*/
 void play_wrong_note_fx()
 {
-
     long i;
-    long length = 80000;
-    set_tone(2, A5_SHARP<<3);
-    set_volume(2, 0x08);                /* M = off, vol = 8/15 */
-    enable_channel(2, 1, 0);;
-    stop_sound();
+    play_note(2, A5_SHARP<<3, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
 }
 
 
@@ -61,17 +58,17 @@ void play_wrong_note_fx()
 /    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    N/A 
+/    Bugs:
+/      - not playing correctly the first time it is played,
+/        then it seems to work properly; think that it is
+/        related to the envelope perhaps
 /--------------------------------------------------------*/
 void play_note_not_played_fx()
 {
     long i; 
     long length = 100000;
-    set_noise(0x00);
-    set_volume(2, 0x18);                /* M = on, vol = 8/15 */
-    set_envelope(ENV_SHAPE_4, 0x0600);
-    enable_channel(2, 0, 1);
-    stop_sound();
+    play_note(2, 0, 0x00, 0x18, ENV_SHAPE_4, 0x0600, 0, 1);
+    stop_sound_channel_c();
 }
 
 
@@ -98,7 +95,97 @@ void play_game_over_win_fx()
     B3 D4 B3 D4 E4 D4 E4 G4 F4 E4 F4
     */
 
-    /* TODO */
+    long i;
+    long length = 40000;
+    long length_2 = 120000;
+
+    play_note(2, E5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, D5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, E5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, G5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, E5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, G5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, A5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, G5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, A5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, B5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, A5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, B5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, B5<<2, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, G5<<1, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, F5<<1, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
+
+    play_note(2, 0x166, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
 
 }
 
@@ -119,31 +206,19 @@ void play_game_over_win_fx()
 /--------------------------------------------------------*/
 void play_game_over_lose_fx()
 {
-    
     long i;
     long length_1 = 100000;
     long length_2 = 200000;
-    set_tone(2, D5_SHARP<<3);
-    set_volume(2, 0x08);                /* M = off, vol = 8/15 */
-    enable_channel(2, 1, 0);
-    for (i = 0; i < length_1; i++);
-    stop_sound();
 
-    for (i = 0; i < length_1; i++);
+    play_note(2, D5_SHARP<<3, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
 
-    set_tone(2, C5<<3);
-    set_volume(2, 0x08);                /* M = off, vol = 8/15 */
-    enable_channel(2, 1, 0);
-    for (i = 0; i < length_1; i++);
-    stop_sound();
-
-    for (i = 0; i < length_1; i++);
+    play_note(2, C5<<3, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
     
-    set_tone(2, F5_SHARP<<4);
-    set_volume(2, 0x08);                /* M = off, vol = 8/15 */
-    enable_channel(2, 1, 0);
-    for (i = 0; i < length_2; i++);
-    stop_sound();
+    play_note(2, F5_SHARP<<3, 0, 0x08, 0, 0, 1, 0);
+    stop_sound_channel_c();
+
 }
 
 
@@ -159,52 +234,58 @@ void play_game_over_lose_fx()
 /    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    N/A 
+/    Bugs:
+/      - not playing correctly the first time it is played,
+/        then it seems to work properly; think that it is
+/        related to the envelope perhaps
 /--------------------------------------------------------*/
 void play_menu_selection_fx()
 {
-
     long i;
-    UINT32 length_1 = 60000;
-    UINT32 length_2 = 120000;
-    UINT16 sustain_1 = 0x0F00;
-    UINT16 sustain_2 = 0x8F00;  
 
-    set_tone(2, B5>>2);
-    set_volume(2, 0x18);                    /* M = 1, vol = 8/15 */
-    set_envelope(ENV_SHAPE_4, sustain_1);
-    for (i = 0; i < length_1; i++);
-    stop_sound();
+    play_note(2, B5, 0, 0x18, ENV_SHAPE_4, 0x0800, 1, 0);
 
-    set_tone(2, E5>>2);
-    set_volume(2, 0x18);                    /* M = 1, vol = 8/15 */
-    set_envelope(ENV_SHAPE_4, sustain_2);
-    for (i = 0; i < length_2; i++);
-    stop_sound();
+    play_note(2, E5>>1, 0, 0x18, ENV_SHAPE_4, 0x0D00, 1, 0);
+    stop_sound_channel_c();
+
 }
 
 
 /*---------- FUNCTION: play_note --------------------------
 /  PURPOSE:
 /    Helper function to make the other functions a bit 
-/    easier to manage and more readable.
+/    easier to manage.
 /  
 /  CALLER INPUT:
-/    int note
-/      the note to be played, ranges from B0-B8
-/  
+/    int channel 
+/      the channel for the sound to play on
+/    int tone_tuning
+/      the tuning value for set_tone()
+/    int noise_tuning
+/      the tuning value for set_noise()
+/    int volume
+/      the mode and volume level for set_volume()
+/    int shape
+/      the envelope shape for set_envelope()
+/    unsigned int sustain
+/      the sustain value for set_envelope()
+/    int tone_on
+/      turns tone on/off for enable_channel()
+/    int noise_on
+/      turns noise on/off for enable_channel()
+/      
 /  CALLER OUTPUT:
 /    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
 /    N/A 
 /--------------------------------------------------------*/
-void play_note(int channel, int note, int tone_on, int noise_on)
-{
-    long i;
-    set_tone(channel, note);                    /* set tone freq */
-    set_volume(channel, 0x0B);                  /* set mode and volume */
-    enable_channel(channel, tone_on, noise_on); /* enable mixer channel */
-	for (i = 0; i < 70000; i++);                /* tone now playing in loop */  
-    stop_sound();                               /* set channel levels to 0 */
+void play_note(int channel, int tone_tuning, int noise_tuning, int volume, 
+               int shape, unsigned int sustain, int tone_on, int noise_on) {
+    
+    set_envelope(shape, sustain);
+    set_tone(channel, tone_tuning);
+    set_noise(noise_tuning);
+    set_volume(channel, volume);
+    enable_channel(channel, tone_on, noise_on);
 }
