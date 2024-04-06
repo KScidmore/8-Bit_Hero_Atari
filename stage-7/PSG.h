@@ -36,6 +36,8 @@ void enable_channel(int channel, int tone_on, int noise_on);
 void stop_sound(); 
 void set_noise(int tuning);
 void set_envelope(int shape, unsigned int sustain);
-
+void stop_sound_channel_a();
+void stop_sound_channel_b();
+void stop_sound_channel_c();
 
 #endif
