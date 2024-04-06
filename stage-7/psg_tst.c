@@ -24,6 +24,7 @@ void play_noise();
 void env_example();
 void play_note(int note);
 void play_cmaj_scale();
+void play_on_multi_channels();
 
 void test_set_tone();
 void test_set_volume();
@@ -42,135 +43,9 @@ int main()
     test_set_envelope();
     */
 
+    play_on_multi_channels();
+
     return 0;
-}
-
-
-void play_tone_C5()
-{
-    set_tone(0, C5);            /* set tone freq */
-    set_volume(0, 0x0B);        /* set mode and volume */
-    enable_channel(0, 1, 0);    /* enable mixer channel */
-	while (!Cconis());          /* tone now playing, await key */     
-    stop_sound();               /* set channel levels to 0 */
-	Cnecin();
-}
-
-void play_noise()
-{
-    set_noise(0x10);            /* set noise freq */
-    set_volume(2, 0x0B);        /* set mode and volume */
-    enable_channel(2, 0, 1);    /* enable mixer channel */
-	while (!Cconis());          /* tone now playing, await key */     
-    stop_sound();               /* set channel levels to 0 */
-	Cnecin();
-}
-
-void env_example()
-{
-    /* Envelope Shape 1 */    
-    set_tone(0, C5);                    /* set tone */
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_1, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-
-    /* Envelope Shape 2 */    
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_2, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-
-    /* Envelope Shape 3 */    
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_3, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-
-    /* Envelope Shape 4 */    
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_4, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-
-    /* Envelope Shape 5 */    
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_5, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-
-    /* Envelope Shape 6 */    
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_6, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-
-    /* Envelope Shape 7 */    
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_7, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-
-    /* Envelope Shape 8 */    
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_8, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-
-    /* Envelope Shape 9 */    
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_9, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-
-    /* Envelope Shape 10*/    
-    set_volume(0, 0x13);                /* set mode and volume */
-    set_envelope(ENV_SHAPE_10, 0x0F00);  /* set envelope */
-    enable_channel(0, 1, 0);            /* enable channel A on mixer */
-	while (!Cconis());                  /* tone now playing, await key */     
-    stop_sound();                       /* set channel levels to 0 */
-	Cnecin();
-}
-
-
-void play_note(int note)
-{
-    long i;
-    set_tone(0, note);
-    enable_channel(0, 1, 0);        /* enable channel A on mixer */
-    write_psg(8, 11);               /* set channel A volume = 11 */
-	for (i = 0; i < 70000; i++);    /* tone now playing in loop */  
-    write_psg(8, 0);                /* set channel A volume = 0 */
-}
-
-void play_cmaj_scale()
-{
-    play_note(C5<<1);
-    play_note(D5<<1);
-    play_note(E5<<1);
-    play_note(F5<<1);
-    play_note(G5<<1);
-    play_note(A5<<1);
-    play_note(B5<<1);
-    play_note(C5);
 }
 
 
@@ -492,4 +367,148 @@ void test_set_envelope()
         printf("\n");
     }
     printf("Completed running test_set_envelope()\n\n**********\n\n");
+}
+
+void play_tone_C5()
+{
+    set_tone(0, C5);            /* set tone freq */
+    set_volume(0, 0x0B);        /* set mode and volume */
+    enable_channel(0, 1, 0);    /* enable mixer channel */
+	while (!Cconis());          /* tone now playing, await key */     
+    stop_sound();               /* set channel levels to 0 */
+	Cnecin();
+}
+
+void play_noise()
+{
+    set_noise(0x10);            /* set noise freq */
+    set_volume(2, 0x0B);        /* set mode and volume */
+    enable_channel(2, 0, 1);    /* enable mixer channel */
+	while (!Cconis());          /* tone now playing, await key */     
+    stop_sound();               /* set channel levels to 0 */
+	Cnecin();
+}
+
+void env_example()
+{
+    /* Envelope Shape 1 */    
+    set_tone(0, C5);                    /* set tone */
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_1, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+
+    /* Envelope Shape 2 */    
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_2, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+
+    /* Envelope Shape 3 */    
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_3, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+
+    /* Envelope Shape 4 */    
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_4, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+
+    /* Envelope Shape 5 */    
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_5, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+
+    /* Envelope Shape 6 */    
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_6, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+
+    /* Envelope Shape 7 */    
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_7, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+
+    /* Envelope Shape 8 */    
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_8, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+
+    /* Envelope Shape 9 */    
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_9, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+
+    /* Envelope Shape 10*/    
+    set_volume(0, 0x13);                /* set mode and volume */
+    set_envelope(ENV_SHAPE_10, 0x0F00);  /* set envelope */
+    enable_channel(0, 1, 0);            /* enable channel A on mixer */
+	while (!Cconis());                  /* tone now playing, await key */     
+    stop_sound();                       /* set channel levels to 0 */
+	Cnecin();
+}
+
+
+void play_note(int note)
+{
+    long i;
+    set_tone(0, note);
+    enable_channel(0, 1, 0);        /* enable channel A on mixer */
+    write_psg(8, 11);               /* set channel A volume = 11 */
+	for (i = 0; i < 70000; i++);    /* tone now playing in loop */  
+    write_psg(8, 0);                /* set channel A volume = 0 */
+}
+
+void play_cmaj_scale()
+{
+    play_note(C5<<1);
+    play_note(D5<<1);
+    play_note(E5<<1);
+    play_note(F5<<1);
+    play_note(G5<<1);
+    play_note(A5<<1);
+    play_note(B5<<1);
+    play_note(C5);
+}
+
+void play_on_multi_channels() {
+    long i;
+    set_tone(0, C5<<2);
+    set_tone(1, E5<<2);
+    set_tone(2, G5<<2);
+    set_volume(0, 0x08);
+    set_volume(1, 0x08);
+    set_volume(2, 0x08);
+    set_envelope(0, 0);
+    enable_channel(0, 1, 0);
+    enable_channel(1, 1, 0);
+    enable_channel(2, 1, 0);
+    while (!Cconis());
+    stop_sound();
+    Cnecin();
 }

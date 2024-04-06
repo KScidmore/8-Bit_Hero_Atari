@@ -18,7 +18,7 @@
 
 #include "types.h"
 
-#define SONG_LENGTH 63
+#define SONG_LENGTH 64
 
 
 /*---------- STRUCTURE DEFINITIONS ------------------------------------------*/
