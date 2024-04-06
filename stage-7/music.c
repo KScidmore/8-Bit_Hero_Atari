@@ -28,7 +28,6 @@
 #define TICKS_PER_E_NOTE (TICKS_PER_W_NOTE / 8)
 
 UINT32 curr_note_index = 0;
-UINT32 time_since_last_note = 0;
 
 /*---------- FUNCTION: start_music ------------------------
 /  PURPOSE:
@@ -88,9 +87,6 @@ void update_music(UINT32 total_time_elapsed)
         
         /* making sure it wraps back around */
         curr_note_index = (curr_note_index + 1) % SONG_LENGTH; 
-        if(curr_note_index == 0) {
-            curr_note_index += 1;
-        }
     }
 
     
