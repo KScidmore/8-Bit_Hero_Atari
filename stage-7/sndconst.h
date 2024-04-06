@@ -3,7 +3,7 @@
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
 /  File Name:   sndconst.h
 /  Citations:   
-/    - http://poi.ribbon.free.fr/tmp/freq2regs.htm 
+/    - Note Values: http://poi.ribbon.free.fr/tmp/freq2regs.htm 
 /
 /  Instructions:
 /    The range of usable note values for this chip is between
