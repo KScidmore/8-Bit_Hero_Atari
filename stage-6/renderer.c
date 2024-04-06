@@ -1,3 +1,16 @@
+/*
+ ID Header:
+   Authors: 	Andrew Boisvert, Kyle Scidmore
+   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
+   File Name:	RASTER.C
+   Citations:  
+     - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+     - 
+
+
+ Program Purposes:
+   Library of functions to render screen elements
+*/
 #include <osbind.h>
 #include "types.h"
 #include "renderer.h"
@@ -7,9 +20,24 @@
 #include "RAST_ASM.h"
 #include "events.h"
 
-const UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
-
-
+/*---------- FUNCTION: init_scene ----------------------
+/  PURPOSE:
+/  	Renders the initial game scene
+/  
+/  CALLER INPUT:
+/    UINT8 *base
+/  	- Starting point of the frame buffer (8bit)
+/    UINT32 *base
+/  	- Starting point of the frame buffer (32bit)
+/    Model *model
+/  	- Address of the game model
+/  
+/  CALLER OUTPUT:
+/    Returns Void
+/  
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/   
+/--------------------------------------------------------*/
 void init_scene(UINT8 *base, UINT32 *base32, Model *model){
 
     clear_screen(base);
@@ -22,6 +50,22 @@ void init_scene(UINT8 *base, UINT32 *base32, Model *model){
 
 }
 
+/*---------- FUNCTION: render_next ---------------------
+/  PURPOSE:
+/ 	Renders the next frame along with a new note if needed
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_next(UINT32 *base, Model *model){
 
     static int note_counter = 0;
@@ -38,7 +82,7 @@ void render_next(UINT32 *base, Model *model){
     render_failbar(base, model);
     render_frets(base, model);
 
-     if(note_gen == 69){
+     if(note_gen == GENERATE){
         if(!swap){
             switch (note_counter){
                     case 0:
@@ -104,35 +148,62 @@ void render_next(UINT32 *base, Model *model){
     else{
         note_gen++;
     }
-
 }
 
+/*---------- FUNCTION: render_new_note ------------------
+/  PURPOSE:
+/  	Activates a new note
+/  
+/  CALLER INPUT:
+/    UINT32 *base
+/  	- Starting point of the frame buffer
+/    Model *model
+/  	- Address of the game model
+/  
+/  CALLER OUTPUT:
+/    Returns Void
+/  
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/   
+/--------------------------------------------------------*/
 void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
     model->lanes[fret].notes[note_index].is_active = TRUE;
 
-
-
 }
 
+/*---------- FUNCTION: render_active_notes ---------------
+/  PURPOSE:
+/ 	de-renders and re-renders all active notes
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_active_notes(UINT32 *base, Model *model){
 
 
-    int i, SIZE, bottom;
-    SIZE = 50;
-    bottom = 358;
+    int i;
 
-    for(i = 0; i< SIZE; i++){
+    for(i = 0; i< ARRAY_SIZE; i++){
 
-        /*iterate through note array, for active notes update position and render*/
+        /*iterate through note array, for active notes: clear note, update position and render*/
     
         if(model->lanes[FRET_A].notes[i].is_active == TRUE){
             
             clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
             set_note_pos(model, FRET_A, i);
-            plot_bitmap_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y , note_map, model->lanes[FRET_A].notes[i].size_y);
+            plot_bitmap_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, note_map, model->lanes[FRET_A].notes[i].size_y);
 
-            if(model->lanes[FRET_A].notes[i].pos_y >= bottom){
+            if(model->lanes[FRET_A].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_A].notes[i].is_active = FALSE;
                 clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
@@ -147,7 +218,7 @@ void render_active_notes(UINT32 *base, Model *model){
             set_note_pos(model, FRET_S, i);
             plot_bitmap_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, note_map, model->lanes[FRET_S].notes[i].size_y);
 
-            if(model->lanes[FRET_S].notes[i].pos_y >= bottom){
+            if(model->lanes[FRET_S].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_S].notes[i].is_active = FALSE;
                 clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, model->lanes[FRET_S].notes[i].size_y);
@@ -161,7 +232,7 @@ void render_active_notes(UINT32 *base, Model *model){
             set_note_pos(model, FRET_D, i);
             plot_bitmap_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, note_map, model->lanes[FRET_D].notes[i].size_y);
 
-            if(model->lanes[FRET_D].notes[i].pos_y >= bottom){
+            if(model->lanes[FRET_D].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_D].notes[i].is_active = FALSE;
                 clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, model->lanes[FRET_D].notes[i].size_y);
@@ -175,7 +246,7 @@ void render_active_notes(UINT32 *base, Model *model){
             set_note_pos(model, FRET_F, i);
             plot_bitmap_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, note_map, model->lanes[FRET_F].notes[i].size_y);
 
-            if(model->lanes[FRET_F].notes[i].pos_y >= bottom){
+            if(model->lanes[FRET_F].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_F].notes[i].is_active = FALSE;
                 clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, model->lanes[FRET_F].notes[i].size_y);
@@ -186,34 +257,48 @@ void render_active_notes(UINT32 *base, Model *model){
 
 }
 
+/*---------- FUNCTION: clear_top ---------------------
+/  PURPOSE:
+/ 	Clears top of the lane to deal with weird visual bug
+/   of notes slowly drawing themselves
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void clear_top(UINT32 *base, Model *model){
 
-    clear_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, 84, model->lanes[FRET_A].notes[FRET_A].size_y);
-    clear_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, 84, model->lanes[FRET_S].notes[FRET_S].size_y);
-    clear_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, 84, model->lanes[FRET_D].notes[FRET_D].size_y);
-    clear_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, 84, model->lanes[FRET_F].notes[FRET_F].size_y);
+    clear_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, BOARD_Y, model->lanes[FRET_A].notes[FRET_A].size_y);
+    clear_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, BOARD_Y, model->lanes[FRET_S].notes[FRET_S].size_y);
+    clear_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, BOARD_Y, model->lanes[FRET_D].notes[FRET_D].size_y);
+    clear_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, BOARD_Y, model->lanes[FRET_F].notes[FRET_F].size_y);
     
 }
 
-void clear_bottom(UINT32 *base, Model *model){
-
-    clear_32(base, model->frets[FRET_A].pos_x, model->frets[FRET_A].pos_y + 32, model->frets[FRET_A].size_y + 5);
-    clear_32(base, model->frets[FRET_S].pos_x, model->frets[FRET_S].pos_y + 32, model->frets[FRET_S].size_y + 5);
-    clear_32(base, model->frets[FRET_D].pos_x, model->frets[FRET_D].pos_y + 32, model->frets[FRET_D].size_y + 5);
-    clear_32(base, model->frets[FRET_F].pos_x, model->frets[FRET_F].pos_y + 32, model->frets[FRET_F].size_y + 5);
-    
-}
-
-void clear_frets(UINT32 *base, Model *model) 
-{  
-
-    clear_32(base, model->frets[FRET_A].pos_x, model->frets[FRET_A].pos_y, model->frets[FRET_A].size_y);
-    clear_32(base, model->frets[FRET_S].pos_x, model->frets[FRET_S].pos_y, model->frets[FRET_S].size_y);
-    clear_32(base, model->frets[FRET_D].pos_x, model->frets[FRET_D].pos_y, model->frets[FRET_D].size_y);
-    clear_32(base, model->frets[FRET_F].pos_x, model->frets[FRET_F].pos_y, model->frets[FRET_F].size_y);
-
-}
-
+/*---------- FUNCTION: render_frets ---------------------
+/  PURPOSE:
+/ 	Renders the 4 frets
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_frets(UINT32 *base, Model *model) 
 {  
 
@@ -224,36 +309,49 @@ void render_frets(UINT32 *base, Model *model)
 
 }
 
-
+/*---------- FUNCTION: render_fretboard -----------------
+/  PURPOSE:
+/ 	Renders the 4 fretboard lanes and upper bar
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_fretboard(UINT8 *base)
 {
     int i, start_y, start_x;
-    start_y = 80;
-    start_x = 156;
+    start_y = START_Y;
+    start_x = LANE_1_LEFT;
 
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
 
-        plot_h_line(base, 156, 482, start_y);
+        plot_h_line(base, START_X, END_X, start_y);
         
         start_y += 1;
 
     }
 
     /* Plot first track*/
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
     
-    start_x = 192;
+    start_x = LANE_1_RIGHT;
 
-      for(i = 0; i < 4; i++)
+      for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
@@ -261,63 +359,63 @@ void render_fretboard(UINT8 *base)
 
     /*Plot second track*/
 
-    start_x = 252;
+    start_x = LANE_2_LEFT;
     
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
     
-    start_x = 287;
+    start_x = LANE_2_RIGHT;
 
-      for(i = 0; i < 4; i++)
+      for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
 
     /*plot third track*/
-    start_x = 348;
+    start_x = LANE_3_LEFT;
     
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
     
-    start_x = 383;
+    start_x = LANE_3_RIGHT;
 
-      for(i = 0; i < 4; i++)
+      for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
 
+    /*plot fourth track*/
+    start_x = LANE_4_LEFT;
     
-    start_x = 444;
-    
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
     }
     
-    start_x = 479;
+    start_x = LANE_4_RIGHT;
 
-      for(i = 0; i < 4; i++)
+      for(i = 0; i < LINE_SIZE; i++)
     {
-        vertical_line(base, start_x, 84, 274);
+        vertical_line(base, start_x, BOARD_Y, BOARD_HEIGHT);
 
         start_x += 1;
 
@@ -325,27 +423,60 @@ void render_fretboard(UINT8 *base)
 
 }
 
+/*---------- FUNCTION: render_start_score ----------------
+/  PURPOSE:
+/ 	Renders the initial score
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_start_score(UINT32 *base, Model *model){
 
     int pos_y = model->score.pos_y;
     int height = model->score.size_y;
 
-    plot_bitmap_32(base, model->score.ones_x, pos_y, num_maps[0], height);
-    plot_bitmap_32(base, model->score.tens_x, pos_y, num_maps[0], height);
-    plot_bitmap_32(base, model->score.hunds_x, pos_y, num_maps[0], height);
-    plot_bitmap_32(base, model->score.thous_x, pos_y, num_maps[0], height);
+    plot_bitmap_32(base, model->score.ones_x, pos_y, zero_map, height);
+    plot_bitmap_32(base, model->score.tens_x, pos_y, zero_map, height);
+    plot_bitmap_32(base, model->score.hunds_x, pos_y, zero_map, height);
+    plot_bitmap_32(base, model->score.thous_x, pos_y, zero_map, height);
 
 }
 
+/*---------- FUNCTION: render_score ---------------------
+/  PURPOSE:
+/ 	Renders the updated score based on models value
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_score(UINT32 *base, Model *model){
 
     UINT16 value, ones, tens, hundreds, thousands, height, pos_y;
+    UINT32 *num_maps[] = {zero_map, one_map, two_map, three_map, four_map, five_map, six_map, seven_map, eight_map, nine_map};
 
     if(model->score.updated_flag == TRUE){
 
         height = model->score.size_y;
 
-        pos_y = 16;
+        pos_y = SCORE_Y;
 
         value = model->score.value;
 
@@ -393,12 +524,44 @@ void render_score(UINT32 *base, Model *model){
     }
 }
 
+/*---------- FUNCTION: render_x -------------------------
+/  PURPOSE:
+/ 	Renders the X for the multiplier
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_x(UINT32 *base, Model *model){
     
     plot_bitmap_32(base, model->multiplier.pos_x, model->multiplier.pos_y, x_map, model->multiplier.digit_size_y);
 
 }
 
+/*---------- FUNCTION: render_start_multiplier -----------
+/  PURPOSE:
+/ 	Renders the initial multiplier number
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_start_multiplier(UINT32 *base, Model *model){
 
     int pos_x = model->multiplier.pos_x + 32;
@@ -409,6 +572,23 @@ void render_start_multiplier(UINT32 *base, Model *model){
 
 }
 
+/*---------- FUNCTION: render_multiplier -----------------
+/  PURPOSE:
+/ 	Renders the updated multipler number based 
+/   on the models value
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/  
+/--------------------------------------------------------*/
 void render_multiplier(UINT32 *base, Model *model)
 {
     int pos_x = model->multiplier.pos_x + 32;
@@ -449,6 +629,22 @@ void render_multiplier(UINT32 *base, Model *model)
 
 }
 
+/*---------- FUNCTION: render_failbar -------------------
+/  PURPOSE:
+/   Renders the starting failbar
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/   None
+/--------------------------------------------------------*/
 void render_start_failbar(UINT32 *base, Model *model){
 
     int pos_y, sec_one, sec_two, sec_three, sec_four, sec_five, sec_six, height;
@@ -471,6 +667,23 @@ void render_start_failbar(UINT32 *base, Model *model){
     plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);
 
 }
+
+/*---------- FUNCTION: render_failbar -------------------
+/  PURPOSE:
+/   Renders the failbar based on the models value
+/ 
+/  CALLER INPUT:
+/   UINT32 *base
+/ 	- Starting point of the frame buffer
+/   Model *model
+/   - Address of the game model
+/
+/  CALLER OUTPUT:
+/   Returns Void
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/   None
+/--------------------------------------------------------*/
 void render_failbar(UINT32 *base, Model *model)
 {
     int pos_y, sec_one, sec_two, sec_three, sec_four, sec_five, sec_six, height;
@@ -490,11 +703,6 @@ void render_failbar(UINT32 *base, Model *model)
         clear_32(base, sec_one, pos_y, height);
         plot_bitmap_32(base, sec_one, pos_y, LEE_fail, height);
 
-        /*plot_bitmap_32(base, sec_two, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_three, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
     }
     else if(model->fail_bar.value == 20 ){
 
@@ -502,57 +710,29 @@ void render_failbar(UINT32 *base, Model *model)
         clear_32(base, sec_two, pos_y, height);
         plot_bitmap_32(base, sec_two, pos_y, ME_fail, height);
 
-        /*plot_bitmap_32(base, sec_three, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
-
     }
     else if(model->fail_bar.value == 40 ){
-
-        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);*/
 
         plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
         clear_32(base, sec_three, pos_y, height);
         plot_bitmap_32(base, sec_three, pos_y, ME_fail, height);
 
-        /*plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
-
     }
     else if(model->fail_bar.value == 60 ){
-
-        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
-        plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);*/
 
         plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);
         clear_32(base, sec_four, pos_y, height);
         plot_bitmap_32(base, sec_four, pos_y, ME_fail, height);
 
-        /*plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
-        plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
-
     }
     else if(model->fail_bar.value == 80 ){
-
-        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
-        plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
-        plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);*/
 
         plot_bitmap_32(base, sec_four, pos_y, MF_fail, height);
         clear_32(base, sec_five, pos_y, height);
         plot_bitmap_32(base, sec_five, pos_y, ME_fail, height);
 
-        /*plot_bitmap_32(base, sec_six, pos_y, REE_fail, height);*/
-
     }
     else if(model->fail_bar.value == 100 ){
-
-        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
-        plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
-        plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);
-        plot_bitmap_32(base, sec_four, pos_y, MF_fail, height);*/
 
         plot_bitmap_32(base, sec_five, pos_y, MF_fail, height);
         clear_32(base, sec_six, pos_y, height);
@@ -560,12 +740,6 @@ void render_failbar(UINT32 *base, Model *model)
 
     }
     else{
-
-        /*plot_bitmap_32(base, sec_one, pos_y, LEF_fail, height);
-        plot_bitmap_32(base, sec_two, pos_y, MF_fail, height);
-        plot_bitmap_32(base, sec_three, pos_y, MF_fail, height);
-        plot_bitmap_32(base, sec_four, pos_y, MF_fail, height);
-        plot_bitmap_32(base, sec_five, pos_y, MF_fail, height);*/
 
         plot_bitmap_32(base, sec_six, pos_y, REF_fail, height);
 

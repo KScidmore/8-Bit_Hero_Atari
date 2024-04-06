@@ -122,16 +122,19 @@ int main() {
 
 /*---------- FUNCTION: set_buffer -------------------------
 /  PURPOSE:
-/    TODO
+/    Finds a 256 byte aligned address and sets the front 
+/    and back buffer pointers.
 / 
 /  CALLER INPUT:
-/    TODO
-/ 
+/    - front_buffer: Pointer to the front buffer pointer
+/    - back_buffer: Pointer to the back buffer pointer
+/    - buffer_array: Array containing the buffer memory
+/
 /  CALLER OUTPUT:
-/    N/A
+/    None
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
+/    None
 /--------------------------------------------------------*/
 void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[]){
 
@@ -150,28 +153,21 @@ void set_buffer(UINT32** front_buffer, UINT32** back_buffer, UINT8 buffer_array[
 
 /*---------- FUNCTION: swap_buffer -------------------------
 /  PURPOSE:
-/    Checks what the current buffer is and swaps if needed
+/    Swaps the current buffer pointer between front and back
 / 
 /  CALLER INPUT:
-/    TODO
-/ 
+/       - front_buffer: Pointer to the front buffer.
+/       - back_buffer: Pointer to the back buffer.
+/       - curr_buffer: Pointer to the the current buffer pointer.
 /  CALLER OUTPUT:
-/    N/A
+/    none
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
+/    none
 /--------------------------------------------------------*/
 void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer){
 
-    if(*curr_buffer == front_buffer) {
-
-        *curr_buffer = back_buffer;
-
-    } else {
-
-        *curr_buffer = front_buffer;
-
-    }
+    *curr_buffer = (*curr_buffer == front_buffer) ? back_buffer : front_buffer;
 
 }
 
