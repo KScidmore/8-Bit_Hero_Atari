@@ -39,8 +39,7 @@
 void play_wrong_note_fx()
 {
     long i;
-    play_note(2, A5_SHARP<<3, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
+    play_note(2, A5_SHARP<<3, 0, 0x18, ENV_SHAPE_4, ENV_FREQ, 1, 0);
 }
 
 
@@ -67,8 +66,8 @@ void play_note_not_played_fx()
 {
     long i; 
     long length = 100000;
-    play_note(2, 0, 0x00, 0x18, ENV_SHAPE_4, 0x0600, 0, 1);
-    stop_sound_channel_c();
+    play_note(2, 0, 0x00, 0x18, ENV_SHAPE_4, ENV_FREQ, 0, 1);
+
 }
 
 
@@ -100,92 +99,49 @@ void play_game_over_win_fx()
     long length_2 = 120000;
 
     play_note(2, E5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, D5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, E5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, G5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, E5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, G5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, A5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, G5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, A5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, B5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, A5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, B5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, B5<<2, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
+
+    play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
+
+    play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
 
 
     play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
-
-    play_note(2, D5<<1, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
-
-    play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, G5<<1, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, F5<<1, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, E5<<1, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
     play_note(2, 0x166, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-
 
 }
 
@@ -210,14 +166,11 @@ void play_game_over_lose_fx()
     long length_1 = 100000;
     long length_2 = 200000;
 
-    play_note(2, D5_SHARP<<3, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
+    play_note(2, D5_SHARP<<3, 0, 0x18, ENV_SHAPE_4, ENV_FREQ, 1, 0);
 
-    play_note(2, C5<<3, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
-    
-    play_note(2, F5_SHARP<<3, 0, 0x08, 0, 0, 1, 0);
-    stop_sound_channel_c();
+    play_note(2, C5<<3, 0, 0x18, ENV_SHAPE_4, ENV_FREQ, 1, 0);
+
+    play_note(2, F5_SHARP<<3, 0, 0x18, ENV_SHAPE_4, ENV_FREQ, 1, 0);
 
 }
 
@@ -243,10 +196,10 @@ void play_menu_selection_fx()
 {
     long i;
 
-    play_note(2, B5, 0, 0x18, ENV_SHAPE_4, 0x0800, 1, 0);
+    play_note(2, B5, 0, 0x18, ENV_SHAPE_4, ENV_FREQ, 1, 0);
 
-    play_note(2, E5>>1, 0, 0x18, ENV_SHAPE_4, 0x0D00, 1, 0);
-    stop_sound_channel_c();
+
+    play_note(2, E5>>1, 0, 0x18, ENV_SHAPE_4, ENV_FREQ, 1, 0);
 
 }
 
