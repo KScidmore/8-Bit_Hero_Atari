@@ -68,7 +68,7 @@ void play_note_not_played_fx()
 {
     long i; 
     long length = 100000;
-    play_note(2, 0, 0x00, 0x18, ENV_SHAPE_4, 0x0600, 0, 1);
+    play_note(2, 0, 0x00, 0x18, ENV_SHAPE_4, ENV_FREQ, 0, 1);
     for (i = 0; i < length; i++);
     stop_sound_channel_c();
 }
@@ -276,10 +276,10 @@ void play_menu_selection_fx()
 {
     long i;
 
-    play_note(2, B5, 0, 0x18, ENV_SHAPE_4, 0x0800, 1, 0);
+    play_note(2, B5, 0, 0x18, ENV_SHAPE_4, ENV_FREQ, 1, 0);
     for (i = 0; i < 10000; i++);
 
-    play_note(2, E5>>1, 0, 0x18, ENV_SHAPE_4, 0x0D00, 1, 0);
+    play_note(2, E5>>1, 0, 0x18, ENV_SHAPE_4, ENV_FREQ, 1, 0);
     for (i = 0; i < 80000; i++);
     stop_sound_channel_c();
 

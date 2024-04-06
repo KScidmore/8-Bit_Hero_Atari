@@ -17,74 +17,74 @@
 #include "sndconst.h"
 
 Psg_notes channel_a[SONG_LENGTH] = {
-    {A5<<3, 0x13, ENV_SHAPE_4, 0x1F00},            /* part 1 */
-    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {E5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},            /* part 1 */
+    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {E5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
 
-    {A5<<3, 0x13, ENV_SHAPE_4, 0x1F00},            /* part 2 */
-    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {E5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},            /* part 2 */
+    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {E5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
 
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},            /* part 3 */
-    {F5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {A5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {F5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},            /* part 3 */
+    {F5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {F5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
 
-    {A5<<3, 0x13, ENV_SHAPE_4, 0x1F00},            /* part 4 */
-    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {E5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},            /* part 4 */
+    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {E5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
 
-    {E5<<2, 0x13, ENV_SHAPE_4, 0x1F00},            /* part 5 */
-    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {A5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {A5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {B5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {A5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {A5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
+    {E5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},            /* part 5 */
+    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {B5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
 
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},            /* part 6 */
-    {F5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {A5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {F5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},            /* part 6 */
+    {F5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {F5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
 
-    {A5<<3, 0x13, ENV_SHAPE_4, 0x1F00},            /* part 7 */
-    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {E5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {D5<<2, 0x13, ENV_SHAPE_4, 0x1F00},
-    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, 0x1F00},
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},            /* part 7 */
+    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {E5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {D5<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {C5_SHARP<<2, 0x13, ENV_SHAPE_4, ENV_FREQ},
 
-    {A5<<3, 0x13, ENV_SHAPE_4, 0x1F00},            /* part 8 */
-    {A5<<3, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5<<3, 0x13, ENV_SHAPE_4, 0x1F00},
-    {G5<<3, 0x13, ENV_SHAPE_4, 0x1F00},
-    {A5<<3, 0x13, ENV_SHAPE_4, 0x1F00},
-    {A5<<3, 0x13, ENV_SHAPE_4, 0x1F00},
-    {A5<<3, 0x13, ENV_SHAPE_4, 0x1F00}
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},            /* part 8 */
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {G5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ}
 };
