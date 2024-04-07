@@ -230,7 +230,6 @@ void note_collision_a(Model *model, UINT8 index)
 		update_multiplier(model);
 		update_fail_bar(model, -20);
 		update_note_streak(model, TRUE);
-		play_wrong_note_fx();
 	}
 }
 

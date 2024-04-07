@@ -17,6 +17,5 @@
 typedef void (*Vector)(); 
 
 Vector install_vector(int num, Vector vector);
-void vbl_isr(int *counterPtr);
 
 #endif

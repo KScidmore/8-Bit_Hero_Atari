@@ -23,36 +23,44 @@
 #include "psg.h"
 #include "isr.h"
 #include "isr_asm.h"
+#include "vbl.h"
+#include "globals.h"
 
 #define ESC 27
 #define BUFFER_SIZE 32256
 #define LAST_NOTE 19
 
+Model model;
+short render_request = 0;
+
 UINT8 buffer_array[BUFFER_SIZE];
 
-/* prototype for isr_asm.s */
+
 
 int main()
 {
     char ch;
     UINT8 *original_buffer = get_video_base();
     UINT8 *base = get_video_base();
+    Vector orig_vector;
 
     clear_screen(base);
     render_splashscreen(base);
 
+    orig_vector = install_vector(VEC_VBL_ISR, vbl_isr);
 
     while(ch != 27){
 
         ch = read_char();
 
         if(ch == ' '){
-            play_menu_selection_fx();
             game_loop();
             break;
         }
 
     }
+
+    install_vector(VEC_VBL_ISR, orig_vector);
 
     set_video_base((UINT32*)original_buffer);
 
@@ -62,20 +70,11 @@ int main()
 
 void game_loop(){
 
-    /*Game Model*/
-    Model model;
-
-    /*Frame Buffer variables*/
     UINT32 *front_buffer, *back_buffer, *curr_buffer;
-
-    /*Time variables*/
-    UINT32 time_then, time_now, time_elapsed, total_time_elapsed;
 
     /*Input Variables*/
     char ch;
     BOOL quit = FALSE;
-    BOOL music_on = FALSE;
-    int count = 0;
 
     /*Set Buffers Up*/
     set_buffer(&front_buffer, &back_buffer, buffer_array);
@@ -89,22 +88,9 @@ void game_loop(){
 
     curr_buffer = back_buffer;
 
-    /*Get Start Time*/
-    time_then = get_time();
-
+    game_on = TRUE;
 
     while (!quit) {
-
-        time_now = get_time();
-
-        time_elapsed = time_now - time_then;
-        total_time_elapsed += time_now - time_then;
-
-        /*wait to start music until first note hits fret*/
-        if (count == 300){
-            start_music();
-            music_on = TRUE;
-        }
 
         ch = read_char();
         if (ch != -1) {
@@ -125,49 +111,23 @@ void game_loop(){
                     quit = TRUE;
                     break;
             }
+        
         }
 
-        if (time_elapsed >= 1) {
-            if (!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
-                
-                generate_note(&model);
-                Vsync();
-                render_next(curr_buffer, &model);
-                set_video_base(curr_buffer);
-                if(music_on){
-
-                    update_music(total_time_elapsed, count);
-                }
-
-            }else{
-
-                Vsync();
-                render_next(curr_buffer, &model);
-                set_video_base(curr_buffer);
-                if(music_on){
-
-                    update_music(total_time_elapsed, count);
-
-                }
-
-                if(!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
-                    stop_sound_channel_a();
-                    play_game_over_win_fx();
-                    break;
-                }
-            }
-
-            time_then = time_now;
-
+        if(render_request == 1){
+            generate_note(&model);
+            render_next(curr_buffer, &model);
+            set_video_base(curr_buffer);
+            swap_buffer(front_buffer, back_buffer, &curr_buffer);
+            render_request = 0;
         }
 
         if (model.fail_bar.value == 0) {
-            play_game_over_lose_fx();
             break;
         }
-        count++;
-    }
 
+    }
+    
 
 }
 
@@ -220,16 +180,4 @@ void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer
 
     *curr_buffer = (*curr_buffer == front_buffer) ? back_buffer : front_buffer;
 
-}
-
-UINT32 get_time() {
-    long *timer = (long *)0x462;
-    long time_now;
-    long old_ssp;
-
-    old_ssp = Super(0);
-    time_now = *timer;
-    Super(old_ssp);
-
-    return (UINT32)time_now;
 }

@@ -42,8 +42,10 @@ Vector install_vector(int num, Vector vector) {
     Vector *vectp = (Vector *)((long)num << 2); /* request vector, over */
     
     long old_ssp = Super(0); /* we have clearance, Clarence */
+
     orig = *vectp;
     *vectp = vector; /* what's our vector, Victor? */
+    
     Super(old_ssp);
 
     return orig;

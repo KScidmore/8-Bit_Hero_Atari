@@ -131,6 +131,7 @@ void game_loop(){
             Vsync();
 			render_next(curr_buffer, &model);
             set_video_base(curr_buffer);
+            swap_buffer(front_buffer, back_buffer, &curr_buffer);
             if(music_on){
 
                 update_music(total_time_elapsed, count);
@@ -142,6 +143,7 @@ void game_loop(){
             Vsync();
 			render_next(curr_buffer, &model);
             set_video_base(curr_buffer);
+            swap_buffer(front_buffer, back_buffer, &curr_buffer);
             if(music_on){
 
                 update_music(total_time_elapsed, count);

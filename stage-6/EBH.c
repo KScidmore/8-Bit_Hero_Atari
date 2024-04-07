@@ -91,13 +91,14 @@ int main() {
             Vsync();
 			render_next(curr_buffer, &model);
 			Setscreen(-1, curr_buffer,-1);
+            swap_buffer(front_buffer, back_buffer, &curr_buffer);
 
         }else{
 
             Vsync();
 			render_next(curr_buffer, &model);
 			Setscreen(-1, curr_buffer,-1);
-
+            swap_buffer(front_buffer, back_buffer, &curr_buffer);
             if(!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
                 break;
             }
