@@ -1,7 +1,7 @@
 /*---------- ID HEADER ------------------------------------
 /  Authors:     Andrew Boisvert, Kyle Scidmore
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
-/  File Name:   vbl.c
+/  File Name:   isr.c
 /  Citations:   
 /    - N/A
 /
@@ -11,34 +11,8 @@
 /    to stand alone without reliance on TOS.
 /--------------------------------------------------------*/
 
-#include <stdio.h>
 #include <osbind.h>
-#include "psg.h"
-#include "music.h"
-#include "sndconst.h"
-#include "songdat.h"
-#include "types.h"
-
-#define VEC_VBL_ISR 28
-
-typedef void (*Vector)(); 
-
-Vector install_vector(int num, Vector vector);
-void vbl_isr();
-void do_vbl_isr(int *counterPtr);
-
-UINT16 vbl_counter = 1;
-BOOL render_request;
-
-int main() {
-    Vector orig_vector = install_vector(VEC_VBL_ISR, vbl_isr);
-    
-    /* TODO */
-
-    install_vector(VEC_VBL_ISR, orig_vector);
-
-    return 0;
-}
+#include "isr.h"
 
 
 /*---------- FUNCTION: install_vector ---------------------
@@ -73,50 +47,4 @@ Vector install_vector(int num, Vector vector) {
     Super(old_ssp);
 
     return orig;
-}
-
-
-/*---------- FUNCTION: do_vbl_isr -------------------------
-/  PURPOSE:
-/    TODO 
-/  
-/  CALLER INPUT:
-/    N/A
-/  
-/  CALLER OUTPUT:
-/    N/A
-/  
-/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
-/--------------------------------------------------------*/
-void do_vbl_isr() {
-    static UINT32 h_beat_counter = 0; /* half-notes */
-
-    if (vbl_counter == 70) {
-        vbl_counter = 1;
-    }
-    else {
-        vbl_counter += 1;
-    }
-
-    /*-------- half beats ----------------------*/
-    if (h_beat_counter == 26 || h_beat_counter == 52 || h_beat_counter == 78 || 
-        h_beat_counter == 105 || h_beat_counter == 131 || h_beat_counter == 157 || 
-        h_beat_counter == 183) 
-    {
-        /*
-        - need to add parameter
-        update_music();
-        */
-    }
-    else if (h_beat_counter == 210) {
-        /*
-        - need to add parameter
-        update_music();
-        */
-        h_beat_counter = 0;
-    }
-
-    render_request = TRUE;
-
 }
