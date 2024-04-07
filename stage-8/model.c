@@ -19,16 +19,17 @@
 /*---------- Model Functions ------------------------------------------------*/
 /*---------- FUNCTION: init_model -------------------------
 /  PURPOSE:
-/    TODO
+/    Initializes the model structure with default values for various 
+/	 components such as frets, lanes, notes, score, etc.
 / 
 /  CALLER INPUT:
-/    TODO
+/    *model - Pointer to a Model structure
 / 
 /  CALLER OUTPUT:
 /    N/A
 / 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
+/    
 /--------------------------------------------------------*/
 void init_model(Model *model)
 {
@@ -53,9 +54,10 @@ void init_model(Model *model)
 /    Initializes a fret object. 
 / 
 /  CALLER INPUT:
-/    *fret	=	a pointer to the fret object
-/    pos_x	=	the object's x-coordinate for its screen position
-/    pos_y	= 	the object's y-coordinate for its screen position
+/	 *model - Pointer to a Model structure
+/    *fret	-	a pointer to the fret object
+/    pos_x	-	the object's x-coordinate for its screen position
+/    pos_y	- 	the object's y-coordinate for its screen position
 / 
 /  CALLER OUTPUT:
 /    N/A
