@@ -86,5 +86,6 @@ Psg_notes channel_a[SONG_LENGTH] = {
     {G5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},
     {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},
     {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},
+    {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ},
     {A5<<3, 0x13, ENV_SHAPE_4, ENV_FREQ}
 };

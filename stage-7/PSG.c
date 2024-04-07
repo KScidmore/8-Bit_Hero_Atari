@@ -158,7 +158,7 @@ void set_volume(int channel, int volume)
 
 /*---------- FUNCTION: enable_channel ---------------------
 /  PURPOSE:
-/    Turns the given channel's tone/noise signals on/off. 
+/    Turns the given channel's tone/noise signals on/off.
 /  
 /  CALLER INPUT:
 /    int channel
@@ -180,17 +180,23 @@ void enable_channel(int channel, int tone_on, int noise_on)
         tone_on >= 0 && tone_on <= 1 &&
         noise_on >= 0 && noise_on <= 1)
     {
-        int mixer_settings = IO_PORT_BITS; /* everything disabled but I/O ports */
+        int curr_mixer_state = read_psg(7);
 
         if (tone_on) {
-            mixer_settings &= ~(1 << channel); /* clear bit for tone */
+            curr_mixer_state &= ~(1 << channel); /* clear bit for tone */
+        }
+        else {
+            curr_mixer_state |= 1 << channel; /* set bit for tone */
         }
 
         if (noise_on) {
-            mixer_settings &= ~(1 << (channel + 3)); /* clear bit for noise */
+            curr_mixer_state &= ~(1 << (channel + 3)); /* clear bit for noise */
+        }
+        else {
+            curr_mixer_state |= 1 << (channel + 3); /* set bit for noise */
         }
         
-        write_psg(7, mixer_settings);
+        write_psg(7, curr_mixer_state);
     }
 }
 
