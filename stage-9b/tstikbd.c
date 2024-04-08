@@ -14,16 +14,17 @@
 #include "ikbd.h"
 #include "super.h"
 #include "types.h"
+#include "globals.h"
+#define NO_CHAR "\0"
 
-UINT8 read_char(Char_Buffer *char_buffer);
+UINT8 read_char();
 
-Char_Buffer buffer;
 
 int main () {
 
     UINT8 ch;
 
-    init_char_buffer(&buffer);
+    init_char_buffer();
 
     install_ikbd_vector();
 
@@ -31,11 +32,8 @@ int main () {
 
     while(ch != 27){
 
-        if(ch != NULL){
 
         printf("Character %d:\n", ch);
-
-        }
 
         ch = read_char();
 
@@ -47,13 +45,13 @@ int main () {
     return 0;
 }
 
-UINT8 read_char(Char_Buffer *char_buffer) {
+UINT8 read_char() {
 
     UINT8 ch;
 
-    if (!char_buffer->is_empty) { 
+    if (!is_empty()) { 
        
-        ch = dequeue_to_ascii(char_buffer);
+        ch = dequeue_to_ascii();
 
         return ch;
 

@@ -24,13 +24,16 @@
 #include "vbl.h"
 #include "globals.h"
 #include "super.h"
+#include "ikbd.h"
 
 #define ESC 27
 #define BUFFER_SIZE 32256
 #define LAST_NOTE 19
+#define NO_CHAR '\0'
 
 Model model;
 short render_request = 0;
+
 
 UINT8 buffer_array[BUFFER_SIZE];
 
@@ -38,17 +41,22 @@ UINT8 buffer_array[BUFFER_SIZE];
 
 int main()
 {
-    char ch;
+    UINT8 ch;
     UINT8 *original_buffer = get_video_base();
     UINT8 *base = get_video_base();
     Vector orig_vector;
 
+    init_char_buffer();
+    install_ikbd_vector();
+
+
     clear_screen(base);
     render_splashscreen(base);
 
+
     orig_vector = install_vector(VEC_VBL_ISR, vbl_isr);
 
-    while(ch != 27){
+    while(ch != ESC){
 
         ch = read_char();
 
@@ -64,6 +72,8 @@ int main()
 
     install_vector(VEC_VBL_ISR, orig_vector);
 
+    restore_ikbd_vector();
+
     set_video_base((UINT32*)original_buffer);
 
     return 0;
@@ -75,7 +85,7 @@ void game_loop(){
     UINT32 *front_buffer, *back_buffer, *curr_buffer;
 
     /*Input Variables*/
-    char ch;
+    UINT8 ch;
     BOOL quit = FALSE;
 
     /*Set Buffers Up*/
@@ -92,10 +102,10 @@ void game_loop(){
 
     game_on = TRUE;
 
-    while (!quit) {
+    while (!quit){
 
         ch = read_char();
-        if (ch != -1) {
+        if (ch != NO_CHAR){
             switch (ch) {
                 case 'a':
                     play_on_fret(&model, FRET_A);

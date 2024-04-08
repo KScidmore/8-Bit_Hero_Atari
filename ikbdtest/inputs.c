@@ -4,7 +4,10 @@
 #include "inputs.h"
 #include "raster.h"
 #include "events.h"
+#include "globals.h"
+#include "ikbd.h"
 #define SIZE 50
+#define NO_CHAR '\0'
 
 
 /*---------- FUNCTION: read_char -------------------------
@@ -20,15 +23,20 @@
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /    None
 /--------------------------------------------------------*/
-char read_char() {
-    if (Cconis() != 0) { 
-        char ch = Cconin();
-        if (ch >= 'A' && ch <= 'Z') { 
-            ch += 32;
-        }
+UINT8 read_char() {
+    
+    UINT8 ch;
+
+    if (!is_empty()) { 
+       
+        ch = dequeue_to_ascii();
+
         return ch;
+
     } else {
-        return -1; 
+
+        return NO_CHAR; 
+
     }
 }
 
