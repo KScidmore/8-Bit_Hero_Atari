@@ -41,6 +41,8 @@ int main() {
     char ch;
     BOOL quit = FALSE;
     BOOL music_on = FALSE;
+    int count = 0;
+    BOOL music_wait = TRUE;
 
     /*Set Buffers Up*/
     set_buffer(&front_buffer, &back_buffer, buffer_array);
@@ -67,7 +69,7 @@ int main() {
         total_time_elapsed += time_now - time_then;
 
         /*wait to start music until first note hits fret*/
-        if (total_time_elapsed == 320){
+        if (count == 300){
             start_music();
             music_on = TRUE;
         }
@@ -101,7 +103,7 @@ int main() {
 
             if(music_on){
 
-                update_music(total_time_elapsed);
+                update_music(total_time_elapsed, count);
 
             }
 
@@ -112,11 +114,11 @@ int main() {
         if (model.fail_bar.value == 0) {
             break;
         }
-
+        count++;
     }
     stop_sound();
     Setscreen(-1, original_buffer, -1);
-    printf("Time: %d \n", total_time_elapsed);
+    printf("Count: %d\n", count);
     return 0;
 }
 

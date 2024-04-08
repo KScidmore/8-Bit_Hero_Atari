@@ -69,7 +69,6 @@ void render_next(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 
     render_frets(base, model);
     render_active_notes(base, model);
-    render_new_note(base, model, fret, note_index);
     render_score(base, model);
     render_multiplier(base, model);
     render_failbar(base, model);
@@ -92,13 +91,6 @@ void render_next(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /   
 /--------------------------------------------------------*/
-void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
-
-    model->lanes[fret].notes[note_index].is_active = TRUE;
-
-    plot_bitmap_32(base, model->lanes[fret].notes[note_index].pos_x, model->lanes[fret].notes[note_index].pos_y, note_map, model->lanes[fret].notes[note_index].size_y);
-
-}
 
 
 /*---------- FUNCTION: render_active_notes ---------------

@@ -7,7 +7,19 @@
 #define SIZE 50
 
 
-
+/*---------- FUNCTION: read_char -------------------------
+/  PURPOSE:
+/    Reads a character from the keyboard
+/ 
+/  CALLER INPUT:
+/    None
+/
+/  CALLER OUTPUT:
+/    Returns the character that was read, -1 if no input
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    None
+/--------------------------------------------------------*/
 char read_char() {
     if (Cconis() != 0) { 
         char ch = Cconin();
@@ -19,7 +31,22 @@ char read_char() {
         return -1; 
     }
 }
-
+/*---------- FUNCTION: play_on_fret ----------------------
+/  PURPOSE:
+/    Input helper function that iterates through the lane
+/    where input was detected until an active note is found and calls
+/    the set play on fret event
+/ 
+/  CALLER INPUT:
+/    Model *model - Pointer to the game model
+/    FRET_POS fret - The inputted fret
+/
+/  CALLER OUTPUT:
+/    None
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    None
+/--------------------------------------------------------*/
 void play_on_fret(Model *model, FRET_POS fret) {
     
     int i;

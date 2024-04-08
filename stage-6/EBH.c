@@ -20,6 +20,7 @@
 
 #define ESC 27
 #define BUFFER_SIZE 32256
+#define LAST_NOTE 19
 
 UINT8 buffer_array[BUFFER_SIZE];
 
@@ -84,9 +85,25 @@ int main() {
 
         if (time_elapsed >= 1) {
 
+        if (!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
+            
+            generate_note(&model);
             Vsync();
 			render_next(curr_buffer, &model);
 			Setscreen(-1, curr_buffer,-1);
+            swap_buffer(front_buffer, back_buffer, &curr_buffer);
+
+        }else{
+
+            Vsync();
+			render_next(curr_buffer, &model);
+			Setscreen(-1, curr_buffer,-1);
+            swap_buffer(front_buffer, back_buffer, &curr_buffer);
+            if(!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
+                break;
+            }
+        }
+
 
             time_then = time_now;
 
