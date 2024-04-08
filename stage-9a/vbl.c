@@ -13,6 +13,22 @@ BOOL game_on = FALSE;
 BOOL music_on = FALSE;
 BOOL stop_gen = FALSE;
 
+
+/*---------- FUNCTION: do_vbl_isr -------------------------
+/  PURPOSE:
+/    Performs the actions of the VBL ISR. This function 
+/    is to be called in the assembly function _vbl_isr
+/  
+/  CALLER INPUT:
+/    N/A
+/  
+/  CALLER OUTPUT:
+/    N/A
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    - This function MUST be called in _vbl_isr to ensure that
+/      registers d0-d2/a0-a2 are preserved and restored.
+/--------------------------------------------------------*/
 void do_vbl_isr(){
 
     if(game_on){
