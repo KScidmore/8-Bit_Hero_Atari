@@ -11,7 +11,9 @@
  Program Purposes:
    Library of functions to render screen elements
 */
+#include <stdio.h>
 #include <osbind.h>
+#include "super.h"
 #include "types.h"
 #include "renderer.h"
 #include "model.h"
@@ -21,6 +23,8 @@
 #include "events.h"
 #include "effects.h"
 #include "psg.h"
+#include "globals.h"
+
 
 /*---------- FUNCTION: init_scene ----------------------
 /  PURPOSE:
@@ -133,18 +137,21 @@ void render_active_notes(UINT32 *base, Model *model){
 
     for(i = 0; i< NOTES_SIZE ; i++){
 
-        /*iterate through note arrays, for active notes: clear note, update position and render*/
+        /*iterate through note arrays, for active notes: clear note and render*/
     
         if(model->lanes[FRET_A].notes[i].is_active == TRUE){
-            
-            clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
-            set_note_pos(model, FRET_A, i);
+            clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y - 1, model->lanes[FRET_A].notes[i].size_y);
             plot_bitmap_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, note_map, model->lanes[FRET_A].notes[i].size_y);
 
             if(model->lanes[FRET_A].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_A].notes[i].is_active = FALSE;
                 if(!model->lanes[FRET_A].notes[i].is_played){
+                    enter_super();
+                    play_note_not_played_fx();
+                    stop_sound_channel_c();
+                    exit_super();
+
                 }
                 clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
 
@@ -153,15 +160,18 @@ void render_active_notes(UINT32 *base, Model *model){
         }
 
         if(model->lanes[FRET_S].notes[i].is_active == TRUE){
-            
-            clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, model->lanes[FRET_S].notes[i].size_y);
-            set_note_pos(model, FRET_S, i);
+
+            clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y - 1, model->lanes[FRET_S].notes[i].size_y); 
             plot_bitmap_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, note_map, model->lanes[FRET_S].notes[i].size_y);
 
             if(model->lanes[FRET_S].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_S].notes[i].is_active = FALSE;
                 if(!model->lanes[FRET_S].notes[i].is_played){
+                    enter_super();
+                    play_note_not_played_fx();
+                    stop_sound_channel_c();
+                    exit_super();
                 }
                 clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, model->lanes[FRET_S].notes[i].size_y);
 
@@ -169,15 +179,18 @@ void render_active_notes(UINT32 *base, Model *model){
         }
 
         if(model->lanes[FRET_D].notes[i].is_active == TRUE){
-            
-            clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, model->lanes[FRET_D].notes[i].size_y);
-            set_note_pos(model, FRET_D, i);
+
+            clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y - 1, model->lanes[FRET_D].notes[i].size_y);
             plot_bitmap_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, note_map, model->lanes[FRET_D].notes[i].size_y);
 
             if(model->lanes[FRET_D].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_D].notes[i].is_active = FALSE;
                 if(!model->lanes[FRET_D].notes[i].is_played){
+                    enter_super();
+                    play_note_not_played_fx();
+                    stop_sound_channel_c();
+                    exit_super();
                 }
                 clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, model->lanes[FRET_D].notes[i].size_y);
 
@@ -186,14 +199,17 @@ void render_active_notes(UINT32 *base, Model *model){
 
         if(model->lanes[FRET_F].notes[i].is_active == TRUE){
 
-            clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, model->lanes[FRET_F].notes[i].size_y);
-            set_note_pos(model, FRET_F, i);
+            clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y - 1, model->lanes[FRET_F].notes[i].size_y);
             plot_bitmap_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, note_map, model->lanes[FRET_F].notes[i].size_y);
 
             if(model->lanes[FRET_F].notes[i].pos_y >= FRET_BOTTOM){
                 
                 model->lanes[FRET_F].notes[i].is_active = FALSE;
                 if(!model->lanes[FRET_F].notes[i].is_played){
+                    enter_super();
+                    play_note_not_played_fx();
+                    stop_sound_channel_c();
+                    exit_super();
                 }
                 clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, model->lanes[FRET_F].notes[i].size_y);
 
@@ -202,7 +218,40 @@ void render_active_notes(UINT32 *base, Model *model){
     }
 
 }
+void clear_active_notes(UINT32 *base, Model *model){
 
+
+    int i;
+
+    for(i = 0; i< NOTES_SIZE ; i++){
+
+        /*iterate through note arrays, for active notes: clear note and render*/
+    
+        if(model->lanes[FRET_A].notes[i].is_active == TRUE){
+            
+            clear_32(base, model->lanes[FRET_A].notes[i].pos_x, model->lanes[FRET_A].notes[i].pos_y, model->lanes[FRET_A].notes[i].size_y);
+            
+        }
+
+        if(model->lanes[FRET_S].notes[i].is_active == TRUE){
+            
+            clear_32(base, model->lanes[FRET_S].notes[i].pos_x, model->lanes[FRET_S].notes[i].pos_y, model->lanes[FRET_S].notes[i].size_y);
+
+        }
+
+        if(model->lanes[FRET_D].notes[i].is_active == TRUE){
+            
+            clear_32(base, model->lanes[FRET_D].notes[i].pos_x, model->lanes[FRET_D].notes[i].pos_y, model->lanes[FRET_D].notes[i].size_y);
+
+        }
+
+        if(model->lanes[FRET_F].notes[i].is_active == TRUE){
+
+            clear_32(base, model->lanes[FRET_F].notes[i].pos_x, model->lanes[FRET_F].notes[i].pos_y, model->lanes[FRET_F].notes[i].size_y);
+        }
+    }
+
+}
 /*---------- FUNCTION: clear_top ---------------------
 /  PURPOSE:
 / 	Clears top of the lane to deal with weird visual bug
@@ -222,10 +271,10 @@ void render_active_notes(UINT32 *base, Model *model){
 /--------------------------------------------------------*/
 void clear_top(UINT32 *base, Model *model){
 
-    clear_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, BOARD_Y, model->lanes[FRET_A].notes[FRET_A].size_y);
-    clear_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, BOARD_Y, model->lanes[FRET_S].notes[FRET_S].size_y);
-    clear_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, BOARD_Y, model->lanes[FRET_D].notes[FRET_D].size_y);
-    clear_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, BOARD_Y, model->lanes[FRET_F].notes[FRET_F].size_y);
+    black_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, BOARD_Y, 32);
+    black_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, BOARD_Y, 32);
+    black_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, BOARD_Y, 32);
+    black_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, BOARD_Y, 32);
     
 }
 

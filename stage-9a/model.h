@@ -231,7 +231,7 @@ void set_fret_depressed(Model *model, FRET_POS fret, BOOL is_depressed);
 
 /* Note Functions */
 void init_note(Note *note, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type);
-void set_note_pos(Model *model, FRET_POS fret, UINT8 index);
+void set_note_pos(Model *model);
 void set_note_is_played(Model *model, FRET_POS fret, UINT8 index, BOOL is_played);
 
 /* Lane Functions */

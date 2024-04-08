@@ -9,6 +9,7 @@
 
 #include "model.h"
 #include "types.h"
+#include "raster.h"
 
 #define FULL 120
 #define EMPTY 0
@@ -132,9 +133,37 @@ void init_note(Note *note, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /    Working as expected
 /--------------------------------------------------------*/
-void set_note_pos(Model *model, FRET_POS fret, UINT8 index)
+void set_note_pos(Model *model)
 {
-	model->lanes[fret].notes[index].pos_y += 1;
+	int i;
+
+    for(i = 0; i < NOTES_SIZE ; i++){
+
+    
+        if(model->lanes[FRET_A].notes[i].is_active == TRUE){
+
+            model->lanes[FRET_A].notes[i].pos_y += 1;
+
+        }
+
+        if(model->lanes[FRET_S].notes[i].is_active == TRUE){
+
+			model->lanes[FRET_S].notes[i].pos_y += 1;
+
+        }
+
+        if(model->lanes[FRET_D].notes[i].is_active == TRUE){
+
+			model->lanes[FRET_D].notes[i].pos_y += 1;
+            
+        }
+
+        if(model->lanes[FRET_F].notes[i].is_active == TRUE){
+
+			model->lanes[FRET_F].notes[i].pos_y += 1;
+
+        }
+    }
 }
 
 /*---------- Lane Functions -------------------------------------------------*/

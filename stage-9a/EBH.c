@@ -8,8 +8,6 @@
 */
 
 #include <osbind.h>
-#include <stdio.h>
-#include <unistd.h>
 #include "types.h"
 #include "model.h"
 #include "renderer.h"
@@ -25,6 +23,7 @@
 #include "isr_asm.h"
 #include "vbl.h"
 #include "globals.h"
+#include "super.h"
 
 #define ESC 27
 #define BUFFER_SIZE 32256
@@ -54,6 +53,9 @@ int main()
         ch = read_char();
 
         if(ch == ' '){
+            enter_super();
+            play_menu_selection_fx();
+            exit_super();
             game_loop();
             break;
         }
@@ -115,14 +117,37 @@ void game_loop(){
         }
 
         if(render_request == 1){
-            generate_note(&model);
-            render_next(curr_buffer, &model);
+        if (!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
+            
+			render_next(curr_buffer, &model);
             set_video_base(curr_buffer);
             swap_buffer(front_buffer, back_buffer, &curr_buffer);
+
+
+        }else{
+
+            stop_gen = TRUE;
+			render_next(curr_buffer, &model);
+            set_video_base(curr_buffer);
+            swap_buffer(front_buffer, back_buffer, &curr_buffer);
+
+            if(!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
+                enter_super();
+                stop_sound_channel_a();
+                play_game_over_win_fx();
+                exit_super();
+                break;
+            }
+        }
             render_request = 0;
         }
 
         if (model.fail_bar.value == 0) {
+            render_failbar(curr_buffer, &model);
+            enter_super();
+            stop_sound_channel_a();
+            play_game_over_lose_fx();
+            exit_super();
             break;
         }
 

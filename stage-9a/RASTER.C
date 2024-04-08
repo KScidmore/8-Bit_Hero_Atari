@@ -506,6 +506,21 @@ void clear_32(UINT32 *base, int x , int y, unsigned int height){
 			plot += 20;
 	}
 }
+
+void black_32(UINT32 *base, int x , int y, unsigned int height){
+
+	int i;
+
+	UINT32 *plot = (base + ((y + i) * 20 ) + (x >> 5)); 
+	
+    	
+	for (i = 0; i < height; i++) 
+	{        
+
+            *plot = 0xFFFFFFFF; 
+			plot += 20;
+	}
+}
 	
 /*----------- FUNCTION: plot_bitmap_16 -------------
 /

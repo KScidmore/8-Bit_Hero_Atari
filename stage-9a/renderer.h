@@ -41,5 +41,6 @@ void render_next(UINT32 *base, Model *model);
 void render_active_notes(UINT32 *base, Model *model);
 void clear_top(UINT32 *base, Model *model);
 void render_splashscreen(UINT8* base);
+void clear_active_notes(UINT32 *base, Model *model);
 
 #endif

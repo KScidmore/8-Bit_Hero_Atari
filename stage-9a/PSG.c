@@ -13,7 +13,6 @@
 /      - TODO  
 /--------------------------------------------------------*/
 
-#include <stdio.h>
 #include <osbind.h>
 #include "psg.h"
 #include "types.h"
@@ -47,14 +46,10 @@ void write_psg(int reg, UINT8 val)
         volatile UINT8 *register_select = SELECT_ADDRESS;
         volatile UINT8 *register_write = WRITE_ADDRESS;
 
-        UINT32 old_ssp;
-
-        old_ssp = Super(0);
 
         *register_select = (UINT8)reg;
         *register_write = val;
 
-        Super(old_ssp);
     }
 }
 
@@ -82,13 +77,8 @@ UINT8 read_psg(int reg)
         volatile UINT8 *register_write = WRITE_ADDRESS;
         UINT8 curr_val;
 
-        UINT32 old_ssp;
-        old_ssp = Super(0);
-
         *register_select = (UINT8)reg;
         curr_val = *register_select;
-
-        Super(old_ssp);
 
         return curr_val;
     }

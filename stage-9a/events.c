@@ -14,6 +14,7 @@
 #include "raster.h"
 #include "effects.h"
 #include "psg.h"
+#include "super.h"
 
 #define GENERATE 69
 #define UPPER_BOUND 384
@@ -38,70 +39,61 @@
 void generate_note(Model *model){
 
 	static int note_counter = 0;
-    static int note_gen = 0;
     static UINT8 i = 0;
     static UINT8 j = 0;
     static UINT8 k = 0;
     static UINT8 l = 0;
     static BOOL swap = FALSE;
 
-	if(note_gen == GENERATE){
-        if(!swap){
-            switch (note_counter){
-                    case 0:
-						model->lanes[FRET_A].notes[i].is_active = TRUE;
-                        i++;
-                        break;
-                    case 1:
-						model->lanes[FRET_S].notes[j].is_active = TRUE;
-                        j++;
-                        break;
-                    case 2:
-						model->lanes[FRET_D].notes[k].is_active = TRUE;
-                        k++;
-                        break;
-                    case 3:
-						model->lanes[FRET_F].notes[l].is_active = TRUE;
-                        l++;
-                        break;
-                }
-            note_counter++;
-            note_gen = 0;
-            if(note_counter == 4){
-                note_counter = 0;
-                swap = TRUE;
+    if(!swap){
+        switch (note_counter){
+                case 0:
+					model->lanes[FRET_A].notes[i].is_active = TRUE;
+                    i++;
+                    break;
+                case 1:
+					model->lanes[FRET_S].notes[j].is_active = TRUE;
+                    j++;
+                    break;
+                case 2:
+					model->lanes[FRET_D].notes[k].is_active = TRUE;
+                    k++;
+                    break;
+                case 3:
+					model->lanes[FRET_F].notes[l].is_active = TRUE;
+                    l++;
+                    break;
             }
-        }
-        else{
-            switch (note_counter){
-                    case 3:
-						model->lanes[FRET_A].notes[i].is_active = TRUE;
-                        i++;
-                        break;
-                    case 2:
-						model->lanes[FRET_S].notes[j].is_active = TRUE;
-                        j++;
-                        break;
-                    case 1:
-						model->lanes[FRET_D].notes[k].is_active = TRUE;
-                        k++;
-                        break;
-                    case 0:
-						model->lanes[FRET_F].notes[l].is_active = TRUE;
-                        l++;
-                        break;
-                }
-            note_counter++;
-            note_gen = 0;
-            if(note_counter == 4){
-                note_counter = 0;
-                swap = FALSE;
-            }
-
+        note_counter++;
+        if(note_counter == 4){
+            note_counter = 0;
+            swap = TRUE;
         }
     }
     else{
-        note_gen++;
+        switch (note_counter){
+                case 3:
+					model->lanes[FRET_A].notes[i].is_active = TRUE;
+                    i++;
+                    break;
+                case 2:
+					model->lanes[FRET_S].notes[j].is_active = TRUE;
+                    j++;
+                    break;
+                case 1:
+					model->lanes[FRET_D].notes[k].is_active = TRUE;
+                    k++;
+                    break;
+                case 0:
+					model->lanes[FRET_F].notes[l].is_active = TRUE;
+                    l++;
+                    break;
+            }
+        note_counter++;
+        if(note_counter == 4){
+            note_counter = 0;
+            swap = FALSE;
+        }
     }
 }
 
@@ -230,6 +222,10 @@ void note_collision_a(Model *model, UINT8 index)
 		update_multiplier(model);
 		update_fail_bar(model, -20);
 		update_note_streak(model, TRUE);
+		enter_super();
+		play_wrong_note_fx();
+		stop_sound_channel_c();
+		exit_super();
 	}
 }
 
@@ -266,6 +262,10 @@ void note_collision_s(Model *model, UINT8 index)
 		update_multiplier(model);
 		update_fail_bar(model, -20);
 		update_note_streak(model, TRUE);
+		enter_super();
+		play_wrong_note_fx();
+		stop_sound_channel_c();
+		exit_super();
 	}
 }
 
@@ -302,6 +302,10 @@ void note_collision_d(Model *model, UINT8 index)
 		update_multiplier(model);
 		update_fail_bar(model, -20);
 		update_note_streak(model, TRUE);
+		enter_super();
+		play_wrong_note_fx();
+		stop_sound_channel_c();
+		exit_super();		
 	}
 }
 
@@ -338,5 +342,9 @@ void note_collision_f(Model *model, UINT8 index)
 		update_multiplier(model);
 		update_fail_bar(model, -20);
 		update_note_streak(model, TRUE);
+		enter_super();
+		play_wrong_note_fx();
+		stop_sound_channel_c();
+		exit_super();		
 	}
 }
