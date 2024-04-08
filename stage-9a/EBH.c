@@ -117,28 +117,29 @@ void game_loop(){
         }
 
         if(render_request == 1){
-        if (!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
             
-			render_next(curr_buffer, &model);
-            set_video_base(curr_buffer);
-            swap_buffer(front_buffer, back_buffer, &curr_buffer);
+            if (!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
+
+		    	render_next(curr_buffer, &model);
+                set_video_base(curr_buffer);
+                swap_buffer(front_buffer, back_buffer, &curr_buffer);
 
 
-        }else{
+            }else{
 
-            stop_gen = TRUE;
-			render_next(curr_buffer, &model);
-            set_video_base(curr_buffer);
-            swap_buffer(front_buffer, back_buffer, &curr_buffer);
+                stop_gen = TRUE;
+		    	render_next(curr_buffer, &model);
+                set_video_base(curr_buffer);
+                swap_buffer(front_buffer, back_buffer, &curr_buffer);
 
-            if(!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
-                enter_super();
-                stop_sound_channel_a();
-                play_game_over_win_fx();
-                exit_super();
-                break;
+                if(!model.lanes[FRET_A].notes[LAST_NOTE].is_active){
+                    enter_super();
+                    stop_sound_channel_a();
+                    play_game_over_win_fx();
+                    exit_super();
+                    break;
+                }
             }
-        }
             render_request = 0;
         }
 

@@ -18,7 +18,6 @@
 #include "isr.h"
 
 typedef UINT8 SCANCODE;
-typedef void (*Vector)(); 
 
 /* IKBD 6850 IRQ Vector */
 #define VEC_IKBD_ISR 70
@@ -119,11 +118,15 @@ void do_ikbd_isr() {
     
     UINT8 value = *IKBD_RDR;
 
+    if(value >= 0xF8){
+        
+    }
+
 
 }
 
-/*Circular Queue Functions*/
-void init_char_buffer(){
+/*-----------------Circular Queue Functions-----------------------------*/
+void init_char_buffer(Char_Buffer *char_buffer){
 
     char_buffer.front = 0;
     char_buffer.rear = -1;
@@ -133,6 +136,19 @@ void init_char_buffer(){
 
 BOOL is_empty(Char_Buffer *char_buffer){
 
+    if(char_buffer->size == 0){
+        return TRUE;
+    }
+    else{
 
-    return
+        return FALSE;
+    }
+
+}
+
+void enqueue(Char_Buffer *char_buffer){
+
+    char_buffer->rear = (char_buffer->rear + 1) % SIZE;
+    char_buffer->buffer[char_buffer->rear] = value;
+    char_buffer->size++;
 }
