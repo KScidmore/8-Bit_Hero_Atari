@@ -1,26 +1,36 @@
 # Variable declarations
-TARGET_B=ikbd
-OBJECTS_B=ikbd.o ikbdisr.o
+TARGET=tstikbd
+OBJECTS=ikbd.o ikbdisr.o tstikbd.o super.o isr.o
 
 CC=cc68x
 CFLAGS=-g
 
 # Building the target
-all: clean $(TARGET_B)
+all: clean $(TARGET)
 
 # Linking target executables from object files
-$(TARGET_B): $(OBJECTS_B)
-	$(CC) $(OBJECTS_B) -o $(TARGET_B)
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(TARGET)
 
 # Compiling object files 
-ikbd.o: ikbd.c 
+
+ikbd.o: ikbd.c isr.h super.h types.h
 	$(CC) $(CFLAGS) -c ikbd.c 
 
 ikbdisr.o: ikbdisr.s
 	gen -D -L2 ikbdisr.s
 
+isr.o: isr.c 
+	$(CC) $(CFLAGS) -c isr.c 
+
+super.o: super.c super.h globals.h
+	$(CC) $(CFLAGS) -c super.c 
+
+tstikbd.o: tstikbd.c ikbd.h super.h
+	$(CC) $(CFLAGS) -c tstikbd.c 
+
 # Cleaning up the old object files and executable
 clean:
-	$(RM) *.o $(TARGET_A) $(TARGET_B)
+	$(RM) *.o $(TARGET)
 
 # DON'T DELETE THIS LINE OR IT BREAKS

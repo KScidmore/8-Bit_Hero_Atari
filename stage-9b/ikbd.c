@@ -11,11 +11,11 @@
 /    to stand alone without reliance on TOS.
 /--------------------------------------------------------*/
 
-#include <stdio.h>
 #include <osbind.h>
-#include "types.h"
-#include "super.h"
+#include "ikbd.h"
 #include "isr.h"
+#include "super.h"
+#include "types.h"
 
 typedef UINT8 SCANCODE;
 
@@ -34,65 +34,56 @@ volatile const UINT8    * const IKBD_status  = STATUS;
 volatile const SCANCODE * const IKBD_RDR     = RDR;
 volatile       UINT8    * const MASK_REGISTER_B = MASK; 
 
+/* Global Variables */
 Char_Buffer char_buffer;
-Vector orig_kbd;
+Vector orig_ikbd;
 
-/* Function Prototypes */
-
-void ikbd_isr();
-void do_ikbd_isr(int *ptr);
-
-void init_char_buffer();
-
-
-/*---------- FUNCTION: install_kbd_vector ------------------------
+/*---------- FUNCTION: install_ikbd_vector ------------------------
 /  PURPOSE:
 /    Masks the GPIP4 bit of Interrupt Mask B and installs vector
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter
+/    N/A
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value 
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    N/A
 /--------------------------------------------------------*/
-void install_kbd_vector(){
+void install_ikbd_vector(){
 
     enter_super();
     *MASK_REGISTER_B &= 0xBF; /*Mask interrupts, GPIP4*/
     exit_super();
 
-    orig_kbd = install_vector(VEC_IKBD_ISR, kbd_isr);
+    orig_ikbd = install_vector(VEC_IKBD_ISR, ikbd_isr);
 
     enter_super();
     *MASK_REGISTER_B |= 0x40; /*Unmask interrupts, GPIP4*/
     exit_super();
 
 }
-/*---------- FUNCTION: restore_kbd_vector ------------------------
+/*---------- FUNCTION: restore_ikbd_vector ------------------------
 /  PURPOSE:
 /    Masks the GPIP4 bit of Interrupt Mask B and restores vector
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter
+/    N/A
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value 
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    N/A
 /--------------------------------------------------------*/
-void restore_kbd_vector(){
+void restore_ikbd_vector(){
 
     enter_super();
     *MASK_REGISTER_B &= 0xBF; /*Mask interrupts, GPIP4*/
     exit_super();
 
-    install_vector(VEC_IKBD_ISR, orig_kbd);
+    install_vector(VEC_IKBD_ISR, orig_ikbd);
 
     enter_super();
     *MASK_REGISTER_B |= 0x40; /*Unmask interrupts, GPIP4*/
@@ -102,53 +93,144 @@ void restore_kbd_vector(){
 
 /*---------- FUNCTION: do_ikbd_isr ------------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective
+/    Performs the actions of the IKBD ISR. This function 
+/    is to be called in the assembly function _ikbd_isr
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter
+/    N/A
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value 
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    - This function MUST be called in _ikbd_isr to ensure that
+/      registers d0-d2/a0-a2 are preserved and restored.
 /--------------------------------------------------------*/
 void do_ikbd_isr() {
     
     UINT8 value = *IKBD_RDR;
 
-    if(value >= 0xF8){
-        
+    if(value >= 0xF8) {
+        /* mouse packet stuff*/
     }
-
-
+    else {
+        char_buffer.buffer[char_buffer.back++] = value;
+    }
 }
 
-/*-----------------Circular Queue Functions-----------------------------*/
+
+/*----------------- Circular Queue Functions --------------------------------*/
+
+/*---------- FUNCTION: init_char_buffer -------------------
+/  PURPOSE:
+/    Initializes the buffer to an empty default state.
+/  
+/  CALLER INPUT:
+/    Char_Buffer *char_buffer
+/      A pointer to the buffer
+/  
+/  CALLER OUTPUT:
+/    N/A
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    N/A
+/--------------------------------------------------------*/
 void init_char_buffer(Char_Buffer *char_buffer){
 
-    char_buffer.front = 0;
-    char_buffer.rear = -1;
-    char_buffer.size = 0;
-
+    char_buffer->front = 0;
+    char_buffer->back = -1;
+    char_buffer->size = 0;
 }
 
+
+/*---------- FUNCTION: is_empty ---------------------------
+/  PURPOSE:
+/    Checks if the buffer is empty.
+/  
+/  CALLER INPUT:
+/    Char_Buffer *char_buffer
+/      A pointer to the buffer
+/  
+/  CALLER OUTPUT:
+/    BOOL
+/      returns TRUE (1) or FALSE (0)
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
 BOOL is_empty(Char_Buffer *char_buffer){
 
     if(char_buffer->size == 0){
         return TRUE;
     }
     else{
-
         return FALSE;
     }
 
 }
 
-void enqueue(Char_Buffer *char_buffer){
 
-    char_buffer->rear = (char_buffer->rear + 1) % SIZE;
-    char_buffer->buffer[char_buffer->rear] = value;
+/*---------- FUNCTION: enqueue ----------------------------
+/  PURPOSE:
+/    Used to enqueue a value to the buffer, and if the length 
+/    of the buffer has been reached, it wraps back around to 
+/    the beginning.
+/  
+/  CALLER INPUT:
+/    Char_Buffer *char_buffer
+/      A pointer to the buffer
+/    UINT8 value
+/      The value to be added to the queue
+/  
+/  CALLER OUTPUT:
+/    N/A
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    N/A
+/--------------------------------------------------------*/
+void enqueue(Char_Buffer *char_buffer, UINT8 value){
+
+    char_buffer->back = (char_buffer->back + 1) % SIZE;
+    char_buffer->buffer[char_buffer->back] = value;
     char_buffer->size++;
+}
+
+
+/*---------- FUNCTION: dequeue_to_ascii -------------------
+/  PURPOSE:
+/    This function dequeues a value from the buffer and converts
+/    that value to it's ASCII equivalent. The scancode is used 
+/    as the index value in the keytable to access its equivalent 
+/    value.
+/  
+/  CALLER INPUT:
+/    Char_Buffer *char_buffer
+/      A pointer to the buffer
+/  
+/  CALLER OUTPUT:
+/    UINT8 ascii
+/      The ASCII value which has been converted from the scancode.
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    TODO 
+/--------------------------------------------------------*/
+UINT8 dequeue_to_ascii(Char_Buffer *char_buffer) {
+
+    /* in progress */
+
+    UINT8 scancode;
+    UINT8 ascii;
+
+    if(is_empty()) {
+        /* might wanna switch this to return null val in keytable 
+        or return 0 */
+    }
+
+    scancode = char_buffer->buffer[char_buffer->front];
+    char_buffer->front = (char_buffer->front +1) % SIZE;
+    char_buffer->size -= 1;
+
+    ascii = keytable[scancode];
+
+    return ascii;
 }

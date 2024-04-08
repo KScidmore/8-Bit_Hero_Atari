@@ -1,0 +1,104 @@
+ 
+
+The GEMDOS function Cconin( ), and the BIOS function Bconin( ) (when used 
+to read the console device keyboard), both return a two-byte keycode, 
+which is extended into a longword with the form 00xx00xx. The first byte
+of the keycode, which is found in the second byte of the longword, is usually
+a unique key identifier that refers to the physical key that was struck, 
+regardless of shift-key combinations. The second byte, which is found in the
+last byte of the longword, is usually the ASCII value of the key combination,
+which does depend on the state of the shift keys (Shift, Control, and 
+Alternate). The following table shows the keycodes, as four-digit hexadecimal
+numbers, for all key and shift combinations.
+
+  		Unshifted		   Shift		CTRL		ALT
+a			1E61		A	1E41		1E01		1E00
+b			3062		B	3042		3002		3000
+c			2E63		C	2E43		2E03		2E00
+d			2064		D	2044		2004		2000
+e			1265		E	1245		1205		1200
+f			2166		F	2146		2106		2100
+g			2267		G	2247		2207		2200
+h			2368		H	2348		2308		2300
+i			1769		I	1749		1709		1700 
+j			246A		J	244A		240A		2400
+k			256B		K	254B		250B		2500
+l			266C		L	264C		260C		2600
+m			326D		M	324D		320D		3200
+n			316E		N	314E		310E		3100
+o			186F		O	184F		180F		1800
+p			1970		P	1950		1910		1900
+q			1071		Q	1051		1011		1000
+r			1372		R	1352		1312		1300
+s			1F73		S	1F53		1F13		1F00
+t			1474		T	1454		1414		1400
+u			1675		U	1655		1615		1600
+v			2F76		V	2F56		2F16		2F00
+w			1177		W	1157		1117		1100
+x			2D78		X	2D58		2D18		2D00
+y			1579		Y	1559		1519		1500
+z			2C7A		Z	2C5A		2C1A		2C00
+1			0231		!	0221		0211		7800
+2			0332		@	0340		0300		7900
+3			0433		#	0423		0413		7A00
+4			0534		$	0524		0514		7B00
+5			0635		%	0625		0615		7C00
+6			0736		^	075E		071E		7D00
+7			0837		&	0826		0817		7E00
+8			0938		*	092A		0918		7F00
+9			0A39		(	0A28		0A19		8000
+0			0B30		)	0B29		0B10		8100
+-			0C2D		_	0C5F		0C1F		8200
+=			0D3D		+	0D2B		0D1D		8300
+'			2960		`	297E		2900		2960
+\			2B5C			2B7C		2B1C		2B5C
+[			1A5B		{	1A7B		1A1B		1A5B
+]			1B5D		}	1B7D		1B1D		1B5D
+;			273B		:	273A		271B		273B
+'			2827		"	2822		2807		2827
+,			332C		<	333C		330C		332C
+.			342E		>	343E		340E		342E
+/			352F		?	353F		350F		352F
+Space		3920			3920		3900		3920
+Esc			011B			011B		011B		011B
+BS			0E08			0E08		0E08		0E08
+Delete		537F			537F		531F		537F
+Return		1C0D			1C0D		1C0A		1C0D
+Tab			0F09			0F09		0F09		0F09
+Help		6200			6200		6200		(screen print)
+Undo		6100			6100		6100		6100
+Insert		5200			5230		5200		(left mouse button)
+Clr/Home	4700			4737		7700		(right mouse button)
+Up-Arrow	4800			4838		4800		(move mouse up)
+Dn-Arrow	5000			5032		5000		(move mouse down)
+Lft-Arrow	4B00			4B34		7300		(move mouse left)
+Rt-Arrow	4D00			4D36		7400		(move mouse right)
+(			6328			6328		6308		6328
+)			6429			6429		6409		6429
+/			652F			652F		65OF		652F
+*			662A			662A		660A		662A
+-			4A2D			4A2D		4A1F		4A2D
++			4E2B			4E2B		4EOB		4E2B
+.			712E			712E		710E		712E
+Enter		720D			720D		720A		720D
+0			7030			7030		7010		7030
+1			6D31			6D31		6D11		6D31
+2			6E32			6E32		6E00		6E32
+3			6F33			6F33		6F13		6F33
+4			6A34			6A34		6A14		6A34
+5			6B35			6B35		6B15		6B35
+6			6C36			6C36		6C1E		6C36
+7			6737			6737		6717		6737
+8			6838			6838		6818		6838
+9			6939			6939		6919		6939
+F1			3B00			5400		3B00		3B00
+F2			3C00			5500		3C00		3C00
+F3  		3D00			5600		3D00		3D00
+F4  		3E00			5700		3E00		3E00
+F5  		3F00			5800		3F00		3F00
+F6  		4000			5900		4000		4000
+F7  		4100			5A00		4100		4100
+F8  		4200			5B00		4200		4200
+F9  		4300			5C00		4300		4300
+F10 		4400			5D00		4400		4400
+
