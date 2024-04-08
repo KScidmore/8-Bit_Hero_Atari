@@ -3,15 +3,11 @@
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
 /  File Name:   events.h
 /  Citations:   
-/    - TODO 
+/     
 /
 /
 /  Program Purposes:
-/    Data Structures: 
-/      - TODO
-/
-/    Functions:
-/      - TODO  
+/    Prototypes for events.c
 /--------------------------------------------------------*/
 
 #ifndef EVENTS_H
@@ -20,22 +16,21 @@
 #include "model.h"
 #include "types.h"
 
-/*---------- Asynchronous (Input) Events ------------------------------------*/
-void set_play_on_fret_a(Model *model);
-void set_play_on_fret_s(Model *model);
-void set_play_on_fret_d(Model *model);
-void set_play_on_fret_f(Model *model);
-void quit_game(Model *model);
+/*---------- Synchronous (Input) Events ------------------------------------*/
+void generate_note(Model *model);
+void activate_note();
 
-/*----------Synchronous (Timed) Events --------------------------------------*/
-void move_note(Model *model);
+/*---------- Asynchronous (Input) Events ------------------------------------*/
+void set_play_on_fret_a(Model *model, UINT8 index);
+void set_play_on_fret_s(Model *model, UINT8 index);
+void set_play_on_fret_d(Model *model, UINT8 index);
+void set_play_on_fret_f(Model *model, UINT8 index);
 
 /*---------- Condition-Based (Cascaded) Events ------------------------------*/
-BOOL note_collision_a(Model *model);
-BOOL note_collision_s(Model *model);
-BOOL note_collision_d(Model *model);
-BOOL note_collision_f(Model *model);
+void note_collision_a(Model *model, UINT8 index);
+void note_collision_s(Model *model, UINT8 index);
+void note_collision_d(Model *model, UINT8 index);
+void note_collision_f(Model *model, UINT8 index);
 
-void fail_song();
 
 #endif 

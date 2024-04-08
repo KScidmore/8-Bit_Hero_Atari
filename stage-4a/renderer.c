@@ -65,7 +65,7 @@ void init_scene(UINT8 *base, UINT32 *base32, Model *model){
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
 /  
 /--------------------------------------------------------*/
-void render_next(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index){
+void render_next(UINT32 *base, Model *model){
 
     render_frets(base, model);
     render_active_notes(base, model);

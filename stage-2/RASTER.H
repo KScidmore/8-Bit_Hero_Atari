@@ -1,3 +1,14 @@
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   events.h
+/  Citations:   
+/     
+/
+/
+/  Program Purposes:
+/    Prototypes for raster.c
+/--------------------------------------------------------*/
 #ifndef RASTER_H
 #define RASTER_H
 
