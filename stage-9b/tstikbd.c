@@ -15,7 +15,7 @@
 #include "super.h"
 #include "types.h"
 #include "globals.h"
-#define NO_CHAR "\0"
+#define NO_CHAR '\0'
 
 UINT8 read_char();
 
@@ -32,8 +32,11 @@ int main () {
 
     while(ch != 27){
 
+        if(ch != NO_CHAR){
 
-        printf("Character %d:\n", ch);
+            printf("Character :%c \n", ch);
+
+        }
 
         ch = read_char();
 
@@ -44,7 +47,20 @@ int main () {
 
     return 0;
 }
-
+/*---------- FUNCTION: read_char ------------------------
+/  PURPOSE:
+/    Reads a character from the input buffer
+/  
+/  CALLER INPUT:
+/    N/A
+/  
+/  CALLER OUTPUT:
+/    Returns the character as a UINT8 if valid
+/    Otherwise returns NULL
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    N/A
+/--------------------------------------------------------*/
 UINT8 read_char() {
 
     UINT8 ch;
@@ -57,7 +73,7 @@ UINT8 read_char() {
 
     } else {
 
-        return NULL; 
+        return NO_CHAR; 
 
     }
 }

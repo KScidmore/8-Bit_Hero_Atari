@@ -20,27 +20,7 @@
 
 typedef UINT8 SCANCODE;
 
-/* IKBD 6850 IRQ Vector */
-#define VEC_IKBD_ISR 70
 
-/* IKBD 6850 Addresses */
-#define CONTROL ((UINT32)0xFFFC00)
-#define STATUS  ((UINT32)0xFFFC00)
-#define RDR     ((UINT32)0xFFFC02)
-#define MASK    ((UINT32)0xFFFFFA09)
-
-/*Mouse Packets*/
-#define NO_MOUSE 0
-#define MOUSE_PACKET1 1
-#define MOUSE_PACKET2 2
-
-/*Make codes for special keys ie: shifts/caps*/
-#define LEFT_SHIFT_MAKE 0x2A
-#define LEFT_SHIFT_BREAK 0xAA
-#define RIGHT_SHIFT_MAKE 0x36
-#define RIGHT_SHIFT_BREAK 0xB6
-#define CAPS_LOCK 0x3A 
-#define NO_CHAR '\0'
 
 /* IKBD 6850 Register Values */
 volatile       UINT8    * const IKBD_control = CONTROL;
@@ -71,13 +51,13 @@ BOOL caps_on = FALSE;
 void install_ikbd_vector(){
 
     enter_super();
-    *MASK_REGISTER_B &= 0xBF; /*Mask interrupts, GPIP4*/
+    *MASK_REGISTER_B &= DISABLE; /*Mask interrupts, GPIP4*/
     exit_super();
 
     orig_ikbd = install_vector(VEC_IKBD_ISR, ikbd_isr);
 
     enter_super();
-    *MASK_REGISTER_B |= 0x40; /*Unmask interrupts, GPIP4*/
+    *MASK_REGISTER_B |= ENABLE; /*Unmask interrupts, GPIP4*/
     exit_super();
 
 }
@@ -97,13 +77,13 @@ void install_ikbd_vector(){
 void restore_ikbd_vector(){
 
     enter_super();
-    *MASK_REGISTER_B &= 0xBF; /*Mask interrupts, GPIP4*/
+    *MASK_REGISTER_B &= DISABLE; /*Mask interrupts, GPIP4*/
     exit_super();
 
     install_vector(VEC_IKBD_ISR, orig_ikbd);
 
     enter_super();
-    *MASK_REGISTER_B |= 0x40; /*Unmask interrupts, GPIP4*/
+    *MASK_REGISTER_B |= ENABLE; /*Unmask interrupts, GPIP4*/
     exit_super();
 
 }
@@ -160,8 +140,7 @@ void do_ikbd_isr() {
 /    Initializes the buffer to an empty default state.
 /  
 /  CALLER INPUT:
-/    Char_Buffer *char_buffer
-/      A pointer to the buffer
+/    N/A
 /  
 /  CALLER OUTPUT:
 /    N/A
@@ -182,9 +161,7 @@ void init_char_buffer(){
 /    Checks if the buffer is empty.
 /  
 /  CALLER INPUT:
-/    Char_Buffer *char_buffer
-/      A pointer to the buffer
-/  
+/    N/A
 /  CALLER OUTPUT:
 /    BOOL
 /      returns TRUE (1) or FALSE (0)
@@ -205,42 +182,17 @@ BOOL is_empty(){
 }
 
 
-/*---------- FUNCTION: enqueue ----------------------------
-/  PURPOSE:
-/    Used to enqueue a value to the buffer, and if the length 
-/    of the buffer has been reached, it wraps back around to 
-/    the beginning.
-/  
-/  CALLER INPUT:
-/    Char_Buffer *char_buffer
-/      A pointer to the buffer
-/    UINT8 value
-/      The value to be added to the queue
-/  
-/  CALLER OUTPUT:
-/    N/A
-/  
-/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    N/A
-/--------------------------------------------------------*/
-void enqueue(Char_Buffer *char_buffer, UINT8 value){
-
-    char_buffer->back = (char_buffer->back + 1) % SIZE;
-    char_buffer->buffer[char_buffer->back] = value;
-    char_buffer->size++;
-}
-
-
 /*---------- FUNCTION: dequeue_to_ascii -------------------
 /  PURPOSE:
 /    This function dequeues a value from the buffer and converts
 /    that value to it's ASCII equivalent. The scancode is used 
 /    as the index value in the keytable to access its equivalent 
-/    value.
+/    value. As well it handles shift, capslock, alt and ctrl
+/    setting flags for the given key and returning from the
+/    proper key table
 /  
 /  CALLER INPUT:
-/    Char_Buffer *char_buffer
-/      A pointer to the buffer
+/    N/A
 /  
 /  CALLER OUTPUT:
 /    UINT8 ascii
@@ -251,66 +203,71 @@ void enqueue(Char_Buffer *char_buffer, UINT8 value){
 /--------------------------------------------------------*/
 UINT8 dequeue_to_ascii() {
 
-    /* in progress */
 
     UINT8 scancode;
     UINT8 ascii;
-
-    /*if(!is_empty){
-    scancode = char_buffer.buffer[char_buffer.front++];
-
-    ascii = unshifted_key_table[scancode];
-    }*/
 
     while(!is_empty()){
 
         scancode = char_buffer.buffer[char_buffer.front++];
 
-        ascii = unshifted_key_table[scancode];
     }
 
-    /*scancode = char_buffer.buffer[char_buffer.front];
-    char_buffer.front = (char_buffer.front +1) % SIZE;
-    char_buffer.size -= 1;*/
-
-    /*if(scancode == RIGHT_SHIFT_MAKE || scancode == LEFT_SHIFT_MAKE){
-
+    if(scancode == RIGHT_SHIFT_MAKE || scancode == LEFT_SHIFT_MAKE){
+        
         shift_held = TRUE;
-
-        return NO_CHAR;
     }
     else if(scancode == RIGHT_SHIFT_BREAK || scancode == LEFT_SHIFT_BREAK){
 
         shift_held = FALSE;
-
-        return NO_CHAR;
     }
     else if(scancode == CAPS_LOCK){
 
         if(caps_on == TRUE){
-
+            
             caps_on = FALSE;
-
         }
-        return NO_CHAR;
+        else {
+            
+            caps_on = TRUE;
+        }
     }
-    else{
 
-        if(shift_held){
+    if(shift_held) {
 
+        if (!(scancode & MAKE_MASK)){
             ascii = shifted_key_table[scancode];
-
-        }
-        else if(caps_on){
-            ascii = caps_key_table[scancode];
         }
         else{
+
+            ascii = NO_CHAR;
+        }
+
+    }
+    else if(caps_on) {
+
+        if (!(scancode & MAKE_MASK)){
+            ascii = shifted_key_table[scancode];
+        }
+        else{
+
+            ascii = NO_CHAR;
+        }
+        
+    }
+    else{
+        if (!(scancode & MAKE_MASK)){
             ascii = unshifted_key_table[scancode];
         }
-    }*/
+        else{
 
-    ascii = unshifted_key_table[scancode];
+            ascii = NO_CHAR;
+        }
+
+    }
+
 
     return ascii;
+
 }
 
