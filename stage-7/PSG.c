@@ -101,15 +101,18 @@ UINT8 read_psg(int reg)
 /    perfectly clear from the name)
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/    int channel
+/      The channel to be selected (A, B, or C) 
+/    int tuning 
+/      A 12 bit value representing the fine tone and rough 
+/      tone, to be assigned to their appropriate registers
+/      based upon the channel. 
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    N/A
 /--------------------------------------------------------*/
 void set_tone(int channel, int tuning)
 {
@@ -119,7 +122,7 @@ void set_tone(int channel, int tuning)
         int rough_reg = (channel * 2) + 1;
 
         int fine_tone = tuning & 0x0FF;
-        int rough_tone = (tuning >> 8) & 0x0FF;
+        int rough_tone = (tuning >> 8) & 0x00F;
 
         write_psg(fine_reg, fine_tone);
         write_psg(rough_reg, rough_tone);

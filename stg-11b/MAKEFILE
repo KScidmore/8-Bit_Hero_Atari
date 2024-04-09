@@ -14,7 +14,7 @@ bitmaps.o: bitmaps.c bitmaps.h
 	cc68x -c bitmaps.c
 
 main.o: main.c types.h model.h events.h renderer.h rast_asm.h inputs.h raster.h effects.h music.h psg.h isr.h isr_asm.h vbl.h globals.h super.h ebh.h
-	cc68x -c main.c
+	cc68x -c -g main.c
 
 super.o: super.c super.h globals.h
 	cc68x -c super.c 
