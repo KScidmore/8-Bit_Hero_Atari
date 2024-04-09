@@ -1,16 +1,16 @@
-/*
- ID Header:
-   Authors: 	Andrew Boisvert, Kyle Scidmore
-   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
-   File Name:	RASTER.C
-   Citations:  
-     - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
-     - 
-
-
- Program Purposes:
-   Library of functions to render screen elements
-*/
+/*---------------------------------------------------------
+/ ID Header:
+/   Authors: 	Andrew Boisvert, Kyle Scidmore
+/   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
+/   File Name:	RASTER.C
+/   Citations:  
+/     - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+/     - 
+/
+/
+/ Program Purposes:
+/   Library of functions to render screen elements
+/------------------------------------------------------------*/
 #include <osbind.h>
 #include "types.h"
 #include "renderer.h"

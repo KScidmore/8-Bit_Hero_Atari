@@ -3,11 +3,11 @@
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
 /  File Name:   events.h
 /  Citations:   
-/     
+/    
 /
 /
 /  Program Purposes:
-/    Prototypes for events.c
+/    Header file for events.c
 /--------------------------------------------------------*/
 
 #ifndef EVENTS_H

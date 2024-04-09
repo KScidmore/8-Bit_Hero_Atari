@@ -7,11 +7,7 @@
 /    - play_menu_selection_fx: Super Mario Bros "Coin Sound"
 /
 /  Program Purposes:
-/    Data Structures: 
-/      - TODO
-/
-/    Functions:
-/      - TODO  
+/    Functions for game sound effects
 /--------------------------------------------------------*/
 
 #include <osbind.h>

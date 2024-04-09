@@ -1,3 +1,14 @@
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   bitmaps.c
+/  Citations:   
+/    
+/
+/  Program Purposes:
+/    Library of global bitmaps
+/--------------------------------------------------------*/
+
 #include "bitmaps.h"
 
 const UINT32 a_map[] =

@@ -1,3 +1,13 @@
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   ebh.c
+/  Citations:   
+/    
+/
+/  Program Purposes:
+/    Main game module
+/--------------------------------------------------------*/
 #include <osbind.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -81,6 +91,19 @@ int main()
     
 }
 
+/*---------- FUNCTION: get_time -------------------------
+/  PURPOSE:
+/    Accesses the vbclock at address 0x462 to get current time
+/ 
+/  CALLER INPUT:
+/    N/A
+/ 
+/  CALLER OUTPUT:
+/   Returns current time
+/ 
+/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
+/    N/A
+/--------------------------------------------------------*/
 UINT32 get_time() {
     long *timer = (long *)0x462;
     long time_now;

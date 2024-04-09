@@ -1,3 +1,14 @@
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   inputs.c
+/  Citations:   
+/   
+/
+/
+/  Program Purposes:
+/    Library of input functions
+/--------------------------------------------------------*/
 #include <stdio.h>
 #include <osbind.h>
 #include "types.h"
