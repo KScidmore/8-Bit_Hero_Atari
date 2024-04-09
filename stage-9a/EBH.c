@@ -1,12 +1,13 @@
-/*
- ID Header:
-   Authors: 	Andrew Boisvert, Kyle Scidmore
-   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
-   File Name:	EBH.c
-   Citations:  
- Program Purposes: Main game module
-*/
-
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   ebh.c
+/  Citations:   
+/    
+/
+/  Program Purposes:
+/    Main game module
+/--------------------------------------------------------*/
 #include <osbind.h>
 #include "types.h"
 #include "model.h"
@@ -70,6 +71,19 @@ int main()
     
 }
 
+/*---------- FUNCTION: game_loop -----------------------
+/  PURPOSE:
+/    Main gameplay loop
+/  
+/  CALLER INPUT:
+/    N/A
+/  
+/  CALLER OUTPUT:
+/    N/A
+/  
+/  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
+/    N/A 
+/--------------------------------------------------------*/
 void game_loop(){
 
     UINT32 *front_buffer, *back_buffer, *curr_buffer;

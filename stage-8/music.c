@@ -32,26 +32,23 @@ UINT32 time_since_last_note = 0;
 
 /*---------- FUNCTION: start_music ------------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    Starts music for main game song
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/    N/A
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    N/A
 /--------------------------------------------------------*/
 void start_music()
 {
 
     set_tone(0, channel_a[curr_note_index].pitch);
-    set_volume(0, channel_a[curr_note_index].level);
     enable_channel(0, 1, 0);
+    set_volume(0, channel_a[curr_note_index].level);
     set_envelope(channel_a[curr_note_index].env_shape, 
                  channel_a[curr_note_index].env_sustain);
 
@@ -61,19 +58,19 @@ void start_music()
 
 /*---------- FUNCTION: update_music -----------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    Updates main game song
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/    UINT32 total_time_elapsed
+/      -Total time the game has been running
+/    int count
+/      -Counter for when the second note should play
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    N/A
 /--------------------------------------------------------*/
 void update_music(UINT32 total_time_elapsed, int count)
 {   
@@ -83,8 +80,8 @@ void update_music(UINT32 total_time_elapsed, int count)
 
             stop_sound_channel_a();
             set_tone(0, channel_a[curr_note_index].pitch);
-            set_volume(0, channel_a[curr_note_index].level);
             enable_channel(0, 1, 0);
+            set_volume(0, channel_a[curr_note_index].level);
             set_envelope(channel_a[curr_note_index].env_shape,
                             channel_a[curr_note_index].env_sustain);
 

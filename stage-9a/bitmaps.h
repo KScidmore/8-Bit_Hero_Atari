@@ -1,3 +1,13 @@
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   bitmaps.h
+/  Citations:   
+/    
+/
+/  Program Purposes:
+/    Header for bitmaps.c
+/--------------------------------------------------------*/
 #ifndef BITMAPS_H
 #define BITMAPS_H
 

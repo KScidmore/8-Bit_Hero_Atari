@@ -41,6 +41,5 @@ void init_scene(UINT8 *base, UINT32 *base_long, Model *model);
 void render_next(UINT32 *base, Model *model);
 void render_new_note(UINT32 *base, Model *model, UINT8 fret, UINT8 note_index);
 void render_active_notes(UINT32 *base, Model *model);
-void clear_top(UINT32 *base, Model *model);
 
 #endif

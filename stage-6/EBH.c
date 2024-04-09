@@ -1,12 +1,13 @@
-/*
- ID Header:
-   Authors: 	Andrew Boisvert, Kyle Scidmore
-   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
-   File Name:	EBH.c
-   Citations:  
- Program Purposes: Main game module
-*/
-
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   ebh.c
+/  Citations:   
+/    
+/
+/  Program Purposes:
+/    Main game module
+/--------------------------------------------------------*/
 #include <osbind.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -173,16 +174,16 @@ void swap_buffer(UINT32* front_buffer, UINT32* back_buffer, UINT32** curr_buffer
 
 /*---------- FUNCTION: get_time -------------------------
 /  PURPOSE:
-/    TODO
+/    Accesses the vbclock at address 0x462 to get current time
 / 
 /  CALLER INPUT:
-/    TODO
-/ 
-/  CALLER OUTPUT:
 /    N/A
 / 
+/  CALLER OUTPUT:
+/   Returns current time
+/ 
 /  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/    TODO
+/    N/A
 /--------------------------------------------------------*/
 UINT32 get_time() {
     long *timer = (long *)0x462;

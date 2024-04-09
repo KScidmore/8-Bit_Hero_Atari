@@ -1,3 +1,14 @@
+/*---------- ID HEADER ------------------------------------
+/  Authors:     Andrew Boisvert, Kyle Scidmore
+/  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
+/  File Name:   globals.h
+/  Citations:   
+/    
+/
+/
+/  Program Purposes:
+/    Global variables used by ISR functions
+/--------------------------------------------------------*/
 #ifndef GLOBALS_H
 #define GLOBALS_H
 

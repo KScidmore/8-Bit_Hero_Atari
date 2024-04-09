@@ -17,7 +17,7 @@ $(TARGET): $(OBJECTS)
 ikbd.o: ikbd.c isr.h super.h types.h
 	$(CC) $(CFLAGS) -c ikbd.c 
 
-ikbdisr.o: ikbdisr.s
+ikbdisr.o: ikbdisr.s ikbdisr.h
 	gen -D -L2 ikbdisr.s
 
 isr.o: isr.c 

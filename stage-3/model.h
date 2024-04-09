@@ -1,18 +1,12 @@
-/*---------- ID HEADER ------------------------------------
+/*---------- ID HEADER ----------------------------------------
 /  Authors:     Andrew Boisvert, Kyle Scidmore
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
 /  File Name:   model.h
-/  Citations:   
-/    - TODO 
-/
 /
 /  Program Purposes:
-/    Data Structures: 
-/      - TODO
-/
-/    Functions:
-/      - TODO  
-/--------------------------------------------------------*/
+/    Header for model.c including structures for the game model
+/ 	 and function prototypes
+/--------------------------------------------------------------*/
 #ifndef MODEL_H
 #define MODEL_H
 
@@ -22,15 +16,20 @@
 
 /*---------- STRUCTURE: Fret ------------------------------
 /  INFO:
-/    TODO - general explanation 
+/    Structure for the fret object
 /  
 /  ATTRIBUTES:
-/    pos_x			= x-val for position coordinate
-/    pos_y			= y-val for position coordinate
-/    size_x			= x-val for size of the object in px
-/    size_y			= y-val for size of the object in px
-/    is_depressed	= Boolean state for if fret is currently
-/                     being depressed (0=F / 1=T)
+/    UINT16 pos_x
+/       - x-val for position coordinate
+/    UINT16 pos_y	
+/		- y-val for position coordinate
+/    UINT8 size_x	
+/		- x-val for size of the object in px
+/    UINT8 size_y	
+/		- y-val for size of the object in px
+/    BOOL is_depressed	
+/ 		- Boolean state for if fret is currently
+/         being depressed (0=F / 1=T)
 /--------------------------------------------------------*/
 typedef struct 
 {
@@ -42,16 +41,28 @@ typedef struct
 
 /*---------- STRUCTURE: Note ------------------------------
 /  INFO:
-/    TODO - general explanation 
+/    Structure for the note object
 /  
 /  ATTRIBUTES:
-/    pos_x			= x-val for position coordinate
-/    pos_y			= y-val for position coordinate
-/    delta_y 		= velocity 
-/    size_x			= x-val for size of the object in px
-/    size_y			= y-val for size of the object in px
-/    isPlayed 		= Boolean state for if note has been
-/                     played (0=F / 1=T)
+/    UINT16 pos_x
+/       - x-val for position coordinate
+/    UINT16 pos_y	
+/		- y-val for position coordinate
+/	 int v_dir
+/ 		- vertical direction
+/    UINT8 size_x	
+/		- x-val for size of the object in px
+/    UINT8 size_y	
+/		- y-val for size of the object in px
+/    BOOL is_played	
+/ 		- Boolean state for if note has been
+/         played (0=F / 1=T)
+/    BOOL is_active	
+/ 		- Boolean state for if note is
+/         active (0=F / 1=T)
+/    NOTE_TYPE note_type	
+/ 		- the type of note
+/	 
 /--------------------------------------------------------*/
 typedef struct 
 {
@@ -60,106 +71,120 @@ typedef struct
     int v_dir;                          
     UINT8 size_x, size_y; 
 	BOOL is_played;
+	BOOL is_active;
 	NOTE_TYPE note_type;
 } Note;
 
-
-/*---------- STRUCTURE: Note_Streak -----------------------
+/*---------- STRUCTURE: Lane ------------------------------
 /  INFO:
-/    TODO - general explanation 
+/    Structure for the lane object
 /  
 /  ATTRIBUTES:
-/    TODO - what sort of attributes does this structure 
-/    have that isn't immediately apparent
+/    UINT16 start_x
+/       - x-val for start coordinate
+/    UINT16 curr_x
+/       - x-val for current coordinate
+/    UINT16 start_y	
+/		- y-val for start coordinate
+/    UINT16 end_y	
+/		- y-val for start coordinate
+/    UINT8 counter	
+/		- ASK ANDREW
+/    NOTE notes[]	
+/ 		- An array of notes on the lane
 /--------------------------------------------------------*/
 typedef struct 
 {
-	UINT16 pos_x, pos_y; 
-	UINT16 total_size_x, total_size_y, digit_size_x, digit_size_y;
-	UINT16 value;
-	BOOL incremented_flag;
-} Note_Streak;
-
-/*---------- STRUCTURE: Digit -----------------------
-/  INFO:
-/    TODO - general explanation 
-/  
-/  ATTRIBUTES:
-/    TODO - what sort of attributes does this structure 
-/    have that isn't immediately apparent
-/--------------------------------------------------------*/
-typedef struct
-{
-	UINT16 pos_x, pos_y;
-	UINT8 size_x, size_y;
-	UINT8 value;
-} Digit;
+    UINT16 start_x, curr_x, start_y, end_y;
+	Note notes[NOTES_SIZE];
+} Lane;
 
 /*---------- STRUCTURE: Score -----------------------------
 /  INFO:
-/    TODO - general explanation 
+/    Structure for the score object 
 /  
 /  ATTRIBUTES:
-/    TODO
+/    UINT16 ones_x
+/       - x-val for ones digit coordinate
+/    UINT16 tens_x
+/       - x-val for tens digit coordinate
+/    UINT16 hunds_x	
+/		- x-val for hundreds digit coordinate
+/    UINT16 thous_x	
+/		- x-val for thousands digit coordinate
+/    UINT8 size_x	
+/		- x-val for size of the object in px
+/    UINT8 size_y	
+/		- y-val for size of the object in px
+/    UINT16 value
+/       - the scores current value
+/    UINT16 prev_ones
+/       - previous ones value
+/    UINT16 prev_tens
+/       - previous tens value
+/    UINT16 prev_hunds	
+/		- previous hundreds value
+/    UINT16 prev_thous	
+/		- previous thousands value
+/    BOOL updated flag	
+/ 		- Boolean state for if score has been
+/         updated (0=F / 1=T)
 /--------------------------------------------------------*/
 typedef struct 
 {
-	UINT16 pos_x, pos_y;
+	UINT16  ones_x, tens_x, hunds_x, thous_x, pos_y;
 	UINT8 size_x, size_y;
-	UINT16 value;
+	UINT16 value, note_streak, prev_ones, prev_tens, prev_hunds, prev_thous;
 	BOOL updated_flag;
 } Score;
 
 
 /*---------- STRUCTURE: Multiplier ------------------------
 /  INFO:
-/    TODO - general explanation 
+/    Structure for the multiplier object
 /  
 /  ATTRIBUTES:
-/    pos_x				= x-val for position coordinate
-/    pos_y				= y-val for position coordinate
-/    total_size_x		= x-val for total object size
-/    total_size_y		= y-val for total object size
-/    digit_size_x		= x-val for digit size
-/    digit_size_y		= y-val for digit size
-/    value				= the value of the score for the game
+/    UINT16 pos_x
+/		- x-val for position coordinate
+/    UINT16 pos_y	
+/		- y-val for position coordinate
+/    UINT8 total_size_x	
+/		- x-val for size of the object in px
+/    UINT8 total_size_y	
+/		- y-val for size of the object in px
+/    UINT8 digit_size_x	
+/		- x-val for size of the digit in px
+/    UINT8 digit_size_y	
+/		- y-val for size of the digit in px
+/    UINT16 value 
+/		- the value of the multiplier
+/    UINT16 prev_value 
+/		- the previous value of the multiplier
+/  
 /--------------------------------------------------------*/
 typedef struct 
 {
 	UINT16 pos_x, pos_y;
 	UINT8 total_size_x, total_size_y, digit_size_x, digit_size_y;
-	UINT16 value;
-	BOOL updated_flag;
+	UINT16 value, prev_value;
 } Multiplier;
-
-
-/*---------- STRUCTURE: Fretboard -------------------------
-/  INFO:
-/    TODO - general explanation 
-/  
-/  ATTRIBUTES:
-/    pos_x		= x-val for position coordinate
-/    pos_y		= y-val for position coordinate
-/    size_x		= x-val for size of the object in px
-/    size_y		= y-val for size of the object in px
-/--------------------------------------------------------*/
-typedef struct 
-{
-	UINT16 pos_x, pos_y;
-	UINT16 size_x, size_y;
-} Fretboard;
 
 
 /*---------- STRUCTURE: Fail_Bar --------------------------
 /  INFO:
-/    TODO - general explanation 
+/    Structure for the failbar object
 /  
 /  ATTRIBUTES:
-/    pos_x		= x-val for position coordinate
-/    pos_y		= y-val for position coordinate
-/    size_x		= x-val for size of the object in px
-/    size_y		= y-val for size of the object in px
-/    value 		= the value of the bail bar (starts @ 50%)
+/    UINT16 pos_x
+/		- x-val for position coordinate
+/    UINT16 pos_y	
+/		- y-val for position coordinate
+/    UINT16 size_x	
+/		- x-val for size of the object in px
+/    UINT16 size_y	
+/		- y-val for size of the object in px
+/    UINT8 value 
+/		- the value of the bail bar (starts @ 50%)
 /--------------------------------------------------------*/
 typedef struct 
 {
@@ -170,20 +195,27 @@ typedef struct
 
 /*---------- STRUCTURE: Model ------------------------------
 /  INFO:
-/    TODO - general explanation 
+/    Structure for the main game model
 /  
 /  ATTRIBUTES:
-/    TODO - what sort of attributes does this structure 
-/    have that isn't immediately apparent
+/    Frets frets[]
+/ 		- Fret structure
+/ 	 Lane lanes[]
+/		- Lane structure
+/ 	 Score score
+/		- Score structure
+/    Multiplier multiplier
+/ 		- Multiplier structure
+/    Fail_Bar fail_bar
+/ 		- Failbar structure
+/ 	
 /--------------------------------------------------------*/
 typedef struct 
 {
 	Fret frets[FRETS_SIZE]; /* frets A, S, D, and F */
-	Note note;
-	Note_Streak note_streak;
+	Lane lanes[LANES_SIZE]; /* lanes for the 4 frets */
 	Score score;
 	Multiplier multiplier;
-	Fretboard fretboard;
 	Fail_Bar fail_bar;	
 } Model;
 
@@ -198,14 +230,16 @@ void init_fret(Model *model, FRET_POS fret_pos, UINT16 pos_x, UINT16 pos_y);
 void set_fret_depressed(Model *model, FRET_POS fret, BOOL is_depressed);
 
 /* Note Functions */
-void init_note(Model *model, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type);
-void set_note_pos(Model *model);
-void set_note_is_played(Model *model, BOOL is_played);
-void generate_note(Model *model);
+void init_note(Note *note, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_y, int delta_y, NOTE_TYPE note_type);
+void set_note_pos(Model *model, FRET_POS fret, UINT8 index);
+void set_note_is_played(Model *model, FRET_POS fret, UINT8 index, BOOL is_played);
+
+/* Lane Functions */
+void init_lane(Model *model, FRET_POS fret, UINT8 index, UINT16 pos_x, UINT16 pos_y, int delta_y, 
+				NOTE_TYPE note_type);
 
 /* Note Streak Functions */
-void init_note_streak(Model *model);
-void update_note_streak(Model *model);
+void update_note_streak(Model *model, BOOL miss);
 
 /* Score Functions */
 void init_score(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
@@ -214,9 +248,6 @@ void update_score(Model *model);
 /* Multiplier Functions */
 void init_multiplier(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);
 void update_multiplier(Model *model);
-
-/* Fretboard Functions */
-void init_fretboard(Model *model);
 
 /* Failbar Functions */
 void init_fail_bar(Model *model, UINT16 pos_x, UINT16 pos_y, UINT16 value);

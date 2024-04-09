@@ -1,16 +1,16 @@
-/*
- ID Header:
-   Authors: 	Andrew Boisvert, Kyle Scidmore
-   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
-   File Name:	RASTER.C
-   Citations:  
-     - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
-     - 
-
-
- Program Purposes:
-   Library of functions to render screen elements
-*/
+/*---------------------------------------------------------
+/ ID Header:
+/   Authors: 	Andrew Boisvert, Kyle Scidmore
+/   Emails: 		abois526@mtroyal.ca, kscid125@mtroyal.ca
+/   File Name:	RASTER.C
+/   Citations:  
+/     - https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+/     - 
+/
+/
+/ Program Purposes:
+/   Library of functions to render screen elements
+/------------------------------------------------------------*/
 #include <osbind.h>
 #include "types.h"
 #include "renderer.h"
@@ -68,13 +68,6 @@ void init_scene(UINT8 *base, UINT32 *base32, Model *model){
 /--------------------------------------------------------*/
 void render_next(UINT32 *base, Model *model){
 
-    static int note_counter = 0;
-    static int note_gen = 0;
-    static UINT8 i = 0;
-    static UINT8 j = 0;
-    static UINT8 k = 0;
-    static UINT8 l = 0;
-    static BOOL swap = FALSE;
 
     render_active_notes(base, model);
     render_score(base, model);
@@ -82,72 +75,6 @@ void render_next(UINT32 *base, Model *model){
     render_failbar(base, model);
     render_frets(base, model);
 
-     if(note_gen == GENERATE){
-        if(!swap){
-            switch (note_counter){
-                    case 0:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_A, i);
-                        i++;
-                        break;
-                    case 1:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_S, j);
-                        j++;
-                        break;
-                    case 2:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_D, k);
-                        k++;
-                        break;
-                    case 3:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_F, l);
-                        l++;
-                        break;
-                }
-            note_counter++;
-            note_gen = 0;
-            if(note_counter == 4){
-                note_counter = 0;
-                swap = TRUE;
-            }
-        }
-        else{
-            switch (note_counter){
-                    case 3:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_A, i);
-                        i++;
-                        break;
-                    case 2:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_S, j);
-                        j++;
-                        break;
-                    case 1:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_D, k);
-                        k++;
-                        break;
-                    case 0:
-                        clear_top(base, model);
-                        render_new_note(base, model, FRET_F, l);
-                        l++;
-                        break;
-                }
-            note_counter++;
-            note_gen = 0;
-            if(note_counter == 4){
-                note_counter = 0;
-                swap = FALSE;
-            }
-
-        }
-    }
-    else{
-        note_gen++;
-    }
 }
 
 /*---------- FUNCTION: render_new_note ------------------
@@ -257,31 +184,6 @@ void render_active_notes(UINT32 *base, Model *model){
 
 }
 
-/*---------- FUNCTION: clear_top ---------------------
-/  PURPOSE:
-/ 	Clears top of the lane to deal with weird visual bug
-/   of notes slowly drawing themselves
-/ 
-/  CALLER INPUT:
-/   UINT32 *base
-/ 	- Starting point of the frame buffer
-/   Model *model
-/   - Address of the game model
-/
-/  CALLER OUTPUT:
-/   Returns Void
-/ 
-/  ASSUMPTIONS, LIMITATIONS, KNOWN BUGS:
-/  
-/--------------------------------------------------------*/
-void clear_top(UINT32 *base, Model *model){
-
-    clear_32(base, model->lanes[FRET_A].notes[FRET_A].pos_x, BOARD_Y, model->lanes[FRET_A].notes[FRET_A].size_y);
-    clear_32(base, model->lanes[FRET_S].notes[FRET_S].pos_x, BOARD_Y, model->lanes[FRET_S].notes[FRET_S].size_y);
-    clear_32(base, model->lanes[FRET_D].notes[FRET_D].pos_x, BOARD_Y, model->lanes[FRET_D].notes[FRET_D].size_y);
-    clear_32(base, model->lanes[FRET_F].notes[FRET_F].pos_x, BOARD_Y, model->lanes[FRET_F].notes[FRET_F].size_y);
-    
-}
 
 /*---------- FUNCTION: render_frets ---------------------
 /  PURPOSE:

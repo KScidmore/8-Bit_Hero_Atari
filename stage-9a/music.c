@@ -32,19 +32,16 @@ UINT32 time_since_last_note = 0;
 
 /*---------- FUNCTION: start_music ------------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    Starts music for main game song
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/    N/A
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    N/A
 /--------------------------------------------------------*/
 void start_music()
 {
@@ -61,19 +58,16 @@ void start_music()
 
 /*---------- FUNCTION: update_music -----------------------
 /  PURPOSE:
-/    TODO - purpose, from the caller's perspective (if not 
-/    perfectly clear from the name)
+/    Updates main game song
 /  
 /  CALLER INPUT:
-/    TODO - the purpose of each input parameter (if not 
-/    perfectly clear from the name)
+/    N/A
 /  
 /  CALLER OUTPUT:
-/    TODO - the purpose of each output parameter and return 
-/    value (if not perfectly clear from the name)
+/    N/A
 /  
 /  ASSUMPTIONS, LIMITATIONS, AND KNOWN BUGS:
-/    TODO 
+/    N/A
 /--------------------------------------------------------*/
 void update_music()
 {   

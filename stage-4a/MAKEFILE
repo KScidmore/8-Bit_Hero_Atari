@@ -15,7 +15,7 @@ all: clean $(TARGET)
 $(TARGET): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(TARGET)
 
-tst_rend.o: tst_rend.c types.h model.h renderer.h rast_asm.h
+tst_rend.o: tst_rend.c types.h model.h renderer.h rast_asm.h events.h
 	$(CC) $(CFLAGS) -c tst_rend.c
 
 renderer.o: renderer.c types.h model.h renderer.h bitmaps.h raster.h

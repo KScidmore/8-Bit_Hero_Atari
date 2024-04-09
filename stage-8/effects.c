@@ -7,11 +7,7 @@
 /    - play_menu_selection_fx: Super Mario Bros "Coin Sound"
 /
 /  Program Purposes:
-/    Data Structures: 
-/      - TODO
-/
-/    Functions:
-/      - TODO  
+/    Functions for game sound effects
 /--------------------------------------------------------*/
 
 #include <osbind.h>
@@ -241,9 +237,10 @@ void play_menu_selection_fx()
 void play_note(int channel, int tone_tuning, int noise_tuning, int volume, 
                int shape, unsigned int sustain, int tone_on, int noise_on) {
     
-    set_envelope(shape, sustain);
     set_tone(channel, tone_tuning);
     set_noise(noise_tuning);
-    set_volume(channel, volume);
     enable_channel(channel, tone_on, noise_on);
+    set_volume(channel, volume);
+    set_envelope(shape, sustain);
+
 }

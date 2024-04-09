@@ -3,15 +3,11 @@
 /  Emails:      abois526@mtroyal.ca, kscid125@mtroyal.ca 
 /  File Name:   events.h
 /  Citations:   
-/    - TODO 
+/   
 /
 /
 /  Program Purposes:
-/    Data Structures: 
-/      - TODO
-/
-/    Functions:
-/      - TODO  
+/    Header file for events.c
 /--------------------------------------------------------*/
 
 #ifndef EVENTS_H
