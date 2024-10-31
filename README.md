@@ -6,7 +6,7 @@ A rhythm-based game coded in C and 68000 assembly for Atari systems.
 *8-bit Hero* is a retro-style rhythm game where players must hit notes accurately in time with 8-bit music. Built for Atari emulation with C and 68000 assembly.
 
 ## Gameplay
-Players press buttons to match incoming notes as they scroll across the screen. Hitting notes at the right time earns points, while misses decrease the player's score and fail bar.
+Players press buttons to match incoming notes as they scroll across the screen. Hitting notes at the right time earns points, while misses decrease the fail bar, miss to many and you fail the song.
 
 ## Controls
 - **A/S/D/F Buttons**: Hit notes in time with the beat.
