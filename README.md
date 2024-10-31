@@ -8,21 +8,17 @@ A rhythm-based game coded in C and 68000 assembly for Atari systems.
 ## Gameplay
 Players press buttons to match incoming notes as they scroll across the screen. Hitting notes at the right time earns points, while misses decrease the player's score and fail bar.
 
-## Features
-- **Score Tracking**: Tracks and displays high scores.
-- **Assembly Optimizations**: Critical components implemented in 68000 assembly for optimized performance on Atari hardware.
-
 ## Controls
 - **A/S/D/F Buttons**: Hit notes in time with the beat.
-- **Enter**: Begin the game
+- **Enter**: Begin the game.
 
 ## Installation
 To play *8-bit Hero*, you’ll need the Steem emulator and the "full game" folder.
 
 1. Download the "full game" folder from this repository.
 2. Ensure you have the [Steem Emulator](http://steem.atari.st/) installed.
-3. Navigate to the full game directory in steem
-4. Run make to generate an executable file called 8BH
+3. Navigate to the full game directory in steem.
+4. Run make to generate an executable file called EBH.
 
 ## Project Structure
 - EBH.c and EBH.h: Main game functions and logic.
